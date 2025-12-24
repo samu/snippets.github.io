@@ -18,17 +18,19 @@ export type Position =
   | "centered";
 
 const onTheRight = css`
-  transform: translateX(2.5em) translateY(1.5em);
+  transform: scale(0.95) translateX(-1em) translateY(1em);
+  transform-origin: bottom left;
 `;
 
 const onTheLeft = css`
-  transform: translateX(-2.5em) translateY(1.5em);
+  transform: scale(0.95) translateX(0.5em) translateY(1em);
+  transform-origin: bottom right;
 `;
 
 const atTheBottom = css`
   transform: translateY(1.5em);
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
 `;
 
 const centered = css`

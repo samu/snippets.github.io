@@ -1,26 +1,26 @@
 ---
-description: Snip is a productivity app, focusing on note taking and task management. It uses the local first principle, giving users control over where their data is stored.
+description: Snippets is a productivity app, focusing on note taking and task management. It uses the local first principle, giving users control over where their data is stored.
 ---
 
 import DocVideo from '@site/src/components/DocVideo/DocVideo';
 
 # Features
 
-## The Snip Philosophy
+## The Snippets Philosophy
 
 Note-Taking is a relatively simple process. Most of the time, you just want to write down some thoughts or a todo or take a note of something you know will be useful in the future. Notes are often ephemeral: you need them in a particular moment and discard them soon thereafter.
 
-Snip focuses on keeping this simple process simple, while providing useful features. It provides a super-slick, completely decluttered user interface with only a handful of controls, giving you a distraction free experience when working with notes.
+Snippets focuses on keeping this simple process simple, while providing useful features. It provides a super-slick, completely decluttered user interface with only a handful of controls, giving you a distraction free experience when working with notes.
 
 ## Regarding Markdown
 
-Snip is not a markdown-based note taking app.
-Using markdown for taking notes is quite common in other note taking apps. Snip intentionally does not follow that trend. The main reason is that users will still want to have a rich-text-editor-like experience. Markdown is really just the format in which a note is stored. For presenting and editing the content, we usually want a more sophisticated interface.
-Please note that it is still possible to _export_ a rich-text-note to markdown. Snip does not yet have export to markdown, but this functionality is coming very soon.
+Snippets is not a markdown-based note taking app.
+Using markdown for taking notes is quite common in other note taking apps. Snippets intentionally does not follow that trend. The main reason is that users will still want to have a rich-text-editor-like experience. Markdown is really just the format in which a note is stored. For presenting and editing the content, we usually want a more sophisticated interface.
+Please note that it is still possible to _export_ a rich-text-note to markdown. Snippets does not yet have export to markdown, but this functionality is coming very soon.
 
 ## Origins
 
-You don't need an account to store your data. Snip is designed to allow users to pick the destination to which their data is syned. This is done with origins.
+You don't need an account to store your data. Snippets is designed to allow users to pick the destination to which their data is syned. This is done with origins.
 
 Origins allow you to specificy how your data shall be persisted. Currently,
 there's two origins available:
@@ -130,7 +130,7 @@ one another. Set up note references as follows:
 
 ## Search and Quick Access
 
-Snip comes with an effective search-all feature, which you can use to search
+Snippets comes with an effective search-all feature, which you can use to search
 your notes. It presents results in a compact, easy-to-read manner. You can use
 [regular expressions](https://en.wikipedia.org/wiki/Regular_expression) if you
 like.

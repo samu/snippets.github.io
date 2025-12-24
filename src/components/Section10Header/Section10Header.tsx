@@ -11,17 +11,30 @@ import {
   StyledSection,
 } from "./styled";
 
-const words = [
+function shuffle(array: Array<string>) {
+  const arr = array.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+const words = shuffle([
   "Lightweight",
-  "Free Of Charge",
+  "Free of Charge",
   "Simple",
-  "Offline-First",
+  "Offline-first",
   "Powerful",
-  "Modular",
-  "Private",
-  "Cross-Platform",
-  "Responsive",
-];
+  "Effortless",
+  "Focused",
+  "Frictionless",
+  "Flexible",
+  "Elegant",
+  "Future-proof",
+  "Non-proprietary",
+  "Distraction-free",
+]);
 
 export function Section10Header() {
   return (
@@ -42,12 +55,6 @@ export function Section10Header() {
               ></TextRoll>
             </em>
           </h1>
-
-          <h2>
-            Snip Is Your Everyday &nbsp;
-            <em>Productivity</em>
-            &nbsp; Companion.
-          </h2>
         </Header>
 
         <ImageWrapperContainer>

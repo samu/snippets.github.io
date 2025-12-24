@@ -47,16 +47,16 @@ export const StyledSectionRow = styled(SectionRow)`
   justify-content: space-between;
   max-width: 60em;
 
-  @media (max-width: 992px) {
-    flex-direction: column;
+  flex-direction: column;
+
+  @media (min-width: 992px) {
+    flex-direction: row;
   }
 `;
 
 export const StyledSectionRowReverse = styled(StyledSectionRow)`
-  flex-direction: row-reverse;
-
-  @media (max-width: 992px) {
-    flex-direction: column;
+  @media (min-width: 992px) {
+    flex-direction: row-reverse;
   }
 `;
 

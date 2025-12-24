@@ -71,7 +71,7 @@ const config: Config = {
         // {
         //   type: "html",
         //   position: "right",
-        //   value: `<button class="snip-cloud-button">Snip Cloud</button>`,
+        //   value: `<button class="snip-cloud-button">Snippets Cloud</button>`,
         // },
       ],
     },

@@ -5,18 +5,13 @@ import { FeatherIcon } from "./components/FeatherIcon";
 import { Scribble } from "./components/Scribble";
 
 export const StyledSection = styled(Section)`
+  padding-left: 1em;
+  padding-right: 1em;
+
   background: linear-gradient(
     180deg,
     var(--accent-contrast-color-1) 20%,
-    var(--accent-color-1)
-  );
-
-  min-height: calc(
-    min(
-      100vh - var(--ifm-navbar-height) -
-        var(--landing-page-download-section-height),
-      80em
-    )
+    var(--accent-color-1) 99%
   );
 `;
 
@@ -66,7 +61,7 @@ export const Header = styled.header`
 
   @media (min-width: 992px) {
     h1 {
-      font-size: 3.25em;
+      font-size: 2.75em;
     }
   }
 `;
@@ -99,8 +94,9 @@ export const ImageWrapperContainer = styled.div`
 export const StyledDesktopImageWrapper = styled(ImageWrapper).attrs({
   $boxShadow: true,
 })`
-  width: 90%;
-  max-width: 1050px;
+  width: 100%;
+
+  max-width: 70em;
 
   @media (max-width: 768px) {
     display: none;

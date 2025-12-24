@@ -16,9 +16,9 @@ export function Section50Plugins() {
 
         <HeadingParagraphsSectionRow>
           <p>
-            Snip is all about taking notes. In Snip, a "Note" is in fact called
-            a "Snippet" (hence the name "Snip"). A Snippet is a piece of data
-            that can be represented in a graphical user interface.
+            Snippets is all about taking notes. In Snippets, a "Note" is in fact
+            called a "Snippet" (hence the name "Snippets"). A Snippet is a piece
+            of data that can be represented in a graphical user interface.
           </p>
 
           <p>
@@ -30,8 +30,8 @@ export function Section50Plugins() {
           <p>
             In the following section, you will learn about another Snippet type,
             the Flashcard Snippet, which is very similar to a Rich Text Snippet,
-            but comes with additional functionality, allowing you to use Snip as
-            a spaced repetition app.
+            but comes with additional functionality, allowing you to use
+            Snippets as a spaced repetition app.
           </p>
         </HeadingParagraphsSectionRow>
       </SectionRow>
@@ -44,7 +44,7 @@ export function Section50Plugins() {
               <p>
                 Conceptually, a flashcard snippet is identical to a real world
                 flash card: It has two sides, where one side is a question or
-                prompt and the other side is an answer or information. For
+                prompt, and the other side is an answer or information. For
                 example, this can be used for learning a new language.
               </p>
             </TextWithTitleBox>

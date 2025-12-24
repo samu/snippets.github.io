@@ -18,10 +18,11 @@ export function Section60Mobile() {
       </SectionRow>
 
       <SytledBottomRow $flexDirection="column">
-        <p>Available on iOS. Coming soon on all other platforms.</p>
+        <p>Beta available on iOS. Coming soon on all other platforms.</p>
 
-        <DownloadButton href="https://apps.apple.com/ch/app/snip-notes-todos-reminders/id1584692945">
+        <DownloadButton href="https://testflight.apple.com/join/3wpgBj2Z">
           <MacOsIcon></MacOsIcon>
+          TestFlight
         </DownloadButton>
       </SytledBottomRow>
     </StyledSection>

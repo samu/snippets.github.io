@@ -1,29 +1,27 @@
 import styled from "styled-components";
 
-export const StyledAnchor = styled.a`
-  text-decoration: none;
+export const StyledAnchor = styled.a<{
+  $disabled?: boolean;
+}>`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  background-color: var(--oc-blue-8);
+  border: 1px solid var(--oc-blue-9);
+  border-radius: 0.5em;
+  margin-bottom: 0.5em;
+  ${(props) => (props.$disabled ? "pointer-events: none;" : "")}
 `;
 
 export const StyledDownloadIcon = styled.span`
   display: flex;
-  border: 1px solid var(--accent-contrast-color-1);
   color: var(--accent-contrast-color-1);
-  border-radius: 3em;
-  width: 2.5em;
-  height: 2.5em;
   align-items: center;
   justify-content: center;
-  margin-left: 1em;
-  margin-right: 1em;
-
-  @media (min-width: 768px) {
-    width: 3em;
-    height: 3em;
-  }
+  padding: 0.5em;
 
   svg {
-    height: 40%;
-    width: 40%;
-    margin: 0.5em;
+    width: 1em;
+    margin-right: 0.25em;
   }
 `;
