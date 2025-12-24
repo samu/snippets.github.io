@@ -1,0 +1,16 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+  border: 1px dashed rgba(0, 0, 0, 0.25);
+  margin-bottom: 1em;
+}
+
+.wrapper video {
+  filter: blur(3px) grayscale(1);
+}
+
+.wrapper:hover video {
+  filter: blur(0px);
+}
