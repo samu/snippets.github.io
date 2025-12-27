@@ -13,7 +13,7 @@ export const StyledSection = styled(Section)`
   h1 {
     font-size: 4em;
     margin-top: 2em;
-    margin-bottom: 2em;
+    margin-bottom: 0.5em;
   }
 
   @media (min-width: 768px) {
@@ -26,6 +26,6 @@ export const StyledIPhoneX = styled(IPhoneX)`
 `;
 
 export const SytledBottomRow = styled(SectionRow)`
-  margin-top: 5em;
+  margin-top: 4em;
   margin-bottom: 5em;
 `;

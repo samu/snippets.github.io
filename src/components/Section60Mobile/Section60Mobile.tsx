@@ -8,7 +8,7 @@ export function Section60Mobile() {
   return (
     <StyledSection>
       <SectionRow $flexDirection="column">
-        <h1>Available on iOS</h1>
+        <h1>Available on Mobile</h1>
 
         <SlideIn>
           <StyledIPhoneX>
