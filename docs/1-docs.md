@@ -4,7 +4,7 @@ description: Snippets is a productivity app, focusing on note taking and task ma
 
 import DocVideo from '@site/src/components/DocVideo/DocVideo';
 
-# Features
+# Docs
 
 ## The Snippets Philosophy
 
