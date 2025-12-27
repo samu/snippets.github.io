@@ -76,23 +76,31 @@ const config: Config = {
       ],
     },
     footer: {
-      style: "dark",
+      style: "light",
       links: [
         {
           title: "Links",
           items: [
             {
-              label: "GitHub",
-              href: "https://github.com/samu/snippets/discussions",
+              label: "X",
+              href: "https://x.com/snippetsHQ",
             },
             {
               label: "Bluesky",
               href: "https://bsky.app/profile/snippets.ch",
             },
+            {
+              label: "GitHub",
+              href: "https://github.com/samu/snippets/discussions",
+            },
+            {
+              label: "Discord",
+              href: "https://discord.gg/CWuenNJcpy",
+            },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Snippets.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Snippets. Made in Switzerland 🇨🇭`,
     },
     prism: {
       theme: prismThemes.github,
