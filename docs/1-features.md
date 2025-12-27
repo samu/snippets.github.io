@@ -16,7 +16,7 @@ Snippets focuses on keeping this simple process simple, while providing useful f
 
 Snippets is not a markdown-based note taking app.
 Using markdown for taking notes is quite common in other note taking apps. Snippets intentionally does not follow that trend. The main reason is that users will still want to have a rich-text-editor-like experience. Markdown is really just the format in which a note is stored. For presenting and editing the content, we usually want a more sophisticated interface.
-Please note that it is still possible to _export_ a rich-text-note to markdown. Snippets does not yet have export to markdown, but this functionality is coming very soon.
+Please note that it is still possible to _export_ a rich-text-note to markdown.
 
 ## Origins
 
@@ -108,12 +108,6 @@ becomes draggable and can be dragged accordingly.
 ### With folders
 
 You can create folders in the folder sidebar to group notes. You can nest folders and define icons.
-
-### Through Pinning
-
-You can pin a note to the folder sidebar. You do that by right-clicking the note, then entering a path to which you want to pin it. For example, using the path "Private / Todos" will make the folder sidebar show a folder structure "Private > Todos". Clicking on "Todos" will then show the pinned note.
-
-Once you're on a pinned note, you can use the "Cmd+N" shortcut to create a new note and auto-link it to the pinned note.
 
 ## Note References
 
