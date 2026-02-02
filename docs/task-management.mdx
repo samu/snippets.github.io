@@ -1,0 +1,43 @@
+# Task Management
+
+Task management in Snippets is built on top of the core building blocks:
+
+- A task is simply a rich-text snippet with a title and a description.
+- The completion state of a task is represented by a dedicated task attribute attached to the snippet. This attribute itself is not directly visible, but its state can be shown as a field in table or list views.
+- Task lists are implemented as filters that select snippets based on their task attributes. Filter configurations can be refined further to include additional criteria such as due dates, start dates, priorities, and more.
+- A task can have any attributes you choose. For example, you can add a priority using a string-values schema, or define an estimated size such as small, medium, or large. This is where the flexibility of Snippets truly shines: you can tailor your task management workflow exactly to your needs.
+
+## Getting started
+
+### Creating a due date and priority attribute schema
+
+Before creating a task list, we first want to define two attribute schemas that allow us to track due dates and priorities.
+
+...
+
+### Creating a task list
+
+Once these are set up, we can move on to creating the actual task list.
+
+Task lists live inside dashboards. To create one, we first create a dashboard and then enable task management for it.
+
+After task management is enabled, the dashboard will show an additional menu item called “Create Task List.” This lets us choose from a predefined set of options:
+
+- All Open — shows all tasks that are currently open.
+- Due Today — shows all open tasks with a due date set to today, as well as tasks that have no due date.
+- Due After Today — shows all open tasks with a due date later than today.
+- Done — shows all completed tasks.
+
+### Setting up a preferred layout
+
+You can now decide how you want to set things up. If you prefer a very simple workflow and don’t plan to use due dates, you can simply create the “All Open” and “Done” task lists. This will give you two filters, which you can arrange however you like — for example, in a two-column layout:
+
+...
+
+If you want to work with due dates, you can instead create a three-column layout, for example:
+
+...
+
+## Going beyond the basics
+
+...

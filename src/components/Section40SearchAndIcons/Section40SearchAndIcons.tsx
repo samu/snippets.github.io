@@ -41,7 +41,7 @@ export function Section40SearchAndIcons() {
 
         <StyledIllustrationFrame position="on-the-right">
           <ImageWrapper>
-            <img src={require("@site/static/img/search.png").default} />
+            <img src={require("@site/static/media/search.png").default} />
           </ImageWrapper>
         </StyledIllustrationFrame>
       </StyledSectionRow>
@@ -66,7 +66,7 @@ export function Section40SearchAndIcons() {
 
         <StyledIllustrationFrame position="on-the-left">
           <ImageWrapper>
-            <img src={require("@site/static/img/icons.png").default} />
+            <img src={require("@site/static/media/icons.png").default} />
           </ImageWrapper>
         </StyledIllustrationFrame>
       </StyledSectionRowReverse>

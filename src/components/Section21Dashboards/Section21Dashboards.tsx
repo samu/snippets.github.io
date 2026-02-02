@@ -21,7 +21,7 @@ export function Section21Dashboards() {
       </p>
 
       <StyledImageWrapper>
-        <img src={require("@site/static/img/dashboard.png").default} />
+        <img src={require("@site/static/media/dashboard.png").default} />
       </StyledImageWrapper>
     </StyledSection>
   );

@@ -100,7 +100,7 @@ export function Section20Overview() {
 
         <IllustrationFrame position="on-the-right">
           <StyledImageWrapper>
-            <img src={require("@site/static/img/friday.png").default} />
+            <img src={require("@site/static/media/friday.png").default} />
           </StyledImageWrapper>
         </IllustrationFrame>
       </StyledSectionRow>
@@ -120,7 +120,7 @@ export function Section20Overview() {
 
         <IllustrationFrame position="on-the-left">
           <StyledImageWrapper>
-            <img src={require("@site/static/img/todos.png").default} />
+            <img src={require("@site/static/media/todos.png").default} />
           </StyledImageWrapper>
         </IllustrationFrame>
       </StyledSectionRowReverse>
@@ -139,7 +139,7 @@ export function Section20Overview() {
 
         <IllustrationFrame position="on-the-right">
           <StyledImageWrapper>
-            <img src={require("@site/static/img/images.png").default} />
+            <img src={require("@site/static/media/images.png").default} />
           </StyledImageWrapper>
         </IllustrationFrame>
       </StyledSectionRow>

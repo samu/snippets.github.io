@@ -59,11 +59,15 @@ export function Section10Header() {
 
         <ImageWrapperContainer>
           <StyledDesktopImageWrapper>
-            <img src={require("@site/static/img/general-todos.png").default} />
+            <img
+              src={require("@site/static/media/general-todos.png").default}
+            />
           </StyledDesktopImageWrapper>
 
           <StyledIPhoneX>
-            <img src={require("@site/static/img/mobile-editor.png").default} />
+            <img
+              src={require("@site/static/media/mobile-editor.png").default}
+            />
           </StyledIPhoneX>
         </ImageWrapperContainer>
       </StyledSection>

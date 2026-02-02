@@ -60,11 +60,11 @@ const config: Config = {
       title: "Snippets",
       logo: {
         alt: "Snippets Logo",
-        src: "img/logo.png",
+        src: "media/logo.png",
       },
       items: [
         {
-          to: "/docs/docs",
+          to: "/docs/introduction",
           label: "Docs",
           position: "right",
         },

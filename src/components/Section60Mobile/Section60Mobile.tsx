@@ -12,7 +12,9 @@ export function Section60Mobile() {
 
         <SlideIn>
           <StyledIPhoneX>
-            <img src={require("@site/static/img/mobile-editor.png").default} />
+            <img
+              src={require("@site/static/media/mobile-editor.png").default}
+            />
           </StyledIPhoneX>
         </SlideIn>
       </SectionRow>

@@ -54,7 +54,9 @@ export function Section50Plugins() {
             <IllustrationFrame width="30em" position="at-the-bottom">
               <ImageWrapper>
                 <img
-                  src={require("@site/static/img/single-flashcard.png").default}
+                  src={
+                    require("@site/static/media/single-flashcard.png").default
+                  }
                 />
               </ImageWrapper>
             </IllustrationFrame>
@@ -78,7 +80,7 @@ export function Section50Plugins() {
             <IllustrationFrame width="35em" position="on-the-right">
               <ImageWrapper>
                 <img
-                  src={require("@site/static/img/flashcard-deck.png").default}
+                  src={require("@site/static/media/flashcard-deck.png").default}
                 />
               </ImageWrapper>
             </IllustrationFrame>
@@ -102,7 +104,7 @@ export function Section50Plugins() {
               <ImageWrapper>
                 <img
                   src={
-                    require("@site/static/img/flashcard-session.png").default
+                    require("@site/static/media/flashcard-session.png").default
                   }
                 />
               </ImageWrapper>

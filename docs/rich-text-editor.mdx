@@ -1,0 +1,67 @@
+import DocVideo from "@site/src/components/DocVideo/DocVideo";
+import Figure from "@site/src/components/Figure/Figure";
+
+# Rich-Text Editor
+
+The rich-text editor in Snippets is the heart of the app.
+
+Because of its central role, it was designed with great care and usability in
+mind. It works equally well for users who prefer to navigate and edit entirely
+by keyboard, as for those who enjoy a more visual editing experience using the
+mouse and familiar interface controls.
+
+## Markdown-like syntax
+
+If you're comfortable with Markdown, you'll feel right at home. Snippets
+supports the syntax you already know:
+
+- Type `#` + <kbd>Space</kbd> to create a heading
+- Type `**text**` + <kbd>Space</kbd> to create bold text
+- Type `>` + <kbd>Space</kbd> to create a block quote
+- Type `*` + <kbd>Space</kbd> to create a bullet list
+- etc.
+
+<Figure caption="Using markdown syntax to create formattings">
+  <DocVideo src="/media/docs/rich-text-editor/rich-text-formatting-creation.webm" />
+</Figure>
+
+## Creating and removing formatting
+
+Formatting is easy to apply and just as easy to remove:
+
+- Use <kbd>Space</kbd> to create formatting
+- Use <kbd>Backspace</kbd> to remove formatting
+
+The following video shows how backspace is used to destroy the formattings,
+followed by using space to bring them back:
+
+<Figure caption="Using space and backspace to create and destroy formattings">
+  <DocVideo src="/media/docs/rich-text-editor/rich-text-formatting-destruction.webm" />
+</Figure>
+
+## Navigating formatting boundaries
+
+You can move in and out of formatting using the arrow keys on your keyboard. In
+the video below, the cursor reaches the edge of the bold text by pressing
+_ArrowRight_, allowing you to continue typing in bold. Pressing _ArrowRight_
+once more moves the cursor out of the bold formatting, so you can continue
+writing in the surrounding style. The same behavior applies when entering the
+green formatting.
+
+<Figure caption="Using arrow keys to navigate formatting boundaries">
+  <DocVideo src="/media/docs/rich-text-editor/rich-text-formatting-boundaries.webm" />
+</Figure>
+
+## Drag & drop
+
+Text nodes can be selected by double-clicking at their end. Once selected, they
+can be dragged to a different position within the document.
+
+<Figure caption="Using double-click at the end of text nodes to select and drag them">
+  <DocVideo src="/media/docs/rich-text-editor/rich-text-drag-and-drop.webm" />
+</Figure>
+
+## Built-in toolbar
+
+For more advanced interactions, the editor includes a toolbar that exposes
+richer formatting and structured elements.
