@@ -17,11 +17,11 @@ export function DownloadSection() {
         <StyledColumn>
           <p>macOS</p>
 
-          <DownloadButton href="https://github.com/samu/snippets/releases/download/v0.16.0/Snippets-0.16.0-arm64.dmg">
+          <DownloadButton href="https://github.com/samu/snippets/releases/download/v0.17.0/Snippets-0.17.0-arm64.dmg">
             <MacOsIcon></MacOsIcon> Silicon (M1, M2, etc)
           </DownloadButton>
 
-          <DownloadButton href="https://github.com/samu/snippets/releases/download/v0.16.0/Snippets-0.16.0-x64.dmg">
+          <DownloadButton href="https://github.com/samu/snippets/releases/download/v0.17.0/Snippets-0.17.0-x64.dmg">
             <MacOsIcon></MacOsIcon> Intel (older)
           </DownloadButton>
         </StyledColumn>
@@ -29,7 +29,7 @@ export function DownloadSection() {
         <StyledColumn>
           <p>Windows</p>
 
-          <DownloadButton href="https://github.com/samu/snippets/releases/download/v0.16.0/Snippets-0.16.0.Setup.exe">
+          <DownloadButton href="https://github.com/samu/snippets/releases/download/v0.17.0/Snippets-0.17.0.Setup.exe">
             <WindowsIcon></WindowsIcon> Windows
           </DownloadButton>
         </StyledColumn>
