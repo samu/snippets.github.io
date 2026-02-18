@@ -20,21 +20,7 @@ function shuffle(array: Array<string>) {
   return arr;
 }
 
-const words = shuffle([
-  "Lightweight",
-  "Free of Charge",
-  "Simple",
-  "Offline-first",
-  "Powerful",
-  "Effortless",
-  "Focused",
-  "Frictionless",
-  "Flexible",
-  "Elegant",
-  "Future-proof",
-  "Non-proprietary",
-  "Distraction-free",
-]);
+const words = shuffle(["Grows With You"]);
 
 export function Section10Header() {
   return (
@@ -42,7 +28,7 @@ export function Section10Header() {
       <StyledSection>
         <Header>
           <h1>
-            Note Taking Can Be &nbsp;
+            Note-Taking That &nbsp;
             <em>
               <TextRoll
                 words={words}
