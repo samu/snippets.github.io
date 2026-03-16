@@ -11,13 +11,18 @@ type Props = {
   children: ReactNode;
   padding?: string;
   marginBottom?: string;
+  flex?: number;
 };
 
 export default function Figure(props: Props) {
   return (
     <figure
       className={clsx(styles.figure, props.className)}
-      style={{ width: props.width, marginBottom: props.marginBottom }}
+      style={{
+        width: props.width,
+        marginBottom: props.marginBottom,
+        flex: props.flex,
+      }}
     >
       <div style={{ padding: props.padding }} className={styles.childWrapper}>
         {props.children}

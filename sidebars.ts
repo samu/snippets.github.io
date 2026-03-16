@@ -34,27 +34,14 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "ways-of-organization",
-          label: "🗂️ Ways of Organization",
+          id: "organizing-your-notes",
+          label: "🗂️ Organizing Your Notes",
         },
         {
           type: "doc",
           id: "rich-text-editor",
           label: "✍️ Rich-Text Editor",
         },
-        {
-          type: "doc",
-          id: "mobile-app",
-          label: "📱 Mobile App",
-        },
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Concepts",
-      collapsible: false,
-      items: [
         {
           type: "doc",
           id: "attributes",
@@ -65,50 +52,76 @@ const sidebars: SidebarsConfig = {
           id: "collections",
           label: "📊 Collections",
         },
-        {
-          type: "doc",
-          id: "filters",
-          label: "🔎 Filters",
-        },
-        {
-          type: "doc",
-          id: "task-management",
-          label: "✅ Task Management",
-        },
-        {
-          type: "doc",
-          id: "templates",
-          label: "📄 Templates",
-        },
-        {
-          type: "doc",
-          id: "quick-add",
-          label: "➕ Quick Add",
-        },
+        // {
+        //   type: "doc",
+        //   id: "mobile-app",
+        //   label: "📱 Mobile App",
+        // },
       ],
     },
+
     {
       type: "category",
-      label: "In Detail",
+      label: "Comparison",
       collapsible: false,
       items: [
         {
           type: "doc",
-          id: "app-settings",
-          label: "⚙️ App Settings",
+          id: "compared-to-obsidian",
+          label: "Compared to Obsidian",
         },
         {
           type: "doc",
-          id: "cmd-k",
-          label: "⚡ Command Menu",
-        },
-        {
-          type: "doc",
-          id: "flashcards",
-          label: "📚 Flashcards",
+          id: "compared-to-notion",
+          label: "Compared to Notion",
         },
       ],
     },
+
+    // {
+    //   type: "category",
+    //   label: "Concepts",
+    //   collapsible: false,
+    //   items: [
+    //     {
+    //       type: "doc",
+    //       id: "task-management",
+    //       label: "✅ Task Management",
+    //     },
+    //     {
+    //       type: "doc",
+    //       id: "templates",
+    //       label: "📄 Templates",
+    //     },
+    //     {
+    //       type: "doc",
+    //       id: "quick-add",
+    //       label: "➕ Quick Add",
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: "category",
+    //   label: "In Detail",
+    //   collapsible: false,
+    //   items: [
+    //     {
+    //       type: "doc",
+    //       id: "app-settings",
+    //       label: "⚙️ App Settings",
+    //     },
+    //     {
+    //       type: "doc",
+    //       id: "cmd-k",
+    //       label: "⚡ Command Menu",
+    //     },
+    //     {
+    //       type: "doc",
+    //       id: "flashcards",
+    //       label: "📚 Flashcards",
+    //     },
+    //   ],
+    // },
   ],
 };
 

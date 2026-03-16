@@ -1,10 +1,16 @@
 # Sync
 
-Snippets is offline-first by design. It has a built-in abstraction layer which
-allows it to sync to different targets. You can use the app fully offline and
-without creating an account: All your data is stored locally on your device and
-always remains under your control. You decide how your data is synced or backed
-up: if you want, you can sync with a GitHub repository or our own cloud service.
+Snippets is offline-first by design and offers end-to-end encryption out of the
+box.
+
+It has a built-in abstraction layer which allows it to sync to different
+targets. You can use the app fully offline and without creating an account: All
+your data is stored locally on your device and always remains under your
+control.
+
+If you want to sync across multiple devices, you can connect a GitHub repository
+or create a Snippets account and use our custom-built cloud service for the best
+experience.
 
 ## Sync Targets
 
@@ -15,8 +21,8 @@ you to back up your notes using tools like Google Drive, iCloud, Dropbox, or
 external disks and keep full control over your files without relying on any
 external service.
 
-The limititation with folder sync is, that it is not possible to sync your data
-to a mobile device, and there is no good way to share notes with other users.
+The limitation of folder sync is that it cannot sync data to mobile devices, and
+it doesn't provide a good way to share notes with other users.
 
 ### GitHub Repo
 
@@ -25,18 +31,12 @@ or scheduled commits. Instead, Changes are synced automatically as soon as a
 document is modified. GitHub HTTP API is used under the hood, making it suitable
 for desktop and mobile devices.
 
+{/* TODO github has e2ee too */}
+
 ### Snippets Cloud _(coming soon)_
 
-Snippets Cloud is the official hosted sync solution. It gives you the following
-options:
-
-- seamless multi-device sync
-- E2E encryption (optional)
-- note sharing and collaboration _(planned)_
-- note history _(planned)_
-
-You can use our cloud service for free with certain limits. Upgrade to a Pro
-plan for unlimited use.
+Snippets Cloud is the official hosted sync solution. You can use our cloud
+service for free with certain limits. Upgrade to a Pro plan for unlimited use.
 
 ## Workspaces
 
@@ -47,8 +47,24 @@ with folder sync, create an unencrypted cloud workspace to share some notes with
 friends, create an E2E-encrypted workspace for your journaling, and a
 GitHub-synced workspace for work.
 
+## End-to-end encryption
+
+For every workspace you create, you can choose to enable end-to-end encryption
+(E2EE). This feature is available with a paid subscription.
+
+With E2EE enabled, your notes are encrypted on your device before they are
+uploaded to the sync server. The server only stores encrypted data and cannot
+read or understand your notes. Only your devices, which have the encryption key,
+can decrypt and display the content.
+
+This is different from many apps that only encrypt data during transfer (for
+example with HTTPS) but decrypt it again on their servers. In those systems, the
+service provider technically has the ability to access the data stored on their
+servers. With end-to-end encryption, the provider never receives the decryption
+keys, meaning your data remains private even from the service itself.
+
 ## Local Cache
 
 Every change you make to your documents is saved immediately in a local cache.
 This means you can continue using the app without restrictions even when you’re
-offline. As soon as you’re back online, everything syncs automatically.
+offline. As soon as you're back online, everything syncs automatically.

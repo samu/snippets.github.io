@@ -17,11 +17,17 @@ export function DownloadSection() {
         <StyledColumn>
           <p>macOS</p>
 
-          <DownloadButton href="https://github.com/samu/snippets/releases/download/v0.17.0/Snippets-0.17.0-arm64.dmg">
+          <DownloadButton
+            href="https://github.com/samu/snippets/releases/download/v0.18.0/Snippets-0.18.0-arm64.dmg"
+            os="macOS"
+          >
             <MacOsIcon></MacOsIcon> Silicon (M1, M2, etc)
           </DownloadButton>
 
-          <DownloadButton href="https://github.com/samu/snippets/releases/download/v0.17.0/Snippets-0.17.0-x64.dmg">
+          <DownloadButton
+            href="https://github.com/samu/snippets/releases/download/v0.18.0/Snippets-0.18.0-x64.dmg"
+            os="macOS"
+          >
             <MacOsIcon></MacOsIcon> Intel (older)
           </DownloadButton>
         </StyledColumn>
@@ -29,7 +35,10 @@ export function DownloadSection() {
         <StyledColumn>
           <p>Windows</p>
 
-          <DownloadButton href="https://github.com/samu/snippets/releases/download/v0.17.0/Snippets-0.17.0.Setup.exe">
+          <DownloadButton
+            href="https://github.com/samu/snippets/releases/download/v0.18.0/Snippets-0.18.0.Setup.exe"
+            os="windows"
+          >
             <WindowsIcon></WindowsIcon> Windows
           </DownloadButton>
         </StyledColumn>
@@ -37,7 +46,7 @@ export function DownloadSection() {
         <StyledColumn>
           <p>Linux</p>
 
-          <DownloadButton href="" disabled={true}>
+          <DownloadButton href="" disabled={true} os="linux">
             <LinuxIcon></LinuxIcon> Linux
             <ComingSoonBadge></ComingSoonBadge>
           </DownloadButton>
@@ -48,7 +57,10 @@ export function DownloadSection() {
         <StyledColumn>
           <p>iOS Beta</p>
 
-          <DownloadButton href="https://testflight.apple.com/join/3wpgBj2Z">
+          <DownloadButton
+            href="https://testflight.apple.com/join/3wpgBj2Z"
+            os="iOS"
+          >
             <MacOsIcon></MacOsIcon>
             TestFlight
           </DownloadButton>

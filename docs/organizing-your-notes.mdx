@@ -1,0 +1,103 @@
+import Figure from "@site/src/components/Figure/Figure";
+import Row from "@site/src/components/Row/Row";
+
+{/* TODO add docs about navigation view and snippet list */}
+
+# Organizing Your Notes
+
+Snippets does not force you into a single organizational model. Instead, it
+offers multiple approaches that can be used independently or combined.
+
+## Folders
+
+<Row>
+  <div style={{flex: 1, paddingRight: "1rem"}}>  
+    Folders provide a hierarchical way of grouping related snippets. While
+    hierarchical organization is sometimes criticized for being too rigid, folders
+    continue to be highly effective for broad, stable structure. They can be
+    nested, and icons can be added to make sections easier to recognize at a
+    glance.
+  </div>
+
+  <Figure caption="Nested folders with icons">
+    <img style={{width: "25rem"}} src="/media/docs/ways-of-organization/folders.png" />
+  </Figure>
+</Row>
+
+## Tables
+
+Tables are typically placed on dashboards, but they can also appear in the
+navigation view. They simply reference rich text notes and show them as table
+rows. You can choose what columns to show for each table.
+
+<Figure caption="A table showing multiple rich text snippets with custom columns">
+  <img src="/media/docs/collections/table.png" />
+</Figure>
+
+## Journals / Logs
+
+<Row>
+  <div style={{flex: 1, paddingRight: "1rem"}}>  
+    Journals reference other rich text notes and display them chronologically
+    based on the note's creation time stamp. This makes them suitable for use 
+    cases such as journaling or logging. They provide a time range 
+    picker that allows to switch between daily, weekly, monthly and yearly 
+    views.
+  </div>
+
+  <Figure caption="A journal with multiple rich text entries" flex={2}>
+    <img src="/media/docs/ways-of-organization/journals.png" />
+  </Figure>
+</Row>
+
+{/* TODO add link to collections docs, and add an image */}
+
+<br />
+<br />
+
+{/* prettier-ignore */}
+:::tip 
+Under the hood, folders, tables and journals have the exact same data structure. 
+To be precise, they are powered by a snippet type called "[Static Collection](collections)".
+This means that you can, for example, change a folder to be shown as a table,
+and vice versa.
+
+{/* prettier-ignore */}
+To change a folder to be displayed as a table, right-click the folder, then
+choose 'Configure Collection', then pick 'Show as table'.
+:::
+
+## Dashboards
+
+Dashboards offer a more visual way of working. They provide a two-dimensional
+workspace where multiple elements can exist side by side, making it easy to keep
+related information together. Rather than relying on hierarchy, dashboards
+support spatial organization: content is arranged visually, and relationships
+emerge from layout and proximity. This makes dashboards especially well suited
+for overviews, projects, and workflows where seeing multiple pieces of
+information at once is valuable.
+
+<Figure caption="A three-column dashboard">
+  <img src="/media/docs/ways-of-organization/dashboards.png" />
+</Figure>
+
+## Attributes
+
+Attributes can be used in many ways within Snippets, and using them like
+`#hash-tags` is one of them. Once you've created an attribute schema, you'll be
+able to get attribute suggestions by typing "/" inside a rich text document:
+this will bring up an auto complete from which you can select an attribute.
+
+{/* TODO missing puzzle-piece: dynamic collections */}
+
+<Figure caption="An attribute inside a rich text document">
+  <img src="/media/docs/ways-of-organization/attribute.png" />
+</Figure>
+
+## Snippet references
+
+Snippets can be linked together through references. References allow you to
+connect related pieces of information without placing them into a fixed
+hierarchy. This makes it possible to navigate quickly between ideas, follow
+chains of thought, and build a network-like structure where meaning emerges from
+connections rather than location.

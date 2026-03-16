@@ -90,10 +90,6 @@ const config: Config = {
               href: "https://bsky.app/profile/snippets.ch",
             },
             {
-              label: "GitHub",
-              href: "https://github.com/samu/snippets/discussions",
-            },
-            {
               label: "Discord",
               href: "https://discord.gg/CWuenNJcpy",
             },
@@ -110,6 +106,8 @@ const config: Config = {
       disableSwitch: true,
     },
   } satisfies Preset.ThemeConfig,
+
+  plugins: ["./src/plugins/my-route-plugin"],
 };
 
 export default config;

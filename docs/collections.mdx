@@ -5,33 +5,61 @@ import Figure from "@site/src/components/Figure/Figure";
 Collections reference snippets and provide display modes that let you visualize
 the data in different ways.
 
-They also allow you to define fields. For example, you can choose to display a
-snippet's title and description — each of which is treated as a separate field.
+## Static and Dynamic Collections
 
-## Display Modes
+There are two types of collections: static collections and dynamic collections.
+Static collections explicitly reference specific snippets, while dynamic
+collections reference snippets implicitly through a filter.
+
+{/* prettier-ignore */}
+:::tip 
+Dynamic collections are not yet available. We are polishing the feature and will 
+enable it very soon.
+:::
+
+## Fields
+
+For every collection, we can define which fields should be displayed. In a
+table, these fields correspond to columns. In task management, fields represent
+the properties a task can have, such as priority or due date.
+
+Fields are either based on attribute schemas we define or on built-in fields
+provided by the app, such as title and description. These built-in fields are
+stored directly on the snippet itself rather than as attributes.
+
+<Figure caption="A table with title, description and priority field">
+  <img src="/media/docs/collections/fields.png" />
+</Figure>
+
+## Views
+
+The underlying datastructure of a collection never changes, but we can choose
+how it shall be displayed through views.
 
 ### Table
 
-Displays the contents in a table view. Each field appears as a column. You can
-sort by columns, search within the table, and select multiple items at once
+Displays the referenced snippets in a table view. Each field appears as a
+column. You can sort by columns, search within the table, and select multiple
+items at once
 
 <Figure caption="A collection, shown as a table, with four fields: Done, Title, Description, Priority">
   <img src="/media/docs/collections/table.png" />
 </Figure>
 
-### List
+### List (coming soon)
 
-Displays the contents as a list. Each entry appears as a separate card, showing
-the selected fields. Lists are especially useful for task management scenarios.
+Displays the referenced snippets as a list. Each entry appears as a separate
+card, showing the selected fields. Lists are especially useful for task
+management scenarios.
 
 <Figure caption="The same collection, shown as a list">
   <img src="/media/docs/collections/list.png" />
 </Figure>
 
-### Grid
+### Grid (coming soon)
 
-Displays the contents in a grid layout. It uses the same card concept as the
-list view, but arranges the cards in multiple columns.
+Displays the referenced snippets in a grid layout. It uses the same card concept
+as the list view, but arranges the cards in multiple columns.
 
 <Figure caption="The same collection, shown as a grid">
   <img src="/media/docs/collections/grid.png" />
@@ -39,12 +67,12 @@ list view, but arranges the cards in multiple columns.
 
 ### Timeline
 
-Displays the contents as a chronological timeline. This makes it easy to use a
-container as a journal or activity log.
+Displays the referenced snippets as a chronological timeline. This makes it easy
+to use a collection as a journal or activity log.
 
 A time range picker lets you focus on specific periods, such as daily, weekly,
 monthly, yearly, or all entries.
 
-<Figure caption="The same collection, shown as a timeline">
+<Figure caption="A collection shown as a timeline">
   <img src="/media/docs/collections/timeline.png" />
 </Figure>
