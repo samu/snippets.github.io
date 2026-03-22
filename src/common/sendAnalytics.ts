@@ -10,7 +10,7 @@ export function sendAnalytics(body: unknown) {
   sentPayloads.add(key);
 
   // TODO configure properly
-  fetch("http://192.168.1.110:54321/functions/v1/analytics", {
+  fetch("https://snippets.ch/functions/v1/analytics", {
     method: "POST",
     body: key,
   });
