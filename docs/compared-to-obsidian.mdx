@@ -1,0 +1,187 @@
+# Snippets compared to Obsidian
+
+## To be fair ...
+
+In just a few years, Obsidian has grown into a highly popular tool, widely
+discussed on platforms like YouTube and Reddit. It is supported by an
+enthusiastic community of knowledgeable users from diverse fields. Today, it is
+used by academics, students, journalists, software engineers — you name it.
+
+Its success can be attributed to several factors. First, the app can be used
+free of charge. Second, its powerful plugin ecosystem allows the community to
+extend its functionality, meaning it can potentially meet almost any user need.
+Finally, it is built on Markdown, a widely adopted format that avoids vendor
+lock-in and helps ensure your notes remain accessible and future-proof.
+
+To avoid some disappointment, here's a list of features which Snippets does not
+(yet) have, compared to Obsidian:
+
+- Obsidian's look and feel is highly customizable through CSS - You can't do
+  that in Snipptes. Making the app more customizable is on our roadmap, although
+  it most likely will not be through custom CSS but other means.
+- Obsidian has a canvas feature - Snippets does not have that yet, but it is on
+  our roadmap.
+- Obsidian stores your notes in markdown format and represents folder structures
+  exactly as is on disk. Snippets does not support markdown and never will. We
+  do offer export to markdown.
+- Obsidian has a web clipper, Snippets doesn't. It is on our roadmap.
+- Obsidian has a graph view, Snippets doesn't. We will add it if there's demand
+  for it.
+- Obsidian allows to open files in tabs, Snippets doesn't. We will most likely
+  never have this exact feature and believe that the classic note taking
+  experience warrants a different way of working.
+- Obsidian has support for keyboard-heavy use, such as the command pallette and
+  keyboard shortcuts - Snippets is not there yet, but we are going to add
+  similar features. Let us know what you need - we are happy to take feature
+  requests.
+- Obsidian has a plugin system which allows the community to implement and share
+  additional functionality - Snipptes does not have that, and most likely never
+  will. We believe that a perfect user experience can only materialize if all
+  the features are perfectly streamlined.
+- For Obsidian, there's a plugin called Omnisearch, which, among other features,
+  provides OCR. Snippets does not have that, but it is on our roadmap.
+- For Obsidian, there's a lot of other plugins, and a lot of it is _not_ covered
+  by Snippets. Let us know what you need - we are happy to take feature
+  requests.
+
+## How Snippets is different
+
+### Markdown-centric design
+
+Obsidian is built around Markdown. This is often presented as a “future-proof”
+and “non-proprietary” approach: if your notes are stored in a standardized
+format, they should remain usable even if the app itself disappears.
+
+So far, so good.
+
+However, this promise starts to break down on closer inspection. From the very
+beginning, Obsidian has extended Markdown with its own conventions—most notably
+note links (`[[...]]`) and tags (`#tag`). These are _not_ part of the official
+Markdown specification.
+
+Admittedly, this may seem like a minor or even pedantic concern. After all, the
+syntax is intuitive, fits Markdown's philosophy, and still results in readable
+plain text files.
+
+### The plugin system
+
+The real issue emerges with the plugin ecosystem.
+
+When plugins need to store additional data inside your notes, they often
+introduce their own custom syntax. For example, a highlighting plugin might
+represent colored text using HTML like `<span color={rgb(255,0,0)}>`. This
+approach is not only foreign to Markdown, but it also undermines the very idea
+of a standardized, portable format.
+
+At that point, your notes are no longer just Markdown—they are Markdown plus a
+growing set of app- and plugin-specific extensions.
+
+This creates a subtle but real form of lock-in. Your notes may technically
+remain plain text, but their full meaning depends on specific plugins being
+installed and maintained. If a plugin is abandoned or becomes incompatible with
+future versions of Obsidian, parts of your notes may degrade or become difficult
+to interpret.
+
+In other words, the “future-proof” promise holds only as long as the surrounding
+ecosystem — core app and plugins alike — continues to function. Once that
+assumption breaks, the portability of your notes becomes much less certain.
+
+And this is where one begins to question the original premise: why use Markdown
+at all?
+
+### Users usually don't want to edit raw markdown
+
+A common argument in its favor is that Markdown is easy to edit. That's a fair
+point. Because formatting is expressed through simple, visible syntax, you can
+immediately understand and modify the structure of a document without relying on
+a graphical interface.
+
+However, Obsidian itself has gradually moved away from pure Markdown editing.
+Instead of exposing raw syntax, it offers a more WYSIWYG-like experience. This
+suggests that, in practice, many users prefer interacting with formatted text
+directly rather than editing markup.
+
+### Why markdown?
+
+Which brings us back to the core question: is markdown really the right choice?
+
+At first glance, its biggest selling point — freedom from vendor lock-in —
+sounds compelling. But in practice, that independence often erodes. As soon as
+you rely on extensions, plugins, or app-specific features, your plain text notes
+quietly become tied to a particular ecosystem.
+
+There's also a growing mismatch between how Markdown is meant to be used and how
+people prefer to work. While it was designed for writing in raw text, many
+modern tools now prioritize WYSIWYG editors on top of it. If most users end up
+interacting with a rich text editor anyway, the advantage of writing in Markdown
+syntax is defeated.
+
+In practice, Markdown in Obsidian lands in an uneasy middle ground — promised as
+portable yet subtly entangled in a web of disconnected plugins, presented as
+simple yet increasingly concealed behind a rich text-like interface.
+
+### The Snippets Philosophy
+
+Snippets fundamentally disagrees with this design choice: the focus should _not_
+be on the format in which your data is written and stored.
+
+If long-term access truly matters, the practical solution is simple: ensure that
+your data can be exported. Crucially, export acts as a reset: vendor-specific
+data is stripped away, leaving only clean, standardized Markdown. This is what
+you'd ultimately want if you're leaving for another tool. Today, exporting to
+Markdown is widely supported in the note taking realm, and Snippets provides
+this capability as well.
+
+More importantly, the focus should _not_ be on quantity, but on quality.
+
+Opening a platform like Obsidian through a plugin system allows anyone to extend
+it. But this raises critical questions: who ensures the quality of these
+extensions? Who guarantees that multiple plugins work reliably together? And who
+ensures that the plugins you depend on will continue to be maintained?
+
+In practice, no one can make these guarantees.
+
+A consistently high-quality experience can only be achieved when the entire
+system is designed and maintained by a single, cohesive entity that retains full
+control over the ecosystem.
+
+As outlined in the [introduction](./introduction), Snippets has been architected
+to support a wide range of note-taking use cases within a unified system. As a
+result, Snippets provides an experience that remains consistent while achieving
+a high degree of speed, smoothness, and overall usability.
+
+To conclude, here's a list of things Snippets has which Obsidian does not:
+
+- Getting started is really easy: you get a simple note taking app out of the
+  box and can gradually start using the more advanced features as needed. Using
+  Obsidian, you are confronted with a relatively complex UI and need to dig deep
+  into the plugin ecosystem to find out what you can do.
+- The app's architecture is built around well-defined internal JSON structures,
+  enabling precise data representation. In contrast, Obsidian relies on loosely
+  structured plain text, which is difficult to standardize or extend.
+- At its core, the app introduces the concept of a _Snippet_ — a structured
+  piece of data paired with a dedicated UI. Obsidian, by comparison, is centered
+  around plain text documents and lacks a cohesive model or guidelines for
+  building alternative types of notes.
+- Snippets has attributes, a flexible system that supports complex and
+  structured data. Obsidian is limited to plain-text tags and plain-text
+  properties.
+- Snippets provides a dashboard feature for organizing and visualizing
+  information. Obsidian does not offer this natively, and there are no
+  equivalent plugins.
+- Snippets supports auto-syncing to a GitHub repository over HTTP out of the
+  box, both on desktop and mobile. Obsidian's Git integration relies on plugins,
+  is typically schedule-based, and has limited or unreliable mobile support.
+- Task management is a native feature in Snippets. In Obsidian, there are
+  plugins, although some of them don't work on mobile while others come with a
+  price tag.
+- Snippets includes a navigation view with built-in icon support out of the box.
+  In Obsidian, you need a plugin.
+- Snippets features a powerful WYSIWYG rich text editor, while Obsidian uses a
+  hybrid editing approach that mixes raw markdown with preview modes.
+- Rich text color highlighting is supported natively in Snippets. In Obsidian,
+  you need a plugin.
+- Snippets includes a built-in flashcard system, enabling spaced repetition
+  learning. In Obsidian, you need a plugin.
+
+{/* TODO mention dynamic collections at some point */}

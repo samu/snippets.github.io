@@ -33,7 +33,7 @@ export function Section20Overview() {
         </h1>
 
         <h2>
-          <span>Writing should feel fluid, focused, and effortless.</span>
+          <span>Writing should feel easy and peaceful.</span>
           <SubHeaderScribble></SubHeaderScribble>
         </h2>
 

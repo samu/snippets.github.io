@@ -10,7 +10,7 @@ type Props = {
 export function TextRoll(props: Props) {
   const [currentIndex, increment] = useReducer(
     (index: number) => normalizeCounter(index + 1, props.words.length),
-    -1
+    -1,
   );
 
   const [word1, word2] = [
@@ -18,15 +18,16 @@ export function TextRoll(props: Props) {
     props.words.at(normalizeCounter(currentIndex + 1, props.words.length)),
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      increment();
-    }, 3000);
+  props.words.length > 1 &&
+    useEffect(() => {
+      const interval = setInterval(() => {
+        increment();
+      }, 3000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+      return () => {
+        clearInterval(interval);
+      };
+    }, []);
 
   const children = (
     <Fragment>

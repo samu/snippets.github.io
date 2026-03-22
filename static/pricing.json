@@ -1,0 +1,38 @@
+{
+  "plans": [
+    {
+      "key": "basic",
+      "name": "Basic",
+      "variantId": "123456",
+
+      "price": {
+        "currency": "CHF",
+        "amount": 24,
+        "interval": "year"
+      },
+
+      "discount": null,
+
+      "features": []
+    },
+    {
+      "key": "pro",
+      "name": "Pro",
+      "variantId": "987654",
+
+      "price": {
+        "currency": "CHF",
+        "amount": 36,
+        "interval": "year"
+      },
+
+      "discount": {
+        "originalAmount": 12,
+        "label": "Early adopter"
+      },
+
+      "features": []
+    }
+  ],
+  "knownVariantIds": ["1", "1328678"]
+}

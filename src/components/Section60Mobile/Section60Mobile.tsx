@@ -22,7 +22,10 @@ export function Section60Mobile() {
       <SytledBottomRow $flexDirection="column">
         <p>Beta available on iOS. Coming soon on all other platforms.</p>
 
-        <DownloadButton href="https://testflight.apple.com/join/3wpgBj2Z">
+        <DownloadButton
+          href="https://testflight.apple.com/join/3wpgBj2Z"
+          os="iOS"
+        >
           <MacOsIcon></MacOsIcon>
           TestFlight
         </DownloadButton>

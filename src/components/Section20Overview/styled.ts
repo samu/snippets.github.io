@@ -29,7 +29,7 @@ export const StyledHeader = styled.div`
 
   h2 {
     position: relative;
-    margin-bottom: 2em;
+    margin-bottom: 0em;
     font-size: 1em;
 
     span {
@@ -39,7 +39,7 @@ export const StyledHeader = styled.div`
 
     svg {
       position: absolute;
-      top: 0.25em;
+      top: 0.45em;
       left: 0;
       z-index: 0;
       scale: 1.1;
@@ -114,7 +114,7 @@ export const IntroRow = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 3em;
-  margin-bottom: 4em;
+  margin-bottom: 1em;
 
   @media (min-width: 768px) {
     flex-direction: row;
