@@ -9,6 +9,9 @@ export function sendAnalytics(body: unknown) {
 
   sentPayloads.add(key);
 
+  // TODO fix
+  return;
+
   // TODO configure properly
   fetch("https://api.snippets.ch/functions/v1/analytics", {
     method: "POST",
