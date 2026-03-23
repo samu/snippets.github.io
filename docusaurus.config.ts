@@ -142,7 +142,7 @@ const config: Config = {
     },
   } satisfies Preset.ThemeConfig,
 
-  plugins: ["./src/plugins/my-route-plugin"],
+  // plugins: ["./src/plugins/my-route-plugin"],
 };
 
 export default config;
