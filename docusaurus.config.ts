@@ -64,6 +64,11 @@ const config: Config = {
       },
       items: [
         {
+          to: "/pricing",
+          label: "Pricing",
+          position: "right",
+        },
+        {
           to: "/docs/introduction",
           label: "Docs",
           position: "right",
@@ -79,7 +84,7 @@ const config: Config = {
       style: "light",
       links: [
         {
-          title: "Links",
+          title: "Socials",
           items: [
             {
               label: "X",
@@ -92,6 +97,36 @@ const config: Config = {
             {
               label: "Discord",
               href: "https://discord.gg/CWuenNJcpy",
+            },
+          ],
+        },
+        {
+          title: "Resources",
+          items: [
+            {
+              label: "Documentation",
+              href: "/docs/introduction",
+            },
+            {
+              label: "Pricing",
+              href: "/pricing",
+            },
+            {
+              label: "Contact Us",
+              href: "mailto:support@snippets.ch",
+            },
+          ],
+        },
+        {
+          title: "Comparison",
+          items: [
+            {
+              label: "Snippets vs. Obsidian",
+              href: "/docs/compared-to-obsidian",
+            },
+            {
+              label: "Snippets vs. Notion",
+              href: "/docs/compared-to-notion",
             },
           ],
         },

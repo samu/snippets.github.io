@@ -100,28 +100,35 @@ const sidebars: SidebarsConfig = {
     //     },
     //   ],
     // },
-    // {
-    //   type: "category",
-    //   label: "In Detail",
-    //   collapsible: false,
-    //   items: [
-    //     {
-    //       type: "doc",
-    //       id: "app-settings",
-    //       label: "⚙️ App Settings",
-    //     },
-    //     {
-    //       type: "doc",
-    //       id: "cmd-k",
-    //       label: "⚡ Command Menu",
-    //     },
-    //     {
-    //       type: "doc",
-    //       id: "flashcards",
-    //       label: "📚 Flashcards",
-    //     },
-    //   ],
-    // },
+    //
+
+    {
+      type: "category",
+      label: "In Detail",
+      collapsible: false,
+      items: [
+        {
+          type: "doc",
+          id: "syncing-with-github",
+          label: "Syncing with GitHub",
+        },
+        // {
+        //   type: "doc",
+        //   id: "app-settings",
+        //   label: "⚙️ App Settings",
+        // },
+        // {
+        //   type: "doc",
+        //   id: "cmd-k",
+        //   label: "⚡ Command Menu",
+        // },
+        // {
+        //   type: "doc",
+        //   id: "flashcards",
+        //   label: "📚 Flashcards",
+        // },
+      ],
+    },
   ],
 };
 
