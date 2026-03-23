@@ -1,20 +1,16 @@
 import { IllustrationFrame } from "@site/src/common/components/IllustrationFrame/IllustrationFrame";
 import { SlideIn } from "@site/src/common/components/SlideIn/SlideIn";
-import { ImageWrapper, SectionRow } from "../common";
-import {
-  HeadingParagraphsSectionRow,
-  StyledSection,
-  TextAndImageRow,
-  TextWithTitleBox,
-} from "./styled";
+import { ThemeImage } from "@site/src/common/components/ThemeImage/ThemeImage";
+import { ImageWrapper, Section, SectionRow } from "../common";
+import styles from "./styles.module.css";
 
 export function Section50Plugins() {
   return (
-    <StyledSection>
-      <SectionRow $flexDirection="column">
+    <Section className={styles.section}>
+      <SectionRow flexDirection="column">
         <h2>Spaced Repetition With Flashcards</h2>
 
-        <HeadingParagraphsSectionRow>
+        <SectionRow className={styles.headingParagraphsSectionRow}>
           <p>
             Snippets is all about taking notes. In Snippets, a "Note" is in fact
             called a "Snippet" (hence the name "Snippets"). A Snippet is a piece
@@ -33,13 +29,13 @@ export function Section50Plugins() {
             but comes with additional functionality, allowing you to use
             Snippets as a spaced repetition app.
           </p>
-        </HeadingParagraphsSectionRow>
+        </SectionRow>
       </SectionRow>
 
-      <SectionRow $flexDirection="column">
-        <TextAndImageRow>
+      <SectionRow flexDirection="column">
+        <div className={styles.textAndImageRow}>
           <SlideIn type="from-left">
-            <TextWithTitleBox>
+            <div className={styles.textWithTitleBox}>
               <h3>Flashcard Snippet</h3>
               <p>
                 Conceptually, a flashcard snippet is identical to a real world
@@ -47,25 +43,31 @@ export function Section50Plugins() {
                 prompt, and the other side is an answer or information. For
                 example, this can be used for learning a new language.
               </p>
-            </TextWithTitleBox>
+            </div>
           </SlideIn>
 
           <SlideIn type="from-right">
             <IllustrationFrame width="30em" position="at-the-bottom">
               <ImageWrapper>
-                <img
-                  src={
-                    require("@site/static/media/single-flashcard.png").default
+                <ThemeImage
+                  lightSrc={
+                    require("@site/static/media/single-flashcard-light.png")
+                      .default
                   }
+                  darkSrc={
+                    require("@site/static/media/single-flashcard-dark.png")
+                      .default
+                  }
+                  alt="Snippets flashcard snippet"
                 />
               </ImageWrapper>
             </IllustrationFrame>
           </SlideIn>
-        </TextAndImageRow>
+        </div>
 
-        <TextAndImageRow>
+        <div className={styles.textAndImageRow}>
           <SlideIn type="from-left">
-            <TextWithTitleBox>
+            <div className={styles.textWithTitleBox}>
               <h3>Dashboard</h3>
               <p>
                 The Dashboard gives an overview of all the flashcards in this
@@ -73,45 +75,59 @@ export function Section50Plugins() {
                 flashcards ordered by relevance. The relevance of a card is
                 calculated through a scoring algorithm.
               </p>
-            </TextWithTitleBox>
+            </div>
           </SlideIn>
 
           <SlideIn type="from-right">
             <IllustrationFrame width="35em" position="on-the-right">
               <ImageWrapper>
-                <img
-                  src={require("@site/static/media/flashcard-deck.png").default}
+                <ThemeImage
+                  lightSrc={
+                    require("@site/static/media/flashcard-deck-light.png")
+                      .default
+                  }
+                  darkSrc={
+                    require("@site/static/media/flashcard-deck-dark.png")
+                      .default
+                  }
+                  alt="Snippets flashcard dashboard"
                 />
               </ImageWrapper>
             </IllustrationFrame>
           </SlideIn>
-        </TextAndImageRow>
+        </div>
 
-        <TextAndImageRow>
+        <div className={styles.textAndImageRow}>
           <SlideIn type="from-left">
-            <TextWithTitleBox>
+            <div className={styles.textWithTitleBox}>
               <h3>Session Wizard</h3>
               <p>
                 Flashcards can be practiced in an interactive mode. When
                 stepping through the flashcards, a rating can be provided, which
                 will re-prioritize the flashcards in the next session.
               </p>
-            </TextWithTitleBox>
+            </div>
           </SlideIn>
 
           <SlideIn type="from-right">
             <IllustrationFrame width="25em" position="at-the-bottom">
               <ImageWrapper>
-                <img
-                  src={
-                    require("@site/static/media/flashcard-session.png").default
+                <ThemeImage
+                  lightSrc={
+                    require("@site/static/media/flashcard-session-light.png")
+                      .default
                   }
+                  darkSrc={
+                    require("@site/static/media/flashcard-session-dark.png")
+                      .default
+                  }
+                  alt="Snippets flashcard session"
                 />
               </ImageWrapper>
             </IllustrationFrame>
           </SlideIn>
-        </TextAndImageRow>
+        </div>
       </SectionRow>
-    </StyledSection>
+    </Section>
   );
 }

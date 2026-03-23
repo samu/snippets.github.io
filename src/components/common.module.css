@@ -1,0 +1,53 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--background-color-1);
+}
+
+.sectionRow {
+  transition: margin-top 0.33s, opacity 0.33s;
+  margin-top: 0;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: var(--section-row-direction, row);
+  width: 100%;
+}
+
+.sectionRowHidden {
+  margin-top: 10em;
+  opacity: 0;
+}
+
+.strongBoxShadow {
+  box-shadow: var(--elevated-box-shadow);
+}
+
+.imageWrapper {
+  display: flex;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.imageWrapper img {
+  width: 100%;
+  align-self: center;
+}
+
+.iconWrapper {
+  display: inline-flex;
+  height: 1em;
+  width: 1em;
+  margin-right: 0.5em;
+}
+
+.iconWrapper svg {
+  height: 100%;
+  width: 100%;
+}

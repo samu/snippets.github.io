@@ -1,5 +1,11 @@
 import { ReactNode } from "react";
-import { InnerWrapper, OuterWrapper, Position } from "./styled";
+import styles from "./styles.module.css";
+
+export type Position =
+  | "on-the-right"
+  | "on-the-left"
+  | "at-the-bottom"
+  | "centered";
 
 type Props = {
   position: Position;
@@ -9,9 +15,21 @@ type Props = {
 };
 
 export function IllustrationFrame(props: Props) {
+  const positionClass = {
+    "on-the-right": styles.onTheRight,
+    "on-the-left": styles.onTheLeft,
+    "at-the-bottom": styles.atTheBottom,
+    centered: styles.centered,
+  }[props.position];
+
   return (
-    <OuterWrapper $width={props.width} className={props.className}>
-      <InnerWrapper $position={props.position}>{props.children}</InnerWrapper>
-    </OuterWrapper>
+    <div
+      className={`${styles.outerWrapper} ${props.className ?? ""}`}
+      style={{ width: props.width ?? "none" }}
+    >
+      <div className={`${styles.innerWrapper} ${positionClass}`}>
+        {props.children}
+      </div>
+    </div>
   );
 }

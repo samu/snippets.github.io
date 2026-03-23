@@ -40,13 +40,282 @@ body {
   --shadow-color-opacity-light-1: 0.25;
   --shadow-color-opacity-extra-light-1: 0.25;
   --shadow-color-opacity-heavy-1: 0.33;
+  --header-gradient-start: var(--accent-contrast-color-1);
+  --header-gradient-mid: color-mix(in srgb, var(--header-gradient-start) 55%, white);
+  --header-gradient-end: var(--accent-color-1);
+  --section-accent-surface-color: var(--accent-color-1);
+  --header-word-accent-color: var(--accent-color-1);
+  --header-word-decoration-color: var(--accent-color-1);
+  --image-frame-surface-color: var(--accent-color-1);
+  --overview-done-text-color: var(--oc-yellow-9);
+  --overview-done-scribble-color: var(--oc-yellow-5);
+  --overview-icon-color: var(--ifm-color-content);
+  --search-icons-icon-color: var(--ifm-color-content);
+  --elevated-box-shadow: 0 10px 30px rgba(var(--box-shadow-base-color), 0.5);
+  --frame-drop-shadow: drop-shadow(
+    0 5px 6px rgba(var(--box-shadow-base-color), 0.75)
+  );
+  --device-drop-shadow: drop-shadow(
+    0 5px 6px rgba(var(--box-shadow-base-color), 1)
+  );
+  --section-divider-shadow: 0 -10px 30px rgba(var(--box-shadow-base-color), 0.9);
+  --accent-section-inset-shadow: inset 0 18px 34px -18px
+    rgba(var(--box-shadow-base-color), 0.55);
+  --plugins-section-shadow: drop-shadow(
+    1px 15px 20px rgba(var(--box-shadow-base-color), 0.9)
+  );
+  --marketing-card-background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(255, 255, 255, 0.94)
+  );
+  --marketing-card-border-color: rgba(var(--box-shadow-base-color), 0.08);
+  --marketing-card-shadow:
+    0 10px 30px rgba(var(--box-shadow-base-color), 0.12),
+    0 2px 8px rgba(var(--box-shadow-base-color), 0.06);
+  --marketing-card-hover-shadow:
+    0 18px 45px rgba(var(--box-shadow-base-color), 0.18),
+    0 8px 18px rgba(var(--box-shadow-base-color), 0.08);
+  --legal-card-background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(255, 253, 250, 0.96)
+  );
+  --legal-card-border-color: rgba(53, 43, 31, 0.1);
+  --legal-card-shadow:
+    0 18px 45px rgba(53, 43, 31, 0.08),
+    0 3px 10px rgba(53, 43, 31, 0.05);
+  --legal-card-highlight: rgba(255, 255, 255, 0.75);
+  --pricing-title-shadow-top: rgba(255, 255, 255, 0.45);
+  --pricing-plan-muted-color: rgba(var(--box-shadow-base-color), 0.62);
+  --pricing-badge-background: rgba(var(--box-shadow-base-color), 0.08);
+  --pricing-badge-border-color: rgba(var(--box-shadow-base-color), 0.08);
+  --pricing-planned-marker-color: rgba(var(--box-shadow-base-color), 0.5);
+  --pricing-planned-block-background: linear-gradient(
+    180deg,
+    rgba(var(--box-shadow-base-color), 0.03),
+    rgba(var(--box-shadow-base-color), 0.06)
+  );
+  --pricing-planned-block-border-color: rgba(var(--box-shadow-base-color), 0.08);
+  --pricing-planned-label-color: rgba(var(--box-shadow-base-color), 0.65);
+  --legal-grid-color-1: rgba(91, 75, 54, 0.035);
+  --legal-grid-color-2: rgba(91, 75, 54, 0.03);
+  --legal-eyebrow-border-color: rgba(53, 43, 31, 0.12);
+  --legal-eyebrow-background: rgba(255, 255, 255, 0.7);
+  --legal-eyebrow-color: rgba(53, 43, 31, 0.72);
+  --legal-title-color: #1f1913;
+  --legal-subtitle-color: rgba(31, 25, 19, 0.72);
+  --legal-meta-border-color: rgba(53, 43, 31, 0.1);
+  --legal-meta-color: rgba(53, 43, 31, 0.62);
+  --legal-heading-color: #231c15;
+  --legal-body-color: rgba(31, 25, 19, 0.8);
+  --legal-footer-border-color: rgba(53, 43, 31, 0.1);
+  --legal-footer-color: rgba(31, 25, 19, 0.64);
+
+  --ifm-background-color: var(--background-color-1);
+  --ifm-background-surface-color: var(--background-color-2);
+  --ifm-color-content: rgb(28, 30, 33);
+  --ifm-color-content-secondary: var(--font-color-1);
+  --ifm-navbar-background-color: var(--background-color-1);
+  --ifm-footer-background-color: var(--background-color-2);
+  --ifm-color-emphasis-100: rgb(239, 241, 244);
+  --ifm-color-emphasis-200: rgb(225, 229, 233);
+  --ifm-color-emphasis-300: rgb(210, 215, 220);
+  --ifm-color-emphasis-600: rgb(103, 110, 116);
+  --ifm-color-emphasis-700: rgb(80, 86, 92);
+  --ifm-color-emphasis-800: rgb(58, 63, 68);
+  --ifm-color-emphasis-900: rgb(35, 39, 43);
+}
+
+html[data-theme="dark"] body {
+  --background-color-1: rgb(27, 30, 31);
+  --background-color-2: rgb(24, 27, 28);
+
+  --alternative-background-color-1: rgb(21, 24, 25);
+  --alternative-background-color-2: rgb(18, 21, 22);
+  --alternative-background-color-3: var(--background-color-2);
+  --alternative-background-color-4: rgb(14, 15, 16);
+
+  --font-color-1: rgb(240, 235, 230);
+  --font-color-dark: rgb(100, 100, 95);
+  --icon-color-1: color-mix(
+    in srgb,
+    var(--font-color-dark) 50%,
+    var(--background-color-1)
+  );
+  --icon-color-2: var(--font-color-dark);
+  --attribute-font-color-1: rgb(0, 0, 0);
+  --attribute-font-color-2: rgb(0, 0, 0);
+
+  --border-color-1: rgb(0, 0, 0);
+
+  --sidebar-background-color: var(--background-color-2);
+  --sidebar-border-color: rgb(0, 0, 0);
+
+  --code-background-color-1: var(--alternative-background-color-1);
+  --code-background-color-2: var(--alternative-background-color-2);
+
+  --input-background-color-1: var(--alternative-background-color-1);
+  --button-background-color-1: var(--alternative-background-color-1);
+
+  --selection-background-color-1: var(--alternative-background-color-1);
+  --selection-background-color-2: var(--alternative-background-color-2);
+  --selected-item-unfocused-background-color-1: var(--font-color-1);
+
+  --text-selection-color-1: color-mix(in srgb, var(--oc-cyan-9) 75%, black);
+  --text-selection-background-color-1: var(--oc-cyan-1);
+  --text-selection-background-color-2: color-mix(
+    in srgb,
+    var(--oc-cyan-1) 70%,
+    var(--background-color-1)
+  );
+
+  --search-highlight-color-1: black;
+  --search-highlight-background-color-1: var(--oc-pink-1);
+  --search-highlight-background-color-2: var(--oc-pink-5);
+
+  --fullscreen-background-color: rgb(165, 167, 176);
+
+  --accent-contrast-color-1: white;
+  --accent-color-1: var(--oc-blue-4);
+  --accent-color-2: var(--oc-cyan-7);
+  --accent-color-2-highlighted: color-mix(
+    in srgb,
+    var(--accent-color-2) 66%,
+    white
+  );
+
+  --scrollbar-thumb-color: rgba(0, 0, 0, 0.5);
+
+  --box-shadow-base-color: 0, 0, 0;
+  --shadow-color-opacity-light-1: 0.75;
+  --shadow-color-opacity-heavy-1: 0.33;
+  --header-gradient-start: var(--alternative-background-color-2);
+  --header-gradient-mid: color-mix(
+    in srgb,
+    var(--header-gradient-start) 55%,
+    var(--header-gradient-end)
+  );
+  --header-gradient-end: color-mix(
+    in srgb,
+    var(--oc-violet-9) 18%,
+    var(--background-color-1)
+  );
+  --section-accent-surface-color: var(--header-gradient-end);
+  --header-word-accent-color: var(--overview-done-scribble-color);
+  --header-word-decoration-color: var(--overview-done-scribble-color);
+  --image-frame-surface-color: color-mix(
+    in srgb,
+    var(--oc-violet-7) 34%,
+    var(--background-color-1)
+  );
+  --overview-done-text-color: var(--oc-pink-2);
+  --overview-done-scribble-color: var(--oc-pink-6);
+  --overview-icon-color: var(--overview-done-scribble-color);
+  --search-icons-icon-color: var(--overview-done-scribble-color);
+  --elevated-box-shadow:
+    0 10px 18px rgba(var(--box-shadow-base-color), 0.34),
+    0 2px 6px rgba(var(--box-shadow-base-color), 0.18);
+  --frame-drop-shadow: drop-shadow(
+    0 6px 8px rgba(var(--box-shadow-base-color), 0.42)
+  );
+  --device-drop-shadow: drop-shadow(
+    0 6px 8px rgba(var(--box-shadow-base-color), 0.5)
+  );
+  --section-divider-shadow: 0 -6px 14px rgba(var(--box-shadow-base-color), 0.42);
+  --accent-section-inset-shadow: inset 0 18px 28px -18px
+    rgba(var(--box-shadow-base-color), 0.62);
+  --plugins-section-shadow: drop-shadow(
+    0 10px 12px rgba(var(--box-shadow-base-color), 0.38)
+  );
+  --marketing-card-background: linear-gradient(
+    180deg,
+    rgba(24, 27, 28, 0.96),
+    rgba(21, 24, 25, 0.98)
+  );
+  --marketing-card-border-color: rgba(240, 235, 230, 0.08);
+  --marketing-card-shadow:
+    0 10px 18px rgba(var(--box-shadow-base-color), 0.28),
+    0 2px 6px rgba(var(--box-shadow-base-color), 0.16);
+  --marketing-card-hover-shadow:
+    0 16px 24px rgba(var(--box-shadow-base-color), 0.34),
+    0 6px 12px rgba(var(--box-shadow-base-color), 0.18);
+  --legal-card-background: linear-gradient(
+    180deg,
+    rgba(24, 27, 28, 0.97),
+    rgba(18, 21, 22, 0.98)
+  );
+  --legal-card-border-color: rgba(240, 235, 230, 0.08);
+  --legal-card-shadow:
+    0 14px 24px rgba(var(--box-shadow-base-color), 0.28),
+    0 3px 8px rgba(var(--box-shadow-base-color), 0.18);
+  --legal-card-highlight: rgba(240, 235, 230, 0.06);
+  --pricing-title-shadow-top: rgba(240, 235, 230, 0.08);
+  --pricing-plan-muted-color: rgba(240, 235, 230, 0.62);
+  --pricing-badge-background: rgba(240, 235, 230, 0.08);
+  --pricing-badge-border-color: rgba(240, 235, 230, 0.08);
+  --pricing-planned-marker-color: rgba(240, 235, 230, 0.5);
+  --pricing-planned-block-background: linear-gradient(
+    180deg,
+    rgba(240, 235, 230, 0.04),
+    rgba(240, 235, 230, 0.08)
+  );
+  --pricing-planned-block-border-color: rgba(240, 235, 230, 0.08);
+  --pricing-planned-label-color: rgba(240, 235, 230, 0.65);
+  --legal-grid-color-1: rgba(240, 235, 230, 0.075);
+  --legal-grid-color-2: rgba(240, 235, 230, 0.06);
+  --legal-eyebrow-border-color: rgba(240, 235, 230, 0.08);
+  --legal-eyebrow-background: rgba(24, 27, 28, 0.72);
+  --legal-eyebrow-color: rgba(240, 235, 230, 0.72);
+  --legal-title-color: rgb(244, 239, 234);
+  --legal-subtitle-color: rgba(240, 235, 230, 0.76);
+  --legal-meta-border-color: rgba(240, 235, 230, 0.08);
+  --legal-meta-color: rgba(240, 235, 230, 0.62);
+  --legal-heading-color: rgb(244, 239, 234);
+  --legal-body-color: rgba(240, 235, 230, 0.82);
+  --legal-footer-border-color: rgba(240, 235, 230, 0.08);
+  --legal-footer-color: rgba(240, 235, 230, 0.66);
+
+  --color-neutral: var(--font-color-1);
+  --color-red: var(--oc-red-7);
+  --color-pink: var(--oc-pink-5);
+  --color-grape: var(--oc-grape-4);
+  --color-violet: var(--oc-violet-6);
+  --color-indigo: var(--oc-indigo-6);
+  --color-blue: var(--oc-blue-4);
+  --color-cyan: var(--oc-cyan-7);
+  --color-teal: var(--oc-teal-6);
+  --color-green: var(--oc-green-6);
+  --color-lime: var(--oc-lime-3);
+  --color-yellow: var(--oc-yellow-5);
+  --color-orange: var(--oc-orange-6);
+
+  --ifm-background-color: var(--background-color-1);
+  --ifm-background-surface-color: var(--alternative-background-color-1);
+  --ifm-color-content: var(--font-color-1);
+  --ifm-color-content-secondary: rgba(240, 235, 230, 0.74);
+  --ifm-navbar-background-color: var(--header-gradient-start);
+  --ifm-footer-background-color: var(--alternative-background-color-2);
+  --ifm-color-emphasis-100: rgb(36, 40, 41);
+  --ifm-color-emphasis-200: rgb(46, 50, 51);
+  --ifm-color-emphasis-300: rgb(57, 60, 61);
+  --ifm-color-emphasis-600: rgb(180, 176, 170);
+  --ifm-color-emphasis-700: rgb(205, 200, 194);
+  --ifm-color-emphasis-800: rgb(224, 219, 214);
+  --ifm-color-emphasis-900: rgb(240, 235, 230);
 }
 
 body {
   --ifm-font-family-base: "Inter", sans-serif;
   --ifm-heading-font-family: var(--ifm-font-family-base);
   --ifm-heading-font-weight: 800;
-  color: rgb(28, 30, 33);
+  background-color: var(--background-color-1);
+  color: var(--ifm-color-content);
+}
+
+html[data-theme="dark"] .navbar__link--active,
+html[data-theme="dark"] .navbar__link--active:hover {
+  color: var(--overview-done-scribble-color);
 }
 
 .footer__col {

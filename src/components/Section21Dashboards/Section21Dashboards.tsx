@@ -1,10 +1,12 @@
+import { ThemeImage } from "@site/src/common/components/ThemeImage/ThemeImage";
+import { ImageWrapper, Section } from "../common";
 import { HeadersScribble } from "./components/HeadersScribble";
 import { SubHeaderScribble } from "./components/SubHeaderScribble";
-import { StyledImageWrapper, StyledSection } from "./styled";
+import styles from "./styles.module.css";
 
 export function Section21Dashboards() {
   return (
-    <StyledSection>
+    <Section className={styles.section}>
       <h1>
         <span>Dashboards</span> <HeadersScribble></HeadersScribble>
       </h1>
@@ -20,9 +22,13 @@ export function Section21Dashboards() {
         by side and are easy to find through visual structure.
       </p>
 
-      <StyledImageWrapper>
-        <img src={require("@site/static/media/dashboard.png").default} />
-      </StyledImageWrapper>
-    </StyledSection>
+      <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
+        <ThemeImage
+          lightSrc={require("@site/static/media/dashboard-light.png").default}
+          darkSrc={require("@site/static/media/dashboard-dark.png").default}
+          alt="Snippets dashboard"
+        />
+      </ImageWrapper>
+    </Section>
   );
 }

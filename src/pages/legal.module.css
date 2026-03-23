@@ -1,0 +1,214 @@
+.page {
+  position: relative;
+  overflow: hidden;
+  padding: 4.5rem 1.5rem 6rem;
+  /* background: linear-gradient(180deg, #f7f2ea 0%, #fcfbf8 18%, #f3efe8 100%); */
+  background: linear-gradient(
+    180deg,
+    var(--header-gradient-start) 0%,
+    var(--header-gradient-mid) 10%,
+    var(--header-gradient-end) 75%
+  );
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--legal-grid-color-1) 1px, transparent 1px),
+    linear-gradient(90deg, var(--legal-grid-color-2) 1px, transparent 1px);
+  background-size:
+    100% 2.75rem,
+    2.75rem 100%;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 82%);
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 56rem);
+  margin: 0 auto;
+}
+
+.hero {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--legal-eyebrow-border-color);
+  border-radius: 999px;
+  background: var(--legal-eyebrow-background);
+  color: var(--legal-eyebrow-color);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--legal-title-color);
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(2.5rem, 5vw, 4.35rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
+.subtitle {
+  width: min(100%, 40rem);
+  margin: 1rem auto 0;
+  color: var(--legal-subtitle-color);
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+.card {
+  position: relative;
+  padding: 2.25rem;
+  border: 1px solid var(--legal-card-border-color);
+  border-radius: 1.5rem;
+  background: var(--legal-card-background);
+  box-shadow: var(--legal-card-shadow);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 var(--legal-card-highlight);
+  pointer-events: none;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--legal-meta-border-color);
+  color: var(--legal-meta-color);
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section h2 {
+  margin: 0 0 0.9rem;
+  color: var(--legal-heading-color);
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section p,
+.section li {
+  color: var(--legal-body-color);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.section p {
+  margin: 0 0 0.95rem;
+}
+
+.section p:last-child {
+  margin-bottom: 0;
+}
+
+.section ul {
+  margin: 0;
+  padding-left: 1.3rem;
+}
+
+.section li + li {
+  margin-top: 0.75rem;
+}
+
+.footerNote {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--legal-footer-border-color);
+  color: var(--legal-footer-color);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+html[data-theme="dark"] .page::before {
+  background-image:
+    linear-gradient(rgba(240, 235, 230, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240, 235, 230, 0.03) 1px, transparent 1px);
+}
+
+html[data-theme="dark"] .title {
+  color: rgb(244, 239, 234);
+}
+
+html[data-theme="dark"] .subtitle {
+  color: rgba(240, 235, 230, 0.76);
+}
+
+html[data-theme="dark"] .card {
+  background: linear-gradient(
+    180deg,
+    rgba(24, 27, 28, 0.97),
+    rgba(18, 21, 22, 0.98)
+  );
+  border-color: rgba(240, 235, 230, 0.08);
+  box-shadow:
+    0 14px 24px rgba(0, 0, 0, 0.28),
+    0 3px 8px rgba(0, 0, 0, 0.18);
+}
+
+html[data-theme="dark"] .card::before {
+  box-shadow: inset 0 1px 0 rgba(240, 235, 230, 0.06);
+}
+
+html[data-theme="dark"] .meta {
+  border-bottom-color: rgba(240, 235, 230, 0.08);
+  color: rgba(240, 235, 230, 0.62);
+}
+
+html[data-theme="dark"] .section h2 {
+  color: rgb(244, 239, 234);
+}
+
+html[data-theme="dark"] .section p,
+html[data-theme="dark"] .section li,
+html[data-theme="dark"] .footerNote {
+  color: rgba(240, 235, 230, 0.82);
+}
+
+html[data-theme="dark"] .footerNote {
+  border-top-color: rgba(240, 235, 230, 0.08);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 3rem 1rem 4rem;
+  }
+
+  .card {
+    padding: 1.4rem;
+    border-radius: 1.15rem;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+}

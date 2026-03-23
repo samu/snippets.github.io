@@ -1,25 +1,29 @@
 import { DownloadButton } from "@site/src/common/components/DownloadButton/DownloadButton";
 import { MacOsIcon } from "@site/src/common/components/DownloadButton/MacOsIcon";
 import { SlideIn } from "@site/src/common/components/SlideIn/SlideIn";
-import { SectionRow } from "../common";
-import { StyledIPhoneX, StyledSection, SytledBottomRow } from "./styled";
+import { IPhoneX } from "@site/src/common/components/IPhoneX/IPhoneX";
+import { ThemeImage } from "@site/src/common/components/ThemeImage/ThemeImage";
+import { Section, SectionRow } from "../common";
+import styles from "./styles.module.css";
 
 export function Section60Mobile() {
   return (
-    <StyledSection>
-      <SectionRow $flexDirection="column">
+    <Section className={styles.section}>
+      <SectionRow flexDirection="column">
         <h1>Available on Mobile</h1>
 
         <SlideIn>
-          <StyledIPhoneX>
-            <img
-              src={require("@site/static/media/mobile-editor.png").default}
+          <IPhoneX className={styles.iPhoneX}>
+            <ThemeImage
+              lightSrc={require("@site/static/media/mobile-editor-light.png").default}
+              darkSrc={require("@site/static/media/mobile-editor-dark.png").default}
+              alt="Snippets mobile editor"
             />
-          </StyledIPhoneX>
+          </IPhoneX>
         </SlideIn>
       </SectionRow>
 
-      <SytledBottomRow $flexDirection="column">
+      <SectionRow className={styles.bottomRow} flexDirection="column">
         <p>Beta available on iOS. Coming soon on all other platforms.</p>
 
         <DownloadButton
@@ -29,7 +33,7 @@ export function Section60Mobile() {
           <MacOsIcon></MacOsIcon>
           TestFlight
         </DownloadButton>
-      </SytledBottomRow>
-    </StyledSection>
+      </SectionRow>
+    </Section>
   );
 }

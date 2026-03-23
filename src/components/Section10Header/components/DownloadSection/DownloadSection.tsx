@@ -3,18 +3,14 @@ import { DownloadButton } from "@site/src/common/components/DownloadButton/Downl
 import { LinuxIcon } from "@site/src/common/components/DownloadButton/LinuxIcon";
 import { WindowsIcon } from "@site/src/common/components/DownloadButton/WindowsIcon";
 import { MacOsIcon } from "../../../../common/components/DownloadButton/MacOsIcon";
-import {
-  StyledColumn,
-  StyledColumnRow,
-  StyledColumnRowiOS,
-  StyledSection,
-} from "./styled";
+import { Section, SectionRow } from "../../../common";
+import styles from "./styles.module.css";
 
 export function DownloadSection() {
   return (
-    <StyledSection>
-      <StyledColumnRow>
-        <StyledColumn>
+    <Section className={styles.section}>
+      <SectionRow className={styles.columnRow}>
+        <div className={styles.column}>
           <p>macOS</p>
 
           <DownloadButton
@@ -30,9 +26,9 @@ export function DownloadSection() {
           >
             <MacOsIcon></MacOsIcon> Intel (older)
           </DownloadButton>
-        </StyledColumn>
+        </div>
 
-        <StyledColumn>
+        <div className={styles.column}>
           <p>Windows</p>
 
           <DownloadButton
@@ -41,20 +37,20 @@ export function DownloadSection() {
           >
             <WindowsIcon></WindowsIcon> Windows
           </DownloadButton>
-        </StyledColumn>
+        </div>
 
-        <StyledColumn>
+        <div className={styles.column}>
           <p>Linux</p>
 
           <DownloadButton href="" disabled={true} os="linux">
             <LinuxIcon></LinuxIcon> Linux
             <ComingSoonBadge></ComingSoonBadge>
           </DownloadButton>
-        </StyledColumn>
-      </StyledColumnRow>
+        </div>
+      </SectionRow>
 
-      <StyledColumnRowiOS>
-        <StyledColumn>
+      <SectionRow className={styles.columnRowIos}>
+        <div className={styles.column}>
           <p>iOS Beta</p>
 
           <DownloadButton
@@ -64,8 +60,8 @@ export function DownloadSection() {
             <MacOsIcon></MacOsIcon>
             TestFlight
           </DownloadButton>
-        </StyledColumn>
-      </StyledColumnRowiOS>
-    </StyledSection>
+        </div>
+      </SectionRow>
+    </Section>
   );
 }

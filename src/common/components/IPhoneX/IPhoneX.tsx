@@ -1,15 +1,5 @@
 import { ReactNode } from "react";
-import {
-  BottomSlider,
-  Inner,
-  LockButton,
-  Notch,
-  Outer,
-  ShadowContainer,
-  SilentModeButton,
-  VolumeButtonBottom,
-  VolumeButtonTop,
-} from "./styled";
+import styles from "./styles.module.css";
 
 type Props = {
   className?: string;
@@ -18,19 +8,19 @@ type Props = {
 
 export function IPhoneX(props: Props) {
   return (
-    <ShadowContainer className={props.className}>
-      <Outer>
-        <Inner>
+    <div className={[styles.shadowContainer, props.className].filter(Boolean).join(" ")}>
+      <div className={styles.outer}>
+        <div className={styles.inner}>
           {props.children}
-          <Notch></Notch>
-          <BottomSlider></BottomSlider>
-        </Inner>
+          <div className={styles.notch}></div>
+          <div className={styles.bottomSlider}></div>
+        </div>
 
-        <SilentModeButton></SilentModeButton>
-        <VolumeButtonTop></VolumeButtonTop>
-        <VolumeButtonBottom></VolumeButtonBottom>
-        <LockButton></LockButton>
-      </Outer>
-    </ShadowContainer>
+        <div className={styles.silentModeButton}></div>
+        <div className={styles.volumeButtonTop}></div>
+        <div className={styles.volumeButtonBottom}></div>
+        <div className={styles.lockButton}></div>
+      </div>
+    </div>
   );
 }

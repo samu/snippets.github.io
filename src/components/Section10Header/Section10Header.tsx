@@ -1,62 +1,48 @@
-import { TextRoll } from "@site/src/common/components/TextRoll/TextRoll";
+import { IPhoneX } from "@site/src/common/components/IPhoneX/IPhoneX";
+import { ThemeImage } from "@site/src/common/components/ThemeImage/ThemeImage";
+import { ImageWrapper, Section } from "../common";
 import { Fragment } from "react";
 import { DownloadSection } from "./components/DownloadSection/DownloadSection";
-import {
-  Header,
-  ImageWrapperContainer,
-  StyledDesktopImageWrapper,
-  StyledFeatherIcon,
-  StyledIPhoneX,
-  StyledScribble,
-  StyledSection,
-} from "./styled";
-
-function shuffle(array: Array<string>) {
-  const arr = array.slice();
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-const words = shuffle(["Grows With You"]);
+import { FeatherIcon } from "./components/FeatherIcon";
+import { Scribble } from "./components/Scribble";
+import styles from "./styles.module.css";
 
 export function Section10Header() {
   return (
     <Fragment>
-      <StyledSection>
-        <Header>
+      <Section className={styles.section}>
+        <header className={styles.header}>
           <h1>
             Note-Taking That &nbsp;
             <em>
-              <TextRoll
-                words={words}
-                children={
-                  <Fragment>
-                    <StyledScribble variation={1}></StyledScribble>
-                    <StyledFeatherIcon></StyledFeatherIcon>
-                  </Fragment>
-                }
-              ></TextRoll>
+              <span className={styles.textWrap}>
+                <span aria-hidden="true">&nbsp;</span>
+                <Scribble className={styles.scribble} variation={1}></Scribble>
+                <FeatherIcon className={styles.featherIcon}></FeatherIcon>
+                <span className={styles.text}>Grows With You</span>
+              </span>
             </em>
           </h1>
-        </Header>
+        </header>
 
-        <ImageWrapperContainer>
-          <StyledDesktopImageWrapper>
-            <img
-              src={require("@site/static/media/general-todos.png").default}
+        <div className={styles.imageWrapperContainer}>
+          <ImageWrapper className={styles.desktopImageWrapper} boxShadow={true}>
+            <ThemeImage
+              lightSrc={require("@site/static/media/general-todos-light.png").default}
+              darkSrc={require("@site/static/media/general-todos-dark.png").default}
+              alt="Snippets general todos"
             />
-          </StyledDesktopImageWrapper>
+          </ImageWrapper>
 
-          <StyledIPhoneX>
-            <img
-              src={require("@site/static/media/mobile-editor.png").default}
+          <IPhoneX className={styles.iPhoneX}>
+            <ThemeImage
+              lightSrc={require("@site/static/media/mobile-editor-light.png").default}
+              darkSrc={require("@site/static/media/mobile-editor-dark.png").default}
+              alt="Snippets mobile editor"
             />
-          </StyledIPhoneX>
-        </ImageWrapperContainer>
-      </StyledSection>
+          </IPhoneX>
+        </div>
+      </Section>
 
       <DownloadSection></DownloadSection>
     </Fragment>

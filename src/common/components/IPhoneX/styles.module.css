@@ -1,0 +1,92 @@
+.shadowContainer {
+  filter: var(--device-drop-shadow);
+  transform: translateZ(0);
+}
+
+.outer {
+  position: relative;
+  display: flex;
+  --aspect-ratio: 9 / 19.5;
+  --border-width: 3%;
+  --border-radius-inner: 15%;
+  --border-radius-outer: calc(var(--border-radius-inner) + var(--border-width));
+  border-radius: var(--border-radius-outer) /
+    calc(var(--border-radius-outer) * var(--aspect-ratio));
+  background-color: black;
+}
+
+.inner {
+  width: 100%;
+  margin: var(--border-width);
+  aspect-ratio: var(--aspect-ratio);
+  position: relative;
+  display: flex;
+  border-radius: 15% / calc(15% * var(--aspect-ratio));
+  overflow: hidden;
+  box-shadow: 0 0 0 var(--iphone-x-device-border-width) black;
+}
+
+.notch {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  height: 3%;
+  width: 48%;
+  background-color: black;
+  border-bottom-right-radius: 1000px;
+  border-bottom-left-radius: 1000px;
+  transform: translateX(-50%);
+  z-index: 1000000000;
+}
+
+.bottomSlider {
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+  height: 1%;
+  width: 40%;
+  background-color: black;
+  border-radius: 1000px;
+  transform: translateX(-50%);
+  z-index: 1000000000;
+}
+
+.silentModeButton {
+  position: absolute;
+  top: 12%;
+  left: 0.1%;
+  height: 5%;
+  width: 1%;
+  background-color: black;
+  transform: translateX(-100%);
+}
+
+.volumeButtonTop {
+  position: absolute;
+  top: 21%;
+  left: 0.1%;
+  height: 8.5%;
+  width: 1%;
+  background-color: black;
+  transform: translateX(-100%);
+}
+
+.volumeButtonBottom {
+  position: absolute;
+  top: 32%;
+  left: 0.1%;
+  height: 8.5%;
+  width: 1%;
+  background-color: black;
+  transform: translateX(-100%);
+}
+
+.lockButton {
+  position: absolute;
+  top: 17%;
+  right: 0.1%;
+  height: 4%;
+  width: 1%;
+  background-color: black;
+  transform: translateX(100%);
+}

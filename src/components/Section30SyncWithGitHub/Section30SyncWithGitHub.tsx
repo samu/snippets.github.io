@@ -1,5 +1,5 @@
 import { ComingSoonBadge } from "@site/src/common/components/ComingSoonBadge/ComingSoonBadge";
-import { SectionRow } from "../common";
+import { Section, SectionRow } from "../common";
 import { CloudIcon } from "./components/CloudIcon";
 import { FloppyIcon } from "./components/FloppyIcon";
 import { GitHubIcon } from "./components/GitHubIcon";
@@ -7,15 +7,15 @@ import { HddRackIcon } from "./components/HddRackIcon";
 import { MarkdownIcon } from "./components/MarkdownIcon";
 import { SubHeaderScribble } from "./components/SubHeaderScribble";
 import { SyncIcon } from "./components/SyncIcon";
-import { StyledMainSectionRow, StyledSection } from "./styled";
+import styles from "./styles.module.css";
 
 export function Section30SyncWithGitHub() {
   return (
-    <StyledSection>
+    <Section className={styles.section}>
       <SectionRow>
         <h1>
-          <span className="shimmer">Sync</span> with
-          <span className="anything">anything</span>
+          <span className={styles.shimmer}>Sync</span> with
+          <span className={styles.anything}>anything</span>
         </h1>
       </SectionRow>
 
@@ -24,7 +24,7 @@ export function Section30SyncWithGitHub() {
         <SubHeaderScribble></SubHeaderScribble>
       </h2>
 
-      <StyledMainSectionRow>
+      <SectionRow className={styles.mainSectionRow}>
         <div>
           <h3>
             Local <FloppyIcon></FloppyIcon>
@@ -67,7 +67,7 @@ export function Section30SyncWithGitHub() {
             maintenance required.
           </p>
         </div>
-      </StyledMainSectionRow>
+      </SectionRow>
 
       <h4>
         Export to markdown <MarkdownIcon></MarkdownIcon>
@@ -75,7 +75,7 @@ export function Section30SyncWithGitHub() {
 
       <p>Avoid vendor lock-in, keep your data forever.</p>
 
-      {false && <SyncIcon></SyncIcon>}
-    </StyledSection>
+      {false && <SyncIcon className={styles.syncIcon}></SyncIcon>}
+    </Section>
   );
 }

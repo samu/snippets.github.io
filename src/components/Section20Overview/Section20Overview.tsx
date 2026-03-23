@@ -1,4 +1,6 @@
 import { IllustrationFrame } from "@site/src/common/components/IllustrationFrame/IllustrationFrame";
+import { ThemeImage } from "@site/src/common/components/ThemeImage/ThemeImage";
+import { ImageWrapper, Section, SectionRow } from "../common";
 import { Checked } from "./components/Checked";
 import { Crossed } from "./components/Crossed";
 import { HeaderScribble } from "./components/HeaderScribble";
@@ -7,29 +9,18 @@ import { NoMarkdownScribble } from "./components/NoMarkdownScribble";
 import { SubHeaderScribble } from "./components/SubHeaderScribble";
 import { TodoIcon } from "./components/TodoIcon";
 import { UnlockIcon } from "./components/UnlockIcon";
-import {
-  DoneRight,
-  IntroRow,
-  NotMarkdownRow,
-  StyledHeader,
-  StyledImageWrapper,
-  StyledSection,
-  StyledSectionRow,
-  StyledSectionRowReverse,
-  StyledTextBox,
-  StyledTextBoxReversed,
-} from "./styled";
+import styles from "./styles.module.css";
 
 export function Section20Overview() {
   return (
-    <StyledSection>
-      <StyledHeader>
+    <Section className={styles.section}>
+      <div className={styles.header}>
         <h1>
           Rich text editing{" "}
-          <DoneRight>
+          <span className={styles.doneRight}>
             <HeaderScribble></HeaderScribble>
             <span>done right</span>
-          </DoneRight>
+          </span>
         </h1>
 
         <h2>
@@ -37,7 +28,7 @@ export function Section20Overview() {
           <SubHeaderScribble></SubHeaderScribble>
         </h2>
 
-        <IntroRow>
+        <div className={styles.introRow}>
           <p>
             <span>
               Forget clumsy block-based note apps, poorly designed rich-text
@@ -54,7 +45,7 @@ export function Section20Overview() {
 
             {false && <Checked></Checked>}
           </p>
-        </IntroRow>
+        </div>
 
         <ul>
           <li>
@@ -82,10 +73,10 @@ export function Section20Overview() {
             selection to any other place within the document.
           </li>
         </ul>
-      </StyledHeader>
+      </div>
 
-      <StyledSectionRow>
-        <StyledTextBox>
+      <SectionRow className={styles.sectionRow}>
+        <div className={styles.textBox}>
           <UnlockIcon></UnlockIcon>
 
           <h1>No Constraints</h1>
@@ -96,17 +87,21 @@ export function Section20Overview() {
             without fighting the editor. Content stays structured, predictable,
             and easy to extend, even as documents grow in size and complexity.
           </p>
-        </StyledTextBox>
+        </div>
 
         <IllustrationFrame position="on-the-right">
-          <StyledImageWrapper>
-            <img src={require("@site/static/media/friday.png").default} />
-          </StyledImageWrapper>
+          <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
+            <ThemeImage
+              lightSrc={require("@site/static/media/friday-light.png").default}
+              darkSrc={require("@site/static/media/friday-dark.png").default}
+              alt="Snippets rich text example"
+            />
+          </ImageWrapper>
         </IllustrationFrame>
-      </StyledSectionRow>
+      </SectionRow>
 
-      <StyledSectionRowReverse>
-        <StyledTextBoxReversed>
+      <SectionRow className={`${styles.sectionRow} ${styles.sectionRowReverse}`}>
+        <div className={`${styles.textBox} ${styles.textBoxReversed}`}>
           <TodoIcon></TodoIcon>
 
           <h1>Todo Lists</h1>
@@ -116,17 +111,21 @@ export function Section20Overview() {
             mark progress, and keep your work visible without unnecessary
             complexity.
           </p>
-        </StyledTextBoxReversed>
+        </div>
 
         <IllustrationFrame position="on-the-left">
-          <StyledImageWrapper>
-            <img src={require("@site/static/media/todos.png").default} />
-          </StyledImageWrapper>
+          <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
+            <ThemeImage
+              lightSrc={require("@site/static/media/todos-light.png").default}
+              darkSrc={require("@site/static/media/todos-dark.png").default}
+              alt="Snippets todo lists"
+            />
+          </ImageWrapper>
         </IllustrationFrame>
-      </StyledSectionRowReverse>
+      </SectionRow>
 
-      <StyledSectionRow>
-        <StyledTextBox>
+      <SectionRow className={styles.sectionRow}>
+        <div className={styles.textBox}>
           <ImageIcon></ImageIcon>
 
           <h1>Images</h1>
@@ -135,16 +134,20 @@ export function Section20Overview() {
             Copy-paste or drag images. Make it look nice with the panorama mode.
             Resize to a preferred size, or let it take the full width.
           </p>
-        </StyledTextBox>
+        </div>
 
         <IllustrationFrame position="on-the-right">
-          <StyledImageWrapper>
-            <img src={require("@site/static/media/images.png").default} />
-          </StyledImageWrapper>
+          <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
+            <ThemeImage
+              lightSrc={require("@site/static/media/images-light.png").default}
+              darkSrc={require("@site/static/media/images-dark.png").default}
+              alt="Snippets images"
+            />
+          </ImageWrapper>
         </IllustrationFrame>
-      </StyledSectionRow>
+      </SectionRow>
 
-      <NotMarkdownRow $flexDirection="column">
+      <SectionRow className={styles.notMarkdownRow} flexDirection="column">
         <h1>
           Purposely{" "}
           <span>
@@ -167,7 +170,7 @@ export function Section20Overview() {
           a text-only format. Concerns about vendor lock-in are addressed
           through a simple export-to-Markdown option.
         </p>
-      </NotMarkdownRow>
-    </StyledSection>
+      </SectionRow>
+    </Section>
   );
 }
