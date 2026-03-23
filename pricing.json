@@ -1,38 +1,75 @@
 {
+  "title": "Pricing",
+  "subtitle": "Start for free and upgrade when you need more power, privacy, or cloud features.",
   "plans": [
     {
-      "key": "basic",
-      "name": "Basic",
-      "variantId": "123456",
-
-      "price": {
-        "currency": "CHF",
-        "amount": 24,
-        "interval": "year"
-      },
-
-      "discount": null,
-
-      "features": []
+      "name": "Free",
+      "price": "$0",
+      "priceNote": "/forever",
+      "featured": false,
+      "muted": false,
+      "badge": null,
+      "features": [
+        { "text": "Unlimited workspaces", "planned": false },
+        { "text": "Unlimited notes", "planned": false },
+        {
+          "text": "Sync across multiple devices with GitHub",
+          "planned": false
+        },
+        { "text": "Sync with Folder", "planned": false }
+      ],
+      "plannedFeatures": []
     },
     {
-      "key": "pro",
       "name": "Pro",
-      "variantId": "987654",
-
-      "price": {
-        "currency": "CHF",
-        "amount": 36,
-        "interval": "year"
-      },
-
-      "discount": {
-        "originalAmount": 12,
-        "label": "Early adopter"
-      },
-
-      "features": []
+      "price": "$12",
+      "priceNote": "/year",
+      "featured": true,
+      "muted": false,
+      "badge": "Coming Soon",
+      "features": [
+        { "text": "Access to full icon set", "planned": false },
+        {
+          "text": "GitHub sync with end-to-end encryption and unlimited branches",
+          "planned": false
+        }
+      ],
+      "plannedFeatures": [
+        { "text": "Local reminders", "planned": true },
+        { "text": "More visualizations", "planned": true },
+        { "text": "More customization options", "planned": true },
+        { "text": "More themes", "planned": true },
+        { "text": "Additional algorithms for flashcards", "planned": true },
+        { "text": "Image occlusion in flashcards", "planned": true },
+        { "text": "Bring your own AI", "planned": true }
+      ]
+    },
+    {
+      "name": "Cloud",
+      "price": "Coming soon",
+      "priceNote": null,
+      "featured": false,
+      "muted": true,
+      "badge": "Planned",
+      "features": [
+        { "text": "Cloud sync with end-to-end encryption", "planned": true },
+        { "text": "Backend-driven reminders", "planned": true },
+        { "text": "API access", "planned": true },
+        { "text": "Web clipper", "planned": true },
+        { "text": "Mobile widgets", "planned": true },
+        { "text": "Note sharing", "planned": true }
+      ],
+      "plannedFeatures": []
+    },
+    {
+      "name": "AI",
+      "price": "Coming soon",
+      "priceNote": null,
+      "featured": false,
+      "muted": true,
+      "badge": "Planned",
+      "features": [{ "text": "Access to AI features", "planned": true }],
+      "plannedFeatures": []
     }
-  ],
-  "knownVariantIds": ["1", "1328678"]
+  ]
 }
