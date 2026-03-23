@@ -63,11 +63,11 @@ const config: Config = {
         src: "media/logo.png",
       },
       items: [
-        {
-          to: "/pricing",
-          label: "Pricing",
-          position: "right",
-        },
+        // {
+        //   to: "/pricing",
+        //   label: "Pricing",
+        //   position: "right",
+        // },
         {
           to: "/docs/introduction",
           label: "Docs",
