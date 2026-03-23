@@ -63,11 +63,11 @@ const config: Config = {
         src: "media/logo.png",
       },
       items: [
-        // {
-        //   to: "/pricing",
-        //   label: "Pricing",
-        //   position: "right",
-        // },
+        {
+          to: "/pricing",
+          label: "Pricing",
+          position: "right",
+        },
         {
           to: "/docs/introduction",
           label: "Docs",
@@ -142,7 +142,7 @@ const config: Config = {
     },
   } satisfies Preset.ThemeConfig,
 
-  // plugins: ["./src/plugins/my-route-plugin"],
+  plugins: ["./src/plugins/my-route-plugin"],
 };
 
 export default config;
