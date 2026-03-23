@@ -1,29 +1,20 @@
-import { IconWrapper, ImageWrapper } from "../common";
+import { IllustrationFrame } from "@site/src/common/components/IllustrationFrame/IllustrationFrame";
+import { ThemeImage } from "@site/src/common/components/ThemeImage/ThemeImage";
+import { IconWrapper, ImageWrapper, Section, SectionRow } from "../common";
 import { EmojiHeartIcon } from "./components/EmojiHeartIcon";
 import { SearchIcon } from "./components/SearchIcon";
-import {
-  BottomRibbon,
-  RowSpacer,
-  StyledIllustrationFrame,
-  StyledSection,
-  StyledSectionRow,
-  StyledSectionRowReverse,
-  StyledTextBox,
-  TopRibbon,
-  TopShadowMaker,
-} from "./styled";
+import styles from "./styles.module.css";
 
 export function Section40SearchAndIcons() {
   return (
-    <StyledSection>
-      <TopRibbon></TopRibbon>
-      <TopShadowMaker></TopShadowMaker>
-      <BottomRibbon></BottomRibbon>
+    <Section className={styles.section}>
+      <div className={styles.topRibbon}></div>
+      <div className={styles.bottomRibbon}></div>
 
       <h1>Find and Organize</h1>
 
-      <StyledSectionRow>
-        <StyledTextBox>
+      <SectionRow className={styles.sectionRow}>
+        <div className={styles.textBox}>
           <h2>
             <IconWrapper>
               <SearchIcon></SearchIcon>
@@ -37,19 +28,28 @@ export function Section40SearchAndIcons() {
             well-formatted results that provide clear and concise previews of
             the content.
           </p>
-        </StyledTextBox>
+        </div>
 
-        <StyledIllustrationFrame position="on-the-right">
+        <IllustrationFrame
+          className={styles.illustrationFrame}
+          position="on-the-right"
+        >
           <ImageWrapper>
-            <img src={require("@site/static/media/search.png").default} />
+            <ThemeImage
+              lightSrc={require("@site/static/media/search-light.png").default}
+              darkSrc={require("@site/static/media/search-dark.png").default}
+              alt="Snippets search"
+            />
           </ImageWrapper>
-        </StyledIllustrationFrame>
-      </StyledSectionRow>
+        </IllustrationFrame>
+      </SectionRow>
 
-      <RowSpacer></RowSpacer>
+      <div className={styles.rowSpacer}></div>
 
-      <StyledSectionRowReverse>
-        <StyledTextBox>
+      <SectionRow
+        className={`${styles.sectionRow} ${styles.sectionRowReverse}`}
+      >
+        <div className={styles.textBox}>
           <h2>
             <IconWrapper>
               <EmojiHeartIcon></EmojiHeartIcon>
@@ -62,14 +62,21 @@ export function Section40SearchAndIcons() {
             Snippets includes a collection of icons that enhance the structure
             of your notes, adding both clarity and visual appeal.
           </p>
-        </StyledTextBox>
+        </div>
 
-        <StyledIllustrationFrame position="on-the-left">
+        <IllustrationFrame
+          className={styles.illustrationFrame}
+          position="on-the-left"
+        >
           <ImageWrapper>
-            <img src={require("@site/static/media/icons.png").default} />
+            <ThemeImage
+              lightSrc={require("@site/static/media/icons-light.png").default}
+              darkSrc={require("@site/static/media/icons-dark.png").default}
+              alt="Snippets icons"
+            />
           </ImageWrapper>
-        </StyledIllustrationFrame>
-      </StyledSectionRowReverse>
-    </StyledSection>
+        </IllustrationFrame>
+      </SectionRow>
+    </Section>
   );
 }

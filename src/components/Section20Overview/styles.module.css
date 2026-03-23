@@ -1,0 +1,253 @@
+.section {
+  box-shadow: var(--section-divider-shadow);
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 5em;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8em;
+  padding-bottom: 4em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.header h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  margin: 0;
+  width: 100%;
+  padding-bottom: 1em;
+}
+
+.header h2 {
+  position: relative;
+  margin-bottom: 0;
+  font-size: 1em;
+}
+
+.header h2 span {
+  position: relative;
+  z-index: 1;
+}
+
+.header h2 svg {
+  position: absolute;
+  top: 0.45em;
+  left: 0;
+  z-index: 0;
+  scale: 1.1;
+}
+
+.header ul {
+  max-width: 50em;
+}
+
+.header li {
+  margin-bottom: 1em;
+}
+
+@media (max-width: 576px) {
+  .header h1 {
+    font-size: 1.5em;
+  }
+
+  .header h2 {
+    font-size: 0.95em;
+  }
+}
+
+@media (min-width: 576px) {
+  .header h1 {
+    font-size: 2.5em;
+  }
+
+  .header h2 {
+    font-size: 1.25em;
+  }
+}
+
+@media (min-width: 768px) {
+  .header h1 {
+    font-size: 3.5em;
+  }
+
+  .header h2 {
+    font-size: 1.5em;
+  }
+}
+
+@media (min-width: 992px) {
+  .header h1 {
+    font-size: 4em;
+  }
+}
+
+.doneRight {
+  position: relative;
+}
+
+.doneRight svg {
+  position: absolute;
+  top: -0.25em;
+  left: 0;
+  z-index: 0;
+}
+
+.doneRight > span {
+  position: relative;
+  z-index: 1;
+  margin-left: 0.125em;
+  color: var(--overview-done-text-color);
+}
+
+.introRow {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+@media (min-width: 768px) {
+  .introRow {
+    flex-direction: row;
+  }
+}
+
+.introRow p {
+  max-width: 20em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  position: relative;
+  text-align: center;
+}
+
+.introRow p span {
+  position: relative;
+  z-index: 1;
+}
+
+.introRow p:nth-child(1) svg {
+  position: absolute;
+  top: -4em;
+  left: 0;
+  z-index: 0;
+}
+
+.introRow p:nth-child(2) svg {
+  position: absolute;
+  top: -5em;
+  right: 3em;
+  z-index: 0;
+  rotate: 10deg;
+}
+
+.sectionRow {
+  margin-bottom: 5em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+@media (max-width: 992px) {
+  .sectionRow {
+    flex-direction: column;
+  }
+}
+
+.sectionRowReverse {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 992px) {
+  .sectionRowReverse {
+    flex-direction: column;
+  }
+}
+
+.imageWrapper {
+  max-width: 40em;
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.textBox svg {
+  color: var(--overview-icon-color);
+}
+
+.textBox h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+@media (min-width: 992px) {
+  .textBox {
+    max-width: 30em;
+    text-align: right;
+    align-items: flex-end;
+    margin-right: 2em;
+  }
+
+  .textBox h1 {
+    font-size: 3em;
+  }
+}
+
+@media (min-width: 992px) {
+  .textBoxReversed {
+    text-align: left;
+    align-items: flex-start;
+    margin-left: 2em;
+    margin-right: 0;
+  }
+}
+
+.notMarkdownRow {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.notMarkdownRow h1 {
+  font-size: 1.25em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+@media (min-width: 768px) {
+  .notMarkdownRow h1 {
+    font-size: 2.5em;
+  }
+}
+
+.notMarkdownRow p {
+  max-width: 39em;
+  text-align: center;
+}
+
+.notMarkdownRow span {
+  position: relative;
+}
+
+.notMarkdownRow span span {
+  position: relative;
+  z-index: 1;
+}
+
+.notMarkdownRow svg {
+  position: absolute;
+  top: 0.4em;
+  left: -0.3em;
+  width: 2.25em;
+  z-index: 0;
+}

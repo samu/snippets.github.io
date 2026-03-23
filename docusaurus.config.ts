@@ -115,6 +115,14 @@ const config: Config = {
               label: "Contact Us",
               href: "mailto:support@snippets.ch",
             },
+            {
+              label: "Privacy Policy",
+              href: "/privacy",
+            },
+            {
+              label: "Terms of Service",
+              href: "/terms",
+            },
           ],
         },
         {
@@ -138,6 +146,7 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
     colorMode: {
+      respectPrefersColorScheme: true,
       disableSwitch: true,
     },
   } satisfies Preset.ThemeConfig,

@@ -19,11 +19,9 @@
     "@docusaurus/preset-classic": "3.9.2",
     "@mdx-js/react": "^3.1.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.38.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "styled-components": "^6.3.12"
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.9.2",
@@ -46,9 +44,6 @@
   },
   "engines": {
     "node": ">=18.0"
-  },
-  "resolutions": {
-    "styled-components": "^6"
   },
   "packageManager": "pnpm@10.26.2"
 }

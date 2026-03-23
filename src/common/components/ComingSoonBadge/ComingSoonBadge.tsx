@@ -1,5 +1,5 @@
-import { Outer } from "./styled";
+import styles from "./styles.module.css";
 
 export function ComingSoonBadge() {
-  return <Outer>Coming Soon</Outer>;
+  return <div className={styles.outer}>Coming Soon</div>;
 }

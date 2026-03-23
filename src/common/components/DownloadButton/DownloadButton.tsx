@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { sendAnalytics } from "../../sendAnalytics";
-import { StyledAnchor, StyledDownloadIcon } from "./styled";
+import styles from "./styles.module.css";
 
 type Props = {
   href: string;
@@ -11,14 +11,14 @@ type Props = {
 
 export function DownloadButton(props: Props) {
   return (
-    <StyledAnchor
+    <a
       href={props.href}
-      $disabled={props.disabled}
+      className={`${styles.anchor} ${props.disabled ? styles.disabled : ""}`}
       onClick={() =>
         sendAnalytics({ type: "download", metadata: { os: props.os } })
       }
     >
-      <StyledDownloadIcon>{props.children}</StyledDownloadIcon>
-    </StyledAnchor>
+      <span className={styles.downloadIcon}>{props.children}</span>
+    </a>
   );
 }

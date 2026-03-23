@@ -5,24 +5,24 @@
   padding-bottom: 6em;
   background: linear-gradient(
     180deg,
-    var(--accent-contrast-color-1) 0%,
-    #ffffff 42%,
-    var(--accent-color-1) 100%
+    var(--header-gradient-start) 0%,
+    var(--header-gradient-mid) 42%,
+    var(--header-gradient-end) 100%
   );
 }
 
 .styledSection::before {
   content: "";
   position: absolute;
-  inset: auto -10% -8rem -10%;
-  height: 16rem;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(var(--box-shadow-base-color), 0.08),
-    transparent 70%
-  );
+  inset: 0;
+  background-image:
+    linear-gradient(var(--legal-grid-color-1) 1px, transparent 1px),
+    linear-gradient(90deg, var(--legal-grid-color-2) 1px, transparent 1px);
+  background-size:
+    100% 2.75rem,
+    2.75rem 100%;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 82%);
   pointer-events: none;
-  filter: blur(20px);
 }
 
 .header {
@@ -40,7 +40,7 @@
   letter-spacing: -0.03em;
   color: var(--title-color, inherit);
   text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.45),
+    0 1px 0 var(--pricing-title-shadow-top),
     0 8px 22px rgba(var(--box-shadow-base-color), 0.1);
 }
 
@@ -48,7 +48,7 @@
   background: linear-gradient(
     135deg,
     var(--accent-color-1),
-    rgba(var(--box-shadow-base-color), 0.92)
+    color-mix(in srgb, var(--font-color-1) 72%, var(--accent-color-1))
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -81,15 +81,9 @@
   min-height: 30em;
   padding: 2em;
   border-radius: 1.25em;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.98),
-    rgba(255, 255, 255, 0.94)
-  );
-  border: 1px solid rgba(var(--box-shadow-base-color), 0.08);
-  box-shadow:
-    0 10px 30px rgba(var(--box-shadow-base-color), 0.12),
-    0 2px 8px rgba(var(--box-shadow-base-color), 0.06);
+  background: var(--marketing-card-background);
+  border: 1px solid var(--marketing-card-border-color);
+  box-shadow: var(--marketing-card-shadow);
   opacity: 1;
   transition:
     transform 180ms ease,
@@ -127,9 +121,7 @@
 
 .box:hover {
   transform: translateY(-8px) scale(1.012);
-  box-shadow:
-    0 18px 45px rgba(var(--box-shadow-base-color), 0.18),
-    0 8px 18px rgba(var(--box-shadow-base-color), 0.08);
+  box-shadow: var(--marketing-card-hover-shadow);
   border-color: rgba(var(--box-shadow-base-color), 0.14);
   opacity: 1;
 }
@@ -142,9 +134,7 @@
   width: 22em;
   min-height: 32em;
   border: 1px solid rgba(var(--box-shadow-base-color), 0.12);
-  box-shadow:
-    0 20px 50px rgba(var(--box-shadow-base-color), 0.16),
-    0 8px 20px rgba(var(--box-shadow-base-color), 0.08);
+  box-shadow: var(--marketing-card-hover-shadow);
 }
 
 .featured::before {
@@ -174,7 +164,7 @@
   font-size: 0.92rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(var(--box-shadow-base-color), 0.62);
+  color: var(--pricing-plan-muted-color);
 }
 
 .planPrice {
@@ -198,8 +188,8 @@
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 600;
-  background: rgba(var(--box-shadow-base-color), 0.08);
-  border: 1px solid rgba(var(--box-shadow-base-color), 0.08);
+  background: var(--pricing-badge-background);
+  border: 1px solid var(--pricing-badge-border-color);
 }
 
 .featureList,
@@ -245,19 +235,15 @@
 
 .featurePlanned::before {
   content: "◦";
-  color: rgba(var(--box-shadow-base-color), 0.5);
+  color: var(--pricing-planned-marker-color);
 }
 
 .plannedBlock {
   margin-top: 1.35em;
   padding: 1em;
   border-radius: 1em;
-  background: linear-gradient(
-    180deg,
-    rgba(var(--box-shadow-base-color), 0.03),
-    rgba(var(--box-shadow-base-color), 0.06)
-  );
-  border: 1px solid rgba(var(--box-shadow-base-color), 0.08);
+  background: var(--pricing-planned-block-background);
+  border: 1px solid var(--pricing-planned-block-border-color);
 }
 
 .plannedLabel {
@@ -266,5 +252,58 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(var(--box-shadow-base-color), 0.65);
+  color: var(--pricing-planned-label-color);
+}
+
+html[data-theme="dark"] .styledSection {
+  color: var(--font-color-1);
+}
+
+html[data-theme="dark"] .title {
+  text-shadow:
+    0 1px 0 rgba(240, 235, 230, 0.08),
+    0 8px 18px rgba(0, 0, 0, 0.22);
+}
+
+html[data-theme="dark"] .subtitle {
+  color: rgba(240, 235, 230, 0.78);
+}
+
+html[data-theme="dark"] .box {
+  background: linear-gradient(
+    180deg,
+    rgba(24, 27, 28, 0.96),
+    rgba(21, 24, 25, 0.98)
+  );
+  border-color: rgba(240, 235, 230, 0.08);
+  color: var(--font-color-1);
+}
+
+html[data-theme="dark"] .box:hover {
+  border-color: rgba(240, 235, 230, 0.12);
+}
+
+html[data-theme="dark"] .featured {
+  border-color: rgba(240, 235, 230, 0.12);
+}
+
+html[data-theme="dark"] .planName,
+html[data-theme="dark"] .planPriceNote,
+html[data-theme="dark"] .plannedLabel,
+html[data-theme="dark"] .featurePlanned::before {
+  color: rgba(240, 235, 230, 0.62);
+}
+
+html[data-theme="dark"] .badge {
+  background: rgba(240, 235, 230, 0.08);
+  border-color: rgba(240, 235, 230, 0.08);
+}
+
+html[data-theme="dark"] .plannedBlock {
+  background: linear-gradient(
+    180deg,
+    rgba(240, 235, 230, 0.04),
+    rgba(240, 235, 230, 0.08)
+  );
+  border-color: rgba(240, 235, 230, 0.08);
 }

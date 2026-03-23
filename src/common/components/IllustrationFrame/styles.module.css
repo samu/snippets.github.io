@@ -1,0 +1,33 @@
+.outerWrapper {
+  max-width: calc(100% - 2em);
+  border-radius: 2em;
+  overflow: hidden;
+  background-color: var(--image-frame-surface-color);
+  border: 1px solid var(--border-color-1);
+}
+
+.innerWrapper {
+  filter: var(--frame-drop-shadow);
+}
+
+/* position variants */
+
+.onTheRight {
+  transform: scale(0.95) translateX(-1em) translateY(1em);
+  transform-origin: bottom left;
+}
+
+.onTheLeft {
+  transform: scale(0.95) translateX(0.5em) translateY(1em);
+  transform-origin: bottom right;
+}
+
+.atTheBottom {
+  transform: translateY(1.5em);
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.centered {
+  margin: 1em;
+}

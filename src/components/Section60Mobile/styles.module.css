@@ -1,0 +1,50 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  display: none;
+  background-color: var(--section-accent-surface-color);
+  color: var(--accent-contrast-color-1);
+  min-height: 100vh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--legal-grid-color-1) 1px, transparent 1px),
+    linear-gradient(90deg, var(--legal-grid-color-2) 1px, transparent 1px);
+  background-size:
+    100% 2.75rem,
+    2.75rem 100%;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 82%);
+  pointer-events: none;
+}
+
+.section h1 {
+  font-size: 4em;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .section {
+    display: flex;
+  }
+}
+
+.iPhoneX {
+  width: 20em;
+  position: relative;
+  z-index: 1;
+}
+
+.bottomRow {
+  margin-top: 4em;
+  margin-bottom: 5em;
+  position: relative;
+  z-index: 1;
+}

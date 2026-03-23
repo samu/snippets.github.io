@@ -1,0 +1,5 @@
+.main em {
+  font-style: normal;
+  color: var(--header-word-accent-color);
+  white-space: nowrap;
+}
