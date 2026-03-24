@@ -1,6 +1,6 @@
 import Layout from "@theme/Layout";
 import { useEffect, useRef, useState } from "react";
-import styles from "./index.module.css";
+import { sendAnalytics } from "../common/sendAnalytics";
 import { useDimensions } from "../common/useDimensions";
 import { PageDimensionsContext } from "../common/usePageDimensions";
 import { Section10Header } from "../components/Section10Header/Section10Header";
@@ -11,6 +11,7 @@ import { Section31Encryption } from "../components/Section31Encryption/Section31
 import { Section40Journaling } from "../components/Section40Journaling/Section40Journaling";
 import { Section50Plugins } from "../components/Section50Plugins/Section50Plugins";
 import { Section60Mobile } from "../components/Section60Mobile/Section60Mobile";
+import styles from "./index.module.css";
 
 export default function Home() {
   const ref = useRef<HTMLElement | null>(null);
@@ -23,6 +24,14 @@ export default function Home() {
   useEffect(() => {
     const timeout = setTimeout(() => setReady(true), 0);
     return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    document.referrer &&
+      sendAnalytics({
+        type: "referrer",
+        metadata: { referrer: document.referrer },
+      });
   }, []);
 
   return (
