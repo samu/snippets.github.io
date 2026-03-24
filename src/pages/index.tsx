@@ -8,7 +8,7 @@ import { Section20Overview } from "../components/Section20Overview/Section20Over
 import { Section21Dashboards } from "../components/Section21Dashboards/Section21Dashboards";
 import { Section30SyncWithGitHub } from "../components/Section30SyncWithGitHub/Section30SyncWithGitHub";
 import { Section31Encryption } from "../components/Section31Encryption/Section31Encryption";
-import { Section40SearchAndIcons } from "../components/Section40SearchAndIcons/Section40SearchAndIcons";
+import { Section40Journaling } from "../components/Section40Journaling/Section40Journaling";
 import { Section50Plugins } from "../components/Section50Plugins/Section50Plugins";
 import { Section60Mobile } from "../components/Section60Mobile/Section60Mobile";
 
@@ -41,7 +41,7 @@ export default function Home() {
           <Section21Dashboards />
           <Section30SyncWithGitHub />
           <Section31Encryption />
-          <Section40SearchAndIcons />
+          <Section40Journaling />
           <Section50Plugins />
           <Section60Mobile />
         </main>
