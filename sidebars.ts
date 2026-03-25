@@ -52,6 +52,11 @@ const sidebars: SidebarsConfig = {
           id: "collections",
           label: "📊 Collections",
         },
+        {
+          type: "doc",
+          id: "visualizations",
+          label: "📈 Visualizations",
+        },
         // {
         //   type: "doc",
         //   id: "mobile-app",
