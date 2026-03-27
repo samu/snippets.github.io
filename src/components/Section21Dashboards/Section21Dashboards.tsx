@@ -8,11 +8,11 @@ export function Section21Dashboards() {
   return (
     <Section className={styles.section}>
       <h1>
-        <span>Dashboards</span> <HeadersScribble></HeadersScribble>
+        <span>Task Management</span> <HeadersScribble></HeadersScribble>
       </h1>
 
       <h2>
-        <span>Everything in one place.</span>
+        <span>Seamlessly integrated.</span>
         <SubHeaderScribble></SubHeaderScribble>
       </h2>
 
@@ -24,9 +24,9 @@ export function Section21Dashboards() {
 
       <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
         <ThemeImage
-          lightSrc={require("@site/static/media/dashboard-light.png").default}
-          darkSrc={require("@site/static/media/dashboard-dark.png").default}
-          alt="Snippets dashboard"
+          lightSrc={require("@site/static/media/tasks-light.png").default}
+          darkSrc={require("@site/static/media/tasks-dark.png").default}
+          alt="Snippets Tasks"
         />
       </ImageWrapper>
     </Section>

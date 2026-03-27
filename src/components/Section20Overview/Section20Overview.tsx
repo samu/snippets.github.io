@@ -2,13 +2,12 @@ import { IllustrationFrame } from "@site/src/common/components/IllustrationFrame
 import { ThemeImage } from "@site/src/common/components/ThemeImage/ThemeImage";
 import { ImageWrapper, Section, SectionRow } from "../common";
 import { Checked } from "./components/Checked";
+import { CollectionIcon } from "./components/CollectionIcon";
 import { Crossed } from "./components/Crossed";
+import { DashboardIcon } from "./components/DashboardIcon";
 import { HeaderScribble } from "./components/HeaderScribble";
-import { ImageIcon } from "./components/ImageIcon";
-import { NoMarkdownScribble } from "./components/NoMarkdownScribble";
+import { HeartIcon } from "./components/HeartIcon";
 import { SubHeaderScribble } from "./components/SubHeaderScribble";
-import { TodoIcon } from "./components/TodoIcon";
-import { UnlockIcon } from "./components/UnlockIcon";
 import styles from "./styles.module.css";
 
 export function Section20Overview() {
@@ -16,80 +15,70 @@ export function Section20Overview() {
     <Section className={styles.section}>
       <div className={styles.header}>
         <h1>
-          Rich text editing{" "}
+          One place for{" "}
           <span className={styles.doneRight}>
             <HeaderScribble></HeaderScribble>
-            <span>done right</span>
+            <span>everything</span>
           </span>
+          .
         </h1>
 
         <h2>
-          <span>Writing should feel easy and peaceful.</span>
-          <SubHeaderScribble></SubHeaderScribble>
+          <span className={styles.highlightLine}>
+            Starts{" "}
+            <span className={`${styles.highlightWord} ${styles.simpleHighlight}`}>
+              simple
+            </span>
+            . Becomes{" "}
+            <span
+              className={`${styles.highlightWord} ${styles.powerfulHighlight}`}
+            >
+              powerful
+            </span>
+            . Stays{" "}
+            <span
+              className={`${styles.highlightWord} ${styles.affordableHighlight}`}
+            >
+              affordable
+            </span>
+            .
+          </span>
+          {false && <SubHeaderScribble></SubHeaderScribble>}
         </h2>
 
         <div className={styles.introRow}>
           <p>
             <span>
-              Forget clumsy block-based note apps, poorly designed rich-text
-              editors, and the chaotic, jumpy feel of markdown-first tools.
+              Forget the clutter of too many tools and the friction of
+              disconnected systems.
             </span>
             {false && <Crossed></Crossed>}
           </p>
 
           <p>
             <span>
-              Snippets features a carefully crafted rich-text editor that
-              delivers a calm and genuinely pleasant writing experience.
+              Bring everything into one place and organize it your way.
             </span>
 
             {false && <Checked></Checked>}
           </p>
         </div>
-
-        <ul>
-          <li>
-            <strong>Use of markdown syntax</strong>: Use markdown-like syntax to
-            create formattings. For example, type <strong>#</strong> followed by{" "}
-            <i>Space</i> to create a heading.
-          </li>
-          <li>
-            <strong>Easy creation and destruction of formattings</strong>: Use{" "}
-            <i>Space</i> for creation and <i>Backspace</i> for destruction. For
-            example, place your cursor at the beginning of a heading and press{" "}
-            <i>Backspace</i> to destroy the formatting. Hit <i>Space</i> to
-            recreate it.
-          </li>
-          <li>
-            <strong>Jumping in and out of formattings</strong>: Jump in and out
-            of formattings with <i>ArrowLeft</i> and <i>ArrowRight</i>. For
-            example, place your cursor in front of bold formatting, press{" "}
-            <i>ArrowLeft</i> to enter the bold formatting, then continue writing
-            in bold. Escape the formatting by pressing <i>ArrowRight</i>.
-          </li>
-          <li>
-            <strong>Drag and drop</strong>: Double-click at the end of a
-            paragraph or list item to select the node. Drag and drop the
-            selection to any other place within the document.
-          </li>
-        </ul>
       </div>
 
       <SectionRow className={styles.sectionRow}>
         <div className={styles.textBox}>
-          <UnlockIcon></UnlockIcon>
+          <HeartIcon></HeartIcon>
 
-          <h1>No Constraints</h1>
+          <h1>Beautiful Rich Text</h1>
 
           <p>
-            Easily create and work with complex rich-text structures - such as
-            nested blocks, embedded elements, references, and mixed content -
-            without fighting the editor. Content stays structured, predictable,
-            and easy to extend, even as documents grow in size and complexity.
+            Everything starts with text. Snippets gives it the attention it
+            deserves — with a rich-text editor that feels natural and just
+            works.
           </p>
         </div>
 
-        <IllustrationFrame position="on-the-right">
+        <IllustrationFrame position="centered">
           <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
             <ThemeImage
               lightSrc={require("@site/static/media/friday-light.png").default}
@@ -100,25 +89,30 @@ export function Section20Overview() {
         </IllustrationFrame>
       </SectionRow>
 
-      <SectionRow className={`${styles.sectionRow} ${styles.sectionRowReverse}`}>
+      <SectionRow
+        className={`${styles.sectionRow} ${styles.sectionRowReverse}`}
+      >
         <div className={`${styles.textBox} ${styles.textBoxReversed}`}>
-          <TodoIcon></TodoIcon>
+          <CollectionIcon></CollectionIcon>
 
-          <h1>Todo Lists</h1>
+          <h1>Collections</h1>
 
           <p>
-            Create and manage todos in a simple, structured way. Organize tasks,
-            mark progress, and keep your work visible without unnecessary
-            complexity.
+            Combine notes into static or dynamic collections — group them
+            manually or let filters keep everything up to date.
           </p>
         </div>
 
-        <IllustrationFrame position="on-the-left">
+        <IllustrationFrame position="centered">
           <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
             <ThemeImage
-              lightSrc={require("@site/static/media/todos-light.png").default}
-              darkSrc={require("@site/static/media/todos-dark.png").default}
-              alt="Snippets todo lists"
+              lightSrc={
+                require("@site/static/media/collections-light.png").default
+              }
+              darkSrc={
+                require("@site/static/media/collections-dark.png").default
+              }
+              alt="Snippets dashboards"
             />
           </ImageWrapper>
         </IllustrationFrame>
@@ -126,50 +120,28 @@ export function Section20Overview() {
 
       <SectionRow className={styles.sectionRow}>
         <div className={styles.textBox}>
-          <ImageIcon></ImageIcon>
+          <DashboardIcon></DashboardIcon>
 
-          <h1>Images</h1>
+          <h1>Dashboards</h1>
 
           <p>
-            Copy-paste or drag images. Make it look nice with the panorama mode.
-            Resize to a preferred size, or let it take the full width.
+            Work rarely happens in isolation. Dashboards let you place related
+            content side by side and organize it in a way that makes sense at a
+            glance.
           </p>
         </div>
 
-        <IllustrationFrame position="on-the-right">
+        <IllustrationFrame position="centered">
           <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
             <ThemeImage
-              lightSrc={require("@site/static/media/images-light.png").default}
-              darkSrc={require("@site/static/media/images-dark.png").default}
-              alt="Snippets images"
+              lightSrc={
+                require("@site/static/media/dashboard-light.png").default
+              }
+              darkSrc={require("@site/static/media/dashboard-dark.png").default}
+              alt="Snippets dashboards"
             />
           </ImageWrapper>
         </IllustrationFrame>
-      </SectionRow>
-
-      <SectionRow className={styles.notMarkdownRow} flexDirection="column">
-        <h1>
-          Purposely{" "}
-          <span>
-            <NoMarkdownScribble></NoMarkdownScribble> <span>not</span>
-          </span>{" "}
-          Markdown-Based
-        </h1>
-
-        <p>
-          Snippets is intentionally not based on Markdown. Markdown works well
-          for technical documentation and collaborative workflows where content
-          lives in version control. For note-taking, it quickly becomes a
-          constraint.
-        </p>
-
-        <p>
-          By moving beyond Markdown, Snippets can rely on rich, structured data
-          instead of plain text files. This enables far more expressive content
-          and supports a wide range of use cases without forcing everything into
-          a text-only format. Concerns about vendor lock-in are addressed
-          through a simple export-to-Markdown option.
-        </p>
       </SectionRow>
     </Section>
   );

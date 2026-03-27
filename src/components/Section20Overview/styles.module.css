@@ -36,9 +36,39 @@
   z-index: 1;
 }
 
+.highlightLine {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.15em;
+}
+
+.highlightWord {
+  display: inline-block;
+  padding: 0.08em 0.12em 0.14em;
+  font-weight: 700;
+  line-height: 1.1;
+  box-shadow: inset 0 -0.08em 0 rgba(255, 255, 255, 0.14);
+}
+
+.simpleHighlight {
+  background: rgba(56, 189, 248, 0.2);
+  color: rgb(2, 132, 199);
+}
+
+.powerfulHighlight {
+  background: rgba(244, 114, 182, 0.2);
+  color: rgb(219, 39, 119);
+}
+
+.affordableHighlight {
+  background: rgba(74, 222, 128, 0.2);
+  color: rgb(22, 163, 74);
+}
+
 .header h2 svg {
   position: absolute;
-  top: 0.45em;
+  top: 0.5em;
   left: 0;
   z-index: 0;
   scale: 1.1;
@@ -82,6 +112,25 @@
   }
 }
 
+html[data-theme="dark"] .highlightWord {
+  box-shadow: inset 0 -0.08em 0 rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme="dark"] .simpleHighlight {
+  background: rgba(56, 189, 248, 0.16);
+  color: rgb(125, 211, 252);
+}
+
+html[data-theme="dark"] .powerfulHighlight {
+  background: rgba(232, 121, 249, 0.16);
+  color: rgb(245, 158, 255);
+}
+
+html[data-theme="dark"] .affordableHighlight {
+  background: rgba(74, 222, 128, 0.16);
+  color: rgb(134, 239, 172);
+}
+
 @media (min-width: 992px) {
   .header h1 {
     font-size: 4em;
@@ -120,7 +169,7 @@
 }
 
 .introRow p {
-  max-width: 20em;
+  max-width: 21em;
   margin-left: 0.5em;
   margin-right: 0.5em;
   position: relative;
@@ -170,7 +219,7 @@
 }
 
 .imageWrapper {
-  max-width: 40em;
+  max-width: 42em;
 }
 
 .textBox {

@@ -40,7 +40,7 @@
 
 .section h1 svg {
   position: absolute;
-  top: -0.66em;
+  top: -1.4em;
   left: 0;
   z-index: 0;
   transform: scaleX(1.7);
