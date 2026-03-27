@@ -5,7 +5,7 @@ export default function Privacy() {
   return (
     <Layout
       title="Privacy Policy"
-      description="Learn how Snippets handles local notes, optional sync, feedback submissions, and a tracker-free website."
+      description="Learn how Snippets handles local notes, optional sync, feedback submissions, and limited first-party website analytics."
     >
       <main className={styles.page}>
         <div className={styles.container}>
@@ -21,7 +21,7 @@ export default function Privacy() {
 
           <section className={styles.card}>
             <div className={styles.meta}>
-              <span>Effective Date: March 23, 2026</span>
+              <span>Effective Date: March 25, 2026</span>
               <span>Snippets</span>
             </div>
 
@@ -81,11 +81,23 @@ export default function Privacy() {
               <section className={styles.section}>
                 <h2>Website Analytics, Cookies, and Trackers</h2>
                 <p>
-                  The Snippets website does not use analytics trackers,
-                  advertising trackers, or a cookie consent mechanism.
+                  The Snippets website uses limited first-party analytics to
+                  understand basic website usage and interest in downloads. In
+                  particular, the landing page may send events when it is
+                  visited, when a visitor scrolls substantially through it,
+                  when a download button is clicked, and when a browser
+                  referrer is available.
                 </p>
                 <p>
-                  We do not use cookies for behavioral tracking or marketing.
+                  These analytics events are sent directly to a Snippets-owned
+                  backend endpoint. They are not used for advertising or
+                  cross-site behavioral profiling, and the website does not use
+                  cookies for analytics or marketing.
+                </p>
+                <p>
+                  Like any standard web request, analytics requests may include
+                  technical information such as the client&apos;s IP address and
+                  request metadata processed by the receiving infrastructure.
                 </p>
               </section>
 
