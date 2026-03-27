@@ -67,6 +67,11 @@
   color: rgb(22, 163, 74);
 }
 
+.inlinePunch {
+  display: inline;
+  margin-left: 0.1em;
+}
+
 .header h2 svg {
   position: absolute;
   top: 0.5em;
@@ -234,6 +239,39 @@ html[data-theme="dark"] .affordableHighlight {
 
 .textBox svg {
   color: var(--overview-icon-color);
+}
+
+.simpleTextBox {
+}
+
+.simpleTextBox svg {
+  color: rgb(2, 132, 199);
+}
+
+.powerfulTextBox {
+}
+
+.powerfulTextBox svg {
+  color: rgb(219, 39, 119);
+}
+
+.affordableTextBox {
+}
+
+.affordableTextBox svg {
+  color: rgb(22, 163, 74);
+}
+
+html[data-theme="dark"] .simpleTextBox svg {
+  color: rgb(125, 211, 252);
+}
+
+html[data-theme="dark"] .powerfulTextBox svg {
+  color: rgb(245, 158, 255);
+}
+
+html[data-theme="dark"] .affordableTextBox svg {
+  color: rgb(134, 239, 172);
 }
 
 .textBox h1 {

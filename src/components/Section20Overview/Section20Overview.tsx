@@ -68,7 +68,7 @@ export function Section20Overview() {
       </div>
 
       <SectionRow className={styles.sectionRow}>
-        <div className={styles.textBox}>
+        <div className={`${styles.textBox} ${styles.simpleTextBox}`}>
           <HeartIcon></HeartIcon>
 
           <h1>Beautiful Rich Text</h1>
@@ -77,8 +77,12 @@ export function Section20Overview() {
             Everything starts with text. Snippets gives it the attention it
             deserves — with a rich-text editor that stays out of your way and
             simply works. No clumsy block-based layouts, no awkward editors, no
-            jumpy markdown quirks. Our rich text editor is truly special - we
-            think you'll love it.
+            jumpy markdown quirks.{" "}
+            <span
+              className={`${styles.highlightWord} ${styles.simpleHighlight} ${styles.inlinePunch}`}
+            >
+              Our rich text editor is truly special - we think you'll love it.
+            </span>
           </p>
         </div>
 
@@ -96,16 +100,22 @@ export function Section20Overview() {
       <SectionRow
         className={`${styles.sectionRow} ${styles.sectionRowReverse}`}
       >
-        <div className={`${styles.textBox} ${styles.textBoxReversed}`}>
+        <div
+          className={`${styles.textBox} ${styles.textBoxReversed} ${styles.powerfulTextBox}`}
+        >
           <CollectionIcon></CollectionIcon>
 
           <h1>Collections</h1>
 
           <p>
             Use collections to group your notes. Collections come in many
-            shapes: folders, lists, tables and timelines. Combined with our
-            unique attributes concept, you'll be able to organize your content
-            like nowhere else.
+            shapes: folders, lists, tables and timelines.
+            <span
+              className={`${styles.highlightWord} ${styles.powerfulHighlight} ${styles.inlinePunch}`}
+            >
+              Combined with our unique attributes concept, you'll be able to
+              organize your content like nowhere else.
+            </span>
           </p>
         </div>
 
@@ -125,7 +135,7 @@ export function Section20Overview() {
       </SectionRow>
 
       <SectionRow className={styles.sectionRow}>
-        <div className={styles.textBox}>
+        <div className={`${styles.textBox} ${styles.affordableTextBox}`}>
           <DashboardIcon></DashboardIcon>
 
           <h1>Dashboards</h1>
@@ -134,8 +144,13 @@ export function Section20Overview() {
             Work rarely happens in isolation. Dashboards let you place related
             content side by side and organize it in a way that makes sense at a
             glance. Note-taking is a lot about context switching and spatial
-            recognition. With dashboards, we've created a truly novel way how
-            you can work with your content.
+            recognition.{" "}
+            <span
+              className={`${styles.highlightWord} ${styles.affordableHighlight} ${styles.inlinePunch}`}
+            >
+              Dashboards give you a new way to work with your content — bringing
+              context together in one place.
+            </span>
           </p>
         </div>
 
