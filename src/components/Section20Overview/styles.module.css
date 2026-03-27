@@ -43,6 +43,12 @@
   gap: 0.15em;
 }
 
+.softDivider {
+  display: inline-block;
+  margin: 0 0.5em;
+  color: color-mix(in srgb, var(--ifm-font-color-base) 58%, transparent);
+}
+
 .highlightWord {
   display: inline-block;
   padding: 0.08em 0.12em 0.14em;
@@ -153,6 +159,10 @@ html[data-theme="dark"] .highlightWord {
   box-shadow: inset 0 -0.08em 0 rgba(255, 255, 255, 0.04);
 }
 
+html[data-theme="dark"] .softDivider {
+  color: color-mix(in srgb, white 52%, transparent);
+}
+
 html[data-theme="dark"] .simpleHighlight {
   background: rgba(56, 189, 248, 0.16);
   color: rgb(125, 211, 252);
@@ -193,6 +203,16 @@ html[data-theme="dark"] .nextLevelHighlight {
 @media (min-width: 992px) {
   .header h1 {
     font-size: 4em;
+  }
+}
+
+@supports not (color: color-mix(in srgb, white 50%, black 50%)) {
+  .softDivider {
+    color: rgba(15, 23, 42, 0.58);
+  }
+
+  html[data-theme="dark"] .softDivider {
+    color: rgba(255, 255, 255, 0.52);
   }
 }
 

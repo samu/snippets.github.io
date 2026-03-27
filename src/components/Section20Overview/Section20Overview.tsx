@@ -31,19 +31,20 @@ export function Section20Overview() {
             >
               simple
             </span>
-            .&nbsp;&nbsp;&nbsp; Becomes{" "}
+            <span className={styles.softDivider}>/</span>
+            Becomes{" "}
             <span
               className={`${styles.highlightUnderline} ${styles.powerfulUnderline}`}
             >
               powerful
             </span>
-            .&nbsp;&nbsp;&nbsp; Stays{" "}
+            <span className={styles.softDivider}>/</span>
+            Stays{" "}
             <span
               className={`${styles.highlightUnderline} ${styles.affordableUnderline}`}
             >
               affordable
             </span>
-            .
           </span>
           {false && <SubHeaderScribble></SubHeaderScribble>}
         </h2>
