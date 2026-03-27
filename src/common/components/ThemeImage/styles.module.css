@@ -14,6 +14,14 @@
   display: none;
 }
 
+.wrapper .forceVisible {
+  display: block !important;
+}
+
+.wrapper .forceHidden {
+  display: none !important;
+}
+
 html[data-theme="dark"] .wrapper .light {
   display: none;
 }

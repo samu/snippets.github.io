@@ -1,14 +1,18 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import styles from "./styles.module.css";
 
 type Props = {
   className?: string;
   children: ReactNode;
+  style?: CSSProperties;
 };
 
 export function IPhoneX(props: Props) {
   return (
-    <div className={[styles.shadowContainer, props.className].filter(Boolean).join(" ")}>
+    <div
+      className={[styles.shadowContainer, props.className].filter(Boolean).join(" ")}
+      style={props.style}
+    >
       <div className={styles.outer}>
         <div className={styles.inner}>
           {props.children}

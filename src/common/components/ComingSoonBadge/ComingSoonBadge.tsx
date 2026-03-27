@@ -1,5 +1,17 @@
 import styles from "./styles.module.css";
 
-export function ComingSoonBadge() {
-  return <div className={styles.outer}>Coming Soon</div>;
+type Props = {
+  label?: string;
+  className?: string;
+};
+
+export function ComingSoonBadge({
+  label = "Coming Soon",
+  className,
+}: Props) {
+  return (
+    <div className={[styles.outer, className].filter(Boolean).join(" ")}>
+      {label}
+    </div>
+  );
 }
