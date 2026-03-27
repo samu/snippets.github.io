@@ -184,37 +184,44 @@ html[data-theme="dark"] .nextLevelHighlight {
 .introRow {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  list-style: none;
   margin-top: 3em;
   margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  max-width: 34rem;
+  width: fit-content;
 }
 
 @media (min-width: 768px) {
   .introRow {
-    flex-direction: row;
+    align-items: flex-start;
   }
 }
 
-.introRow p {
-  max-width: 14em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+.introRow li {
+  width: 100%;
+  margin-bottom: 0.9em;
   position: relative;
   text-align: center;
+  padding-left: 0;
 }
 
-.introRow p span {
+.introRow li span {
   position: relative;
   z-index: 1;
 }
 
-.introRow p:nth-child(1) svg {
+.introRow li:nth-child(1) svg {
   position: absolute;
   top: -4em;
   left: 0;
   z-index: 0;
 }
 
-.introRow p:nth-child(2) svg {
+.introRow li:nth-child(2) svg {
   position: absolute;
   top: -5em;
   right: 3em;

@@ -48,32 +48,31 @@ export function Section20Overview() {
           {false && <SubHeaderScribble></SubHeaderScribble>}
         </h2>
 
-        <div className={styles.introRow}>
-          <p>
+        <ul className={styles.introRow}>
+          <li>
             <span>
               Forget the clutter of too many tools and the friction of
               disconnected systems.
             </span>
             {false && <Crossed></Crossed>}
-          </p>
+          </li>
 
-          <p>
+          <li>
             <span>
               Break free from the rigid rules and limitations imposed by other
               apps.
             </span>
             {false && <Crossed></Crossed>}
-          </p>
+          </li>
 
-          <p>
+          <li>
             <span>
-              Bring everything into one cohesive place and get organized your
-              way.
+              Bring everything into one place and get organized your way.
             </span>
 
             {false && <Checked></Checked>}
-          </p>
-        </div>
+          </li>
+        </ul>
       </div>
 
       <div className={styles.featureIntro}>
