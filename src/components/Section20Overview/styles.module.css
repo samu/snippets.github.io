@@ -67,6 +67,11 @@
   color: rgb(22, 163, 74);
 }
 
+.pricingHighlight {
+  background: rgba(244, 114, 182, 0.2);
+  color: rgb(219, 39, 119);
+}
+
 .inlinePunch {
   display: inline;
   margin-left: 0.1em;
@@ -135,6 +140,11 @@ html[data-theme="dark"] .powerfulHighlight {
 html[data-theme="dark"] .affordableHighlight {
   background: rgba(74, 222, 128, 0.16);
   color: rgb(134, 239, 172);
+}
+
+html[data-theme="dark"] .pricingHighlight {
+  background: rgba(244, 114, 182, 0.18);
+  color: rgb(251, 113, 133);
 }
 
 @media (min-width: 992px) {

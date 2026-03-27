@@ -178,7 +178,13 @@ export function Section20Overview() {
       </SectionRow>
 
       <div className={`${styles.featureIntro} ${styles.featureOutro}`}>
-        <h3>Fair and flexible pricing</h3>
+        <h3>
+          <span
+            className={`${styles.highlightWord} ${styles.pricingHighlight}`}
+          >
+            Fair and flexible pricing
+          </span>
+        </h3>
         <p>
           Use Snippets for free and unlock extra access with the subscription
           that suits you best.
