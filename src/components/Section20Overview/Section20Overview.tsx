@@ -59,7 +59,7 @@ export function Section20Overview() {
 
           <p>
             <span>
-              Bring everything into one place and organize it your way.
+              Bring everything into one cohesive place and organize it your way.
             </span>
 
             {false && <Checked></Checked>}
@@ -75,8 +75,10 @@ export function Section20Overview() {
 
           <p>
             Everything starts with text. Snippets gives it the attention it
-            deserves — with a rich-text editor that feels natural and just
-            works.
+            deserves — with a rich-text editor that stays out of your way and
+            simply works. No clumsy block-based layouts, no awkward editors, no
+            jumpy markdown quirks. Our rich text editor is truly special - we
+            think you'll love it.
           </p>
         </div>
 
@@ -100,8 +102,10 @@ export function Section20Overview() {
           <h1>Collections</h1>
 
           <p>
-            Combine notes into static or dynamic collections — group them
-            manually or let filters keep everything up to date.
+            Use collections to group your notes. Collections come in many
+            shapes: folders, lists, tables and timelines. Combined with our
+            unique attributes concept, you'll be able to organize your content
+            like nowhere else.
           </p>
         </div>
 
@@ -129,7 +133,9 @@ export function Section20Overview() {
           <p>
             Work rarely happens in isolation. Dashboards let you place related
             content side by side and organize it in a way that makes sense at a
-            glance.
+            glance. Note-taking is a lot about context switching and spatial
+            recognition. With dashboards, we've created a truly novel way how
+            you can work with your content.
           </p>
         </div>
 
