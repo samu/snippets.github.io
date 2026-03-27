@@ -176,6 +176,14 @@ export function Section20Overview() {
           </ImageWrapper>
         </IllustrationFrame>
       </SectionRow>
+
+      <div className={`${styles.featureIntro} ${styles.featureOutro}`}>
+        <h3>Fair and flexible pricing</h3>
+        <p>
+          Use Snippets for free and unlock extra access with the subscription
+          that suits you best.
+        </p>
+      </div>
     </Section>
   );
 }

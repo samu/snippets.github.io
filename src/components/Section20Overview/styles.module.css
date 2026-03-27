@@ -228,11 +228,7 @@ html[data-theme="dark"] .affordableHighlight {
   width: 7rem;
   height: 1px;
   transform: translateX(-50%);
-  background: color-mix(
-    in srgb,
-    var(--ifm-font-color-base) 28%,
-    transparent
-  );
+  background: color-mix(in srgb, var(--ifm-font-color-base) 28%, transparent);
   z-index: 0;
 }
 
@@ -244,11 +240,7 @@ html[data-theme="dark"] .affordableHighlight {
   width: 7rem;
   height: 1px;
   transform: translateX(-50%);
-  background: color-mix(
-    in srgb,
-    var(--ifm-font-color-base) 14%,
-    transparent
-  );
+  background: color-mix(in srgb, var(--ifm-font-color-base) 14%, transparent);
   z-index: 0;
 }
 
@@ -263,6 +255,31 @@ html[data-theme="dark"] .affordableHighlight {
   font-size: 1.2rem;
   line-height: 1.55;
   font-weight: 600;
+}
+
+.featureOutro {
+  margin: 2rem auto 0;
+}
+
+.featureOutro h3,
+.featureOutro p {
+  position: relative;
+  z-index: 1;
+}
+
+.featureOutro h3 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.featureOutro p {
+  max-width: 36rem;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 html[data-theme="dark"] .featureIntro::before {
@@ -298,6 +315,16 @@ html[data-theme="dark"] .featureIntro::after {
 
   .featureIntro p {
     font-size: 1.05rem;
+  }
+
+  .featureOutro p {
+    max-width: 30rem;
+    font-size: 1.22rem;
+  }
+
+  .featureOutro h3 {
+    font-size: 1rem;
+    margin-bottom: 0.85rem;
   }
 }
 
