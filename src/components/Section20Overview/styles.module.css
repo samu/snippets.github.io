@@ -52,6 +52,27 @@
   border-radius: 0.25em;
 }
 
+.highlightUnderline {
+  display: inline;
+  font-weight: 700;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.16em;
+  text-decoration-skip-ink: none;
+}
+
+.simpleUnderline {
+  text-decoration-color: rgba(56, 189, 248, 0.9);
+}
+
+.powerfulUnderline {
+  text-decoration-color: rgba(244, 114, 182, 0.9);
+}
+
+.affordableUnderline {
+  text-decoration-color: rgba(74, 222, 128, 0.9);
+}
+
 .simpleHighlight {
   background: rgba(56, 189, 248, 0.2);
   color: rgb(2, 132, 199);
@@ -137,14 +158,26 @@ html[data-theme="dark"] .simpleHighlight {
   color: rgb(125, 211, 252);
 }
 
+html[data-theme="dark"] .simpleUnderline {
+  text-decoration-color: rgba(125, 211, 252, 0.9);
+}
+
 html[data-theme="dark"] .powerfulHighlight {
   background: rgba(232, 121, 249, 0.16);
   color: rgb(245, 158, 255);
 }
 
+html[data-theme="dark"] .powerfulUnderline {
+  text-decoration-color: rgba(251, 113, 133, 0.9);
+}
+
 html[data-theme="dark"] .affordableHighlight {
   background: rgba(74, 222, 128, 0.16);
   color: rgb(134, 239, 172);
+}
+
+html[data-theme="dark"] .affordableUnderline {
+  text-decoration-color: rgba(134, 239, 172, 0.9);
 }
 
 html[data-theme="dark"] .pricingHighlight {

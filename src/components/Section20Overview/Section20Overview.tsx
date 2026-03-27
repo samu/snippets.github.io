@@ -27,19 +27,19 @@ export function Section20Overview() {
           <span className={styles.highlightLine}>
             Starts{" "}
             <span
-              className={`${styles.highlightWord} ${styles.simpleHighlight}`}
+              className={`${styles.highlightUnderline} ${styles.simpleUnderline}`}
             >
               simple
             </span>
             .&nbsp;&nbsp;&nbsp; Becomes{" "}
             <span
-              className={`${styles.highlightWord} ${styles.powerfulHighlight}`}
+              className={`${styles.highlightUnderline} ${styles.powerfulUnderline}`}
             >
               powerful
             </span>
             .&nbsp;&nbsp;&nbsp; Stays{" "}
             <span
-              className={`${styles.highlightWord} ${styles.affordableHighlight}`}
+              className={`${styles.highlightUnderline} ${styles.affordableUnderline}`}
             >
               affordable
             </span>
@@ -102,8 +102,8 @@ export function Section20Overview() {
             <span
               className={`${styles.highlightWord} ${styles.simpleHighlight} ${styles.inlinePunch}`}
             >
-              Our rich text editor is made with utmost precision, and we think
-              you'll love it.
+              Our rich text editor is made with utmost precision, and we're
+              certain you'll love it.
             </span>
           </p>
         </div>
