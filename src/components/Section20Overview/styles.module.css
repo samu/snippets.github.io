@@ -72,6 +72,11 @@
   color: rgb(219, 39, 119);
 }
 
+.nextLevelHighlight {
+  background: rgba(250, 204, 21, 0.24);
+  color: rgb(161, 98, 7);
+}
+
 .inlinePunch {
   display: inline;
   margin-left: 0.1em;
@@ -145,6 +150,11 @@ html[data-theme="dark"] .affordableHighlight {
 html[data-theme="dark"] .pricingHighlight {
   background: rgba(244, 114, 182, 0.18);
   color: rgb(251, 113, 133);
+}
+
+html[data-theme="dark"] .nextLevelHighlight {
+  background: rgba(250, 204, 21, 0.18);
+  color: rgb(253, 224, 71);
 }
 
 @media (min-width: 992px) {

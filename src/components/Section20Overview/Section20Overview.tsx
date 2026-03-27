@@ -71,7 +71,13 @@ export function Section20Overview() {
       <div className={styles.featureIntro}>
         <p>
           A few carefully crafted building blocks are all it takes to bring
-          note-taking to the next level.
+          note-taking to the{" "}
+          <span
+            className={`${styles.highlightWord} ${styles.nextLevelHighlight} ${styles.inlinePunch}`}
+          >
+            next level
+          </span>
+          .
         </p>
       </div>
 
