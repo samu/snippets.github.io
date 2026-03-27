@@ -26,7 +26,9 @@ export function Section20Overview() {
         <h2>
           <span className={styles.highlightLine}>
             Starts{" "}
-            <span className={`${styles.highlightWord} ${styles.simpleHighlight}`}>
+            <span
+              className={`${styles.highlightWord} ${styles.simpleHighlight}`}
+            >
               simple
             </span>
             . Becomes{" "}
