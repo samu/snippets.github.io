@@ -31,13 +31,13 @@ export function Section20Overview() {
             >
               simple
             </span>
-            . Becomes{" "}
+            .&nbsp;&nbsp;&nbsp; Becomes{" "}
             <span
               className={`${styles.highlightWord} ${styles.powerfulHighlight}`}
             >
               powerful
             </span>
-            . Stays{" "}
+            .&nbsp;&nbsp;&nbsp; Stays{" "}
             <span
               className={`${styles.highlightWord} ${styles.affordableHighlight}`}
             >
@@ -53,6 +53,14 @@ export function Section20Overview() {
             <span>
               Forget the clutter of too many tools and the friction of
               disconnected systems.
+            </span>
+            {false && <Crossed></Crossed>}
+          </p>
+
+          <p>
+            <span>
+              Break free from the rigid rules and limitations imposed by other
+              apps.
             </span>
             {false && <Crossed></Crossed>}
           </p>
@@ -192,8 +200,13 @@ export function Section20Overview() {
           </span>
         </h3>
         <p>
-          Use Snippets for free and unlock extra access with the subscription
-          that suits you best.
+          Use Snippets{" "}
+          <span
+            className={`${styles.highlightWord} ${styles.nextLevelHighlight} ${styles.inlinePunch}`}
+          >
+            for free
+          </span>{" "}
+          and unlock extra access with the subscription that suits you best.
         </p>
       </div>
     </Section>
