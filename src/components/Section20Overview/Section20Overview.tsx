@@ -52,23 +52,37 @@ export function Section20Overview() {
         <ul className={styles.introRow}>
           <li>
             <span>
-              Forget the clutter of too many tools and the friction of
-              disconnected systems.
+              <span
+                className={`${styles.highlightUnderline} ${styles.neutralUnderline}`}
+              >
+                Forget the clutter
+              </span>{" "}
+              of too many tools and the friction of disconnected systems.
             </span>
             {false && <Crossed></Crossed>}
           </li>
 
           <li>
             <span>
-              Break free from the rigid rules and limitations imposed by other
-              apps.
+              <span
+                className={`${styles.highlightUnderline} ${styles.neutralUnderline}`}
+              >
+                Break free
+              </span>{" "}
+              from the rigid rules and limitations imposed by other apps.
             </span>
             {false && <Crossed></Crossed>}
           </li>
 
           <li>
             <span>
-              Bring everything into one place and get organized your way.
+              Bring everything into one place and{" "}
+              <span
+                className={`${styles.highlightUnderline} ${styles.neutralUnderline}`}
+              >
+                get organized
+              </span>{" "}
+              your way.
             </span>
 
             {false && <Checked></Checked>}

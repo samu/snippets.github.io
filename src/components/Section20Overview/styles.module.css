@@ -79,6 +79,14 @@
   text-decoration-color: rgba(74, 222, 128, 0.9);
 }
 
+.neutralUnderline {
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--ifm-font-color-base) 42%,
+    transparent
+  );
+}
+
 .simpleHighlight {
   background: rgba(56, 189, 248, 0.2);
   color: rgb(2, 132, 199);
@@ -190,6 +198,10 @@ html[data-theme="dark"] .affordableUnderline {
   text-decoration-color: rgba(134, 239, 172, 0.9);
 }
 
+html[data-theme="dark"] .neutralUnderline {
+  text-decoration-color: color-mix(in srgb, white 38%, transparent);
+}
+
 html[data-theme="dark"] .pricingHighlight {
   background: rgba(244, 114, 182, 0.18);
   color: rgb(251, 113, 133);
@@ -211,8 +223,16 @@ html[data-theme="dark"] .nextLevelHighlight {
     color: rgba(15, 23, 42, 0.58);
   }
 
+  .neutralUnderline {
+    text-decoration-color: rgba(15, 23, 42, 0.42);
+  }
+
   html[data-theme="dark"] .softDivider {
     color: rgba(255, 255, 255, 0.52);
+  }
+
+  html[data-theme="dark"] .neutralUnderline {
+    text-decoration-color: rgba(255, 255, 255, 0.38);
   }
 }
 
