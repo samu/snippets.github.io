@@ -59,12 +59,20 @@ export function Section20Overview() {
 
           <p>
             <span>
-              Bring everything into one cohesive place and organize it your way.
+              Bring everything into one cohesive place and get organized your
+              way.
             </span>
 
             {false && <Checked></Checked>}
           </p>
         </div>
+      </div>
+
+      <div className={styles.featureIntro}>
+        <p>
+          A few carefully crafted building blocks are all it takes to bring
+          note-taking to the next level.
+        </p>
       </div>
 
       <SectionRow className={styles.sectionRow}>
@@ -76,12 +84,13 @@ export function Section20Overview() {
           <p>
             Everything starts with text. Snippets gives it the attention it
             deserves — with a rich-text editor that stays out of your way and
-            simply works. No clumsy block-based layouts, no awkward editors, no
-            jumpy markdown quirks.{" "}
+            simply works. No clumsy block-based layouts, no formatting that
+            traps you as you write, no jumpy markdown quirks.{" "}
             <span
               className={`${styles.highlightWord} ${styles.simpleHighlight} ${styles.inlinePunch}`}
             >
-              Our rich text editor is truly special - we think you'll love it.
+              Our rich text editor is made with utmost precision, and we think
+              you'll love it.
             </span>
           </p>
         </div>
@@ -109,7 +118,8 @@ export function Section20Overview() {
 
           <p>
             Use collections to group your notes. Collections come in many
-            shapes: folders, lists, tables and timelines.
+            shapes: folders, lists, tables and timelines. They can be static or
+            dynamic.
             <span
               className={`${styles.highlightWord} ${styles.powerfulHighlight} ${styles.inlinePunch}`}
             >
@@ -143,13 +153,13 @@ export function Section20Overview() {
           <p>
             Work rarely happens in isolation. Dashboards let you place related
             content side by side and organize it in a way that makes sense at a
-            glance. Note-taking is a lot about context switching and spatial
-            recognition.{" "}
+            glance. Much of note-taking involves switching context and
+            understanding things visually.{" "}
             <span
               className={`${styles.highlightWord} ${styles.affordableHighlight} ${styles.inlinePunch}`}
             >
-              Dashboards give you a new way to work with your content — bringing
-              context together in one place.
+              Our dashboards are designed to bring everything together in one
+              place — once you've used them, it's hard to go back.
             </span>
           </p>
         </div>
