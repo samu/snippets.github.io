@@ -6,7 +6,7 @@ export function Section31Encryption() {
   return (
     <Section className={styles.section}>
       <div className={styles.inner}>
-        <div className={styles.eyebrow}>Absolute and unconditional Privacy</div>
+        <div className={styles.eyebrow}>Privacy First</div>
 
         <h2 className={styles.title}>
           <ShieldLockIcon></ShieldLockIcon>
