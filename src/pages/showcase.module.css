@@ -1,0 +1,494 @@
+.outer {
+  display: flex;
+  min-height: 100vh;
+  padding: 2rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  background:
+    var(--scene-glow),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(255, 255, 255, 0.2),
+      transparent 24%
+    ),
+    var(--scene-background);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  width: min(78rem, 100%);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  width: min(78rem, 100%);
+}
+
+.widthToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border: 1px solid var(--scene-button-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+}
+
+.widthToggleButton {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--scene-text);
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.widthToggleButton:hover {
+  transform: translateY(-1px);
+}
+
+.widthToggleButtonActive {
+  background: var(--scene-button-active);
+  color: var(--scene-button-active-text);
+}
+
+.sceneButton {
+  appearance: none;
+  border: 1px solid var(--scene-button-border);
+  background: var(--scene-button);
+  color: var(--scene-text);
+  border-radius: 999px;
+  padding: 0.9rem 1.15rem;
+  min-width: 13rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  text-align: left;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.sceneButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 34px rgba(15, 23, 42, 0.12);
+}
+
+.sceneButtonActive {
+  background: var(--scene-button-active);
+  color: var(--scene-button-active-text);
+  border-color: transparent;
+}
+
+.sceneButtonLabel {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.sceneButtonKicker {
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.viewport {
+  box-sizing: border-box;
+  --scene-available-width: calc(100vw - 2rem);
+  font-size: min(
+    calc(var(--scene-target-width-px) / var(--scene-design-width)),
+    calc(var(--scene-available-width) / var(--scene-design-width))
+  );
+  display: flex;
+  flex-direction: column;
+  width: calc(var(--scene-design-width) * 1em);
+  height: calc(var(--scene-design-height) * 1em);
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0;
+  padding: calc(35.2em * var(--scene-layout-scale)) 0 0;
+  border-radius: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.42),
+      rgba(255, 255, 255, 0.05)
+    ),
+    var(--scene-background);
+  box-shadow: 0 28px 70px rgba(15, 23, 42, 0.12);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.viewport::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  background:
+    var(--scene-pattern, none),
+    radial-gradient(
+      circle at 22% 20%,
+      rgba(255, 255, 255, 0.34),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 78% 72%,
+      rgba(255, 255, 255, 0.24),
+      transparent 20%
+    );
+  background-size: var(--scene-pattern-size, auto), auto, auto;
+  background-position:
+    var(--scene-pattern-position, 0 0),
+    0 0,
+    0 0;
+  opacity: 0.95;
+  pointer-events: none;
+  transform: rotate(var(--scene-pattern-rotate, 0deg));
+  transform-origin: center;
+}
+
+.viewportPeek::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 30%;
+  background: var(
+    --scene-bottom-shadow,
+    linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0),
+      rgba(15, 23, 42, 0.18) 60%,
+      rgba(15, 23, 42, 0.34) 100%
+    )
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.viewportPeek {
+  padding-bottom: 0;
+}
+
+.viewportDesktop {
+  width: calc(var(--scene-design-width) * 1em);
+  height: calc(var(--scene-design-height) * 1em);
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  border-radius: 0;
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(11.2em * var(--scene-layout-scale));
+  color: var(--scene-text);
+  flex: 0 0 21%;
+  min-height: 0;
+  padding: 0 calc(32em * var(--scene-layout-scale));
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: calc(30.4em * var(--scene-layout-scale));
+  padding: calc(6.08em * var(--scene-layout-scale))
+    calc(12em * var(--scene-layout-scale));
+  border-radius: 999px;
+  background: var(--scene-chip);
+  border: 1px solid var(--scene-chip-border);
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kickerLabel {
+  font-size: calc(9.92em * var(--scene-layout-scale));
+  line-height: 1;
+}
+
+.title {
+  margin: 0;
+  font-size: calc(var(--scene-title-size, 32em) * var(--scene-layout-scale));
+  line-height: 0.93;
+  letter-spacing: -0.05em;
+  max-width: 8.5ch;
+  text-wrap: balance;
+}
+
+.highlightedTitle {
+  position: relative;
+  display: inline-block;
+  color: var(--scene-title-highlight-text, inherit);
+}
+
+.highlightedTitle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.08em;
+  height: 0.16em;
+  border-radius: 999px;
+  background: var(--scene-title-underline, #f4d35e);
+  z-index: -1;
+}
+
+.viewportDesktop .copy {
+  display: none;
+}
+
+.viewportDesktop .title {
+  max-width: none;
+  white-space: nowrap;
+  text-wrap: nowrap;
+  overflow: visible;
+  display: inline-block;
+  color: var(--scene-text);
+}
+
+.device {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex: 1 1 79%;
+  width: 100%;
+  min-height: 0;
+  padding: calc(16em * var(--scene-layout-scale))
+    calc(32em * var(--scene-layout-scale))
+    calc(22.4em * var(--scene-layout-scale));
+}
+
+.deviceFrame {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+}
+
+.desktopScreenshot {
+  width: 100%;
+  aspect-ratio: var(--scene-screenshot-aspect, 4 / 3);
+  max-width: calc(784em * var(--scene-layout-scale));
+  display: flex;
+  padding: calc(11.2em * var(--scene-layout-scale));
+  box-sizing: border-box;
+  border-radius: calc(24em * var(--scene-layout-scale));
+  background: linear-gradient(
+    180deg,
+    var(--scene-desktop-shell-highlight, #dbdbdb) 0%,
+    var(--scene-desktop-shell, #8a8a8a) 48%,
+    var(--scene-desktop-shell-deep, #5a5a5a) 100%
+  );
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(
+    --scene-screenshot-shadow,
+    0 24px 60px rgba(15, 23, 42, 0.18)
+  );
+}
+
+.desktopScreen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: calc(12.8em * var(--scene-layout-scale));
+  overflow: hidden;
+  background: #130b05;
+  box-shadow:
+    inset 0 0 0 1px var(--scene-desktop-screen-frame, rgba(255, 255, 255, 0.18)),
+    0 0 0 1px rgba(49, 27, 8, 0.14);
+  position: relative;
+}
+
+.desktopScreen :global(.wrapper) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.desktopScreen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: var(--scene-desktop-screen-inset-shadow, none);
+  z-index: 2;
+}
+
+.desktopScreen :global(img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 0;
+}
+
+.desktopScreenshot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--scene-screenshot-sheen, none);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.iPhoneX {
+  width: min(86%, calc(328em * var(--scene-layout-scale)));
+  max-width: 100%;
+  max-height: calc(100% - (8em * var(--scene-layout-scale)));
+}
+
+.devicePeek {
+  padding: calc(16em * var(--scene-layout-scale)) 0 0;
+  align-items: center;
+}
+
+.deviceFramePeek {
+  overflow: visible;
+  align-items: flex-end;
+  padding-top: calc(12em * var(--scene-layout-scale));
+  padding-bottom: 0;
+  padding-left: calc(22.4em * var(--scene-layout-scale));
+  padding-right: calc(22.4em * var(--scene-layout-scale));
+}
+
+.iPhoneXPeek {
+  width: min(98%, calc(377.6em * var(--scene-layout-scale)));
+  transform: translateY(18%);
+  position: relative;
+  z-index: 2;
+  --device-drop-shadow: none;
+}
+
+.deviceDesktop {
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  padding: calc(13.6em * var(--scene-layout-scale))
+    calc(6.4em * var(--scene-layout-scale));
+  position: relative;
+  z-index: 1;
+}
+
+.deviceDesktop::before {
+  content: "";
+  position: absolute;
+  inset: 8% 8% auto 8%;
+  height: 46%;
+  background: var(--scene-screenshot-halo, none);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(calc(10em * var(--scene-layout-scale)));
+}
+
+.viewportDesktop .deviceFrame {
+  justify-content: center;
+  align-items: center;
+}
+
+.viewportDesktop .desktopScreenshot {
+  width: 100%;
+  max-width: calc(832em * var(--scene-layout-scale));
+  height: auto;
+  border-radius: calc(24em * var(--scene-layout-scale));
+  transform: none;
+}
+
+@media (max-width: 996px) {
+  .outer {
+    padding: 1rem;
+  }
+
+  .controls {
+    width: 100%;
+  }
+
+  .toolbar {
+    width: 100%;
+  }
+
+  .sceneButton {
+    min-width: 11rem;
+  }
+
+  .viewport {
+    --scene-available-width: calc(100vw - 2rem);
+  }
+
+  .viewportDesktop .copy {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .outer {
+    padding: 0.75rem;
+  }
+
+  .controls {
+    gap: 0.5rem;
+  }
+
+  .widthToggle {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .widthToggleButton {
+    flex: 1 1 0;
+    text-align: center;
+  }
+
+  .sceneButton {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .viewport {
+    --scene-available-width: calc(100vw - 1.5rem);
+    border-radius: 0;
+  }
+
+  .viewportDesktop {
+    --scene-available-width: calc(100vw - 1.5rem);
+    min-height: 32rem;
+    padding: 0;
+  }
+
+  .viewportDesktop .copy {
+    display: none;
+  }
+}

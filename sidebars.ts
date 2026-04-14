@@ -54,6 +54,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "task-management",
+          label: "✅ Task Management",
+        },
+        {
+          type: "doc",
           id: "visualizations",
           label: "📈 Visualizations",
         },
@@ -88,11 +93,6 @@ const sidebars: SidebarsConfig = {
     //   label: "Concepts",
     //   collapsible: false,
     //   items: [
-    //     {
-    //       type: "doc",
-    //       id: "task-management",
-    //       label: "✅ Task Management",
-    //     },
     //     {
     //       type: "doc",
     //       id: "templates",

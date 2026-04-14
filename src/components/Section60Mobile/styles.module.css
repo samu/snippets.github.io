@@ -30,6 +30,25 @@
   z-index: 1;
 }
 
+.headingWrap {
+  display: inline-block;
+}
+
+.heading {
+  display: inline-block;
+}
+
+.headingText {
+  display: inline-block;
+}
+
+.headingBadge {
+  font-size: 1rem;
+  right: 0;
+  bottom: 0;
+  transform: translateX(2.3em) translateY(1.2em) rotate(-5deg);
+}
+
 @media (min-width: 768px) {
   .section {
     display: flex;
@@ -42,9 +61,24 @@
   z-index: 1;
 }
 
-.bottomRow {
+.columnRow {
   margin-top: 4em;
   margin-bottom: 5em;
   position: relative;
   z-index: 1;
+  padding-bottom: 3em;
+  align-items: flex-start;
+}
+
+.columnRow p {
+  text-align: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1em;
+  margin-right: 1em;
+  min-width: 12.5em;
 }

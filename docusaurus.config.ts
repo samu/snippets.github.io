@@ -87,6 +87,10 @@ const config: Config = {
           title: "Socials",
           items: [
             {
+              label: "Reddit",
+              href: "https://www.reddit.com/r/snippets",
+            },
+            {
               label: "X",
               href: "https://x.com/snippetsHQ",
             },

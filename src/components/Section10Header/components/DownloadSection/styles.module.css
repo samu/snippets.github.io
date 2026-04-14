@@ -19,6 +19,24 @@
   .columnRow {
     display: none;
   }
+
+  .columnRowIos {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .columnRowIos .column {
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .columnRowIos .column a {
+    width: min(100%, 18rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @media (min-width: 768px) {
