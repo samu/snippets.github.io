@@ -22,8 +22,8 @@
     },
     {
       "name": "Pro",
-      "price": "$12",
-      "priceNote": "/year",
+      "price": "$29",
+      "priceNote": "/one time",
       "featured": true,
       "muted": false,
       "badge": "Coming Soon",
@@ -46,8 +46,8 @@
     },
     {
       "name": "Cloud",
-      "price": "Coming soon",
-      "priceNote": null,
+      "price": "$12",
+      "priceNote": "/year",
       "featured": false,
       "muted": true,
       "badge": "Planned",
@@ -59,16 +59,6 @@
         { "text": "Mobile widgets", "planned": true },
         { "text": "Note sharing", "planned": true }
       ],
-      "plannedFeatures": []
-    },
-    {
-      "name": "AI",
-      "price": "Coming soon",
-      "priceNote": null,
-      "featured": false,
-      "muted": true,
-      "badge": "Planned",
-      "features": [{ "text": "Access to AI features", "planned": true }],
       "plannedFeatures": []
     }
   ]
