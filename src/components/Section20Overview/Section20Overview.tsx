@@ -25,25 +25,31 @@ export function Section20Overview() {
 
         <h2>
           <span className={styles.highlightLine}>
-            Starts{" "}
-            <span
-              className={`${styles.highlightUnderline} ${styles.simpleUnderline}`}
-            >
-              simple
+            <span className={styles.highlightSegment}>
+              Starts{" "}
+              <span
+                className={`${styles.highlightUnderline} ${styles.simpleUnderline}`}
+              >
+                simple
+              </span>
             </span>
             <span className={styles.softDivider}>/</span>
-            Becomes{" "}
-            <span
-              className={`${styles.highlightUnderline} ${styles.powerfulUnderline}`}
-            >
-              powerful
+            <span className={styles.highlightSegment}>
+              Becomes{" "}
+              <span
+                className={`${styles.highlightUnderline} ${styles.powerfulUnderline}`}
+              >
+                powerful
+              </span>
             </span>
             <span className={styles.softDivider}>/</span>
-            Stays{" "}
-            <span
-              className={`${styles.highlightUnderline} ${styles.affordableUnderline}`}
-            >
-              affordable
+            <span className={styles.highlightSegment}>
+              Stays{" "}
+              <span
+                className={`${styles.highlightUnderline} ${styles.affordableUnderline}`}
+              >
+                affordable
+              </span>
             </span>
           </span>
           {false && <SubHeaderScribble></SubHeaderScribble>}

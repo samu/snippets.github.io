@@ -71,10 +71,11 @@
 .title {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: clamp(0.35rem, 0.15rem + 1vw, 0.7rem);
   margin: 1rem 0 0.85rem;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1rem, 0.7rem + 3vw, 3.5rem);
   line-height: 1.05;
+  white-space: nowrap;
 }
 
 .title svg {
@@ -162,10 +163,7 @@ html[data-theme="dark"] .points div {
   }
 
   .inner {
-    padding: 1rem 0;
+    padding: 1rem 1rem;
   }
 
-  .title {
-    flex-direction: column;
-  }
 }

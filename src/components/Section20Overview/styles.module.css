@@ -28,7 +28,7 @@
 .header h2 {
   position: relative;
   margin-bottom: 0;
-  font-size: 1em;
+  font-size: 1.5rem;
 }
 
 .header h2 span {
@@ -41,6 +41,11 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.15em;
+}
+
+.highlightSegment {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .softDivider {
@@ -127,6 +132,8 @@
 
 .header ul {
   max-width: 50em;
+  margin-right: 0;
+  padding-right: 0;
 }
 
 .header li {
@@ -139,7 +146,28 @@
   }
 
   .header h2 {
-    font-size: 0.95em;
+    font-size: 1.05rem;
+  }
+
+  .highlightLine {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7em;
+  }
+
+  .softDivider {
+    display: none;
+  }
+
+  .header .introRow {
+    width: 100%;
+    max-width: 20rem;
+    padding-left: 1rem;
+    box-sizing: border-box;
+  }
+
+  .introRow li span {
+    width: 100%;
   }
 }
 
@@ -147,19 +175,11 @@
   .header h1 {
     font-size: 2.5em;
   }
-
-  .header h2 {
-    font-size: 1.25em;
-  }
 }
 
 @media (min-width: 768px) {
   .header h1 {
     font-size: 3.5em;
-  }
-
-  .header h2 {
-    font-size: 1.5em;
   }
 }
 
@@ -254,7 +274,7 @@ html[data-theme="dark"] .nextLevelHighlight {
   color: var(--overview-done-text-color);
 }
 
-.introRow {
+.header .introRow {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -264,12 +284,11 @@ html[data-theme="dark"] .nextLevelHighlight {
   margin-left: auto;
   margin-right: auto;
   padding-left: 0;
-  max-width: 34rem;
-  width: fit-content;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
-  .introRow {
+  .header .introRow {
     align-items: flex-start;
   }
 }
