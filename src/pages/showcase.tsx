@@ -68,8 +68,10 @@ const scenes: Scene[] = [
     title: "Search your notes in seconds.",
     viewportWidth: 432,
     imageVariant: "light",
-    lightSrc: require("@site/static/media/mobile-search.png").default,
-    darkSrc: require("@site/static/media/mobile-search.png").default,
+    lightSrc: require("@site/static/media/mobile-navigation-view-light.png")
+      .default,
+    darkSrc: require("@site/static/media/mobile-navigation-view-dark.png")
+      .default,
     alt: "Snippets mobile search",
     theme: {
       "--scene-background":
@@ -106,8 +108,8 @@ const scenes: Scene[] = [
     title: "Keep your notebook beautifully structured.",
     viewportWidth: 432,
     imageVariant: "light",
-    lightSrc: require("@site/static/media/mobile-navigation-view.png").default,
-    darkSrc: require("@site/static/media/mobile-navigation-view.png").default,
+    lightSrc: require("@site/static/media/mobile-tasks-light.png").default,
+    darkSrc: require("@site/static/media/mobile-tasks-dark.png").default,
     alt: "Snippets mobile navigation",
     theme: {
       "--scene-background":
