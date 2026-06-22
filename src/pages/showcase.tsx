@@ -128,6 +128,7 @@ const scenes: Scene[] = [
     ),
     titleClassName: styles.centeredTitle,
     viewportWidth: 432,
+    layout: "peek",
     imageVariant: "light",
     lightSrc: require("@site/static/media/mobile-tasks-light.png").default,
     darkSrc: require("@site/static/media/mobile-tasks-dark.png").default,
