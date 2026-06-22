@@ -242,6 +242,40 @@
   text-wrap: balance;
 }
 
+.centeredTitle {
+  align-self: center;
+  max-width: 19ch;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.focusedWritingTitle {
+  margin-top: 2em;
+}
+
+.quickCaptureTitle {
+  max-width: 21ch;
+  margin-top: 1.25em;
+}
+
+.titleSubheading {
+  display: block;
+  margin-top: 1.5em;
+  font-size: 0.65em;
+  line-height: 1;
+}
+
+.titleText {
+  display: block;
+  max-width: 30ch;
+  margin: 1.1em auto 0;
+  font-size: 0.34em;
+  font-weight: 650;
+  line-height: 1.28;
+  letter-spacing: 0;
+  color: var(--scene-muted);
+}
+
 .highlightedTitle {
   position: relative;
   display: inline-block;
@@ -379,15 +413,14 @@
 .deviceFramePeek {
   overflow: visible;
   align-items: flex-end;
-  padding-top: calc(12em * var(--scene-layout-scale));
+  padding-top: calc(6em * var(--scene-layout-scale));
   padding-bottom: 0;
-  padding-left: calc(22.4em * var(--scene-layout-scale));
-  padding-right: calc(22.4em * var(--scene-layout-scale));
+  padding-left: calc(16em * var(--scene-layout-scale));
+  padding-right: calc(16em * var(--scene-layout-scale));
 }
 
 .iPhoneXPeek {
-  width: min(98%, calc(377.6em * var(--scene-layout-scale)));
-  transform: translateY(18%);
+  width: min(104%, calc(392em * var(--scene-layout-scale)));
   position: relative;
   z-index: 2;
   --device-drop-shadow: none;

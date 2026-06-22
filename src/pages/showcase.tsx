@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties, ReactNode, useState } from "react";
 import { IPhoneX } from "../common/components/IPhoneX/IPhoneX";
 import { ThemeImage } from "../common/components/ThemeImage/ThemeImage";
 import styles from "./showcase.module.css";
@@ -10,8 +10,9 @@ const LARGE_SCENE_WIDTH = 1284;
 type Scene = {
   id: string;
   label: string;
-  kicker: string;
-  title: string;
+  kicker?: string;
+  title: ReactNode;
+  titleClassName?: string;
   viewportWidth?: number;
   layout?: "full" | "peek" | "desktop";
   imageVariant?: "light" | "dark";
@@ -25,8 +26,13 @@ const scenes: Scene[] = [
   {
     id: "editor",
     label: "Focused Writing",
-    kicker: "Write anywhere",
-    title: "Capture ideas before they disappear.",
+    title: (
+      <>
+        Write <span className={styles.highlightedTitle}>beautiful</span> rich
+        text
+      </>
+    ),
+    titleClassName: `${styles.centeredTitle} ${styles.focusedWritingTitle}`,
     viewportWidth: 432,
     imageVariant: "dark",
     lightSrc: require("@site/static/media/mobile-editor-light.png").default,
@@ -40,7 +46,7 @@ const scenes: Scene[] = [
       "--scene-panel-border": "rgba(129, 84, 36, 0.2)",
       "--scene-text": "#5b3110",
       "--scene-muted": "rgba(91, 49, 16, 0.72)",
-      "--scene-title-size": "26.88em",
+      "--scene-title-size": "36em",
       "--scene-button": "rgba(255, 248, 240, 0.72)",
       "--scene-button-border": "rgba(129, 84, 36, 0.2)",
       "--scene-button-active": "#7a4a1f",
@@ -64,8 +70,13 @@ const scenes: Scene[] = [
   {
     id: "search",
     label: "Instant Recall",
-    kicker: "Find anything",
-    title: "Search your notes in seconds.",
+    title: (
+      <>
+        One place for{" "}
+        <span className={styles.highlightedTitle}>everything</span>
+      </>
+    ),
+    titleClassName: styles.centeredTitle,
     viewportWidth: 432,
     imageVariant: "light",
     lightSrc: require("@site/static/media/mobile-navigation-view-light.png")
@@ -81,6 +92,7 @@ const scenes: Scene[] = [
       "--scene-panel-border": "rgba(16, 90, 125, 0.18)",
       "--scene-text": "#0d4662",
       "--scene-muted": "rgba(13, 70, 98, 0.75)",
+      "--scene-title-size": "44em",
       "--scene-button": "rgba(248, 253, 255, 0.72)",
       "--scene-button-border": "rgba(16, 90, 125, 0.18)",
       "--scene-button-active": "#0f6f97",
@@ -104,8 +116,17 @@ const scenes: Scene[] = [
   {
     id: "navigation",
     label: "Everyday Flow",
-    kicker: "Stay organized",
-    title: "Keep your notebook beautifully structured.",
+    title: (
+      <>
+        Task Management
+        <span className={styles.titleSubheading}>
+          <span className={styles.highlightedTitle}>
+            Seamlessly integrated.
+          </span>
+        </span>
+      </>
+    ),
+    titleClassName: styles.centeredTitle,
     viewportWidth: 432,
     imageVariant: "light",
     lightSrc: require("@site/static/media/mobile-tasks-light.png").default,
@@ -119,7 +140,7 @@ const scenes: Scene[] = [
       "--scene-panel-border": "rgba(43, 97, 43, 0.16)",
       "--scene-text": "#204b21",
       "--scene-muted": "rgba(32, 75, 33, 0.72)",
-      "--scene-title-size": "26.88em",
+      "--scene-title-size": "38em",
       "--scene-button": "rgba(248, 255, 246, 0.72)",
       "--scene-button-border": "rgba(43, 97, 43, 0.16)",
       "--scene-button-active": "#3f7c43",
@@ -143,13 +164,23 @@ const scenes: Scene[] = [
   {
     id: "quick-add",
     label: "Quick Capture",
-    kicker: "Add in a flash",
-    title: "Drop fresh notes into your day.",
+    title: (
+      <>
+        Companion for life
+        <span className={styles.titleText}>
+          For quick thoughts, daily plans, hard-earned ideas, and the notes you
+          keep coming back to.
+        </span>
+      </>
+    ),
+    titleClassName: `${styles.centeredTitle} ${styles.quickCaptureTitle}`,
     viewportWidth: 432,
     layout: "peek",
     imageVariant: "dark",
-    lightSrc: require("@site/static/media/mobile-editor-light.png").default,
-    darkSrc: require("@site/static/media/mobile-editor-dark.png").default,
+    lightSrc: require("@site/static/media/mobile-visualizations-light.png")
+      .default,
+    darkSrc: require("@site/static/media/mobile-visualizations-dark.png")
+      .default,
     alt: "Snippets mobile editor",
     theme: {
       "--scene-background":
@@ -192,6 +223,7 @@ const scenes: Scene[] = [
     lightSrc: require("@site/static/media/journal-light.png").default,
     darkSrc: require("@site/static/media/journal-dark.png").default,
     alt: "Snippets journaling and habit tracking",
+    imageVariant: "dark",
     theme: {
       "--scene-background":
         "linear-gradient(165deg, #eef6ff 0%, #cfe3ff 42%, #7ea7ec 100%)",
@@ -315,7 +347,9 @@ export default function Showcase() {
               onClick={() => setActiveSceneId(scene.id)}
             >
               <span className={styles.sceneButtonLabel}>{scene.label}</span>
-              <span className={styles.sceneButtonKicker}>{scene.kicker}</span>
+              {scene.kicker ? (
+                <span className={styles.sceneButtonKicker}>{scene.kicker}</span>
+              ) : null}
             </button>
           );
         })}
@@ -334,10 +368,18 @@ export default function Showcase() {
       >
         {isDesktopScene ? null : (
           <div className={styles.copy}>
-            <div className={styles.kicker}>
-              <span className={styles.kickerLabel}>{activeScene.kicker}</span>
-            </div>
-            <h1 className={styles.title}>{activeScene.title}</h1>
+            {activeScene.kicker ? (
+              <div className={styles.kicker}>
+                <span className={styles.kickerLabel}>{activeScene.kicker}</span>
+              </div>
+            ) : null}
+            <h1
+              className={[styles.title, activeScene.titleClassName ?? ""]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              {activeScene.title}
+            </h1>
           </div>
         )}
 
