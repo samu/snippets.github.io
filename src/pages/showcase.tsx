@@ -118,12 +118,9 @@ const scenes: Scene[] = [
     label: "Everyday Flow",
     title: (
       <>
-        Task Management
-        <span className={styles.titleSubheading}>
-          <span className={styles.highlightedTitle}>
-            Seamlessly integrated.
-          </span>
-        </span>
+        Task Management,
+        <br />
+        seamlessly <span className={styles.highlightedTitle}>integrated</span>
       </>
     ),
     titleClassName: styles.centeredTitle,
@@ -167,14 +164,12 @@ const scenes: Scene[] = [
     label: "Quick Capture",
     title: (
       <>
-        Companion for life
-        <span className={styles.titleText}>
-          For quick thoughts, daily plans, hard-earned ideas, and the notes you
-          keep coming back to.
-        </span>
+        Companion
+        <br />
+        for <span className={styles.highlightedTitle}>life</span>
       </>
     ),
-    titleClassName: `${styles.centeredTitle} ${styles.quickCaptureTitle}`,
+    titleClassName: styles.centeredTitle,
     viewportWidth: 432,
     layout: "peek",
     imageVariant: "dark",
@@ -191,7 +186,8 @@ const scenes: Scene[] = [
       "--scene-panel-border": "rgba(144, 41, 55, 0.16)",
       "--scene-text": "#6e1824",
       "--scene-muted": "rgba(110, 24, 36, 0.7)",
-      "--scene-title-size": "37.6em",
+      "--scene-title-size": "44em",
+      "--scene-title-underline": "#ff8795",
       "--scene-button": "rgba(255, 246, 246, 0.72)",
       "--scene-button-border": "rgba(144, 41, 55, 0.16)",
       "--scene-button-active": "#bf394c",
