@@ -39,20 +39,6 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--title-color, inherit);
-  text-shadow:
-    0 1px 0 var(--pricing-title-shadow-top),
-    0 8px 22px rgba(var(--box-shadow-base-color), 0.1);
-}
-
-.title span {
-  background: linear-gradient(
-    135deg,
-    var(--accent-color-1),
-    color-mix(in srgb, var(--font-color-1) 72%, var(--accent-color-1))
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .subtitle {

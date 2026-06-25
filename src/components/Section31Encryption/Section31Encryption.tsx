@@ -6,8 +6,6 @@ export function Section31Encryption() {
   return (
     <Section className={styles.section}>
       <div className={styles.inner}>
-        <div className={styles.eyebrow}>Privacy First</div>
-
         <h2 className={styles.title}>
           <ShieldLockIcon></ShieldLockIcon>
           End-to-end encryption
@@ -18,12 +16,6 @@ export function Section31Encryption() {
           end-to-end encryption, your notes are encrypted before syncing and can
           only be decrypted with your own secret.
         </p>
-
-        <div className={styles.points}>
-          <div>Encrypted before upload</div>
-          <div>Only you hold the key</div>
-          <div>The target server never sees your data</div>
-        </div>
       </div>
     </Section>
   );
