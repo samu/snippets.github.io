@@ -5,7 +5,7 @@ export default function Privacy() {
   return (
     <Layout
       title="Privacy Policy"
-      description="Learn how Snippets handles local notes, optional sync, feedback submissions, and limited first-party website analytics."
+      description="Learn how Snippets handles local notes, optional accounts, Snippets Cloud, payments, feedback submissions, and limited first-party website analytics."
     >
       <main className={styles.page}>
         <div className={styles.container}>
@@ -14,14 +14,14 @@ export default function Privacy() {
             <h1 className={styles.title}>Privacy Policy</h1>
             <p className={styles.subtitle}>
               This policy explains what data Snippets handles today, where it is
-              stored, and how limited service data is used to keep the product
-              running reliably.
+              stored, and how limited service data is used to operate optional
+              account, sync, payment, and support features.
             </p>
           </header>
 
           <section className={styles.card}>
             <div className={styles.meta}>
-              <span>Effective Date: March 25, 2026</span>
+              <span>Effective Date: June 26, 2026</span>
               <span>Snippets</span>
             </div>
 
@@ -30,13 +30,14 @@ export default function Privacy() {
                 <h2>Overview</h2>
                 <p>
                   Snippets is designed around a local-first model. In normal
-                  use, notes and related content are stored on the user&apos;s
-                  own device unless the user chooses an external sync option.
+                  use, notes and related content are stored on the user&apos;s own
+                  device unless the user chooses an optional sync method.
                 </p>
                 <p>
                   We aim to keep data collection limited to what is required to
                   operate the website, receive feedback, prevent abuse, and
-                  support optional features chosen by the user.
+                  support optional features chosen by the user, including
+                  accounts, Snippets Cloud, and paid licenses.
                 </p>
               </section>
 
@@ -45,22 +46,62 @@ export default function Privacy() {
                 <p>
                   Notes are stored locally on the user&apos;s device by default.
                   Users may optionally enable synchronization using the local
-                  file system or a GitHub repository under their own GitHub
-                  account.
+                  file system, a GitHub repository under their own GitHub
+                  account, or Snippets Cloud.
                 </p>
                 <p>
                   If GitHub sync is enabled, synced content is stored and
                   processed by GitHub under the user&apos;s own GitHub setup and
                   is subject to GitHub&apos;s terms and privacy practices.
                 </p>
+                <p>
+                  Snippets Cloud is an optional cloud sync service currently in
+                  beta. Data for Snippets Cloud is hosted on Amazon Web
+                  Services. During the beta, Snippets does not guarantee that
+                  synced data will be stored safely, remain available, or be
+                  preserved with 100% durability. Users should keep their own
+                  backups of important data.
+                </p>
               </section>
 
               <section className={styles.section}>
                 <h2>User Accounts</h2>
                 <p>
-                  Snippets does not currently require users to create an account
-                  to use the app. Future versions may introduce account-based
-                  features, and this policy will be updated if that happens.
+                  Users may sign up for a Snippets account, but accounts remain
+                  optional. An account may be used for features such as Snippets
+                  Cloud, license management, or related account-based services.
+                </p>
+                <p>
+                  Account data may include information such as an email address,
+                  authentication identifiers, license status, service metadata,
+                  and similar records needed to provide and protect account
+                  features.
+                </p>
+              </section>
+
+              <section className={styles.section}>
+                <h2>End-to-End Encryption</h2>
+                <p>
+                  Snippets Cloud uses client-side end-to-end encryption for
+                  encrypted content. In short: a vault key is derived from the
+                  user&apos;s passphrase with libsodium password hashing, each item
+                  uses a random data key, keys are wrapped with XChaCha20-
+                  {"Poly1305"} AEAD, and payloads are encrypted with random
+                  nonces.
+                </p>
+              </section>
+
+              <section className={styles.section}>
+                <h2>Pro Licenses and Payments</h2>
+                <p>
+                  Users may optionally buy a Snippets Pro license. Payments are
+                  processed by Lemon Squeezy, which handles payment details
+                  under its own terms and privacy practices.
+                </p>
+                <p>
+                  Snippets may receive and store related transaction, license,
+                  customer, and subscription metadata needed to activate,
+                  manage, and support Pro licenses.
                 </p>
               </section>
 
@@ -105,9 +146,10 @@ export default function Privacy() {
                 <h2>Hosting and Sharing</h2>
                 <p>
                   Data collected through backend service endpoints is hosted on
-                  Amazon Web Services. That data is not sold and is not shared
-                  with third parties except as needed to operate the service
-                  infrastructure used by Snippets.
+                  Amazon Web Services. Payment processing is provided by Lemon
+                  Squeezy. Data is not sold and is not shared with third parties
+                  except as needed to operate, secure, and support the service
+                  infrastructure and payment systems used by Snippets.
                 </p>
               </section>
 
@@ -115,8 +157,8 @@ export default function Privacy() {
                 <h2>Changes to This Policy</h2>
                 <p>
                   This policy may be updated as Snippets evolves, including when
-                  new product features, authentication, or additional online
-                  services are introduced.
+                  product features, authentication, payment, sync, or additional
+                  online services change.
                 </p>
               </section>
             </div>

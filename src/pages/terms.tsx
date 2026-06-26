@@ -5,7 +5,7 @@ export default function Terms() {
   return (
     <Layout
       title="Terms of Service"
-      description="Read the basic terms governing use of the Snippets website, app, optional sync integrations, and support channels."
+      description="Read the basic terms governing use of the Snippets website, app, optional sync integrations, Pro licenses, and support channels."
     >
       <main className={styles.page}>
         <div className={styles.container}>
@@ -21,7 +21,7 @@ export default function Terms() {
 
           <section className={styles.card}>
             <div className={styles.meta}>
-              <span>Effective Date: March 23, 2026</span>
+              <span>Effective Date: June 26, 2026</span>
               <span>Snippets</span>
             </div>
 
@@ -62,6 +62,21 @@ export default function Terms() {
                   involving third-party services, such as GitHub. Those services
                   are governed by their own terms, privacy policies, and
                   operational practices.
+                </p>
+              </section>
+
+              <section className={styles.section}>
+                <h2>Pro Licenses and Payments</h2>
+                <p>
+                  Snippets may offer optional paid Pro licenses. Payments are
+                  processed by Lemon Squeezy, and payment processing is governed
+                  by Lemon Squeezy&apos;s own terms, privacy policies, and
+                  operational practices.
+                </p>
+                <p>
+                  Payments for Snippets Pro licenses are final and are not
+                  eligible for reimbursement or refund, except where required by
+                  applicable law.
                 </p>
               </section>
 
