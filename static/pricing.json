@@ -1,11 +1,10 @@
 {
   "title": "Pricing",
-  "subtitle": "Start for free and upgrade when you need more power, privacy, or cloud features.",
   "plans": [
     {
       "name": "Free",
-      "price": "$0",
-      "priceNote": "/forever",
+      "price": "Free",
+      "priceNote": "forever",
       "featured": false,
       "muted": false,
       "badge": null,
@@ -23,10 +22,10 @@
     {
       "name": "Pro",
       "price": "$29",
-      "priceNote": "/one time",
+      "priceNote": "one time",
       "featured": true,
       "muted": false,
-      "badge": "Coming Soon",
+      "badge": null,
       "features": [
         { "text": "Access to full icon set", "planned": false },
         {
@@ -47,12 +46,15 @@
     {
       "name": "Cloud",
       "price": "$12",
-      "priceNote": "/year",
+      "priceNote": "per year",
       "featured": false,
       "muted": true,
-      "badge": "Planned",
+      "badge": "Coming Soon",
       "features": [
-        { "text": "Cloud sync with end-to-end encryption", "planned": true },
+        {
+          "text": "Unlimited cloud sync with end-to-end encryption",
+          "planned": true
+        },
         { "text": "Backend-driven reminders", "planned": true },
         { "text": "API access", "planned": true },
         { "text": "Web clipper", "planned": true },
