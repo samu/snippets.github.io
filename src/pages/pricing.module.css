@@ -39,20 +39,6 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--title-color, inherit);
-  text-shadow:
-    0 1px 0 var(--pricing-title-shadow-top),
-    0 8px 22px rgba(var(--box-shadow-base-color), 0.1);
-}
-
-.title span {
-  background: linear-gradient(
-    135deg,
-    var(--accent-color-1),
-    color-mix(in srgb, var(--font-color-1) 72%, var(--accent-color-1))
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .subtitle {
@@ -92,31 +78,6 @@
     opacity 180ms ease;
   overflow: hidden;
   isolation: isolate;
-}
-
-.box::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 5px;
-  background: linear-gradient(
-    90deg,
-    rgba(var(--box-shadow-base-color), 0.08),
-    rgba(var(--box-shadow-base-color), 0.02)
-  );
-}
-
-.box::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at top right,
-    rgba(var(--box-shadow-base-color), 0.06),
-    transparent 30%
-  );
-  pointer-events: none;
-  z-index: -1;
 }
 
 .box:hover {
@@ -175,7 +136,7 @@
 }
 
 .planPriceNote {
-  font-size: 0.82rem;
+  font-size: 1.25rem;
   font-weight: 400;
   opacity: 0.7;
   margin-left: 0.28em;

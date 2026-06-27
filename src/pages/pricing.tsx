@@ -53,8 +53,6 @@ export default function Pricing() {
           <h1 className={styles.title}>
             <span>{data.title}</span>
           </h1>
-
-          <p className={styles.subtitle}>{data.subtitle}</p>
         </div>
 
         <div className={styles.sectionRow}>

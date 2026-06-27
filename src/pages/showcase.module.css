@@ -242,6 +242,17 @@
   text-wrap: balance;
 }
 
+.centeredTitle {
+  align-self: center;
+  max-width: 19ch;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.focusedWritingTitle {
+  margin-top: 2em;
+}
+
 .highlightedTitle {
   position: relative;
   display: inline-block;
@@ -379,15 +390,14 @@
 .deviceFramePeek {
   overflow: visible;
   align-items: flex-end;
-  padding-top: calc(12em * var(--scene-layout-scale));
+  padding-top: calc(6em * var(--scene-layout-scale));
   padding-bottom: 0;
-  padding-left: calc(22.4em * var(--scene-layout-scale));
-  padding-right: calc(22.4em * var(--scene-layout-scale));
+  padding-left: calc(16em * var(--scene-layout-scale));
+  padding-right: calc(16em * var(--scene-layout-scale));
 }
 
 .iPhoneXPeek {
-  width: min(98%, calc(377.6em * var(--scene-layout-scale)));
-  transform: translateY(18%);
+  width: min(104%, calc(392em * var(--scene-layout-scale)));
   position: relative;
   z-index: 2;
   --device-drop-shadow: none;
