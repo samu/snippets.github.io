@@ -25,7 +25,7 @@
       "priceNote": "one time",
       "featured": true,
       "muted": false,
-      "badge": null,
+      "badge": "Coming Soon",
       "features": [
         { "text": "Access to full icon set", "planned": false },
         {
@@ -34,7 +34,7 @@
         }
       ],
       "plannedFeatures": [
-        { "text": "Local reminders", "planned": true },
+        { "text": "Sync with Apple Reminders (Mac only)", "planned": true },
         { "text": "More visualizations", "planned": true },
         { "text": "More customization options", "planned": true },
         { "text": "More themes", "planned": true },
@@ -55,7 +55,6 @@
           "text": "Unlimited cloud sync with end-to-end encryption",
           "planned": true
         },
-        { "text": "Backend-driven reminders", "planned": true },
         { "text": "API access", "planned": true },
         { "text": "Web clipper", "planned": true },
         { "text": "Mobile widgets", "planned": true },
