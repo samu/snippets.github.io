@@ -27,19 +27,11 @@ export function Section10Header() {
 
         <div className={styles.imageWrapperContainer}>
           <ImageWrapper className={styles.desktopImageWrapper} boxShadow={true}>
-            <ThemeImage
-              lightSrc={require("@site/static/media/general-todos-light.png").default}
-              darkSrc={require("@site/static/media/general-todos-dark.png").default}
-              alt="Snippets general todos"
-            />
+            <ThemeImage src="general-todos" alt="Snippets general todos" />
           </ImageWrapper>
 
           <IPhoneX className={styles.iPhoneX}>
-            <ThemeImage
-              lightSrc={require("@site/static/media/mobile-editor-light.png").default}
-              darkSrc={require("@site/static/media/mobile-editor-dark.png").default}
-              alt="Snippets mobile editor"
-            />
+            <ThemeImage src="mobile-editor" alt="Snippets mobile editor" />
           </IPhoneX>
         </div>
       </Section>

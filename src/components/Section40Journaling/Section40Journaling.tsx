@@ -19,8 +19,7 @@ export function Section40Journaling() {
 
         <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
           <ThemeImage
-            lightSrc={require("@site/static/media/journal-light.png").default}
-            darkSrc={require("@site/static/media/journal-dark.png").default}
+            src="journal"
             alt="Snippets journaling and habit tracking"
           />
         </ImageWrapper>

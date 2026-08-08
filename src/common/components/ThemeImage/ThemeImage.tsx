@@ -1,28 +1,29 @@
 import styles from "./styles.module.css";
 
 type Props = {
-  lightSrc: string;
-  darkSrc: string;
+  src: string;
   alt?: string;
   className?: string;
   variant?: "light" | "dark" | "theme";
 };
 
 export function ThemeImage({
-  lightSrc,
-  darkSrc,
+  src,
   alt = "",
   className,
   variant = "theme",
 }: Props) {
-  const src = variant === "dark" ? darkSrc : lightSrc;
+  const imagePath = `/media/landing-page/${src}`;
+  const lightSrc = `${imagePath}/light.png`;
+  const darkSrc = `${imagePath}/dark.png`;
+  const imageSrc = variant === "dark" ? darkSrc : lightSrc;
 
   return (
     <picture className={[styles.wrapper, className].filter(Boolean).join(" ")}>
       {variant === "theme" && (
         <source srcSet={darkSrc} media="(prefers-color-scheme: dark)" />
       )}
-      <img src={src} alt={alt} />
+      <img src={imageSrc} alt={alt} />
     </picture>
   );
 }

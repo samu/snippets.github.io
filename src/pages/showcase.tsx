@@ -16,8 +16,7 @@ type Scene = {
   viewportWidth?: number;
   layout?: "full" | "peek" | "desktop";
   imageVariant?: "light" | "dark";
-  lightSrc: string;
-  darkSrc: string;
+  imageSrc: string;
   alt: string;
   theme: CSSProperties;
 };
@@ -35,8 +34,7 @@ const scenes: Scene[] = [
     titleClassName: `${styles.centeredTitle} ${styles.focusedWritingTitle}`,
     viewportWidth: 432,
     imageVariant: "dark",
-    lightSrc: require("@site/static/media/mobile-editor-light.png").default,
-    darkSrc: require("@site/static/media/mobile-editor-dark.png").default,
+    imageSrc: "mobile-editor",
     alt: "Snippets mobile editor",
     theme: {
       "--scene-background":
@@ -79,10 +77,7 @@ const scenes: Scene[] = [
     titleClassName: styles.centeredTitle,
     viewportWidth: 432,
     imageVariant: "light",
-    lightSrc: require("@site/static/media/mobile-navigation-view-light.png")
-      .default,
-    darkSrc: require("@site/static/media/mobile-navigation-view-dark.png")
-      .default,
+    imageSrc: "mobile-navigation-view",
     alt: "Snippets mobile search",
     theme: {
       "--scene-background":
@@ -127,8 +122,7 @@ const scenes: Scene[] = [
     viewportWidth: 432,
     layout: "peek",
     imageVariant: "light",
-    lightSrc: require("@site/static/media/mobile-tasks-light.png").default,
-    darkSrc: require("@site/static/media/mobile-tasks-dark.png").default,
+    imageSrc: "mobile-tasks",
     alt: "Snippets mobile navigation",
     theme: {
       "--scene-background":
@@ -173,10 +167,7 @@ const scenes: Scene[] = [
     viewportWidth: 432,
     layout: "peek",
     imageVariant: "dark",
-    lightSrc: require("@site/static/media/mobile-visualizations-light.png")
-      .default,
-    darkSrc: require("@site/static/media/mobile-visualizations-dark.png")
-      .default,
+    imageSrc: "mobile-visualizations",
     alt: "Snippets mobile editor",
     theme: {
       "--scene-background":
@@ -217,8 +208,7 @@ const scenes: Scene[] = [
     title: "Note taking that grows with you",
     viewportWidth: 880,
     layout: "desktop",
-    lightSrc: require("@site/static/media/journal-light.png").default,
-    darkSrc: require("@site/static/media/journal-dark.png").default,
+    imageSrc: "journal",
     alt: "Snippets journaling and habit tracking",
     imageVariant: "dark",
     theme: {
@@ -393,8 +383,7 @@ export default function Showcase() {
             <div className={styles.desktopScreenshot}>
               <div className={styles.desktopScreen}>
                 <ThemeImage
-                  lightSrc={activeScene.lightSrc}
-                  darkSrc={activeScene.darkSrc}
+                  src={activeScene.imageSrc}
                   alt={activeScene.alt}
                   variant={activeScene.imageVariant}
                 />
@@ -419,8 +408,7 @@ export default function Showcase() {
                 style={viewportStyle}
               >
                 <ThemeImage
-                  lightSrc={activeScene.lightSrc}
-                  darkSrc={activeScene.darkSrc}
+                  src={activeScene.imageSrc}
                   alt={activeScene.alt}
                   variant={activeScene.imageVariant}
                 />

@@ -50,14 +50,7 @@ export function Section50Plugins() {
             <IllustrationFrame width="30em" position="at-the-bottom">
               <ImageWrapper>
                 <ThemeImage
-                  lightSrc={
-                    require("@site/static/media/single-flashcard-light.png")
-                      .default
-                  }
-                  darkSrc={
-                    require("@site/static/media/single-flashcard-dark.png")
-                      .default
-                  }
+                  src="single-flashcard"
                   alt="Snippets flashcard snippet"
                 />
               </ImageWrapper>
@@ -82,14 +75,7 @@ export function Section50Plugins() {
             <IllustrationFrame width="35em" position="on-the-right">
               <ImageWrapper>
                 <ThemeImage
-                  lightSrc={
-                    require("@site/static/media/flashcard-deck-light.png")
-                      .default
-                  }
-                  darkSrc={
-                    require("@site/static/media/flashcard-deck-dark.png")
-                      .default
-                  }
+                  src="flashcard-deck"
                   alt="Snippets flashcard dashboard"
                 />
               </ImageWrapper>
@@ -113,14 +99,7 @@ export function Section50Plugins() {
             <IllustrationFrame width="25em" position="at-the-bottom">
               <ImageWrapper>
                 <ThemeImage
-                  lightSrc={
-                    require("@site/static/media/flashcard-session-light.png")
-                      .default
-                  }
-                  darkSrc={
-                    require("@site/static/media/flashcard-session-dark.png")
-                      .default
-                  }
+                  src="flashcard-session"
                   alt="Snippets flashcard session"
                 />
               </ImageWrapper>

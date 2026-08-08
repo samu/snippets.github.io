@@ -23,12 +23,7 @@ export function Section60Mobile() {
         <SlideIn>
           <IPhoneX className={styles.iPhoneX}>
             <ThemeImage
-              lightSrc={
-                require("@site/static/media/mobile-editor-light.png").default
-              }
-              darkSrc={
-                require("@site/static/media/mobile-editor-dark.png").default
-              }
+              src="mobile-editor"
               alt="Snippets mobile editor"
             />
           </IPhoneX>

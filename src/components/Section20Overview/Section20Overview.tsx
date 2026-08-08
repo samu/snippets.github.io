@@ -132,8 +132,7 @@ export function Section20Overview() {
         <IllustrationFrame position="centered">
           <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
             <ThemeImage
-              lightSrc={require("@site/static/media/friday-light.png").default}
-              darkSrc={require("@site/static/media/friday-dark.png").default}
+              src="friday"
               alt="Snippets rich text example"
             />
           </ImageWrapper>
@@ -166,12 +165,7 @@ export function Section20Overview() {
         <IllustrationFrame position="centered">
           <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
             <ThemeImage
-              lightSrc={
-                require("@site/static/media/collections-light.png").default
-              }
-              darkSrc={
-                require("@site/static/media/collections-dark.png").default
-              }
+              src="collections"
               alt="Snippets dashboards"
             />
           </ImageWrapper>
@@ -201,10 +195,7 @@ export function Section20Overview() {
         <IllustrationFrame position="centered">
           <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
             <ThemeImage
-              lightSrc={
-                require("@site/static/media/dashboard-light.png").default
-              }
-              darkSrc={require("@site/static/media/dashboard-dark.png").default}
+              src="dashboard"
               alt="Snippets dashboards"
             />
           </ImageWrapper>

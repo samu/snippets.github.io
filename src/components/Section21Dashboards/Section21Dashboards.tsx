@@ -25,11 +25,7 @@ export function Section21Dashboards() {
       </p>
 
       <ImageWrapper className={styles.imageWrapper} boxShadow={true}>
-        <ThemeImage
-          lightSrc={require("@site/static/media/tasks-light.png").default}
-          darkSrc={require("@site/static/media/tasks-dark.png").default}
-          alt="Snippets Tasks"
-        />
+        <ThemeImage src="tasks" alt="Snippets Tasks" />
       </ImageWrapper>
 
       <h2 className={styles.quickAddHeading}>
@@ -44,11 +40,7 @@ export function Section21Dashboards() {
       </p>
 
       <ImageWrapper className={styles.quickAddImageWrapper} boxShadow={true}>
-        <ThemeImage
-          lightSrc={require("@site/static/media/quick-add-light.png").default}
-          darkSrc={require("@site/static/media/quick-add-dark.png").default}
-          alt="Snippets Tasks"
-        />
+        <ThemeImage src="quick-add" alt="Snippets Tasks" />
       </ImageWrapper>
     </Section>
   );
