@@ -31,6 +31,7 @@ export function ThemeImage({
         src={lightSrc}
         alt={alt}
       />
+
       <img
         className={[
           styles.dark,
