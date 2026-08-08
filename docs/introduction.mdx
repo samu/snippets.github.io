@@ -1,3 +1,6 @@
+import Figure from "@site/src/components/Figure/Figure";
+import Row from "@site/src/components/Row/Row";
+
 # Introduction
 
 Note-taking is a meaningful process.
@@ -5,31 +8,45 @@ Note-taking is a meaningful process.
 We take notes for all kinds of reasons: to remember something, work through an
 idea, plan the day, or make sense of what we’ve learned.
 
-We use notes everywhere: in our work, our studies, our personal projects, and
-all the small things we don’t want to forget. Some notes are useful only for a
-brief moment, others stick around for years.
+We use notes in different places: in our work, our studies, our personal
+projects and private lives. Some notes are useful only for a while, others stay
+for years, perhaps a lifetime.
 
-Note-taking therefore is a fundamental part of our lives, and a good note-taking
-app should support it without getting in the way. And that’s why we built
-Snippets.
+Note-taking is therefore a fundamental part of our lives, and the pursuit of
+good software to support the process seems never-ending. And that’s where the
+Snippets Note Taking App enters the picture.
 
 Snippets was built with deep care and attention to detail. It was designed from
-the ground up to be flexible, lightweight, and useful. It adapts to different
-people and different ways of thinking. More than just a place to write things
-down, it is meant to become a long-term companion - a productivity space that
-supports you throughout your life.
+the ground up to be lightweight, flexible and simply useful. It adapts to
+different people and different ways of taking notes. More than just a place to
+write things down, it is meant to become a long-term companion - a note taking
+app that grows with you.
+
+<Figure caption="The Snippets App, showing a navigation rail, a folder navigator, a snippet list, a rich text editor and a context view.">
+  <img src="/media/docs/introduction/full-app-wide-light.png" />
+</Figure>
 
 ## Note-taking that grows with you
 
-Snippets keeps things simple. Its interface is completely decluttered: when you
-open the app for the first time, you're presented with a blank slate. No
-assumptions are made about how you should take your notes.
+<Row>
+  <div style={{flex: 0.9, paddingRight: "1rem"}}>
 
-From there, it's entirely up to you. If you only want to write a handful of
-notes, feel free — you don't even need to use folders. If you want more
-structure, you can gradually introduce different ways of organizing your
-content. And if you choose to go all in, Snippets is ready for that too, with a
-rich set of features for power users.
+    Snippets is all about simplicity. Its interface is completely decluttered: when you
+    open the app for the first time, you're presented with a blank slate. No
+    assumptions are made about how you should take and organize your notes.
+
+    From there, it's entirely up to you. If you only want to write a handful of
+    notes, feel free — you don't even need to use folders. If you want more
+    structure, you can gradually introduce different ways of organizing your
+    content. And if you choose to go all in, Snippets is ready for that too, with a
+    rich set of features for power users.
+
+  </div>
+
+  <Figure caption="A handful of notes is where the journey starts.">
+    <img style={{width: "25rem"}} src="/media/docs/introduction/minimal-app-light.png" />
+  </Figure>
+</Row>
 
 ## A productivity app that does it all
 
@@ -39,17 +56,17 @@ makes perfect sense — it keeps the product simple and easy to position.
 
 But for users, it often creates a frustrating reality.
 
-Essential features don't materialize because the app's core concepts were not
-designed to support them. Workflows become fragmented across multiple tools.
-Data gets scattered. And in the end, people find themselves paying several
-subscriptions just to cover relatively simple, everyday needs.
+Essential features don't materialize because the app's core concepts lack
+flexibility. Workflows become fragmented across multiple tools. Data gets
+scattered. And in the end, people find themselves paying several subscriptions
+just to cover relatively simple, everyday needs.
 
 Snippets takes a different approach.
 
 Instead of solving one small problem, it is designed from the ground up to
 support a wide range of productivity use cases within a single, coherent system.
-Its flexible architecture allows it to grow with the user, rather than forcing
-users to adapt to rigid limitations.
+Its universal architecture allows it to grow with the user, rather than forcing
+them to adapt to rigid limitations.
 
 ## 3 Core concepts
 
@@ -75,9 +92,45 @@ represented through a UI can be a snippet.
 Under the hood, a sophisticated plugin system ties the different snippet types
 together and turns that into a cohesive note taking user experience.
 
+<Row>
+  <div style={{ paddingRight: "1rem", width: "66%" }}>
+    ```json
+    {
+      "body": {
+        "document": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "heading",
+              "attrs": { "level": 1 },
+              "content": [{ 
+                "type": "text", "text": "Some Title" 
+              }]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {},
+              "content": [{ 
+                "type": "text", "text": "Some content." 
+              }]
+            }
+          ]
+        }
+      },
+      "pluginName": "richtext",
+    }
+    ```
+    <figcaption class="caption">The JSON representation of a rich text snippet.</figcaption>
+  </div>
+
+  <Figure caption="The graphical representation of a rich text snippet.">
+    <img src="/media/docs/introduction/rich-text-snippet-light.png" />
+  </Figure>
+</Row>
+
 ### References
 
-Snippets can reference other snippets. As mentioned before, the folder snippet
+A snippet can reference other snippets. As mentioned before, the folder snippet
 references other snippets by keeping a list of references in its data structure.
 Dashboards do the same thing, although the datastructure is not a plain list but
 a recursive tree-like hierarchy.
@@ -92,7 +145,33 @@ Even rich text snippets can reference other snippets. This works much like a
 wiki: you start in one rich text snippet and jump to another through a
 reference.
 
-### Attributes
+Here's an example of how a folder snippet is represented:
+
+```json
+{
+  "body": {
+    "iconName": "package",
+    "path": ["Private", "Notes"],
+    "views": [{ "type": "folder" }],
+
+    "snippetReferences": [
+      "a886215c-c022-4ba9-b746-40ad0f084985",
+      "099a2b9e-faf7-4b29-b697-aae38735b248",
+      "e83bb143-a678-4dc6-a05a-a5ea3a3587f3",
+      ...
+    ]
+  },
+  "pluginName": "static-collection"
+}
+```
+
+<figcaption class="caption">
+  The JSON representation of a static collection, using a folder view and
+  referencing other snippets. It will be shown in the navigation view under 
+  _Private > Notes_, using the 'package' icon.
+</figcaption>
+
+### Attributes and Attribute Schemas
 
 Attributes are structured pieces of information attached to snippets. They can
 be thought of as a hybrid between tags and properties.
@@ -103,14 +182,29 @@ For example, to represent a date you would use a date attribute schema. To
 represent a fixed set of values—such as a priority from P1 to P4—you would use a
 string-values attribute. Schemas can also optionally define a color and an icon.
 
+<Figure caption="The attribute schema for a priority attribute.">
+  <img src="/media/docs/introduction/attribute-schemas-light.png" />
+</Figure>
+
+<br />
+
 Once an attribute schema is created, it becomes available throughout the app.
 For example, attributes can be used as columns in tables, or embedded directly
 in rich text notes—similar to using a #hashtag in traditional note-taking apps.
 
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <Figure
+    caption="A table showing multiple rich text snippets with custom columns"
+    maxWidth="20em"
+  >
+    <img src="/media/docs/introduction/attributes-light.png" />
+  </Figure>
+</div>
+
 ## Made to fit your workflow
 
-Thanks to its modular design, Snippets already supports a wide range of
-productivity use cases.
+Thanks to its modular design, Snippets supports a wide range of productivity use
+cases.
 
 ### Simple note-taking
 
@@ -151,7 +245,7 @@ Reflect on your life, track progress and build streaks.
 
 ### Flashcards
 
-Bring your digital flashcard deck to everywhere you go.
+Bring your digital flashcard deck everywhere you go.
 
 ### There is more to come
 

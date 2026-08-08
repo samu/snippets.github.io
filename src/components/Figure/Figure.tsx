@@ -7,6 +7,7 @@ type Props = {
   alt?: string;
   caption?: React.ReactNode;
   width?: string;
+  maxWidth?: string;
   className?: string;
   children: ReactNode;
   padding?: string;
@@ -20,6 +21,7 @@ export default function Figure(props: Props) {
       className={clsx(styles.figure, props.className)}
       style={{
         width: props.width,
+        maxWidth: props.maxWidth,
         marginBottom: props.marginBottom,
         flex: props.flex,
       }}
@@ -29,7 +31,7 @@ export default function Figure(props: Props) {
       </div>
 
       {props.caption && (
-        <figcaption className={styles.caption}>{props.caption}</figcaption>
+        <figcaption className="caption">{props.caption}</figcaption>
       )}
     </figure>
   );
