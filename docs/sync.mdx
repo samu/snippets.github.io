@@ -33,16 +33,17 @@ for desktop and mobile devices.
 
 {/* TODO github has e2ee too */}
 
-### Snippets Cloud _(coming soon)_
+### Snippets Cloud _(beta)_
 
 Snippets Cloud is the official hosted sync solution. You can use our cloud
-service for free with certain limits. Upgrade to a Pro plan for unlimited use.
+service for free with certain limits. Upgrade to a subscription for unlimited
+use.
 
 ## Workspaces
 
 Snippets allows to separate data into workspaces. Every workspace has its own
-target. This gives you a lot of flexibility in how to organize your work. For
-example, you can choose to store a temporary throw-away project on your disk
+sync target. This gives you a lot of flexibility in how to organize your work.
+For example, you can choose to store a temporary throw-away project on your disk
 with folder sync, create an unencrypted cloud workspace to share some notes with
 friends, create an E2E-encrypted workspace for your journaling, and a
 GitHub-synced workspace for work.
@@ -50,18 +51,18 @@ GitHub-synced workspace for work.
 ## End-to-end encryption
 
 For every workspace you create, you can choose to enable end-to-end encryption
-(E2EE). This feature is available with a paid subscription.
+(E2EE). This is a paid feature.
 
 With E2EE enabled, your notes are encrypted on your device before they are
-uploaded to the sync server. The server only stores encrypted data and cannot
+uploaded to the sync target. The target only stores encrypted data and cannot
 read or understand your notes. Only your devices, which have the encryption key,
 can decrypt and display the content.
 
-This is different from many apps that only encrypt data during transfer (for
-example with HTTPS) but decrypt it again on their servers. In those systems, the
-service provider technically has the ability to access the data stored on their
-servers. With end-to-end encryption, the provider never receives the decryption
-keys, meaning your data remains private even from the service itself.
+This is different from many apps that only encrypt data during transfer (using
+HTTPS) but decrypt it again on their servers. In those systems, the service
+provider technically has the ability to access the data stored on their servers.
+With end-to-end encryption, the provider never receives the decryption keys,
+meaning your data remains 100% private.
 
 ## Local Cache
 
