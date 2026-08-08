@@ -10,7 +10,9 @@ type Props = {
 export function IPhoneX(props: Props) {
   return (
     <div
-      className={[styles.shadowContainer, props.className].filter(Boolean).join(" ")}
+      className={[styles.shadowContainer, props.className]
+        .filter(Boolean)
+        .join(" ")}
       style={props.style}
     >
       <div className={styles.outer}>
