@@ -150,10 +150,26 @@ Fields are either based on attribute schemas we define or on built-in fields
 provided by the app, such as title and description. These built-in fields are
 stored directly on the snippet itself rather than as attributes.
 
-<Figure
-  src="/media/docs/collections/fields.png"
-  caption="A table with title, description and priority field"
-/>
+The 'Open Tasks' list we saw before is made up of the following fields:
+
+<Row>
+  <div style={{flex: 1.6}}>
+
+    * **Done**: Shows a checkbox that controls the completion state of the task attribute
+    * **Title**: The first line in a rich text document. In the list view, it represents the task title.
+    * **Description**: The rest of the rich text document. In the list view, it represents the task description.
+    * **Priority**: An attribute representing the priority levels P1-P4.
+    * **Due Date**: An attribute representing a due date.
+    * **Size**: An attribute representing the size (Small, Medium, Large).
+
+  </div>
+
+  <Figure
+    src="/media/docs/collections/fields-1"
+    caption="The field configuration of the 'Open Tasks' dynamic collection from before."
+    scaleABit={true}
+  />
+</Row>
 
 ## Views
 
