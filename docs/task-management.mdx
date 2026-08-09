@@ -1,17 +1,17 @@
-# Task Management
+import Figure from "@site/src/components/Figure/Figure";
 
-{/* TODO note that this is not yet available */}
+# Task Management
 
 Task management in Snippets is built on top of the core building blocks:
 
 - A task is simply a rich-text snippet with a title and a description.
-- The completion state of a task is represented by a dedicated task attribute
-  attached to the snippet.
+- The completion state of a task is represented by a task attribute attached to
+  the snippet.
 - Task lists are dynamic collections with a filter that selects snippets based
   on their task attributes. Filter configurations can be refined further to
   include additional criteria such as due dates, start dates, priorities, and
   more.
-- A task can have any attributes you choose. For example, you can add a priority
+- A task can have any attribute you choose. For example, you can add a priority
   using a string-values schema, or define an estimated size such as small,
   medium, or large. This is where the flexibility of Snippets truly shines: you
   can tailor your task management workflow exactly to your needs.
@@ -19,28 +19,6 @@ Task management in Snippets is built on top of the core building blocks:
 ## Getting started
 
 ### Creating a task list
-
-Task lists live on dashboards. To create a task list, we first have to create a
-dashboard. Once created, click the small plus icon on the dashboard, which will
-show an item called “Create Task List”.
-
-You will be asked to initialize Task Management. Behind the scenes, Snippets
-will create a task attribute schema. If you want, you can inspect it by visiting
-the Attribute Schema section in App Settings.
-
-After initializing, you can initialize further attribute schemas to represent
-Due Dates and Priorities. You can tweak them (e.g. set custom colors and icons)
-in app settings.
-
-We are now ready to create a task list. There are four options:
-
-- All Open — creates a dynamic collection filtering for tasks that are currently
-  open.
-- Due Today — creates a dynamic collection filtering for open tasks with a due
-  date set to today, as well as tasks that have no due date.
-- Due After Today — creates a dynamic collection filtering for all open tasks
-  with a due date later than today.
-- Done — creates a dynamic collection filtering for all completed tasks.
 
 ### Setting up a preferred layout
 
