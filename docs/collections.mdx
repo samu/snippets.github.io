@@ -147,17 +147,16 @@ table, these fields correspond to columns. In task management, fields represent
 the properties a task can have, such as priority or due date.
 
 Fields are either based on attribute schemas we define or on built-in fields
-provided by the app, such as title and description. These built-in fields are
-stored directly on the snippet itself rather than as attributes.
+provided by the app, such as title and description.
 
 The 'Open Tasks' list we saw before is made up of the following fields:
 
 <Row>
   <div style={{flex: 1.6}}>
 
-    * **Done**: Shows a checkbox that controls the completion state of the task attribute
+    * **Done**: Shows a checkbox that controls the completion state of the task attribute that is attached to an invidual snippet.
     * **Title**: The first line in a rich text document. In the list view, it represents the task title.
-    * **Description**: The rest of the rich text document. In the list view, it represents the task description.
+    * **Description**: The rest of the body of the rich text snippet. In a list view, it represents the task description.
     * **Priority**: An attribute representing the priority levels P1-P4.
     * **Due Date**: An attribute representing a due date.
     * **Size**: An attribute representing the size (Small, Medium, Large).
@@ -171,52 +170,74 @@ The 'Open Tasks' list we saw before is made up of the following fields:
   />
 </Row>
 
+<br />
+
+Every field has additional configuration options. For a start, we can choose by
+which fields we want to sort. Attribute fields also have special display modes:
+For example, we can choose under which circumstances the title, the value or
+both shall be displayed when the attribute is present on a snippet. We can also
+choose the location (left, bottom, right) it shall be displayed when rendered in
+a list.
+
 ## Views
 
 The underlying datastructure of a collection never changes, but we can choose
 how it shall be displayed through views.
 
-### Table
+<Row>
+  <div style={{flex: 1}}>
+    ### Table
 
-Displays the referenced snippets in a table view. Each field appears as a
-column. You can sort by columns, search within the table, and select multiple
-items at once
+    Displays the referenced snippets in a table view. Each field appears as a
+    column. You can sort by columns, search within the table, and select multiple
+    items at once
 
-<Figure
-  src="/media/docs/collections/table.png"
-  caption="A collection, shown as a table, with four fields: Done, Title, Description, Priority"
-/>
+  </div>
 
-### List
+  <Figure
+    src="/media/docs/collections/table"
+    caption="A collection, displayed as a table."
+    scaleABit={true}
+  />
+</Row>
 
-Displays the referenced snippets as a list. Each entry appears as a separate
-card, showing the selected fields. Lists are especially useful for task
-management scenarios.
+<br />
 
-<Figure
-  src="/media/docs/collections/list.png"
-  caption="The same collection, shown as a list"
-/>
+<Row>
+  <div style={{flex: 1}}>
+    ### List
+    
+    Displays the referenced snippets as a list. Each entry appears as a separate
+    card, showing the selected fields. Lists are especially useful for task
+    management scenarios.
+  </div>
 
-### Grid (coming soon)
+  <Figure
+    src="/media/docs/collections/list"
+    caption="A collection, displayed as a list."
+    scaleABit={true}
+  />
+</Row>
 
-Displays the referenced snippets in a grid layout. It uses the same card concept
-as the list view, but arranges the cards in multiple columns.
+<br />
 
-<Figure
-  src="/media/docs/collections/grid.png"
-  caption="The same collection, shown as a grid"
-/>
+<Row>
+  <div style={{flex: 1}}>
+    ### Timeline
+    
+    Displays the referenced snippets as a chronological timeline. This makes it easy
+    to use a collection as a journal or activity log.
 
-### Timeline
+    A time range picker lets you focus on specific periods, such as daily, weekly,
+    monthly, yearly, or all entries.
 
-Displays the referenced snippets as a chronological timeline. This makes it easy
-to use a collection as a journal or activity log.
+  </div>
 
-A time range picker lets you focus on specific periods, such as daily, weekly,
-monthly, yearly, or all entries.
+  <Figure
+    src="/media/docs/collections/timeline"
+    caption="A collection, displayed as a timeline."
+    scaleABit={true}
+  />
+</Row>
 
-<Figure
-  src="/media/docs/collections/timeline.png"
-  caption="A collection shown as a timeline"
-/>
+<br />
