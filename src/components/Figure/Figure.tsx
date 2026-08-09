@@ -1,21 +1,31 @@
 import clsx from "clsx";
-import React, { ReactNode } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 import styles from "./styles.module.css";
 
 type Props = {
-  src: string;
+  src?: string;
   alt?: string;
   caption?: React.ReactNode;
   width?: string;
   maxWidth?: string;
   className?: string;
-  children: ReactNode;
+  // TODO needed?
+  children?: ReactNode;
+  imageStyle?: CSSProperties;
   padding?: string;
   marginBottom?: string;
   flex?: number;
+  variant?: "light" | "dark" | "theme";
 };
 
 export default function Figure(props: Props) {
+  // TODO clean up
+  const variant = props.variant ?? "theme";
+  const isThemedSrc = props.src ? !/\.[^/]+$/.test(props.src) : false;
+  const lightSrc = isThemedSrc ? `${props.src}/light.png` : props.src;
+  const darkSrc = isThemedSrc ? `${props.src}/dark.png` : props.src;
+  const imageSrc = variant === "dark" ? darkSrc : lightSrc;
+
   return (
     <figure
       className={clsx(styles.figure, props.className)}
@@ -27,7 +37,20 @@ export default function Figure(props: Props) {
       }}
     >
       <div style={{ padding: props.padding }} className={styles.childWrapper}>
-        {props.children}
+        {props.src ? (
+          <picture>
+            {variant === "theme" && isThemedSrc && (
+              <source srcSet={darkSrc} media="(prefers-color-scheme: dark)" />
+            )}
+            <img
+              src={imageSrc}
+              alt={props.alt ?? ""}
+              style={props.imageStyle}
+            />
+          </picture>
+        ) : (
+          props.children
+        )}
       </div>
 
       {props.caption && (
