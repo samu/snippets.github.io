@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import styles from "./styles.module.css";
 
 type Props = {
@@ -19,7 +20,7 @@ export function ThemeImage({
   const imageSrc = variant === "dark" ? darkSrc : lightSrc;
 
   return (
-    <picture className={[styles.wrapper, className].filter(Boolean).join(" ")}>
+    <picture className={clsx([styles.wrapper, className])}>
       {variant === "theme" && (
         <source srcSet={darkSrc} media="(prefers-color-scheme: dark)" />
       )}
