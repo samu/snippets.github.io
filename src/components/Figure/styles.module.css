@@ -17,3 +17,7 @@
   height: auto;
   display: block;
 }
+
+.scaleABit {
+  scale: 1.01;
+}

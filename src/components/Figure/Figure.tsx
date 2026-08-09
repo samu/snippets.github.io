@@ -16,6 +16,7 @@ type Props = {
   marginBottom?: string;
   flex?: number;
   variant?: "light" | "dark" | "theme";
+  scaleABit?: boolean;
 };
 
 export default function Figure(props: Props) {
@@ -46,6 +47,7 @@ export default function Figure(props: Props) {
               src={imageSrc}
               alt={props.alt ?? ""}
               style={props.imageStyle}
+              className={clsx(props.scaleABit && styles.scaleABit)}
             />
           </picture>
         ) : (

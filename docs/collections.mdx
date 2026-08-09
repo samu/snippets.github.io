@@ -1,15 +1,144 @@
 import Figure from "@site/src/components/Figure/Figure";
+import Row from "@site/src/components/Row/Row";
 
 # Collections
 
-Collections reference snippets and provide display modes that let you visualize
-the data in different ways.
+The sole purpose of collection snippets is to reference other snippets. The most
+obvious example is a folder which contains a bunch of files: in the Snippets
+App, a folder is represented with a static collection:
 
-## Static and Dynamic Collections
+```json
+{
+  "body": {
+    "iconName": "package",
+    "path": ["Private", "Notes"],
+    "views": [{ "type": "folder" }],
 
-There are two types of collections: static collections and dynamic collections.
-Static collections explicitly reference snippets, while dynamic collections
-reference snippets implicitly through a filter.
+    "snippetReferences": [
+      "a886215c-c022-4ba9-b746-40ad0f084985",
+      "e83bb143-a678-4dc6-a05a-a5ea3a3587f3",
+      ...
+    ]
+  },
+  "pluginName": "static-collection"
+}
+```
+
+<figcaption class="caption">
+  The JSON representation of a static collection, using a folder view and
+  referencing other snippets.
+</figcaption>
+
+The `path` property makes the app show the folder in the navigation sidebar
+under _Private > Notes_. The `snippetReferences` property represents the
+snippets that belong to this folder. The result is a 'Notes' folder as seen
+here:
+
+<Figure
+  src="/media/docs/collections/notes-folder"
+  caption="A 'Notes' folder containing a bunch of rich text snippets."
+/>
+
+<br />
+
+Besides static collections, which explicitly reference snippets, there are
+dynamic collections, which implicitly reference snippets through a filter. A
+filter can be freely configured to match for specific conditions. For example,
+it can be used to look for tasks that are not done and due after today:
+
+<Row>
+  <div style={{ paddingRight: "1rem", width: "60%" }}>
+    ```json
+    {
+      "body": {
+        "title": "Due After Today",
+        "filter": {
+          "type": "group",
+          "operator": "AND"
+          "items": [...],
+        },
+        "views": [ { "type": "list", ... } ]
+      },
+      "pluginName": "dynamic-collection"
+    }
+    ```
+    <figcaption class="caption">The JSON representation of a dynamic collection with a filter.</figcaption>
+  </div>
+
+  <Figure
+    src="/media/docs/collections/due-after-today-list"
+    caption="A 'Due After Today' list resolving to undone tasks with a due date in the future."
+  />
+</Row>
+
+<br />
+
+As you can see, there is no explicit listing of snippets - instead, what the
+list references will be dynamically determined based on the filter.
+
+## Static vs. Dynamic Collections
+
+At this point, a question might arise: when do we use what?
+
+<Row>
+  <div style={{flex: 2}}>
+
+    Static collections are very easy to use because there is no need to configure a
+    filter. Once created, you can simply add snippets inside them. Since they keep an
+    explicit list of snippets, it is possible to explicitly declare the order of
+    items. This, in turn, is useful if you want to have a table on a dashboard with
+    rows that are in a specific order.
+
+  </div>
+
+  <Figure
+    src="/media/docs/collections/misc-list"
+    caption="A small table on a dashboard containing snippets in a specific order."
+  />
+</Row>
+
+<br />
+
+Dynamic collections take an extra step to set up: we need to declare what to
+filter for. This usually means that we need to have a plan in our head of how
+our notes are structured and how we can extract the information we want. Most of
+the time we'll want to filter for the presence of specific attributes, so having
+set up attribute schemas and having created snippets which use them is a
+prerequisite.
+
+But the extra efforts are worth it, because more complex use cases such as task
+management become possible. For example, the following task dashboard is made up
+of three dynamic collections, each looking for specific traits such as tasks
+being open or done and having specific due dates:
+
+<Figure
+  src="/media/docs/collections/tasks-dashboard"
+  caption="A task dashboard made up of three dynamic collections."
+/>
+
+<br />
+
+Here's how the filters look for each of these collections:
+
+<Row>
+  <Figure
+    src="/media/docs/collections/tasks-filter-open-tasks"
+    caption="The filter of the 'Open Tasks' list."
+    scaleABit={true}
+  />
+
+<Figure
+  src="/media/docs/collections/tasks-filter-due-after-today"
+  caption="The filter of the 'Due After Today' list."
+  scaleABit={true}
+/>
+
+  <Figure
+    src="/media/docs/collections/tasks-filter-done"
+  caption="The filter of the 'Done' list."
+    scaleABit={true}
+  />
+</Row>
 
 ## Fields
 

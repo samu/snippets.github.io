@@ -34,6 +34,16 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "collections",
+          label: "📊 Collections",
+        },
+        {
+          type: "doc",
+          id: "task-management",
+          label: "✅ Task Management",
+        },
+        {
+          type: "doc",
           id: "organizing-your-notes",
           label: "🗂️ Organizing Your Notes",
         },
@@ -46,16 +56,6 @@ const sidebars: SidebarsConfig = {
           type: "doc",
           id: "attributes",
           label: "🏷️ Attributes",
-        },
-        {
-          type: "doc",
-          id: "collections",
-          label: "📊 Collections",
-        },
-        {
-          type: "doc",
-          id: "task-management",
-          label: "✅ Task Management",
         },
         {
           type: "doc",
