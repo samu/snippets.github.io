@@ -32,15 +32,6 @@
           "text": "GitHub sync with end-to-end encryption and unlimited branches",
           "planned": false
         }
-      ],
-      "plannedFeatures": [
-        { "text": "Sync with Apple Reminders (Mac only)", "planned": true },
-        { "text": "More visualizations", "planned": true },
-        { "text": "More customization options", "planned": true },
-        { "text": "More themes", "planned": true },
-        { "text": "Additional algorithms for flashcards", "planned": true },
-        { "text": "Image occlusion in flashcards", "planned": true },
-        { "text": "Bring your own AI", "planned": true }
       ]
     },
     {
@@ -55,6 +46,7 @@
           "text": "Unlimited cloud sync with end-to-end encryption",
           "planned": true
         },
+        { "text": "Sync with Apple Reminders (Mac only)", "planned": true },
         { "text": "API access", "planned": true },
         { "text": "Web clipper", "planned": true },
         { "text": "Mobile widgets", "planned": true },
