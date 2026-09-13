@@ -25,7 +25,7 @@
       "priceNote": "one time",
       "featured": true,
       "muted": false,
-      "badge": "Coming Soon",
+      "badge": null,
       "features": [
         { "text": "Access to full icon set", "planned": false },
         {
