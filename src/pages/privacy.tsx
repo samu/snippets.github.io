@@ -5,7 +5,7 @@ export default function Privacy() {
   return (
     <Layout
       title="Privacy Policy"
-      description="Learn how Snippets handles local notes, optional accounts, Snippets Cloud, payments, feedback submissions, and limited first-party website analytics."
+      description="Learn how Snippets handles local notes, optional accounts, Snippets Cloud, payments, feedback, website analytics, and Google Calendar access."
     >
       <main className={styles.page}>
         <div className={styles.container}>
@@ -15,13 +15,13 @@ export default function Privacy() {
             <p className={styles.subtitle}>
               This policy explains what data Snippets handles today, where it is
               stored, and how limited service data is used to operate optional
-              account, sync, payment, and support features.
+              account, sync, calendar, payment, and support features.
             </p>
           </header>
 
           <section className={styles.card}>
             <div className={styles.meta}>
-              <span>Effective Date: June 26, 2026</span>
+              <span>Effective Date: September 18, 2026</span>
               <span>Snippets</span>
             </div>
 
@@ -30,14 +30,14 @@ export default function Privacy() {
                 <h2>Overview</h2>
                 <p>
                   Snippets is designed around a local-first model. In normal
-                  use, notes and related content are stored on the user&apos;s own
-                  device unless the user chooses an optional sync method.
+                  use, notes and related content are stored on the user&apos;s
+                  own device unless the user chooses an optional sync method.
                 </p>
                 <p>
                   We aim to keep data collection limited to what is required to
                   operate the website, receive feedback, prevent abuse, and
                   support optional features chosen by the user, including
-                  accounts, Snippets Cloud, and paid licenses.
+                  accounts, Snippets Cloud, Google Calendar, and paid licenses.
                 </p>
               </section>
 
@@ -84,8 +84,8 @@ export default function Privacy() {
                 <p>
                   Snippets Cloud uses client-side end-to-end encryption for
                   encrypted content. In short: a vault key is derived from the
-                  user&apos;s passphrase with libsodium password hashing, each item
-                  uses a random data key, keys are wrapped with XChaCha20-
+                  user&apos;s passphrase with libsodium password hashing, each
+                  item uses a random data key, keys are wrapped with XChaCha20-
                   {"Poly1305"} AEAD, and payloads are encrypted with random
                   nonces.
                 </p>
@@ -125,9 +125,9 @@ export default function Privacy() {
                   The Snippets website uses limited first-party analytics to
                   understand basic website usage and interest in downloads. In
                   particular, the landing page may send events when it is
-                  visited, when a visitor scrolls substantially through it,
-                  when a download button is clicked, and when a browser
-                  referrer is available.
+                  visited, when a visitor scrolls substantially through it, when
+                  a download button is clicked, and when a browser referrer is
+                  available.
                 </p>
                 <p>
                   These analytics events are sent directly to a Snippets-owned
@@ -149,7 +149,37 @@ export default function Privacy() {
                   Amazon Web Services. Payment processing is provided by Lemon
                   Squeezy. Data is not sold and is not shared with third parties
                   except as needed to operate, secure, and support the service
-                  infrastructure and payment systems used by Snippets.
+                  infrastructure, integrations, and payment systems used by
+                  Snippets, subject to the Google user data limits above.
+                </p>
+              </section>
+
+              <section className={styles.section}>
+                <h2>Google Calendar</h2>
+                <p>
+                  Connecting Google Calendar is optional. Through Google&apos;s
+                  OAuth consent screen, you grant Snippets permission to read
+                  all calendar information available to your account, including
+                  shared calendars, and write calendar changes. This includes
+                  event details and attendee information, used only to display
+                  your calendars and make changes through the app.
+                </p>
+                <p>
+                  Calendar data and OAuth tokens are stored only on your device,
+                  not on Snippets servers or in Snippets Cloud. Changes are sent
+                  to Google and shared according to your calendar settings,
+                  subject to Google&apos;s{" "}
+                  <a href="https://policies.google.com/privacy">
+                    Privacy Policy
+                  </a>
+                  .
+                </p>
+                <p>
+                  Revoke access anytime in your{" "}
+                  <a href="https://myaccount.google.com/connections">
+                    Google Account connections
+                  </a>
+                  .
                 </p>
               </section>
 

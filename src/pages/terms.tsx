@@ -5,7 +5,7 @@ export default function Terms() {
   return (
     <Layout
       title="Terms of Service"
-      description="Read the basic terms governing use of the Snippets website, app, optional sync integrations, Pro licenses, and support channels."
+      description="Read the terms governing use of the Snippets website, app, optional sync services, Pro licenses, support channels, and Google Calendar integration."
     >
       <main className={styles.page}>
         <div className={styles.container}>
@@ -21,7 +21,7 @@ export default function Terms() {
 
           <section className={styles.card}>
             <div className={styles.meta}>
-              <span>Effective Date: June 26, 2026</span>
+              <span>Effective Date: September 18, 2026</span>
               <span>Snippets</span>
             </div>
 
@@ -59,9 +59,9 @@ export default function Terms() {
                 <h2>Optional Third-Party Services</h2>
                 <p>
                   Snippets may support optional integrations or sync methods
-                  involving third-party services, such as GitHub. Those services
-                  are governed by their own terms, privacy policies, and
-                  operational practices.
+                  involving third-party services, such as GitHub and Google
+                  Calendar. Those services are governed by their own terms,
+                  privacy policies, and operational practices.
                 </p>
               </section>
 
@@ -77,6 +77,26 @@ export default function Terms() {
                   Payments for Snippets Pro licenses are final and are not
                   eligible for reimbursement or refund, except where required by
                   applicable law.
+                </p>
+              </section>
+
+              <section className={styles.section}>
+                <h2>Google Calendar</h2>
+                <p>
+                  Connecting Google Calendar authorizes Snippets to read
+                  calendar data and make changes through the features you use,
+                  within the permissions you grant. Only connect calendars you
+                  are authorized to use; you are responsible for changes you
+                  initiate, including on shared calendars. You can revoke access
+                  in your{" "}
+                  <a href="https://myaccount.google.com/connections">
+                    Google Account connections
+                  </a>
+                  . Use is also subject to{" "}
+                  <a href="https://policies.google.com/terms">
+                    Google&apos;s terms
+                  </a>{" "}
+                  and our <a href="/privacy">Privacy Policy</a>.
                 </p>
               </section>
 
