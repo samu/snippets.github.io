@@ -33,26 +33,6 @@
           "planned": false
         }
       ]
-    },
-    {
-      "name": "Cloud",
-      "price": "$12",
-      "priceNote": "per year",
-      "featured": false,
-      "muted": true,
-      "badge": "Coming Soon",
-      "features": [
-        {
-          "text": "Unlimited cloud sync with end-to-end encryption",
-          "planned": true
-        },
-        { "text": "Sync with Apple Reminders (Mac only)", "planned": true },
-        { "text": "API access", "planned": true },
-        { "text": "Web clipper", "planned": true },
-        { "text": "Mobile widgets", "planned": true },
-        { "text": "Note sharing", "planned": true }
-      ],
-      "plannedFeatures": []
     }
   ]
 }
