@@ -21,7 +21,7 @@ export default function Privacy() {
 
           <section className={styles.card}>
             <div className={styles.meta}>
-              <span>Effective Date: September 18, 2026</span>
+              <span>Effective Date: October 12, 2026</span>
               <span>Snippets</span>
             </div>
 
@@ -150,7 +150,7 @@ export default function Privacy() {
                   Squeezy. Data is not sold and is not shared with third parties
                   except as needed to operate, secure, and support the service
                   infrastructure, integrations, and payment systems used by
-                  Snippets, subject to the Google user data limits above.
+                  Snippets, subject to the Google user data limits below.
                 </p>
               </section>
 
@@ -165,21 +165,50 @@ export default function Privacy() {
                   your calendars and make changes through the app.
                 </p>
                 <p>
-                  Calendar data and OAuth tokens are stored only on your device,
-                  not on Snippets servers or in Snippets Cloud. Changes are sent
-                  to Google and shared according to your calendar settings,
-                  subject to Google&apos;s{" "}
+                  After you authorize access through Google OAuth, Snippets
+                  stores the resulting OAuth credentials locally on your device.
+                  Calendar data is loaded into memory to provide the calendar
+                  features; it is not saved to persistent local storage or to
+                  any Snippets database. Neither OAuth credentials nor calendar
+                  data are stored on Snippets servers or in Snippets Cloud.
+                </p>
+                <p>
+                  Changes you make to your calendars are sent to Google and
+                  shared according to your calendar settings, subject to
+                  Google&apos;s{" "}
                   <a href="https://policies.google.com/privacy">
                     Privacy Policy
                   </a>
                   .
                 </p>
+              </section>
+
+              <section className={styles.section}>
+                <h2>Google User Data Retention and Deletion</h2>
                 <p>
-                  Revoke access anytime in your{" "}
+                  Google OAuth credentials are retained locally on your device
+                  until you disconnect Google Calendar in Snippets. To delete
+                  these credentials, click Disconnect for the Google Calendar
+                  connection in the app. This removes the locally stored
+                  credentials from your device.
+                </p>
+                <p>
+                  Google Calendar data is held temporarily in application memory
+                  while the app is running and is discarded when the app exits.
+                  Snippets does not retain a persistent copy of this data on your
+                  device or in its databases, servers, or cloud backups.
+                  Discarding this temporary data does not delete your calendars
+                  or events from Google Calendar.
+                </p>
+                <p>
+                  You can revoke Snippets&apos; access at any time through your{" "}
                   <a href="https://myaccount.google.com/connections">
                     Google Account connections
                   </a>
-                  .
+                  . Revoking access prevents Snippets from accessing your Google
+                  Calendar data again unless you authorize it again. Your
+                  calendars and events remain in your Google account, where you
+                  can manage or delete them directly through Google Calendar.
                 </p>
               </section>
 
