@@ -328,6 +328,12 @@ figcaption { text-align: center; font-size: 12px; margin-top: 23px; color: var(-
   to { --heading-state: visible; }
 }
 
+@property --intro-mix {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 100%;
+}
+
 /* A static 10 × 9 WebP atlas: scroll selects all 90 distinct opening poses
    in playback order (source frames 0089 → 0000). All timelines use absolute distances, so lazy-loaded images
    further down the page cannot alter the introduction's progress. */
@@ -335,8 +341,10 @@ figcaption { text-align: center; font-size: 12px; margin-top: 23px; color: var(-
   @media (prefers-reduced-motion: no-preference) {
     :root { --unfold-end: 85svh; --dock-start: var(--unfold-end); --dock-end: 145svh; --intro-end: var(--dock-end); }
     /* One canvas behind the intro and hero keeps their shared edge invisible. */
-    html {
+    html:root {
       scroll-padding-top: 100px;
+      /* Mix outside the keyframes so a theme change cannot cache the old colors. */
+      background: color-mix(in oklab, var(--paper), var(--white) var(--intro-mix));
       animation: intro-background linear both;
       animation-timeline: scroll(root block);
       animation-range: var(--dock-start) var(--intro-end);
@@ -463,8 +471,8 @@ figcaption { text-align: center; font-size: 12px; margin-top: 23px; color: var(-
   to { left: calc(var(--page-edge) + 20px); top: 36px; width: 60px; }
 }
 @keyframes intro-background {
-  from { background-color: var(--paper); }
-  to { background-color: var(--white); }
+  from { --intro-mix: 0%; }
+  to { --intro-mix: 100%; }
 }
 @keyframes intro-away { from { opacity: 1; visibility: visible; transform: translateY(0); } to { opacity: 0; visibility: hidden; transform: translateY(-16px); } }
 @keyframes cue-away { from { opacity: 1; visibility: visible; } to { opacity: 0; visibility: hidden; } }

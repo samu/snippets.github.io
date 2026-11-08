@@ -1,5 +1,45 @@
-/* Shared theme switch. Both variants are static HTML; no browser script is needed. */
+/* One document per URL. The checkbox reverses the device's color preference. */
+:root {
+  color-scheme: light;
+  --theme: light;
+  container-name: theme;
+  --white: light-dark(#ffffff, #1c1c1f);
+  --paper: light-dark(#f7f7f5, #18181b);
+  --panel: light-dark(#fafaf9, #252528);
+  --panel-strong: light-dark(#f0f0ee, #2c2c30);
+  --ink: light-dark(#535357, #c7c7cb);
+  --heading: light-dark(#202022, #f7f6f3);
+  --muted: light-dark(#707075, #a3a3aa);
+  --soft: light-dark(var(--muted), #97979f);
+  --border: light-dark(#e4e4e3, #37373d);
+  --surface-hover: light-dark(#efefed, #303035);
+  --accent: light-dark(#486d8c, #a6bdd6);
+  --accent-hover: light-dark(#325775, #c3d3e4);
+  --action-bg: light-dark(#363638, #eeedea);
+  --action-hover: light-dark(#202022, #ffffff);
+  --action-ink: light-dark(#ffffff, #242426);
+  --sage: light-dark(#34745d, #9ccfb9);
+  --lavender: light-dark(#7760a4, #bca9e4);
+  --sky: light-dark(#436e98, #9fbfdf);
+  --accent-paper: light-dark(color-mix(in oklch, var(--accent) 5%, var(--white)), #252d37);
+  --accent-border: light-dark(color-mix(in oklch, var(--accent) 25%, var(--white)), #465565);
+  --shadow: 0 18px 48px -28px oklch(.25 .0125 80 / .14), 0 1px 4px oklch(.25 .0125 80 / .025);
+  --showcase: light-dark(var(--surface-hover), #29292e);
+  --screenshot-edge: light-dark(#d4d4d2, #49494f);
+  --screenshot-shadow: 0 18px 32px -20px oklch(.25 .0125 80 / .28), 0 3px 8px -3px oklch(.25 .0125 80 / .10);
+  color: var(--ink);
+  background: var(--white);
+}
+@media screen {
+  :root:has(#theme-toggle:checked) { color-scheme: dark; --theme: dark; }
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; --theme: dark; }
+  :root:has(#theme-toggle:checked) { color-scheme: light; --theme: light; }
+}
+
 .theme-switch {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -10,83 +50,72 @@
   border-radius: 50%;
   color: var(--muted);
   background: transparent;
+  cursor: pointer;
   transition: color .2s, background .2s, border-color .2s;
 }
+.theme-switch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.theme-switch:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 4px; }
 .theme-switch:hover { color: var(--heading); background: var(--panel-strong); border-color: var(--screenshot-edge); }
-.theme-switch svg { width: 17px; height: 17px; }
-.nav-links > a.theme-switch, .header-links > a.theme-switch { display: inline-flex; }
+.theme-switch svg { width: 17px; height: 17px; pointer-events: none; }
+/* Only the active screenshot and icon participate in layout/accessibility. */
+.theme-dark { display: none !important; }
 
-/* Dark surfaces: neutral charcoal, soft whites, and blue navigation cues. */
-@media screen {
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --white: #1c1c1f;
-    --paper: #18181b;
-    --panel: #252528;
-    --panel-strong: #2c2c30;
-    --heading: #f7f6f3;
-    --ink: #c7c7cb;
-    --muted: #a3a3aa;
-    --soft: #97979f;
-    --border: #37373d;
-    --surface-hover: #303035;
-    --accent: #a6bdd6;
-    --accent-hover: #c3d3e4;
-    --accent-paper: #252d37;
-    --accent-border: #465565;
-    --action-bg: #eeedea;
-    --action-hover: #ffffff;
-    --action-ink: #242426;
-    --sage: #9ccfb9;
-    --lavender: #bca9e4;
-    --sky: #9fbfdf;
+/* Named style queries reach through the homepage's animation containers. */
+@container theme style(--theme: dark) {
+  .theme-light { display: none !important; }
+  .theme-dark { display: block !important; }
+  body {
     --shadow: 0 18px 48px -24px #0008, 0 1px 4px #0003;
-    --showcase: #29292e;
-    --screenshot-edge: #49494f;
     --screenshot-shadow: 0 18px 36px -18px #0009, 0 3px 10px -3px #0005;
-    color: var(--ink);
-    background: var(--white);
   }
-  [data-theme="dark"] ::selection { background: #34516b; color: #f3f4f0; }
-  [data-theme="dark"] :is(.site-header, .docs-header) {
+  :root ::selection { background: #34516b; color: #f3f4f0; }
+  :root :is(.site-header, .docs-header) {
     background: rgb(28 28 31 / .92);
     border-bottom-color: var(--border);
   }
-  [data-theme="dark"] :is(.skip-link, .desktop-window, .product-image) { background: var(--panel); }
-  [data-theme="dark"] .window-dots i { background: #656966; }
-  [data-theme="dark"] .phone { border-color: var(--screenshot-edge); }
-  [data-theme="dark"] .home-page .quick-add .product-image { box-shadow: var(--screenshot-shadow); }
-  [data-theme="dark"] .home-page .encryption-section {
+  :root :is(.skip-link, .desktop-window, .product-image) { background: var(--panel); }
+  :root .window-dots i { background: #656966; }
+  :root .phone { border-color: var(--screenshot-edge); }
+  :root .home-page .quick-add .product-image { box-shadow: var(--screenshot-shadow); }
+  :root .home-page .encryption-section {
     background: linear-gradient(120deg, var(--paper), var(--panel) 72%, #292d34);
     box-shadow: 0 24px 56px -36px #0008;
   }
-  [data-theme="dark"] .comparison-standard {
+  :root .comparison-standard {
     --comparison-tone: #ecaaa1;
     --comparison-accent: #a47469;
     --comparison-border: #64443f;
     --comparison-surface: #372725;
   }
-  [data-theme="dark"] .comparison-private {
+  :root .comparison-private {
     --comparison-tone: #9fd5b4;
     --comparison-accent: #719b81;
     --comparison-border: #3e5949;
     --comparison-surface: #20342b;
     box-shadow: 0 10px 24px -18px #0009;
   }
-  [data-theme="dark"] .comparison-readable i { background: #79544b; }
-  [data-theme="dark"] .comparison-track::before { border-top-color: #687172; }
-  [data-theme="dark"] .plan { background: var(--panel); box-shadow: 0 12px 36px -22px #0007; }
-  [data-theme="dark"] .plan-pro { background: linear-gradient(145deg, #292d34, var(--panel) 70%); border-color: #50545e; }
-  [data-theme="dark"] .plan-pro .plan-tag { color: var(--accent); }
-  [data-theme="dark"] .docs-page .sidebar { scrollbar-color: #4b5051 transparent; }
-  [data-theme="dark"] .docs-page .doc-figure img { background: var(--panel); }
-  [data-theme="dark"] .breadcrumb > span:nth-child(2) { color: var(--muted); }
+  :root .comparison-readable i { background: #79544b; }
+  :root .comparison-track::before { border-top-color: #687172; }
+  :root .plan { background: var(--panel); box-shadow: 0 12px 36px -22px #0007; }
+  :root .plan-pro { background: linear-gradient(145deg, #292d34, var(--panel) 70%); border-color: #50545e; }
+  :root .plan-pro .plan-tag { color: var(--accent); }
+  :root .docs-page .sidebar { scrollbar-color: #4b5051 transparent; }
+  :root .docs-page .doc-figure img { background: var(--panel); }
+  :root .breadcrumb > span:nth-child(2) { color: var(--muted); }
   /* Generated syntax highlighting has inline light colors; retain token distinctions. */
-  [data-theme="dark"] .prose code :is(.token-line, .token.plain, .token.punctuation, .token.operator) { color: var(--ink) !important; }
-  [data-theme="dark"] .prose code :is(.token.property, .token.attr-name) { color: #a9c8e6 !important; }
-  [data-theme="dark"] .prose code :is(.token.string, .token.attr-value) { color: #bad1b1 !important; }
-  [data-theme="dark"] .prose code :is(.token.number, .token.boolean, .token.keyword) { color: #d4b9dc !important; }
-  [data-theme="dark"] .prose code .token.comment { color: var(--muted) !important; }
+  :root .prose code :is(.token-line, .token.plain, .token.punctuation, .token.operator) { color: var(--ink) !important; }
+  :root .prose code :is(.token.property, .token.attr-name) { color: #a9c8e6 !important; }
+  :root .prose code :is(.token.string, .token.attr-value) { color: #bad1b1 !important; }
+  :root .prose code :is(.token.number, .token.boolean, .token.keyword) { color: #d4b9dc !important; }
+  :root .prose code .token.comment { color: var(--muted) !important; }
 }
 @media (max-width: 760px) {
   .theme-switch { width: 34px; height: 34px; }

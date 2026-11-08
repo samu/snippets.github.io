@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { parse } from 'parse5';
-import { output, content } from './paths.mjs';
+import { output, content, repo } from './paths.mjs';
 
 function files(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -47,14 +47,21 @@ for (const file of built.filter(f => f.endsWith('.css'))) {
   for (const [, url] of css.matchAll(/url\(["']?([^"')]+)["']?\)/g)) checkURL(url, file);
 }
 const slugs = fs.readdirSync(path.join(content, 'docs')).filter(f => f.endsWith('.mdx')).map(f => f.slice(0, -4));
-for (const theme of ['', 'dark/']) {
-  for (const route of ['', 'docs/', 'pricing/', 'privacy/', 'terms/', ...slugs.map(slug => `docs/${slug}/`)]) {
-    const file = path.join(output, theme, route, 'index.html');
-    assert(documents.has(file), 'Missing page: ' + file);
-    assert.equal(documents.get(file).nodes.filter(node => node.attrs.some(a => a.name === 'class' && a.value === 'theme-switch')).length, 1, 'Missing or repeated theme switch: ' + file);
-  }
+const attr = (node, name) => node.attrs.find(a => a.name === name)?.value;
+for (const route of ['', 'docs/', 'pricing/', 'privacy/', 'terms/', ...slugs.map(slug => `docs/${slug}/`)]) {
+  const file = path.join(output, route, 'index.html');
+  assert(documents.has(file), 'Missing page: ' + file);
+  const { nodes } = documents.get(file);
+  const toggles = nodes.filter(node => attr(node, 'id') === 'theme-toggle');
+  assert.equal(toggles.length, 1, 'Missing or repeated theme checkbox: ' + file);
+  assert(toggles[0].tagName === 'input' && attr(toggles[0], 'type') === 'checkbox' && attr(toggles[0], 'aria-label'), 'Theme toggle must be an accessible native checkbox: ' + file);
+  assert(nodes.some(node => node.tagName === 'link' && /\/themes\.css(?:\?|$)/.test(attr(node, 'href'))), 'Missing shared theme CSS: ' + file);
+  const legacy = documents.get(path.join(output, 'dark', route, 'index.html'));
+  assert(legacy?.nodes.some(node => node.tagName === 'meta' && attr(node, 'http-equiv') === 'refresh' && attr(node, 'content') === '0; url=/' + route), 'Missing legacy theme redirect: ' + route);
+  assert(!legacy.nodes.some(node => node.tagName === 'main'), 'Duplicate dark content: ' + route);
 }
-for (const name of ['CNAME', '.nojekyll', '404.html', 'robots.txt', 'sitemap.xml']) assert(fs.existsSync(path.join(output, name)), 'Missing ' + name);
+for (const name of ['CNAME', '.nojekyll', '404.html', 'robots.txt', 'sitemap.xml', 'pricing.json']) assert(fs.existsSync(path.join(output, name)), 'Missing ' + name);
+assert.deepEqual(fs.readFileSync(path.join(output, 'pricing.json')), fs.readFileSync(path.join(repo, 'public/pricing.json')), 'The public /pricing.json must be copied unchanged');
 assert(!built.some(f => /\.(?:m?js|tsx?|mdx|py)$/.test(f)), 'Build tools or source code leaked into dist');
 assert.equal(failures.length, 0, failures.join('\n'));
 console.log(`Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, no browser JavaScript.`);

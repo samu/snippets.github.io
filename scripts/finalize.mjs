@@ -13,7 +13,7 @@ function pages(directory) {
 const routes = [];
 for (const file of pages(output)) {
   const route = path.relative(output, file).split(path.sep).join('/').replace(/index\.html$/, '');
-  const canonical = domain + '/' + route.replace(/^dark\//, '');
+  const canonical = domain + '/' + route;
   let html = fs.readFileSync(file, 'utf8');
   html = html.replace('</head>', `<link rel="canonical" href="${canonical}"></head>`);
   html = html.replace(/href="([^"?]+\.css)(?:\?[^"\s]*)?"/g, (_, href) => {
@@ -22,14 +22,16 @@ for (const file of pages(output)) {
     return `href="${href}?v=${hash}"`;
   });
   fs.writeFileSync(file, html);
-  if (!route.startsWith('dark/')) routes.push(domain + '/' + route);
+  routes.push(route);
 }
-// Preserve the old showcase bookmark without retaining a second homepage.
-for (const theme of ['', 'dark/']) {
-  const target = '/' + theme + '#features';
-  const directory = path.join(output, theme, 'showcase');
+// Old theme URLs remain tiny redirects, never duplicate content pages.
+function redirect(route, target) {
+  const directory = path.join(output, route);
   fs.mkdirSync(directory, { recursive: true });
-  fs.writeFileSync(path.join(directory, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Snippets features</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${domain}/#features"></head><body><p><a href="${target}">Explore Snippets</a></p></body></html>`);
+  fs.writeFileSync(path.join(directory, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Snippets · Page moved</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${domain}${target}"></head><body><p><a href="${target}">Continue to Snippets</a></p></body></html>`);
 }
-fs.writeFileSync(path.join(output, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + routes.map(url => `  <url><loc>${url}</loc></url>`).join('\n') + '\n</urlset>\n');
+for (const route of routes) redirect('dark/' + route, '/' + route);
+redirect('showcase/', '/#features');
+redirect('dark/showcase/', '/#features');
+fs.writeFileSync(path.join(output, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + routes.map(route => `  <url><loc>${domain}/${route}</loc></url>`).join('\n') + '\n</urlset>\n');
 fs.writeFileSync(path.join(output, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${domain}/sitemap.xml\n`);

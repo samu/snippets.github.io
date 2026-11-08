@@ -5,7 +5,7 @@ import { repo } from './paths.mjs';
 
 const build = path.join(repo, 'scripts/build.mjs');
 execFileSync(process.execPath, [build], { stdio: 'inherit' });
-const server = spawn('python3', [path.join(repo, 'scripts/serve.py'), ...process.argv.slice(2)], { stdio: 'inherit' });
+const server = spawn(process.execPath, [path.join(repo, 'scripts/serve.mjs'), ...process.argv.slice(2)], { stdio: 'inherit' });
 let timer, running = false, pending = false;
 function rebuild() {
   if (running) { pending = true; return; }

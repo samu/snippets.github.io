@@ -4,8 +4,6 @@
 /.site-build/
 /.dist-previous/
 .DS_Store
-__pycache__/
-*.pyc
 .env*
 !.env.example
 *-debug.log*

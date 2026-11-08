@@ -67,9 +67,10 @@ function shell({page, body, toc = [], minutes, overview = false}) {
   const pageIndex = pages.findIndex(p => p.slug === page?.slug);
   const adjacent = (p, direction) => p ? `<a class="page-turn ${direction}" href="../${p.slug}/"><span>${direction === 'previous' ? 'Previous' : 'Next'}</span><strong>${escape(p.title)} ${arrow}</strong></a>` : '<span></span>';
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="${escape(description)}"><title>${escape(title)} · Snippets Docs</title><link rel="icon" href="${home}assets/note/note-open.webp" type="image/webp"><link rel="preload" href="${home}assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="${home}styles/docs.css"><link rel="stylesheet" href="${home}styles/brand.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="${escape(description)}"><title>${escape(title)} · Snippets Docs</title><link rel="icon" href="${home}assets/note/note-open.webp" type="image/webp"><link rel="preload" href="${home}assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="${home}styles/docs.css"><link rel="stylesheet" href="${home}styles/brand.css"><link rel="stylesheet" href="${home}styles/themes.css"></head>
 <body id="top" class="docs-page"><a class="skip-link" href="#main">Skip to content</a>
-<header class="docs-header"><div class="header-inner"><div class="brand-group"><a class="wordmark" href="${home}" aria-label="Snippets home"><img src="${home}assets/note/note-open.webp" width="48" height="48" alt=""><span>Snippets</span></a><span class="brand-divider"></span><a class="docs-label" href="${base}">Docs</a></div><nav class="header-links" aria-label="Main navigation"><a class="website-link" href="${home}#features">Features</a><a class="website-link" href="${home}pricing/">Pricing</a><a class="get-app" href="${home}#download">Get Snippets ${arrow}</a></nav></div></header>
+<header class="docs-header"><div class="header-inner"><div class="brand-group"><a class="wordmark" href="${home}" aria-label="Snippets home"><img src="${home}assets/note/note-open.webp" width="48" height="48" alt=""><span>Snippets</span></a><span class="brand-divider"></span><a class="docs-label" href="${base}">Docs</a></div><nav class="header-links" aria-label="Main navigation"><a class="website-link" href="${home}#features">Features</a><a class="website-link" href="${home}pricing/">Pricing</a><a class="get-app" href="${home}#download">Get Snippets ${arrow}</a>
+<label class="theme-switch" title="Switch light/dark theme"><input id="theme-toggle" type="checkbox" aria-label="Switch color theme" autocomplete="off"><svg class="theme-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 13.2A8.6 8.6 0 0 1 10.8 3.5a8.6 8.6 0 1 0 9.7 9.7Z"/></svg><svg class="theme-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></label></nav></div></header>
 <details class="mobile-navigation"><summary>Browse documentation<span aria-hidden="true">＋</span></summary><nav aria-label="Documentation">${nav(page?.slug, base, overview)}</nav></details>
 <div class="docs-layout ${overview ? 'overview-layout' : ''}"><aside class="sidebar"><nav aria-label="Documentation">${nav(page?.slug, base, overview)}</nav><a class="sidebar-help" href="mailto:support@snippets.ch">A question? Get in touch ${arrow}</a></aside>
 <main id="main" tabindex="-1" class="${overview ? 'overview' : 'article-main'}">
@@ -91,11 +92,16 @@ function asset(src) {
 function Figure({src, caption, alt, children, maxWidth}) {
   if (!src) return h('figure', {className:'doc-figure'}, children, caption && h('figcaption', null, caption));
   const resolved = path.extname(src) ? src : `${src}/light.png`;
-  const url = asset(resolved);
-  const buffer = fs.readFileSync(path.join(media, 'docs', resolved.replace(/^\/assets\/docs\//, '')));
-  const width = buffer.readUInt32BE(16), height = buffer.readUInt32BE(20);
+  const dark = resolved.replace(/\/light\.png$/, '/dark.png');
+  const paired = dark !== resolved && fs.existsSync(path.join(media, 'docs', dark.replace(/^\/assets\/docs\//, '')));
   const label = alt || (caption && text(caption)) || path.basename(src, path.extname(src)).replace(/[-_]/g, ' ');
-  return h('figure', {className:'doc-figure', style:maxWidth ? {maxWidth} : undefined}, h('a', {className:'image-link', href:url, target:'_blank', rel:'noopener', 'aria-label':`Open image: ${label}`}, h('img', {src:url, alt:label, width, height, loading:'lazy', decoding:'async'})), caption && h('figcaption', null, caption));
+  const image = (source, theme) => {
+    const url = asset(source);
+    const buffer = fs.readFileSync(path.join(media, 'docs', source.replace(/^\/assets\/docs\//, '')));
+    const width = buffer.readUInt32BE(16), height = buffer.readUInt32BE(20);
+    return h('a', {className:`image-link${theme ? ` theme-${theme}` : ''}`, href:url, target:'_blank', rel:'noopener', 'aria-label':`Open image: ${label}`}, h('img', {src:url, alt:label, width, height, loading:'lazy', decoding:'async'}));
+  };
+  return h('figure', {className:'doc-figure', style:maxWidth ? {maxWidth} : undefined}, image(resolved, paired ? 'light' : null), paired && image(dark, 'dark'), caption && h('figcaption', null, caption));
 }
 function DocVideo({src}) {
   const url = asset(src);

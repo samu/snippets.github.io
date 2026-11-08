@@ -1,9 +1,10 @@
 // Generate static pricing from the same data as the original website.
 import fs from 'node:fs';
 import path from 'node:path';
-import { output as root, content } from './paths.mjs';
+import { output as root, repo } from './paths.mjs';
 
-const data = JSON.parse(fs.readFileSync(path.join(content, 'pricing.json'), 'utf8'));
+// This is also the public /pricing.json contract; keep one source for both uses.
+const data = JSON.parse(fs.readFileSync(path.join(repo, 'public/pricing.json'), 'utf8'));
 const free = data.plans.find(plan => plan.name === 'Free');
 const pro = data.plans.find(plan => plan.name === 'Pro');
 if (!free || !pro || data.plans.length !== 2) throw new Error('Review the pricing layout when the available plans change.');
@@ -38,16 +39,17 @@ const questions = [
 const html = `<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark">
   <title>Pricing · Snippets</title>
   <meta name="description" content="Start with Snippets for free forever. Add Pro for ${escape(pro.price)} with a one-time payment. Compare plans and find your fit.">
   <link rel="icon" href="../assets/note/note-open.webp" type="image/webp">
   <link rel="preload" href="../assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles/docs.css"><link rel="stylesheet" href="../styles/pricing.css"><link rel="stylesheet" href="../styles/brand.css">
-</head>
+<link rel="stylesheet" href="../styles/themes.css"></head>
 <body class="pricing-page" id="top">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="docs-header"><div class="header-inner"><a class="wordmark" href="../" aria-label="Snippets home"><img src="../assets/note/note-open.webp" width="48" height="48" alt=""><span>Snippets</span></a><nav class="header-links" aria-label="Main navigation"><a class="website-link" href="../#features">Features</a><a class="website-link current-page" href="./" aria-current="page">Pricing</a><a class="pricing-docs-link" href="../docs/">Docs</a><a class="get-app" href="../#download">Get Snippets ${arrow}</a></nav></div></header>
+  <header class="docs-header"><div class="header-inner"><a class="wordmark" href="../" aria-label="Snippets home"><img src="../assets/note/note-open.webp" width="48" height="48" alt=""><span>Snippets</span></a><nav class="header-links" aria-label="Main navigation"><a class="website-link" href="../#features">Features</a><a class="website-link current-page" href="./" aria-current="page">Pricing</a><a class="pricing-docs-link" href="../docs/">Docs</a><a class="get-app" href="../#download">Get Snippets ${arrow}</a>
+<label class="theme-switch" title="Switch light/dark theme"><input id="theme-toggle" type="checkbox" aria-label="Switch color theme" autocomplete="off"><svg class="theme-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 13.2A8.6 8.6 0 0 1 10.8 3.5a8.6 8.6 0 1 0 9.7 9.7Z"/></svg><svg class="theme-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></label></nav></div></header>
   <main id="main" tabindex="-1">
     <header class="pricing-hero pricing-shell"><div class="pricing-hero-copy"><p class="pricing-eyebrow">PRICING</p><h1>Start freely.<br><span class="ink-accent">Make it yours.</span></h1><p class="pricing-intro">Space for all your notes.<br> A little extra when you need it.</p></div></header>
     <section class="plans pricing-shell" aria-label="Choose your plan">${plans}</section>
@@ -63,4 +65,4 @@ const html = `<!doctype html>
 </body></html>`;
 fs.mkdirSync(path.join(root, 'pricing'), {recursive:true});
 fs.writeFileSync(path.join(root, 'pricing/index.html'), html.replace(/[\t ]+$/gm, ''));
-console.log('Built pricing with Free and Pro from content/pricing.json.');
+console.log('Built pricing with Free and Pro from public/pricing.json.');

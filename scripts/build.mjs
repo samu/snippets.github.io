@@ -16,7 +16,7 @@ try {
   if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version)) throw new Error('Invalid release version');
   const homepage = path.join(staging, 'index.html');
   fs.writeFileSync(homepage, fs.readFileSync(homepage, 'utf8').replaceAll('{{release.version}}', release.version));
-  for (const script of ['build-docs', 'build-pricing', 'build-legal', 'build-themes', 'finalize', 'check']) {
+  for (const script of ['build-docs', 'build-pricing', 'finalize', 'check']) {
     execFileSync(process.execPath, [path.join(repo, 'scripts', script + '.mjs')], { env, stdio: 'inherit' });
   }
   // Keep the last successful preview available while generating and checking.
