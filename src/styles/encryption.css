@@ -6,63 +6,295 @@
   scroll-margin-top: var(--reveal-text-distance, 0px);
   border: 1px solid var(--border);
   border-radius: 20px;
-  background: linear-gradient(120deg, var(--paper), var(--panel) 72%, var(--accent-paper));
-  box-shadow: 0 24px 56px -44px oklch(.25 .0125 80 / .2);
+  background: linear-gradient(
+    120deg,
+    var(--paper),
+    var(--panel) 72%,
+    var(--accent-paper)
+  );
+  box-shadow: 0 24px 56px -44px oklch(0.25 0.0125 80 / 0.2);
 }
 .encryption-feature {
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
   align-items: center;
   gap: clamp(28px, 3.5vw, 44px);
 }
-.encryption-copy { min-width: 0; }
-.encryption-kicker { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--ink); font-size: 11px; font-weight: 600; }
-.encryption-kicker > .icon { width: 15px; height: 15px; color: var(--accent); }
-.encryption-pro { padding: 3px 7px; border: 1px solid var(--accent-border); border-radius: 5px; font-size: 9px; line-height: 1.2; color: var(--accent); background: var(--white); }
-.home-page .encryption-section h2 { margin-block: 19px 20px; font-size: clamp(38px, 4vw, 50px); line-height: 1.1; letter-spacing: -.035em; font-weight: 700; }
-.encryption-copy h2 > span { color: var(--heading); }
-.encryption-copy h2 > .color-phrase { color: var(--section-accent); }
-.home-page .encryption-section .encryption-lead { font-size: 17px; line-height: 1.6; color: var(--ink); }
-.home-page .encryption-section .encryption-detail { margin-top: 14px; font-size: 13px; line-height: 1.75; color: var(--muted); max-width: 360px; }
-.encryption-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 24px; }
-.encryption-actions .button { font-size: 12px; padding-inline: 16px; }
-.encryption-actions .text-link { font-size: 12px; }
+.encryption-copy {
+  min-width: 0;
+}
+.encryption-kicker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 600;
+}
+.encryption-kicker > .icon {
+  width: 15px;
+  height: 15px;
+  color: var(--accent);
+}
+.encryption-pro {
+  padding: 3px 7px;
+  border: 1px solid var(--accent-border);
+  border-radius: 5px;
+  font-size: 9px;
+  line-height: 1.2;
+  color: var(--accent);
+  background: var(--white);
+}
+.home-page .encryption-section h2 {
+  margin-block: 19px 20px;
+  font-size: clamp(38px, 4vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+.encryption-copy h2 > span {
+  color: var(--heading);
+}
+.encryption-copy h2 > .color-phrase {
+  color: var(--section-accent);
+}
+.home-page .encryption-section .encryption-lead {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.home-page .encryption-section .encryption-detail {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 360px;
+}
+.encryption-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 24px;
+}
+.encryption-actions .button {
+  font-size: 12px;
+  padding-inline: 16px;
+}
+.encryption-actions .text-link {
+  font-size: 12px;
+}
 
 /* Compare provider-readable notes with end-to-end encrypted sync. */
-.encryption-visual { min-width: 0; }
-.privacy-comparison { width: 100%; max-width: 520px; margin-inline: auto; }
-.comparison-row { position: relative; padding: 18px; border: 1px solid var(--comparison-border); border-radius: 12px; background: var(--white); }
-.comparison-scene + .comparison-scene { margin-top: 16px; }
-.comparison-standard { --comparison-tone: #9b392e; --comparison-accent: #c86b5c; --comparison-border: #e8c3bb; --comparison-surface: #fff1ec; }
-.comparison-private { --comparison-tone: #286348; --comparison-accent: #559575; --comparison-border: #bcd6c6; --comparison-surface: #eaf5ed; box-shadow: 0 10px 24px -20px oklch(.25 .0125 80 / .2); }
-.comparison-row-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 15px; line-height: 1.5; }
-.comparison-row-heading strong { font-size: 14px; font-weight: 600; color: var(--heading); }
-.comparison-row-heading > span { padding: 3px 7px; border-radius: 4px; background: var(--comparison-surface); color: var(--comparison-tone); font-size: 10px; }
-.comparison-flow { display: grid; grid-template-columns: minmax(0, 1fr) 88px minmax(0, 1fr); align-items: start; }
-.comparison-endpoint { min-width: 0; }
-.encryption-location { display: flex; align-items: center; gap: 5px; min-height: 20px; margin-bottom: 9px; color: var(--ink); font-size: 11px; line-height: 1.4; }
-.encryption-location .icon { width: 14px; height: 14px; flex-shrink: 0; }
-.comparison-note { position: relative; height: 82px; padding: 13px; border: 1px solid var(--border); border-radius: 7px; background: var(--panel); }
-.comparison-note > span:not(.comparison-access-mark) { display: block; color: var(--heading); font-size: 13px; font-weight: 500; line-height: 1.5; letter-spacing: -.015em; }
-.comparison-note i { display: block; width: 86%; height: 3px; margin-top: 12px; border-radius: 3px; background: var(--border); }
-.comparison-note i + i { width: 61%; margin-top: 5px; }
-.comparison-readable, .comparison-cipher { background: var(--comparison-surface); border-color: var(--comparison-accent); box-shadow: 0 4px 10px -8px var(--comparison-tone); }
-.comparison-readable > span:not(.comparison-access-mark) { color: var(--comparison-tone); }
-.comparison-readable i { background: #eac0b7; }
-.comparison-cipher > span:not(.comparison-access-mark) { color: var(--comparison-tone); font-size: 11px; font-weight: 400; }
-.comparison-cipher code { display: block; margin-top: 8px; color: var(--comparison-tone); font: 11px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .02em; white-space: nowrap; }
-.comparison-access-mark { position: absolute; top: -10px; right: 9px; display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid var(--comparison-accent); border-radius: 50%; background: var(--white); color: var(--comparison-tone); }
-.comparison-access-mark .icon { width: 15px; height: 15px; stroke-width: 1.7; }
-.comparison-transfer { margin-top: 53px; display: grid; justify-items: center; gap: 5px; }
-.comparison-track { position: relative; display: grid; place-items: center; width: 100%; height: 23px; }
-.comparison-track::before { content: ""; position: absolute; left: 0; right: 0; top: 11px; border-top: 1px dotted var(--screenshot-edge); }
-.comparison-track .icon { position: relative; width: 23px; height: 23px; padding: 5px; border: 1px solid var(--screenshot-edge); border-radius: 50%; background: var(--white); color: var(--muted); }
-.comparison-transfer-label { max-width: 78px; color: var(--ink); font-size: 9px; line-height: 1.4; text-align: center; }
-.home-page .encryption-section .comparison-outcome { margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--comparison-border); color: var(--comparison-tone); font-size: 13px; font-weight: 400; line-height: 1.5; letter-spacing: -.01em; }
-.home-page .encryption-section .comparison-explainer { margin: 12px 3px 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
+.encryption-visual {
+  min-width: 0;
+}
+.privacy-comparison {
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+.comparison-row {
+  position: relative;
+  padding: 18px;
+  border: 1px solid var(--comparison-border);
+  border-radius: 12px;
+  background: var(--white);
+}
+.comparison-scene + .comparison-scene {
+  margin-top: 16px;
+}
+.comparison-standard {
+  --comparison-tone: #9b392e;
+  --comparison-accent: #c86b5c;
+  --comparison-border: #e8c3bb;
+  --comparison-surface: #fff1ec;
+}
+.comparison-private {
+  --comparison-tone: #286348;
+  --comparison-accent: #559575;
+  --comparison-border: #bcd6c6;
+  --comparison-surface: #eaf5ed;
+  box-shadow: 0 10px 24px -20px oklch(0.25 0.0125 80 / 0.2);
+}
+.comparison-row-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+.comparison-row-heading strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--heading);
+}
+.comparison-row-heading > span {
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: var(--comparison-surface);
+  color: var(--comparison-tone);
+  font-size: 10px;
+}
+.comparison-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88px minmax(0, 1fr);
+  align-items: start;
+}
+.comparison-endpoint {
+  min-width: 0;
+}
+.encryption-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 20px;
+  margin-bottom: 9px;
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.encryption-location .icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.comparison-note {
+  position: relative;
+  height: 82px;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+}
+.comparison-note > span:not(.comparison-access-mark) {
+  display: block;
+  color: var(--heading);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+}
+.comparison-note i {
+  display: block;
+  width: 86%;
+  height: 3px;
+  margin-top: 12px;
+  border-radius: 3px;
+  background: var(--border);
+}
+.comparison-note i + i {
+  width: 61%;
+  margin-top: 5px;
+}
+.comparison-readable,
+.comparison-cipher {
+  background: var(--comparison-surface);
+  border-color: var(--comparison-accent);
+  box-shadow: 0 4px 10px -8px var(--comparison-tone);
+}
+.comparison-readable > span:not(.comparison-access-mark) {
+  color: var(--comparison-tone);
+}
+.comparison-readable i {
+  background: #eac0b7;
+}
+.comparison-cipher > span:not(.comparison-access-mark) {
+  color: var(--comparison-tone);
+  font-size: 11px;
+  font-weight: 400;
+}
+.comparison-cipher code {
+  display: block;
+  margin-top: 8px;
+  color: var(--comparison-tone);
+  font:
+    11px/1.6 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.comparison-access-mark {
+  position: absolute;
+  top: -10px;
+  right: 9px;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--comparison-accent);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--comparison-tone);
+}
+.comparison-access-mark .icon {
+  width: 15px;
+  height: 15px;
+  stroke-width: 1.7;
+}
+.comparison-transfer {
+  margin-top: 53px;
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+}
+.comparison-track {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 23px;
+}
+.comparison-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 11px;
+  border-top: 1px dotted var(--screenshot-edge);
+}
+.comparison-track .icon {
+  position: relative;
+  width: 23px;
+  height: 23px;
+  padding: 5px;
+  border: 1px solid var(--screenshot-edge);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--muted);
+}
+.comparison-transfer-label {
+  max-width: 78px;
+  color: var(--ink);
+  font-size: 9px;
+  line-height: 1.4;
+  text-align: center;
+}
+.home-page .encryption-section .comparison-outcome {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid var(--comparison-border);
+  color: var(--comparison-tone);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+.home-page .encryption-section .comparison-explainer {
+  margin: 12px 3px 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
 
 /* A timed visual explanation, scoped to each diagram's own arrival. */
-@supports (animation-timeline: view(block)) and (animation-range: entry 18svh entry 19svh) {
+@supports (animation-timeline: view(block)) and
+  (animation-range: entry 18svh entry 19svh) {
   @media screen and (prefers-reduced-motion: no-preference) {
     .comparison-scene {
       container-name: privacy-diagram;
@@ -70,35 +302,71 @@
       animation-timeline: view(block);
       animation-range: entry 18svh entry calc(18svh + 1px);
     }
-    .comparison-row, .comparison-row-heading > *, .encryption-location > *,
-    .comparison-note, .comparison-note > span, .comparison-track .icon,
-    .comparison-transfer-label, .comparison-outcome > span, .comparison-explainer {
+    .comparison-row,
+    .comparison-row-heading > *,
+    .encryption-location > *,
+    .comparison-note,
+    .comparison-note > span,
+    .comparison-track .icon,
+    .comparison-transfer-label,
+    .comparison-outcome > span,
+    .comparison-explainer {
       --diagram-delay: 0ms;
       --diagram-offset: 12px;
       --diagram-scale: 1;
       opacity: 1;
       transform: none;
-      transition: opacity 440ms ease-out var(--diagram-delay),
-                  transform 620ms cubic-bezier(.22, .65, .32, 1) var(--diagram-delay);
+      transition:
+        opacity 440ms ease-out var(--diagram-delay),
+        transform 620ms cubic-bezier(0.22, 0.65, 0.32, 1) var(--diagram-delay);
     }
-    .comparison-row { --diagram-offset: 22px; --diagram-scale: .975; }
-    .comparison-row-heading strong { --diagram-delay: 100ms; }
-    .comparison-row-heading > span { --diagram-delay: 220ms; --diagram-scale: .94; }
-    .encryption-location > .icon { --diagram-delay: 280ms; --diagram-scale: .65; }
-    .encryption-location > span { --diagram-delay: 350ms; }
-    .comparison-note { --diagram-delay: 420ms; --diagram-scale: .93; }
-    .comparison-note > span:not(.comparison-access-mark) { --diagram-delay: 540ms; --diagram-offset: 6px; }
+    .comparison-row {
+      --diagram-offset: 22px;
+      --diagram-scale: 0.975;
+    }
+    .comparison-row-heading strong {
+      --diagram-delay: 100ms;
+    }
+    .comparison-row-heading > span {
+      --diagram-delay: 220ms;
+      --diagram-scale: 0.94;
+    }
+    .encryption-location > .icon {
+      --diagram-delay: 280ms;
+      --diagram-scale: 0.65;
+    }
+    .encryption-location > span {
+      --diagram-delay: 350ms;
+    }
+    .comparison-note {
+      --diagram-delay: 420ms;
+      --diagram-scale: 0.93;
+    }
+    .comparison-note > span:not(.comparison-access-mark) {
+      --diagram-delay: 540ms;
+      --diagram-offset: 6px;
+    }
     .comparison-note i {
       clip-path: inset(0);
-      transition: clip-path 400ms cubic-bezier(.22, .65, .32, 1) 620ms;
+      transition: clip-path 400ms cubic-bezier(0.22, 0.65, 0.32, 1) 620ms;
     }
-    .comparison-note i + i { transition-delay: 740ms; }
+    .comparison-note i + i {
+      transition-delay: 740ms;
+    }
     .comparison-track::before {
       clip-path: inset(0);
-      transition: clip-path 620ms cubic-bezier(.22, .65, .32, 1) 800ms;
+      transition: clip-path 620ms cubic-bezier(0.22, 0.65, 0.32, 1) 800ms;
     }
-    .comparison-track .icon { --diagram-delay: 880ms; --diagram-scale: .5; --diagram-offset: 0px; z-index: 1; }
-    .comparison-transfer-label { --diagram-delay: 1000ms; --diagram-offset: 6px; }
+    .comparison-track .icon {
+      --diagram-delay: 880ms;
+      --diagram-scale: 0.5;
+      --diagram-offset: 0px;
+      z-index: 1;
+    }
+    .comparison-transfer-label {
+      --diagram-delay: 1000ms;
+      --diagram-offset: 6px;
+    }
     /* One packet travels along the connection, then disappears. */
     .comparison-track::after {
       content: "";
@@ -112,26 +380,44 @@
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent);
       opacity: 0;
     }
-    .comparison-endpoint:last-child .encryption-location > .icon { --diagram-delay: 1040ms; }
-    .comparison-endpoint:last-child .encryption-location > span { --diagram-delay: 1120ms; }
-    .comparison-endpoint:last-child .comparison-note { --diagram-delay: 1200ms; }
-    .comparison-endpoint:last-child .comparison-note > span:not(.comparison-access-mark) { --diagram-delay: 1340ms; }
-    .comparison-endpoint:last-child .comparison-note i { transition-delay: 1440ms; }
-    .comparison-endpoint:last-child .comparison-note i + i { transition-delay: 1560ms; }
+    .comparison-endpoint:last-child .encryption-location > .icon {
+      --diagram-delay: 1040ms;
+    }
+    .comparison-endpoint:last-child .encryption-location > span {
+      --diagram-delay: 1120ms;
+    }
+    .comparison-endpoint:last-child .comparison-note {
+      --diagram-delay: 1200ms;
+    }
+    .comparison-endpoint:last-child
+      .comparison-note
+      > span:not(.comparison-access-mark) {
+      --diagram-delay: 1340ms;
+    }
+    .comparison-endpoint:last-child .comparison-note i {
+      transition-delay: 1440ms;
+    }
+    .comparison-endpoint:last-child .comparison-note i + i {
+      transition-delay: 1560ms;
+    }
     .comparison-cipher code > span {
       display: inline-block;
       clip-path: inset(0);
       opacity: 1;
-      transition: clip-path 280ms steps(8, end) calc(1420ms + var(--chunk) * 90ms),
-                  opacity 160ms ease-out calc(1420ms + var(--chunk) * 90ms);
+      transition:
+        clip-path 280ms steps(8, end) calc(1420ms + var(--chunk) * 90ms),
+        opacity 160ms ease-out calc(1420ms + var(--chunk) * 90ms);
     }
     .comparison-note > .comparison-access-mark {
       --diagram-delay: 1720ms;
       --diagram-offset: 0px;
-      --diagram-scale: .35;
-      transition-timing-function: ease-out, cubic-bezier(.2, 1.5, .35, 1);
+      --diagram-scale: 0.35;
+      transition-timing-function: ease-out, cubic-bezier(0.2, 1.5, 0.35, 1);
     }
-    .home-page .encryption-section .comparison-outcome { position: relative; border-top-color: transparent; }
+    .home-page .encryption-section .comparison-outcome {
+      position: relative;
+      border-top-color: transparent;
+    }
     .comparison-outcome::before {
       content: "";
       position: absolute;
@@ -142,91 +428,207 @@
       clip-path: inset(0);
       transition: clip-path 500ms ease-out 1300ms;
     }
-    .comparison-outcome > span { display: inline-block; --diagram-delay: 1380ms; --diagram-offset: 8px; }
-    .comparison-scene .comparison-explainer { --diagram-delay: 2000ms; --diagram-offset: 6px; }
+    .comparison-outcome > span {
+      display: inline-block;
+      --diagram-delay: 1380ms;
+      --diagram-offset: 8px;
+    }
+    .comparison-scene .comparison-explainer {
+      --diagram-delay: 2000ms;
+      --diagram-offset: 6px;
+    }
     @container privacy-diagram style(--diagram-state: visible) {
-      .comparison-track::after { animation: privacy-sync-packet 850ms ease-in-out 1100ms both; }
+      .comparison-track::after {
+        animation: privacy-sync-packet 850ms ease-in-out 1100ms both;
+      }
     }
     @container privacy-diagram style(--diagram-state: waiting) {
-      .comparison-row, .comparison-row-heading > *, .encryption-location > *,
-      .comparison-note, .comparison-note > span, .comparison-track .icon,
-      .comparison-transfer-label, .comparison-outcome > span, .comparison-explainer {
+      .comparison-row,
+      .comparison-row-heading > *,
+      .encryption-location > *,
+      .comparison-note,
+      .comparison-note > span,
+      .comparison-track .icon,
+      .comparison-transfer-label,
+      .comparison-outcome > span,
+      .comparison-explainer {
         opacity: 0;
         transform: translateY(var(--diagram-offset)) scale(var(--diagram-scale));
         /* A quick, unified exit instead of running the explanation backwards. */
         transition-duration: 240ms;
         transition-delay: 0ms;
       }
-      .comparison-note i, .comparison-cipher code > span,
-      .comparison-track::before, .comparison-outcome::before {
+      .comparison-note i,
+      .comparison-cipher code > span,
+      .comparison-track::before,
+      .comparison-outcome::before {
         clip-path: inset(0 100% 0 0);
         transition-duration: 240ms;
         transition-delay: 0ms;
       }
-      .comparison-cipher code > span { opacity: 0; }
+      .comparison-cipher code > span {
+        opacity: 0;
+      }
     }
     /* Supporting copy follows the phrase heading's trigger. */
-    .encryption-lead, .encryption-detail, .encryption-actions > a {
+    .encryption-lead,
+    .encryption-detail,
+    .encryption-actions > a {
       --copy-delay: 220ms;
       opacity: 1;
       translate: none;
-      transition: opacity 500ms ease-out var(--copy-delay), translate 620ms ease-out var(--copy-delay);
+      transition:
+        opacity 500ms ease-out var(--copy-delay),
+        translate 620ms ease-out var(--copy-delay);
     }
-    .encryption-detail { --copy-delay: 360ms; }
-    .encryption-actions > a { --copy-delay: 500ms; }
-    .encryption-actions > a + a { --copy-delay: 620ms; }
+    .encryption-detail {
+      --copy-delay: 360ms;
+    }
+    .encryption-actions > a {
+      --copy-delay: 500ms;
+    }
+    .encryption-actions > a + a {
+      --copy-delay: 620ms;
+    }
     @container phrase-heading style(--heading-state: waiting) {
-      .encryption-lead, .encryption-detail, .encryption-actions > a {
+      .encryption-lead,
+      .encryption-detail,
+      .encryption-actions > a {
         opacity: 0;
         translate: 0 16px;
         transition-duration: 240ms;
         transition-delay: 0ms;
       }
     }
-    .encryption-copy:focus-within :is(.encryption-lead, .encryption-detail, .encryption-actions > a) {
-      opacity: 1; translate: none; transition: none;
+    .encryption-copy:focus-within
+      :is(.encryption-lead, .encryption-detail, .encryption-actions > a) {
+      opacity: 1;
+      translate: none;
+      transition: none;
     }
   }
 }
 @keyframes privacy-diagram-entry {
-  from { --diagram-state: waiting; }
-  to { --diagram-state: visible; }
+  from {
+    --diagram-state: waiting;
+  }
+  to {
+    --diagram-state: visible;
+  }
 }
 @keyframes privacy-sync-packet {
-  0% { left: 0; opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { left: calc(100% - 5px); opacity: 0; }
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 5px);
+    opacity: 0;
+  }
 }
 
 @media (max-width: 1000px) {
-  .home-page .encryption-section { padding: 32px; }
-  .encryption-feature { gap: 28px; }
-  .home-page .encryption-section h2 { font-size: 40px; }
-  .comparison-row { padding: 16px; }
-  .comparison-flow { grid-template-columns: minmax(0, 1fr) 78px minmax(0, 1fr); }
+  .home-page .encryption-section {
+    padding: 32px;
+  }
+  .encryption-feature {
+    gap: 28px;
+  }
+  .home-page .encryption-section h2 {
+    font-size: 40px;
+  }
+  .comparison-row {
+    padding: 16px;
+  }
+  .comparison-flow {
+    grid-template-columns: minmax(0, 1fr) 78px minmax(0, 1fr);
+  }
 }
 @media (max-width: 860px) {
-  .home-page .encryption-section { padding: 32px; margin-block: 60px 75px; }
-  .encryption-feature { grid-template-columns: 1fr; gap: 28px; }
-  .encryption-copy { width: 100%; max-width: 520px; margin-inline: auto; }
-  .home-page .encryption-section .encryption-detail { max-width: 440px; }
+  .home-page .encryption-section {
+    padding: 32px;
+    margin-block: 60px 75px;
+  }
+  .encryption-feature {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .encryption-copy {
+    width: 100%;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+  .home-page .encryption-section .encryption-detail {
+    max-width: 440px;
+  }
 }
 @media (max-width: 480px) {
-  .home-page .encryption-section { padding: 27px 20px; border-radius: 16px; }
-  .home-page .encryption-section h2 { font-size: 35px; }
-  .comparison-row { padding: 14px 10px; }
-  .comparison-row-heading { display: grid; justify-items: start; gap: 5px; margin-bottom: 13px; }
-  .comparison-flow { grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr); }
-  .encryption-location { flex-direction: column; align-items: flex-start; gap: 4px; min-height: 38px; font-size: 9px; }
-  .comparison-note { height: 75px; padding: 9px 7px; }
-  .comparison-note > span:not(.comparison-access-mark) { font-size: 10px; }
-  .comparison-cipher > span:not(.comparison-access-mark) { font-size: 9px; }
-  .comparison-cipher code { font-size: 8px; letter-spacing: -.04em; }
-  .comparison-transfer { margin-top: 67px; }
-  .comparison-transfer-label { font-size: 9px; }
-  .comparison-access-mark { width: 21px; height: 21px; right: 6px; top: -9px; }
-  .comparison-access-mark .icon { width: 13px; height: 13px; }
-  .home-page .encryption-section .comparison-outcome { font-size: 12px; }
-  .home-page .encryption-section .comparison-explainer { font-size: 9px; }
+  .home-page .encryption-section {
+    padding: 27px 20px;
+    border-radius: 16px;
+  }
+  .home-page .encryption-section h2 {
+    font-size: 35px;
+  }
+  .comparison-row {
+    padding: 14px 10px;
+  }
+  .comparison-row-heading {
+    display: grid;
+    justify-items: start;
+    gap: 5px;
+    margin-bottom: 13px;
+  }
+  .comparison-flow {
+    grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr);
+  }
+  .encryption-location {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-height: 38px;
+    font-size: 9px;
+  }
+  .comparison-note {
+    height: 75px;
+    padding: 9px 7px;
+  }
+  .comparison-note > span:not(.comparison-access-mark) {
+    font-size: 10px;
+  }
+  .comparison-cipher > span:not(.comparison-access-mark) {
+    font-size: 9px;
+  }
+  .comparison-cipher code {
+    font-size: 8px;
+    letter-spacing: -0.04em;
+  }
+  .comparison-transfer {
+    margin-top: 67px;
+  }
+  .comparison-transfer-label {
+    font-size: 9px;
+  }
+  .comparison-access-mark {
+    width: 21px;
+    height: 21px;
+    right: 6px;
+    top: -9px;
+  }
+  .comparison-access-mark .icon {
+    width: 13px;
+    height: 13px;
+  }
+  .home-page .encryption-section .comparison-outcome {
+    font-size: 12px;
+  }
+  .home-page .encryption-section .comparison-explainer {
+    font-size: 9px;
+  }
 }

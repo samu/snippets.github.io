@@ -1,20 +1,19 @@
 ---
 title: "Sync"
-description: "Keep your notes with you, with control over where your data lives."
+description:
+  "Keep your notes with you, with control over where your data lives."
 draft: false
 ---
 
-Snippets is offline-first by design and offers end-to-end encryption out of the
-box.
+Snippets is offline-first by design. You choose where your notes are stored and
+can enable end-to-end encryption for GitHub sync with Pro.
 
 It has a built-in abstraction layer which allows it to sync to different
 targets. You can use the app fully offline and without creating an account: All
 your data is stored locally on your device and always remains under your
 control.
 
-If you want to sync across multiple devices, you can connect a GitHub repository
-or create a Snippets account and use our custom-built cloud service for the best
-experience.
+To sync across multiple devices, connect a GitHub repository.
 
 ## Sync Targets
 
@@ -31,31 +30,27 @@ it doesn't provide a good way to share notes with other users.
 ### GitHub Repo
 
 Snippets can sync your data to a GitHub repository. There is no need for manual
-or scheduled commits. Instead, Changes are synced automatically as soon as a
+or scheduled commits. Instead, changes are synced automatically as soon as a
 document is modified. GitHub HTTP API is used under the hood, making it suitable
 for desktop and mobile devices.
 
-{/* TODO github has e2ee too */}
+Pro adds end-to-end encryption and unlimited branches for GitHub sync.
 
-### Snippets Cloud _(beta)_
+### Snippets Cloud
 
-Snippets Cloud is the official hosted sync solution. You can use our cloud
-service for free with certain limits. Upgrade to a subscription for unlimited
-use.
+Snippets Cloud is coming soon.
 
 ## Workspaces
 
-Snippets allows to separate data into workspaces. Every workspace has its own
+Snippets lets you separate data into workspaces. Every workspace has its own
 sync target. This gives you a lot of flexibility in how to organize your work.
-For example, you can choose to store a temporary throw-away project on your disk
-with folder sync, create an unencrypted cloud workspace to share some notes with
-friends, create an E2E-encrypted workspace for your journaling, and a
-GitHub-synced workspace for work.
+For example, keep a temporary project on your disk with folder sync, use an
+encrypted GitHub workspace for journaling, and a separate GitHub workspace for
+work.
 
 ## End-to-end encryption
 
-For every workspace you create, you can choose to enable end-to-end encryption
-(E2EE). This is a paid feature.
+For GitHub workspaces, Pro lets you enable end-to-end encryption (E2EE).
 
 With E2EE enabled, your notes are encrypted on your device before they are
 uploaded to the sync target. The target only stores encrypted data and cannot

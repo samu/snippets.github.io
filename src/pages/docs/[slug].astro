@@ -1,17 +1,41 @@
 ---
-import DocsLayout from '../../layouts/DocsLayout.astro';
-import Icon from '../../components/Icon.astro';
-import Figure from '../../components/docs/Figure.astro';
-import DocVideo from '../../components/docs/DocVideo.astro';
-import Row from '../../components/docs/Row.astro';
-import Callout from '../../components/docs/Callout.astro';
-import { pages } from '../../data/docs';
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import Icon from "../../components/Icon.astro";
+import Figure from "../../components/docs/Figure.astro";
+import DocVideo from "../../components/docs/DocVideo.astro";
+import Row from "../../components/docs/Row.astro";
+import Callout from "../../components/docs/Callout.astro";
+import { pages } from "../../data/docs";
 export function getStaticPaths() {
-  return pages.map(page => ({ params: { slug: page.slug }, props: { page } }));
+  return pages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
 }
 const { page } = Astro.props;
 const { Content } = page;
 ---
+
 <DocsLayout page={page}>
-  {page.draft ? <div class="guide-draft"><Icon name="book" /><h2>This guide is on its way.</h2><p>We’re still writing this part of the documentation. In the meantime, explore the guides below or <a href="mailto:support@snippets.ch">get in touch</a> if you need a hand.</p><div class="related-links"><a href="/docs/introduction/">Get to know Snippets <Icon /></a><a href="/docs/organizing-your-notes/">Organize your notes <Icon /></a>{page.slug === 'mobile-app' && <a href="/#download">Get the mobile app →</a>}</div></div> : <Content components={{ Figure, DocVideo, Row, Callout }} />}
+  {page.draft ? (
+    <div class="guide-draft">
+      <Icon name="book" />
+      <h2>This guide is on its way.</h2>
+      <p>
+        We’re still writing this part of the documentation. In the meantime,
+        explore the guides below or
+        <a href="mailto:support@snippets.ch">get in touch</a> if you need a
+        hand.
+      </p>
+      <div class="related-links">
+        <a href="/docs/introduction/">Get to know Snippets <Icon /></a
+        ><a href="/docs/organizing-your-notes/">Organize your notes <Icon /></a
+        >{page.slug === "mobile-app" && <a href="/#download"
+          >Get the mobile app →</a
+        >}
+      </div>
+    </div>
+  ) : (
+    <Content components={{ Figure, DocVideo, Row, Callout }} />
+  )}
 </DocsLayout>

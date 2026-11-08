@@ -1,36 +1,181 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Icon from '../components/Icon.astro';
-import Plan from '../components/pricing/Plan.astro';
-import data from '../../public/pricing.json';
-import { pricingStyles } from '../lib/styles';
-const free = data.plans.find(plan => plan.name === 'Free');
-const pro = data.plans.find(plan => plan.name === 'Pro');
-if (!free || !pro || data.plans.length !== 2) throw new Error('Review the pricing layout when the available plans change.');
-const rows = [...free.features.map(feature => ({...feature, free: true})), ...pro.features.map(feature => ({...feature, free: false}))];
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Icon from "../components/Icon.astro";
+import Plan from "../components/pricing/Plan.astro";
+import data from "../../public/pricing.json";
+import { pricingStyles } from "../lib/styles";
+const free = data.plans.find((plan) => plan.name === "Free");
+const pro = data.plans.find((plan) => plan.name === "Pro");
+if (!free || !pro || data.plans.length !== 2)
+  throw new Error("Review the pricing layout when the available plans change.");
+const rows = [
+  ...free.features.map((feature) => ({ ...feature, free: true })),
+  ...pro.features.map((feature) => ({ ...feature, free: false })),
+];
 ---
-<BaseLayout title="Pricing · Snippets" description={`Start with Snippets for free forever. Add Pro for ${pro.price} with a one-time payment. Compare plans and find your fit.`} bodyClass="pricing-page" bodyId="top" styles={pricingStyles}>
+
+<BaseLayout
+  title="Pricing · Snippets"
+  description={`Start with Snippets for free forever. Add Pro for ${pro.price} with a one-time payment. Compare plans and find your fit.`}
+  bodyClass="pricing-page"
+  bodyId="top"
+  styles={pricingStyles}
+>
   <a class="skip-link" href="#main">Skip to content</a>
   <Header variant="pricing" />
   <main id="main" tabindex="-1">
-    <header class="pricing-hero pricing-shell"><div class="pricing-hero-copy"><p class="pricing-eyebrow">PRICING</p><h1>Start freely.<br><span class="ink-accent">Make it yours.</span></h1><p class="pricing-intro">Space for all your notes.<br> A little extra when you need it.</p></div></header>
-    <section class="plans pricing-shell" aria-label="Choose your plan">{data.plans.map(plan => <Plan plan={plan} />)}</section>
+    <header class="pricing-hero pricing-shell">
+      <div class="pricing-hero-copy">
+        <p class="pricing-eyebrow">PRICING</p>
+        <h1>
+          Start freely.<br /><span class="ink-accent">Make it yours.</span>
+        </h1>
+        <p class="pricing-intro">
+          Space for all your notes.<br /> A little extra when you need it.
+        </p>
+      </div>
+    </header>
+    <section class="plans pricing-shell" aria-label="Choose your plan">
+      {data.plans.map((plan) => (
+        <Plan plan={plan} />
+      ))}
+    </section>
     <p class="pricing-reassurance">Your notes. Your workspace. Your choice.</p>
-    <section class="comparison pricing-shell" id="compare" aria-labelledby="compare-heading">
-      <div class="pricing-section-heading"><div><p class="pricing-eyebrow">SIDE BY SIDE</p><h2 id="compare-heading">The details, simply.</h2></div><p>Find the right fit for the way you work.</p></div>
-      <div class="comparison-table"><table><caption class="sr-only">Compare the Free and Pro plans</caption><thead><tr><th scope="col">What’s included</th><th scope="col">Free</th><th scope="col">Pro</th></tr></thead><tbody>{rows.map(feature => <tr><th scope="row">{feature.text}</th>{[feature.free, true].map(included => <td>{!included ? <span class="not-included"><span aria-hidden="true">—</span><span class="sr-only">Not included</span></span> : feature.planned ? 'Planned' : <span class="included"><Icon name="check" stroke-width="1.6" /><span class="sr-only">Included</span></span>}</td>)}</tr>)}</tbody></table></div>
-      <p class="comparison-footnote">New to syncing? <a href="/docs/syncing-with-github/">Explore the GitHub setup guide <Icon /></a></p>
+    <section
+      class="comparison pricing-shell"
+      id="compare"
+      aria-labelledby="compare-heading"
+    >
+      <div class="pricing-section-heading">
+        <div>
+          <p class="pricing-eyebrow">SIDE BY SIDE</p>
+          <h2 id="compare-heading">The details, simply.</h2>
+        </div>
+        <p>Find the right fit for the way you work.</p>
+      </div>
+      <div class="comparison-table">
+        <table>
+          <caption class="sr-only">
+            Compare the Free and Pro plans
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">What’s included</th>
+              <th scope="col">Free</th>
+              <th scope="col">Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((feature) => <tr>
+              <th scope="row">{feature.text}</th>
+              {[feature.free, true].map((included) => <td>
+                {!included ? (
+                  <span class="not-included"
+                    ><span aria-hidden="true">—</span
+                    ><span class="sr-only">Not included</span></span
+                  >
+                ) : feature.planned ? (
+                  "Planned"
+                ) : (
+                  <span class="included"
+                    ><Icon name="check" stroke-width="1.6" /><span
+                      class="sr-only"
+                      >Included</span
+                    ></span
+                  >
+                )}
+              </td>)}
+            </tr>)}
+          </tbody>
+        </table>
+      </div>
+      <p class="comparison-footnote">
+        New to syncing?
+        <a href="/docs/syncing-with-github/"
+          >Explore the GitHub setup guide <Icon
+        /></a>
+      </p>
     </section>
     <section class="pricing-faq pricing-shell" aria-labelledby="faq-heading">
-      <div class="faq-intro"><p class="pricing-eyebrow">A FEW ANSWERS</p><h2 id="faq-heading">Good to know.</h2><p>Have another question?<br><a href="mailto:support@snippets.ch">We’re happy to help <Icon /></a></p></div>
+      <div class="faq-intro">
+        <p class="pricing-eyebrow">A FEW ANSWERS</p>
+        <h2 id="faq-heading">Good to know.</h2>
+        <p>
+          Have another
+          question?<br /><a href="mailto:support@snippets.ch"
+            >We’re happy to help <Icon
+          /></a>
+        </p>
+      </div>
       <div class="faq-list">
-        <details><summary>Can I keep using Snippets for free?<span aria-hidden="true">+</span></summary><div class="faq-answer"><p>Yes. The Free plan is free forever, with unlimited notes and unlimited workspaces. It also includes folder sync and syncing across devices with GitHub.</p></div></details>
-        <details><summary>Is Pro a subscription?<span aria-hidden="true">+</span></summary><div class="faq-answer"><p>No. Pro is a one-time {pro.price} purchase. It adds the full icon set, plus GitHub sync with end-to-end encryption and unlimited branches.</p></div></details>
-        <details><summary>Where will my notes be stored?<span aria-hidden="true">+</span></summary><div class="faq-answer"><p>You choose your sync target: a local folder or a GitHub repository. <a href="/docs/sync/">Read about sync and workspaces</a> to find the setup that fits you.</p></div></details>
+        <details>
+          <summary>
+            Can I keep using Snippets for free?<span aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              Yes. The Free plan is free forever, with unlimited notes and
+              unlimited workspaces. It also includes folder sync and syncing
+              across devices with GitHub.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>
+            Is Pro a subscription?<span aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              No. Pro is a one-time {pro.price} purchase. It adds the full icon
+              set, plus GitHub sync with end-to-end encryption and unlimited
+              branches.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>
+            Where will my notes be stored?<span aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              You choose your sync target: a local folder or a GitHub
+              repository.
+              <a href="/docs/sync/">Read about sync and workspaces</a> to find
+              the setup that fits you.
+            </p>
+          </div>
+        </details>
       </div>
     </section>
-    <section class="pricing-closing" aria-labelledby="closing-title"><img src="/assets/note/note-open.webp" width="76" height="76" alt="" loading="lazy"><h2 id="closing-title">A little space for everything<br>on your mind.</h2><a class="pricing-button pricing-button-primary" href="/#download">Get Snippets for free <Icon /></a></section>
+    <section class="pricing-closing" aria-labelledby="closing-title">
+      <img
+        src="/assets/note/note-open.webp"
+        width="76"
+        height="76"
+        alt=""
+        loading="lazy"
+      />
+      <h2 id="closing-title">
+        A little space for everything<br />on your mind.
+      </h2>
+      <a class="pricing-button pricing-button-primary" href="/#download"
+        >Get Snippets for free <Icon
+      /></a>
+    </section>
   </main>
-  <footer class="pricing-footer"><div class="pricing-footer-inner"><a class="wordmark" href="/" aria-label="Snippets home"><span>Snippets</span></a><p>Thoughtfully made in Switzerland.</p><nav aria-label="Footer navigation"><a href="/docs/">Documentation</a><a href="mailto:support@snippets.ch">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><span class="copyright">© 2026 Snippets</span></div></footer>
+  <footer class="pricing-footer">
+    <div class="pricing-footer-inner">
+      <a class="wordmark" href="/" aria-label="Snippets home"
+        ><span>Snippets</span></a
+      >
+      <p>Thoughtfully made in Switzerland.</p>
+      <nav aria-label="Footer navigation">
+        <a href="/docs/">Documentation</a
+        ><a href="mailto:support@snippets.ch">Contact</a
+        ><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a>
+      </nav>
+      <span class="copyright">© 2026 Snippets</span>
+    </div>
+  </footer>
 </BaseLayout>

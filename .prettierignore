@@ -1,0 +1,6 @@
+# Generated files and original media
+dist/
+.astro/
+pnpm-lock.yaml
+media/
+public/assets/

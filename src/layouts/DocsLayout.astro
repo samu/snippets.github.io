@@ -1,37 +1,112 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Navigation from '../components/docs/Navigation.astro';
-import Icon from '../components/Icon.astro';
-import { pages } from '../data/docs';
-import { docsStyles } from '../lib/styles';
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Navigation from "../components/docs/Navigation.astro";
+import Icon from "../components/Icon.astro";
+import { pages } from "../data/docs";
+import { docsStyles } from "../lib/styles";
 const { page, overview = false } = Astro.props;
-const title = overview ? 'Documentation' : page.title;
-const description = overview ? 'Learn your way around Snippets. Guides to writing, organizing, and keeping your notes in sync.' : page.description;
+const title = overview ? "Documentation" : page.title;
+const description = overview
+  ? "Learn your way around Snippets. Guides to writing, organizing, and keeping your notes in sync."
+  : page.description;
 const headings = page?.headings || [];
-const toc = headings.filter(item => item.depth === (headings.some(item => item.depth === 2) ? 2 : 3));
-const index = pages.findIndex(item => item.slug === page?.slug);
-const adjacent = [{ page: pages[index - 1], direction: 'previous', label: 'Previous' }, { page: pages[index + 1], direction: 'next', label: 'Next' }];
+const toc = headings.filter(
+  (item) => item.depth === (headings.some((item) => item.depth === 2) ? 2 : 3),
+);
+const index = pages.findIndex((item) => item.slug === page?.slug);
+const adjacent = [
+  { page: pages[index - 1], direction: "previous", label: "Previous" },
+  { page: pages[index + 1], direction: "next", label: "Next" },
+];
 ---
-<BaseLayout title={`${title} · Snippets Docs`} description={description} bodyClass="docs-page" bodyId="top" styles={docsStyles}>
+
+<BaseLayout
+  title={`${title} · Snippets Docs`}
+  description={description}
+  bodyClass="docs-page"
+  bodyId="top"
+  styles={docsStyles}
+>
   <a class="skip-link" href="#main">Skip to content</a>
   <Header variant="docs" />
-  <details class="mobile-navigation"><summary>Browse documentation<span aria-hidden="true">＋</span></summary><nav aria-label="Documentation"><Navigation current={page?.slug} /></nav></details>
-  <div class:list={['docs-layout', { 'overview-layout': overview }]}>
-    <aside class="sidebar"><nav aria-label="Documentation"><Navigation current={page?.slug} /></nav><a class="sidebar-help" href="mailto:support@snippets.ch">A question? Get in touch <Icon /></a></aside>
-    <main id="main" tabindex="-1" class={overview ? 'overview' : 'article-main'}>
-      {overview ? <slot /> : <>
-        <div class="breadcrumb"><a href="/docs/">Documentation</a><span aria-hidden="true">/</span><span>{page.group}</span></div>
-        <header class="article-header"><div class="article-meta"><span>Snippets guide</span><span>{page.draft ? 'Guide in progress' : `${page.minutes} min read`}</span></div><h1>{page.title}</h1><p>{page.description}</p></header>
-        {toc.length > 0 && <details class="inline-toc"><summary>On this page</summary><ul>{toc.map(item => <li><a href={`#${item.slug}`}>{item.text}</a></li>)}</ul></details>}
-        <article class="prose"><slot /></article>
-        <nav class="page-navigation" aria-label="Adjacent articles">{adjacent.map(({page, direction, label}) => page ? <a class={`page-turn ${direction}`} href={`/docs/${page.slug}/`}><span>{label}</span><strong>{page.title} <Icon /></strong></a> : <span></span>)}</nav>
-      </>}
-      <footer class="docs-footer"><span>© 2026 Snippets</span><a href="#top">Back to top ↑</a></footer>
+  <details class="mobile-navigation">
+    <summary>Browse documentation<span aria-hidden="true">＋</span></summary>
+    <nav aria-label="Documentation"><Navigation current={page?.slug} /></nav>
+  </details>
+  <div class:list={["docs-layout", { "overview-layout": overview }]}>
+    <aside class="sidebar">
+      <nav aria-label="Documentation"><Navigation current={page?.slug} /></nav>
+      <a class="sidebar-help" href="mailto:support@snippets.ch"
+        >A question? Get in touch <Icon
+      /></a>
+    </aside>
+    <main
+      id="main"
+      tabindex="-1"
+      class={overview ? "overview" : "article-main"}
+    >
+      {overview ? (
+        <slot />
+      ) : (
+        <>
+          <div class="breadcrumb">
+            <a href="/docs/">Documentation</a><span aria-hidden="true">/</span
+            ><span>{page.group}</span>
+          </div>
+          <header class="article-header">
+            <div class="article-meta">
+              <span>Snippets guide</span
+              ><span
+                >{page.draft
+                  ? "Guide in progress"
+                  : `${page.minutes} min read`}</span
+              >
+            </div>
+            <h1>{page.title}</h1>
+            <p>{page.description}</p>
+          </header>
+          {toc.length > 0 && <details class="inline-toc">
+            <summary>On this page</summary>
+            <ul>
+              {toc.map((item) => <li>
+                <a href={`#${item.slug}`}>{item.text}</a>
+              </li>)}
+            </ul>
+          </details>}
+          <article class="prose"><slot /></article>
+          <nav class="page-navigation" aria-label="Adjacent articles">
+            {adjacent.map(({ page, direction, label }) =>
+              page ? (
+                <a class={`page-turn ${direction}`} href={`/docs/${page.slug}/`}
+                  ><span>{label}</span><strong>{page.title} <Icon /></strong></a
+                >
+              ) : (
+                <span></span>
+              ),
+            )}
+          </nav>
+        </>
+      )}
+      <footer class="docs-footer">
+        <span>© 2026 Snippets</span><a href="#top">Back to top ↑</a>
+      </footer>
     </main>
     {!overview && <aside class="page-outline" aria-label="On this page">
-      {toc.length > 0 && <><p>On this page</p><nav><ul>{toc.map(item => <li><a href={`#${item.slug}`}>{item.text}</a></li>)}</ul></nav></>}
-      <div class="outline-help"><p>Need a hand?</p><a href="mailto:support@snippets.ch">We’re here to help <Icon /></a></div>
+      {toc.length > 0 && (
+        <><p>On this page</p>
+          <nav>
+            <ul>
+              {toc.map((item) => <li>
+                <a href={`#${item.slug}`}>{item.text}</a>
+              </li>)}
+            </ul>
+          </nav></>
+      )}
+      <div class="outline-help">
+        <p>Need a hand?</p>
+        <a href="mailto:support@snippets.ch">We’re here to help <Icon /></a>
+      </div>
     </aside>}
   </div>
 </BaseLayout>

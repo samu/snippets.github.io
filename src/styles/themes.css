@@ -21,21 +21,40 @@
   --sage: light-dark(#34745d, #9ccfb9);
   --lavender: light-dark(#7760a4, #bca9e4);
   --sky: light-dark(#436e98, #9fbfdf);
-  --accent-paper: light-dark(color-mix(in oklch, var(--accent) 5%, var(--white)), #252d37);
-  --accent-border: light-dark(color-mix(in oklch, var(--accent) 25%, var(--white)), #465565);
-  --shadow: 0 18px 48px -28px oklch(.25 .0125 80 / .14), 0 1px 4px oklch(.25 .0125 80 / .025);
+  --accent-paper: light-dark(
+    color-mix(in oklch, var(--accent) 5%, var(--white)),
+    #252d37
+  );
+  --accent-border: light-dark(
+    color-mix(in oklch, var(--accent) 25%, var(--white)),
+    #465565
+  );
+  --shadow:
+    0 18px 48px -28px oklch(0.25 0.0125 80 / 0.14),
+    0 1px 4px oklch(0.25 0.0125 80 / 0.025);
   --showcase: light-dark(var(--surface-hover), #29292e);
   --screenshot-edge: light-dark(#d4d4d2, #49494f);
-  --screenshot-shadow: 0 18px 32px -20px oklch(.25 .0125 80 / .28), 0 3px 8px -3px oklch(.25 .0125 80 / .10);
+  --screenshot-shadow:
+    0 18px 32px -20px oklch(0.25 0.0125 80 / 0.28),
+    0 3px 8px -3px oklch(0.25 0.0125 80 / 0.1);
   color: var(--ink);
   background: var(--white);
 }
 @media screen {
-  :root:has(#theme-toggle:checked) { color-scheme: dark; --theme: dark; }
+  :root:has(#theme-toggle:checked) {
+    color-scheme: dark;
+    --theme: dark;
+  }
 }
 @media screen and (prefers-color-scheme: dark) {
-  :root { color-scheme: dark; --theme: dark; }
-  :root:has(#theme-toggle:checked) { color-scheme: light; --theme: light; }
+  :root {
+    color-scheme: dark;
+    --theme: dark;
+  }
+  :root:has(#theme-toggle:checked) {
+    color-scheme: light;
+    --theme: light;
+  }
 }
 
 .theme-switch {
@@ -51,7 +70,10 @@
   color: var(--muted);
   background: transparent;
   cursor: pointer;
-  transition: color .2s, background .2s, border-color .2s;
+  transition:
+    color 0.2s,
+    background 0.2s,
+    border-color 0.2s;
 }
 .theme-switch input {
   position: absolute;
@@ -62,31 +84,64 @@
   opacity: 0;
   cursor: pointer;
 }
-.theme-switch:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 4px; }
-.theme-switch:hover { color: var(--heading); background: var(--panel-strong); border-color: var(--screenshot-edge); }
-.theme-switch svg { width: 17px; height: 17px; pointer-events: none; }
+.theme-switch:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.theme-switch:hover {
+  color: var(--heading);
+  background: var(--panel-strong);
+  border-color: var(--screenshot-edge);
+}
+.theme-switch svg {
+  width: 17px;
+  height: 17px;
+  pointer-events: none;
+}
 /* Only the active screenshot and icon participate in layout/accessibility. */
-.theme-dark { display: none !important; }
+.theme-dark {
+  display: none !important;
+}
 
 /* Named style queries reach through the homepage's animation containers. */
 @container theme style(--theme: dark) {
-  .theme-light { display: none !important; }
-  .theme-dark { display: block !important; }
+  .theme-light {
+    display: none !important;
+  }
+  .theme-dark {
+    display: block !important;
+  }
   body {
     --shadow: 0 18px 48px -24px #0008, 0 1px 4px #0003;
     --screenshot-shadow: 0 18px 36px -18px #0009, 0 3px 10px -3px #0005;
   }
-  :root ::selection { background: #34516b; color: #f3f4f0; }
+  :root ::selection {
+    background: #34516b;
+    color: #f3f4f0;
+  }
   :root :is(.site-header, .docs-header) {
-    background: rgb(28 28 31 / .92);
+    background: rgb(28 28 31 / 0.92);
     border-bottom-color: var(--border);
   }
-  :root :is(.skip-link, .desktop-window, .product-image) { background: var(--panel); }
-  :root .window-dots i { background: #656966; }
-  :root .phone { border-color: var(--screenshot-edge); }
-  :root .home-page .quick-add .product-image { box-shadow: var(--screenshot-shadow); }
+  :root :is(.skip-link, .desktop-window, .product-image) {
+    background: var(--panel);
+  }
+  :root .window-dots i {
+    background: #656966;
+  }
+  :root .phone {
+    border-color: var(--screenshot-edge);
+  }
+  :root .home-page .quick-add .product-image {
+    box-shadow: var(--screenshot-shadow);
+  }
   :root .home-page .encryption-section {
-    background: linear-gradient(120deg, var(--paper), var(--panel) 72%, #292d34);
+    background: linear-gradient(
+      120deg,
+      var(--paper),
+      var(--panel) 72%,
+      #292d34
+    );
     box-shadow: 0 24px 56px -36px #0008;
   }
   :root .comparison-standard {
@@ -102,31 +157,73 @@
     --comparison-surface: #20342b;
     box-shadow: 0 10px 24px -18px #0009;
   }
-  :root .comparison-readable i { background: #79544b; }
-  :root .comparison-track::before { border-top-color: #687172; }
-  :root .plan { background: var(--panel); box-shadow: 0 12px 36px -22px #0007; }
-  :root .plan-pro { background: linear-gradient(145deg, #292d34, var(--panel) 70%); border-color: #50545e; }
-  :root .plan-pro .plan-tag { color: var(--accent); }
-  :root .docs-page .sidebar { scrollbar-color: #4b5051 transparent; }
-  :root .docs-page .doc-figure img { background: var(--panel); }
-  :root .breadcrumb > span:nth-child(2) { color: var(--muted); }
+  :root .comparison-readable i {
+    background: #79544b;
+  }
+  :root .comparison-track::before {
+    border-top-color: #687172;
+  }
+  :root .plan {
+    background: var(--panel);
+    box-shadow: 0 12px 36px -22px #0007;
+  }
+  :root .plan-pro {
+    background: linear-gradient(145deg, #292d34, var(--panel) 70%);
+    border-color: #50545e;
+  }
+  :root .plan-pro .plan-tag {
+    color: var(--accent);
+  }
+  :root .docs-page .sidebar {
+    scrollbar-color: #4b5051 transparent;
+  }
+  :root .docs-page .doc-figure img {
+    background: var(--panel);
+  }
+  :root .breadcrumb > span:nth-child(2) {
+    color: var(--muted);
+  }
   /* Generated syntax highlighting has inline light colors; retain token distinctions. */
-  :root .prose code :is(.token-line, .token.plain, .token.punctuation, .token.operator) { color: var(--ink) !important; }
-  :root .prose code :is(.token.property, .token.attr-name) { color: #a9c8e6 !important; }
-  :root .prose code :is(.token.string, .token.attr-value) { color: #bad1b1 !important; }
-  :root .prose code :is(.token.number, .token.boolean, .token.keyword) { color: #d4b9dc !important; }
-  :root .prose code .token.comment { color: var(--muted) !important; }
+  :root
+    .prose
+    code
+    :is(.token-line, .token.plain, .token.punctuation, .token.operator) {
+    color: var(--ink) !important;
+  }
+  :root .prose code :is(.token.property, .token.attr-name) {
+    color: #a9c8e6 !important;
+  }
+  :root .prose code :is(.token.string, .token.attr-value) {
+    color: #bad1b1 !important;
+  }
+  :root .prose code :is(.token.number, .token.boolean, .token.keyword) {
+    color: #d4b9dc !important;
+  }
+  :root .prose code .token.comment {
+    color: var(--muted) !important;
+  }
 }
 @media (max-width: 760px) {
-  .theme-switch { width: 34px; height: 34px; }
-  .header-links { column-gap: 12px; }
+  .theme-switch {
+    width: 34px;
+    height: 34px;
+  }
+  .header-links {
+    column-gap: 12px;
+  }
 }
 @media (max-width: 420px) {
-  .pricing-page .pricing-docs-link { display: none; }
+  .pricing-page .pricing-docs-link {
+    display: none;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .theme-switch { transition: none; }
+  .theme-switch {
+    transition: none;
+  }
 }
 @media print {
-  .theme-switch { display: none !important; }
+  .theme-switch {
+    display: none !important;
+  }
 }

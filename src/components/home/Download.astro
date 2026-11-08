@@ -1,18 +1,71 @@
 ---
-import release from '../../data/release.json';
-if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version)) throw new Error('Invalid release version');
+import release from "../../data/release.json";
+if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
+  throw new Error("Invalid release version");
 ---
-<section id="download" class="download-section section-shell" aria-labelledby="download-heading" data-tone="sage">
-        <div class="download-heading">
-          <h2 id="download-heading" class="phrase-reveal" aria-label="Your next good idea starts here.">
-          <span class="heading-phrase" aria-hidden="true" style="--phrase-order:0">Your next good idea</span>
-          <span class="heading-phrase" aria-hidden="true" style="--phrase-order:1">starts here.</span>
-        </h2>
-        </div>
-        <div class="download-options">
-          <div class="download-platform"><svg class="icon platform-icon" aria-hidden="true"><use href="#apple-icon"/></svg><h3>macOS</h3><a href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}-arm64.dmg`}>Apple silicon <span aria-hidden="true">↓</span></a><a href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}-x64.dmg`}>Intel <span aria-hidden="true">↓</span></a></div>
-          <div class="download-platform"><svg class="icon platform-icon" aria-hidden="true"><use href="#windows-icon"/></svg><h3>Windows</h3><a href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}.Setup.exe`}>Download for Windows <span aria-hidden="true">↓</span></a></div>
-          <div class="download-platform"><svg class="icon platform-icon" aria-hidden="true"><use href="#device-icon"/></svg><h3>Linux</h3><span class="quiet-status">Coming soon</span></div>
-          <div class="download-platform"><svg class="icon platform-icon" aria-hidden="true"><use href="#phone-icon"/></svg><h3>Mobile <span class="badge">Beta</span></h3><a href="https://testflight.apple.com/join/3wpgBj2Z">iOS · TestFlight <span aria-hidden="true">↗</span></a><a href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}.apk`}>Android · APK <span aria-hidden="true">↓</span></a></div>
-        </div>
-      </section>
+
+<section
+  id="download"
+  class="download-section section-shell"
+  aria-labelledby="download-heading"
+  data-tone="sage"
+>
+  <div class="download-heading">
+    <h2
+      id="download-heading"
+      class="phrase-reveal"
+      aria-label="Your next good idea starts here."
+    >
+      <span class="heading-phrase" aria-hidden="true" style="--phrase-order: 0"
+        >Your next good idea</span
+      >
+      <span class="heading-phrase" aria-hidden="true" style="--phrase-order: 1"
+        >starts here.</span
+      >
+    </h2>
+  </div>
+  <div class="download-options">
+    <div class="download-platform">
+      <svg class="icon platform-icon" aria-hidden="true">
+        <use href="#apple-icon" />
+      </svg>
+      <h3>macOS</h3>
+      <a
+        href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}-arm64.dmg`}
+        >Apple silicon <span aria-hidden="true">↓</span></a
+      ><a
+        href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}-x64.dmg`}
+        >Intel <span aria-hidden="true">↓</span></a
+      >
+    </div>
+    <div class="download-platform">
+      <svg class="icon platform-icon" aria-hidden="true">
+        <use href="#windows-icon" />
+      </svg>
+      <h3>Windows</h3>
+      <a
+        href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}.Setup.exe`}
+        >Download for Windows <span aria-hidden="true">↓</span></a
+      >
+    </div>
+    <div class="download-platform">
+      <svg class="icon platform-icon" aria-hidden="true">
+        <use href="#device-icon" />
+      </svg>
+      <h3>Linux</h3>
+      <span class="quiet-status">Coming soon</span>
+    </div>
+    <div class="download-platform">
+      <svg class="icon platform-icon" aria-hidden="true">
+        <use href="#phone-icon" />
+      </svg>
+      <h3>Mobile <span class="badge">Beta</span></h3>
+      <a href="https://testflight.apple.com/join/3wpgBj2Z"
+        >iOS · TestFlight <span aria-hidden="true">↗</span></a
+      ><a
+        href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}.apk`}
+        >Android · APK <span aria-hidden="true">↓</span></a
+      >
+    </div>
+  </div>
+</section>

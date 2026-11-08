@@ -1,19 +1,43 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 const { src, caption, alt, maxWidth } = Astro.props;
 const resolved = src && (path.extname(src) ? src : `${src}/light.png`);
-const sourcePath = url => new URL('../../../public' + url, import.meta.url);
-const dark = resolved?.replace(/\/light\.png$/, '/dark.png');
+const sourcePath = (url) => new URL("../../../public" + url, import.meta.url);
+const dark = resolved?.replace(/\/light\.png$/, "/dark.png");
 const paired = dark && dark !== resolved && fs.existsSync(sourcePath(dark));
-const label = alt || caption || (src && path.basename(src, path.extname(src)).replace(/[-_]/g, ' '));
-const images = resolved ? [resolved, ...(paired ? [dark] : [])].map((url, index) => {
-  const buffer = fs.readFileSync(sourcePath(url));
-  return { url, width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20), theme: paired ? (index ? 'theme-dark' : 'theme-light') : '' };
-}) : [];
+const label =
+  alt ||
+  caption ||
+  (src && path.basename(src, path.extname(src)).replace(/[-_]/g, " "));
+const images = resolved
+  ? [resolved, ...(paired ? [dark] : [])].map((url, index) => {
+      const buffer = fs.readFileSync(sourcePath(url));
+      return {
+        url,
+        width: buffer.readUInt32BE(16),
+        height: buffer.readUInt32BE(20),
+        theme: paired ? (index ? "theme-dark" : "theme-light") : "",
+      };
+    })
+  : [];
 ---
+
 <figure class="doc-figure" style={maxWidth ? { maxWidth } : undefined}>
-  {images.map(({url, width, height, theme}) => <a class:list={['image-link', theme]} href={url} target="_blank" rel="noopener" aria-label={`Open image: ${label}`}><img src={url} alt={label} width={width} height={height} loading="lazy" decoding="async"></a>)}
+  {images.map(({ url, width, height, theme }) => <a
+    class:list={["image-link", theme]}
+    href={url}
+    target="_blank"
+    rel="noopener"
+    aria-label={`Open image: ${label}`}
+    ><img
+      src={url}
+      alt={label}
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+  /></a>)}
   <slot />
   {caption && <figcaption>{caption}</figcaption>}
 </figure>

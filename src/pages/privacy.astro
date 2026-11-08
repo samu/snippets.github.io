@@ -1,11 +1,14 @@
 ---
-import LegalLayout from '../layouts/LegalLayout.astro';
+import LegalLayout from "../layouts/LegalLayout.astro";
 ---
-<LegalLayout title="Privacy Policy · Snippets" description="Learn how Snippets handles local notes, optional accounts, Snippets Cloud, payments, feedback, website analytics, and Google Calendar access.">
+
+<LegalLayout
+  title="Privacy Policy · Snippets"
+  description="Learn how Snippets handles local notes, optional accounts, Snippets Cloud, payments, feedback, website analytics, and Google Calendar access."
+>
   <main id="main" tabindex="-1" class="legal-page">
     <div class="legal-container">
       <header class="legal-hero">
-
         <h1 class="legal-title">Privacy Policy</h1>
         <p class="legal-subtitle">
           This policy explains what data Snippets handles today, where it is
@@ -24,15 +27,15 @@ import LegalLayout from '../layouts/LegalLayout.astro';
           <section class="legal-section">
             <h2>Overview</h2>
             <p>
-              Snippets is designed around a local-first model. In normal
-              use, notes and related content are stored on the user&apos;s
-              own device unless the user chooses an optional sync method.
+              Snippets is designed around a local-first model. In normal use,
+              notes and related content are stored on the user&apos;s own device
+              unless the user chooses an optional sync method.
             </p>
             <p>
               We aim to keep data collection limited to what is required to
-              operate the website, receive feedback, prevent abuse, and
-              support optional features chosen by the user, including
-              accounts, Snippets Cloud, Google Calendar, and paid licenses.
+              operate the website, receive feedback, prevent abuse, and support
+              optional features chosen by the user, including accounts, Snippets
+              Cloud, Google Calendar, and paid licenses.
             </p>
           </section>
 
@@ -40,22 +43,21 @@ import LegalLayout from '../layouts/LegalLayout.astro';
             <h2>Data Storage and Optional Sync</h2>
             <p>
               Notes are stored locally on the user&apos;s device by default.
-              Users may optionally enable synchronization using the local
-              file system, a GitHub repository under their own GitHub
-              account, or Snippets Cloud.
+              Users may optionally enable synchronization using the local file
+              system, a GitHub repository under their own GitHub account, or
+              Snippets Cloud.
             </p>
             <p>
-              If GitHub sync is enabled, synced content is stored and
-              processed by GitHub under the user&apos;s own GitHub setup and
-              is subject to GitHub&apos;s terms and privacy practices.
+              If GitHub sync is enabled, synced content is stored and processed
+              by GitHub under the user&apos;s own GitHub setup and is subject to
+              GitHub&apos;s terms and privacy practices.
             </p>
             <p>
               Snippets Cloud is an optional cloud sync service currently in
-              beta. Data for Snippets Cloud is hosted on Amazon Web
-              Services. During the beta, Snippets does not guarantee that
-              synced data will be stored safely, remain available, or be
-              preserved with 100% durability. Users should keep their own
-              backups of important data.
+              beta. Data for Snippets Cloud is hosted on Amazon Web Services.
+              During the beta, Snippets does not guarantee that synced data will
+              be stored safely, remain available, or be preserved with 100%
+              durability. Users should keep their own backups of important data.
             </p>
           </section>
 
@@ -68,9 +70,8 @@ import LegalLayout from '../layouts/LegalLayout.astro';
             </p>
             <p>
               Account data may include information such as an email address,
-              authentication identifiers, license status, service metadata,
-              and similar records needed to provide and protect account
-              features.
+              authentication identifiers, license status, service metadata, and
+              similar records needed to provide and protect account features.
             </p>
           </section>
 
@@ -79,9 +80,9 @@ import LegalLayout from '../layouts/LegalLayout.astro';
             <p>
               Snippets Cloud uses client-side end-to-end encryption for
               encrypted content. In short: a vault key is derived from the
-              user&apos;s passphrase with libsodium password hashing, each
-              item uses a random data key, keys are wrapped with XChaCha20-Poly1305 AEAD, and payloads are encrypted with random
-              nonces.
+              user&apos;s passphrase with libsodium password hashing, each item
+              uses a random data key, keys are wrapped with XChaCha20-Poly1305
+              AEAD, and payloads are encrypted with random nonces.
             </p>
           </section>
 
@@ -89,27 +90,27 @@ import LegalLayout from '../layouts/LegalLayout.astro';
             <h2>Pro Licenses and Payments</h2>
             <p>
               Users may optionally buy a Snippets Pro license. Payments are
-              processed by Lemon Squeezy, which handles payment details
-              under its own terms and privacy practices.
+              processed by Lemon Squeezy, which handles payment details under
+              its own terms and privacy practices.
             </p>
             <p>
               Snippets may receive and store related transaction, license,
-              customer, and subscription metadata needed to activate,
-              manage, and support Pro licenses.
+              customer, and subscription metadata needed to activate, manage,
+              and support Pro licenses.
             </p>
           </section>
 
           <section class="legal-section">
             <h2>Network Requests and Feedback</h2>
             <p>
-              The app uses a small number of backend endpoints, for example
-              to submit feedback or similar service requests.
+              The app uses a small number of backend endpoints, for example to
+              submit feedback or similar service requests.
             </p>
             <p>
-              For those requests, the client&apos;s IP address may be
-              processed to prevent abuse, apply rate limits, and protect
-              service stability. Feedback content is stored as submitted so
-              it can be reviewed and acted on.
+              For those requests, the client&apos;s IP address may be processed
+              to prevent abuse, apply rate limits, and protect service
+              stability. Feedback content is stored as submitted so it can be
+              reviewed and acted on.
             </p>
           </section>
 
@@ -118,16 +119,15 @@ import LegalLayout from '../layouts/LegalLayout.astro';
             <p>
               The Snippets website uses limited first-party analytics to
               understand basic website usage and interest in downloads. In
-              particular, the landing page may send events when it is
-              visited, when a visitor scrolls substantially through it, when
-              a download button is clicked, and when a browser referrer is
-              available.
+              particular, the landing page may send events when it is visited,
+              when a visitor scrolls substantially through it, when a download
+              button is clicked, and when a browser referrer is available.
             </p>
             <p>
               These analytics events are sent directly to a Snippets-owned
-              backend endpoint. They are not used for advertising or
-              cross-site behavioral profiling, and the website does not use
-              cookies for analytics or marketing.
+              backend endpoint. They are not used for advertising or cross-site
+              behavioral profiling, and the website does not use cookies for
+              analytics or marketing.
             </p>
             <p>
               Like any standard web request, analytics requests may include
@@ -152,24 +152,23 @@ import LegalLayout from '../layouts/LegalLayout.astro';
             <h2>Google Calendar</h2>
             <p>
               Connecting Google Calendar is optional. Through Google&apos;s
-              OAuth consent screen, you grant Snippets permission to read
-              all calendar information available to your account, including
-              shared calendars, and write calendar changes. This includes
-              event details and attendee information, used only to display
-              your calendars and make changes through the app.
+              OAuth consent screen, you grant Snippets permission to read all
+              calendar information available to your account, including shared
+              calendars, and write calendar changes. This includes event details
+              and attendee information, used only to display your calendars and
+              make changes through the app.
             </p>
             <p>
-              After you authorize access through Google OAuth, Snippets
-              stores the resulting OAuth credentials locally on your device.
-              Calendar data is loaded into memory to provide the calendar
-              features; it is not saved to persistent local storage or to
-              any Snippets database. Neither OAuth credentials nor calendar
-              data are stored on Snippets servers or in Snippets Cloud.
+              After you authorize access through Google OAuth, Snippets stores
+              the resulting OAuth credentials locally on your device. Calendar
+              data is loaded into memory to provide the calendar features; it is
+              not saved to persistent local storage or to any Snippets database.
+              Neither OAuth credentials nor calendar data are stored on Snippets
+              servers or in Snippets Cloud.
             </p>
             <p>
-              Changes you make to your calendars are sent to Google and
-              shared according to your calendar settings, subject to
-              Google&apos;s
+              Changes you make to your calendars are sent to Google and shared
+              according to your calendar settings, subject to Google&apos;s
               <a href="https://policies.google.com/privacy">Privacy Policy</a>.
             </p>
           </section>
@@ -177,26 +176,28 @@ import LegalLayout from '../layouts/LegalLayout.astro';
           <section class="legal-section">
             <h2>Google User Data Retention and Deletion</h2>
             <p>
-              Google OAuth credentials are retained locally on your device
-              until you disconnect Google Calendar in Snippets. To delete
-              these credentials, click Disconnect for the Google Calendar
-              connection in the app. This removes the locally stored
-              credentials from your device.
+              Google OAuth credentials are retained locally on your device until
+              you disconnect Google Calendar in Snippets. To delete these
+              credentials, click Disconnect for the Google Calendar connection
+              in the app. This removes the locally stored credentials from your
+              device.
             </p>
             <p>
               Google Calendar data is held temporarily in application memory
               while the app is running and is discarded when the app exits.
               Snippets does not retain a persistent copy of this data on your
-              device or in its databases, servers, or cloud backups.
-              Discarding this temporary data does not delete your calendars
-              or events from Google Calendar.
+              device or in its databases, servers, or cloud backups. Discarding
+              this temporary data does not delete your calendars or events from
+              Google Calendar.
             </p>
             <p>
               You can revoke Snippets&apos; access at any time through your
-              <a href="https://myaccount.google.com/connections">Google Account connections</a>. Revoking access prevents Snippets from accessing your Google
-              Calendar data again unless you authorize it again. Your
-              calendars and events remain in your Google account, where you
-              can manage or delete them directly through Google Calendar.
+              <a href="https://myaccount.google.com/connections"
+                >Google Account connections</a
+              >. Revoking access prevents Snippets from accessing your Google
+              Calendar data again unless you authorize it again. Your calendars
+              and events remain in your Google account, where you can manage or
+              delete them directly through Google Calendar.
             </p>
           </section>
 
@@ -225,5 +226,4 @@ import LegalLayout from '../layouts/LegalLayout.astro';
       <a href="mailto:support@snippets.ch">Contact</a>
     </nav>
   </footer>
-
 </LegalLayout>

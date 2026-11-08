@@ -25,12 +25,15 @@ jobs:
           cache: pnpm
       - name: Install build dependencies
         run: pnpm install --frozen-lockfile
+      - name: Check formatting
+        run: pnpm format:check
       - name: Build and validate all pages
         run: pnpm build
       # Retain the existing gh-pages publishing source and deployment credential.
       # Branch previews and pull requests only build; they never publish.
       - name: Publish static site
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        if:
+          github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.GIT_PASS }}

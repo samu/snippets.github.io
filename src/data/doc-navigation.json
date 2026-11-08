@@ -1,11 +1,5 @@
 [
-  [
-    "Get started",
-    [
-      "introduction",
-      "organizing-your-notes"
-    ]
-  ],
+  ["Get started", ["introduction", "organizing-your-notes"]],
   [
     "Writing & organizing",
     [
@@ -22,18 +16,7 @@
   ],
   [
     "Sync & settings",
-    [
-      "sync",
-      "syncing-with-github",
-      "mobile-app",
-      "app-settings"
-    ]
+    ["sync", "syncing-with-github", "mobile-app", "app-settings"]
   ],
-  [
-    "Compare",
-    [
-      "compared-to-obsidian",
-      "compared-to-notion"
-    ]
-  ]
+  ["Compare", ["compared-to-obsidian", "compared-to-notion"]]
 ]

@@ -1,5 +1,16 @@
 ---
-import Icon from '../Icon.astro';
+import Icon from "../Icon.astro";
 const { features } = Astro.props;
 ---
-<ul class="plan-features">{features.map(feature => <li>{feature.planned ? <span class="planned-marker" aria-hidden="true">○</span> : <Icon name="check" stroke-width="1.6" />}<span>{feature.text}{feature.planned && <> <small>Planned</small></>}</span></li>)}</ul>
+
+<ul class="plan-features">
+  {features.map((feature) => <li>
+    {feature.planned ? (
+      <span class="planned-marker" aria-hidden="true">○</span>
+    ) : (
+      <Icon name="check" stroke-width="1.6" />
+    )}<span
+      >{feature.text}{feature.planned && <> <small>Planned</small></>}</span
+    >
+  </li>)}
+</ul>

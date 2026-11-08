@@ -1,10 +1,17 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import Header from '../components/Header.astro';
-import { legalStyles } from '../lib/styles';
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
+import { legalStyles } from "../lib/styles";
 const { standalone = false, ...metadata } = Astro.props;
 ---
-<BaseLayout {...metadata} bodyId={standalone ? undefined : 'top'} styles={legalStyles}>
-  {!standalone && <><a class="skip-link" href="#main">Skip to content</a><Header /></>}
+
+<BaseLayout
+  {...metadata}
+  bodyId={standalone ? undefined : "top"}
+  styles={legalStyles}
+>
+  {!standalone && (
+    <><a class="skip-link" href="#main">Skip to content</a><Header /></>
+  )}
   <slot />
 </BaseLayout>
