@@ -1,194 +1,160 @@
 # Snippets website
 
-The redesigned Snippets homepage, documentation, pricing and legal pages. The
-published site is HTML, CSS and local media only, with no browser JavaScript.
-React and MDX are used **only at build time** to render the documentation.
-Node runs the build and local preview tools.
+The Snippets homepage, documentation, pricing and legal pages, built with Astro.
+The production site is static HTML, CSS, local fonts and media. There is **no
+browser JavaScript** in the published build. Astro and MDX run at build time;
+the development server uses JavaScript for live updates while you work.
 
 Technical explanations: [the build](#how-the-build-works),
-[why several build scripts](#why-several-build-scripts),
+[the remaining scripts](#why-these-scripts-remain),
+[light/dark mode](#how-light-and-dark-mode-work),
 [the unfolding note](#how-the-note-unfolds), and
 [scroll reveals](#how-scroll-reveals-work).
 
 ## Develop
 
-Requires Node.js 22+ and pnpm 10.26.2. The preview server uses Node's built-in
-HTTP and filesystem modules; no additional runtime or server package is needed.
+Requires Node.js **22.23.4 or newer** and pnpm 10.26.2.
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Open http://127.0.0.1:64530/. Both development and preview default to port `64530`.
-To override it, pass `--port <number>`; `--port 0` chooses an available port.
-The development command rebuilds when source files change; refresh the browser
-to see the result. Responses use `Cache-Control: no-store`. A failed build keeps
-the last successful preview available.
+Open http://127.0.0.1:64530/. Astro watches the source and updates the browser as
+files change. The dev server sends `Cache-Control: no-store`. Port `64530` is
+configured in `astro.config.mjs`; if it is occupied, dev exits instead of silently
+choosing another port. Stop an old preview process before starting this one.
+Pass `--port 64531` to use a different port temporarily.
 
 ```sh
-pnpm build                 # clean build plus route/asset checks
-pnpm check                 # validate the current dist/ again
-pnpm test                  # check local preview HTTP behavior
-pnpm preview             # serve an existing build on port 64530, without watching
+pnpm build       # Astro production build, followed by output checks
+pnpm check       # validate the existing dist/ without rebuilding
+pnpm preview     # serve the production build, default port 64530
+pnpm media:build # optional: regenerate screenshots and the note atlas
 ```
+
+Astro may run dev/preview in the background when launched by an AI coding agent;
+its `--ignore-lock` option keeps agent-run QA sessions in the foreground. Stop
+background sessions with `pnpm exec astro dev stop` or
+`pnpm exec astro preview stop`. Ordinary terminal development does not require
+these options.
 
 ## Organization
 
 | Location | Purpose |
 | --- | --- |
-| `site/index.html` | Authored homepage, including the scroll choreography markup |
-| `site/privacy/index.html`, `site/terms/index.html` | Complete, editable HTML pages; no page-specific generator |
-| `site/styles/` | Homepage, shared brand, themes, docs, pricing and legal CSS |
-| `site/assets/` | Served fonts, note atlas, optimized homepage screenshots |
-| `content/docs/` | The 17 documentation articles (MDX); custom components are provided by the builder |
-| `public/pricing.json` | Shared pricing data, served unchanged at `/pricing.json` and used to generate the pricing page |
-| `content/release.json` | App version used in homepage download links |
-| `media/` | Original screenshots, docs media and note frames; builders copy or derive only the required assets |
-| `public/` | Files copied unchanged to the site root, including CNAME and .nojekyll |
-| `scripts/` | Build, media maintenance, validation and local preview tools |
-| `dist/` | Generated, ignored output; the only directory to publish |
-
-Edit the sources above, never generated files in `dist/`.
+| `astro.config.mjs` | Static output, domain, port, Markdown configuration, old-route redirects and sitemap |
+| `src/pages/` | Homepage, pricing, privacy, terms, 404 and docs routes |
+| `src/components/home/` | The intro, note, ten homepage sections, icons and footer |
+| `src/components/` | Shared header, theme toggle, icons, docs media and pricing components |
+| `src/layouts/` | Shared document metadata, legal layout and documentation layout |
+| `src/content/docs/` | The 17 MDX articles, with title/description/draft metadata |
+| `src/data/doc-navigation.json` | Article grouping and order |
+| `src/data/docs.js` | Astro imports of article metadata/content, navigation validation and reading-time estimates |
+| `src/data/release.json` | Release version used in download links |
+| `src/styles/` | Existing global styles, including CSS-only scroll and theme behavior |
+| `src/lib/styles.js` | Explicit stylesheet order for each layout |
+| `src/lib/rehype-docs.mjs` | Markdown heading links and code/table presentation wrappers |
+| `public/assets/` | Published fonts, note atlas, light/dark screenshots and documentation media |
+| `public/pricing.json` | Canonical pricing data, served unchanged at `/pricing.json` |
+| `public/CNAME`, `public/.nojekyll`, `public/robots.txt` | Static hosting and crawler configuration |
+| `media/` | Original homepage screenshot PNGs, note frames and theme reference |
+| `scripts/` | Output validation and optional media generation |
+| `dist/` | Generated production files; ignored by Git |
+| `.astro/` | Generated Astro metadata and types; ignored by Git |
 
 ## How the build works
 
-There is one normal build command: `pnpm build`. Its entry point is
-[scripts/build.mjs](scripts/build.mjs). It generates files ahead of time, so the
-host serves finished files instead of rendering pages on each request.
+`pnpm build` runs `astro build`, then `node scripts/check.mjs`.
 
 ```mermaid
 flowchart TD
-  Sources["site/ + public/ + content/ + referenced media"] --> Stage["Prepare .site-build/"]
-  Stage --> Pages["Render docs and pricing"]
-  Pages --> Finalize["Add metadata, CSS versions and sitemap"]
-  Finalize --> Check["Validate output"]
-  Check -->|passes| Dist["Replace dist/"]
-  Check -->|fails| Keep["Keep previous dist/"]
+  Sources["Astro pages/layouts/components + MDX + JSON"] --> Astro["Astro compiles static pages"]
+  Styles["Ordered global styles"] --> Astro
+  Public["public/ — copied unchanged"] --> Dist["dist/"]
+  Astro --> Dist
+  Dist --> Check["Validate routes, assets, anchors and pricing.json"]
+  Check -->|passes| Publish["Ready for static hosting"]
 ```
 
-The steps run sequentially:
+Astro resolves the components and layouts while building. They do not become
+browser components, introduce extra wrapper elements, or require hydration.
+The homepage's section components output the same HTML structure as before.
+All scroll effects continue to use the existing CSS timelines and transitions.
 
-1. Copy the authored homepage, privacy, terms and 404 pages, CSS, runtime assets and
-   public files into a temporary staging directory. Fill the homepage download
-   URLs from `content/release.json`. Copy `public/pricing.json` to `/pricing.json`.
-2. Render the MDX articles to HTML using React on Node, with syntax highlighting
-   and referenced documentation media. Generate the pricing page from the same
-   `public/pricing.json` that is served to external consumers.
-3. Add canonical URLs, a sitemap, redirects and content hashes on stylesheet URLs.
-   The hashes change when CSS changes, so deployed styles do not stay stale.
-4. Check that the required pages exist and local links, anchors and assets resolve,
-   and that no browser JavaScript or build source slipped into the output.
-5. Replace `dist/` only after all steps pass. If the build fails, the previous
-   successful output remains available.
+The shared document layout adds canonical URLs, page titles and descriptions.
+Astro generates the documentation routes from the MDX modules and renders pricing
+from the same JSON file that external consumers receive. Privacy and terms remain
+plain authored markup inside lightweight Astro pages with a shared layout.
 
-The page generators write into `.site-build/`, selected through
-`SNIPPETS_BUILD_DIR` in [scripts/paths.mjs](scripts/paths.mjs). After validation,
-the orchestrator moves the old output to `.dist-previous/`, installs the new
-`dist/`, and removes the old copy. If installing the new directory fails, it
-attempts to restore the previous one. This keeps failed generation or validation
-from replacing a working site; it is not a production deployment transaction.
+`src/lib/styles.js` imports each stylesheet with `?url` and passes an ordered
+list to the document layout. Vite emits shared CSS files with content hashes in
+their filenames. Explicit links preserve the existing cascade order, including
+brand overrides, encryption styles and the theme palette. The CSS stays global;
+section components do not add scoped styles or change the animation selectors.
+Asset URLs inside CSS are rooted at `/assets/` so they work from both dev and
+hashed production stylesheet URLs.
 
-CSS versioning means a reference such as `styles/main.css?v=<hash>`. The hash is
-derived from the stylesheet's bytes. Changed CSS therefore gets a different URL;
-the actual CSS filename stays the same. Separately, the local preview sends
-`Cache-Control: no-store`, so refreshing reads the latest output.
+HTML compression and CSS minification are disabled deliberately. HTML compression
+can remove spaces between inline heading phrases. The CSS minifier can fold
+`animation-timeline` into a shorthand that browsers reject, breaking scroll
+animations. Versioned CSS assets and static output are still generated normally.
 
-`pnpm dev` builds once, starts the Node preview server, and watches `site/`,
-`content/`, `scripts/` and `public/`. It groups rapid changes with a 180ms debounce
-and queues another build if an edit arrives during a build. These are full builds,
-not incremental compilation. Refresh the browser after a successful rebuild;
-there is no browser script for automatic reload. Direct edits under `media/` are
-not watched: run the appropriate media command and/or `pnpm build` afterward.
+Astro's MDX integration handles Markdown compilation and Prism code highlighting.
+The small rehype plugin adds our heading links, code panels and table wrappers.
+`Figure.astro`, `DocVideo.astro`, `Row.astro` and `Callout.astro` provide
+article-specific presentation. This replaces the former custom React renderer.
+The original article URLs and heading anchors are preserved. Four unfinished
+guides continue to show their existing “Guide in progress” presentation.
 
-`pnpm preview` only serves an existing `dist/`, without building or watching.
-Avoid running a manual build at the same time as the development watcher:
-separate build processes currently share the same staging directory.
+The sitemap integration generates `sitemap-index.xml` and `sitemap-0.xml`.
+Old `/dark/…` URLs are static redirects to the normal pages; `/showcase/`
+redirects to the homepage features. These compatibility pages do not duplicate
+content. Light and dark modes share one HTML document per page.
 
-The published result is static HTML, CSS, fonts and media. React and Node do their
-work during the build; the deployed site needs no application server or hydration.
+`public/pricing.json` stays at exactly **`/pricing.json`**, separate from
+`/pricing/`. Keep its existing fields, including fields the current pricing UI
+does not display. The checker compares the published file byte for byte against
+its source.
 
-Every page has one URL and one HTML document for both themes. Light/dark mode is
-handled entirely by [themes.css](site/styles/themes.css); there is no theme build
-step. Old `/dark/…` URLs contain only small redirects to the corresponding normal
-URLs, so existing bookmarks still lead to the right content.
+The build produces no server bundle to run in production. The host serves `dist/`
+directly. Unlike the retired custom staging/swap script, Astro rebuilds `dist/`
+directly; use `pnpm dev` while editing. A failed CI build prevents publishing.
 
-Existing `/docs/<slug>/`, `/pricing/`, `/privacy/` and `/terms/` routes are retained.
-The old site's JSON endpoint remains exactly `/pricing.json`; it is separate from
-the HTML page at `/pricing/`. Its filename, JSON fields and values are preserved.
-Update `public/pricing.json` to change the shared pricing data. The build checks
-that the published JSON is byte-for-byte identical to this source file.
+## Why these scripts remain
 
-The retired `/showcase/` route redirects to the homepage features. A static
-`404.html` provides recovery links. Four unfinished source guides still show
-“Guide in progress”; the migration does not invent missing documentation.
+Astro now owns development, page generation, asset versioning and redirects.
+The previous `build.mjs`, `build-docs.mjs`, `build-pricing.mjs`,
+`finalize.mjs`, `dev.mjs` and `serve.mjs` are removed.
 
-## Why several build scripts
+| Script | Why it remains |
+| --- | --- |
+| [check.mjs](scripts/check.mjs) | Checks the actual output: required pages, local links/assets/anchors, native theme controls, old-route redirects, public pricing JSON, and absence of browser scripts/build source |
+| [build-media.mjs](scripts/build-media.mjs) | Optional conversion of original screenshot PNGs into the checked-in WebPs |
+| [build-note.mjs](scripts/build-note.mjs) | Optional assembly of the supplied frames into the CSS sprite atlas |
+| [paths.mjs](scripts/paths.mjs) | Shared filesystem locations for those maintenance scripts; it does not run a build |
 
-The filenames describe stages of one pipeline. They are not separate applications,
-servers, bundles, or independently deployed services. `build.mjs` invokes the page
-generators and finishing steps as Node subprocesses; a failure stops the pipeline.
-For ordinary edits, run `pnpm build`, rather than invoking each script yourself.
-
-| Script | Input and responsibility | When it runs |
-| --- | --- | --- |
-| [build.mjs](scripts/build.mjs) | Copies sources, substitutes the release version, orders the stages, and replaces the validated output | Every normal build |
-| [build-docs.mjs](scripts/build-docs.mjs) | Compiles MDX with build-time React; renders guides, navigation, outlines and highlighted code; copies referenced docs media | Every normal build |
-| [build-pricing.mjs](scripts/build-pricing.mjs) | Turns the shared public pricing JSON into plan cards, a comparison table and related copy | Every normal build |
-| [finalize.mjs](scripts/finalize.mjs) | Adds canonical links, CSS hashes, sitemap, robots.txt and redirects for old showcase/theme URLs | After the pages exist |
-| [check.mjs](scripts/check.mjs) | Checks required routes, theme switches and local links/assets/anchors; rejects browser scripts and leaked build source | Before replacing `dist/`; also available as `pnpm check` |
-| [build-media.mjs](scripts/build-media.mjs) | Re-encodes homepage screenshot WebPs and invokes the note builder | Only with `pnpm media:build` |
-| [build-note.mjs](scripts/build-note.mjs) | Assembles the PNG frames into the note atlas and creates the small static icon | Called by the media build |
-
-The docs renderer has substantial MDX-specific work, while metadata and validation
-operate on the whole site. Keeping those responsibilities separate makes their
-inputs and order easier to follow. Media generation is deliberately separate
-because it uses ImageMagick/WebP tools and does not need to run for text or CSS edits.
-
-### Which pages actually need generation?
-
-Ordinary static pages can be complete HTML files under `site/`. Privacy and terms
-now follow that approach: edit their text, metadata and markup directly in
-`site/privacy/index.html` and `site/terms/index.html`. Their former JavaScript
-wrapper and separate metadata files have been removed. They link the shared theme
-stylesheet directly. The finalization pass adds canonical links and CSS versions.
-
-| Pages | Approach | Reason |
-| --- | --- | --- |
-| Homepage | Authored HTML in `site/index.html`; the common build inserts the download version | Its layout and content are directly editable |
-| Privacy and terms | Authored HTML in `site/privacy/` and `site/terms/` | Two static documents do not need dedicated generators |
-| 404 | Authored HTML in `site/404.html` | A small standalone recovery page |
-| Pricing | Generated from `public/pricing.json` | External consumers need the same JSON; the page should stay consistent with that shared data |
-| Docs overview and guides | Generated from MDX and shared navigation definitions | One renderer maintains article formatting, navigation, outlines and code highlighting across the guides |
-
-Pricing could also be handwritten HTML, but prices and feature lists would then
-have to be updated both there and in the public JSON. Keeping its small generator
-avoids two independent sources of pricing information. It also checks that the
-expected Free and Pro plans exist. Preserve the JSON's public fields, including
-ones the current HTML layout does not use.
-
-There is no requirement to add a build script for every page. The remaining
-scripts separate content conversion, metadata, validation and
-optional image processing. Some head/navigation/footer markup is still repeated
-between the authored pages and generators; that can be consolidated if maintaining
-it becomes cumbersome, without adding a generator to each static page.
+`pnpm check` is our output validator, not Astro's optional TypeScript diagnostic
+command. It checks local references, not the availability of external websites.
+No custom preview server or server-test suite is needed now that Astro serves the
+site. The production-output checks still run on every build.
 
 ## How light and dark mode work
 
-Each header contains a native checkbox styled as a sun/moon button. No browser
+Each header uses `src/components/ThemeToggle.astro`, a native checkbox styled as a sun/moon button. No browser
 JavaScript or page navigation is involved:
 
 1. `prefers-color-scheme` selects the device's preferred theme on a fresh page.
 2. CSS `:has(#theme-toggle:checked)` reverses that preference while the checkbox
    is checked. Clicking again returns to the system preference.
 3. `color-scheme` selects the light or dark values in `light-dark()` color tokens.
-   Both palettes live together in `site/styles/themes.css`.
+   Both palettes live together in `src/styles/themes.css`.
 4. A named style container query applies the remaining dark component treatments
    and shows the appropriate screenshot and sun/moon icon. Its explicit name
    keeps it separate from the homepage's scroll-animation containers.
 
-Homepage screenshot pairs are written directly in the HTML. For docs, the existing
-MDX renderer includes a dark image when the source has one, including a matching
+Homepage screenshot pairs are written in the section components. For docs,
+`Figure.astro` includes a dark image when the source has one, including a matching
 full-size image link. CSS hides the inactive variant with `display: none`, removing
 it from layout and the accessibility tree. Each image keeps its own dimensions.
 Images without a dark counterpart stay the same. Both variants may be downloaded;
@@ -220,14 +186,14 @@ It resizes each frame to 480 × 480 pixels, places them in a 10-column × 9-row 
 and encodes the resulting 4800 × 4320 image as `note-opening-90.webp`. It also creates
 `note-open.webp`, a 160px static icon, from the final playback frame.
 
-Those outputs are checked into `site/assets/note/`. A normal page build copies
+Those outputs are checked into `public/assets/note/`. A normal page build copies
 them; it does not render or re-encode the note each time.
 
 ### Selecting a pose with scroll
 
 The relevant markup is `.note-mover > .note-sprite` in
-[site/index.html](site/index.html). In
-[site/styles/main.css](site/styles/main.css), `.note-sprite` uses the atlas as its
+[src/pages/index.astro](src/pages/index.astro). In
+[src/styles/main.css](src/styles/main.css), `.note-sprite` uses the atlas as its
 background, with `background-size: 1000% 900%`. The element therefore shows one
 of the ten-by-nine cells. `@keyframes unfold-note` specifies 90 background positions.
 
@@ -293,7 +259,7 @@ General content reveals have a scroll-controlled fallback and a timed enhancemen
 
 ### Paragraphs, screenshots and content groups
 
-The reveal selectors in [site/styles/main.css](site/styles/main.css) cover the
+The reveal selectors in [src/styles/main.css](src/styles/main.css) cover the
 feature copy, screenshot figures and other content groups. They animate `opacity`
 and `translateY`: an element starts slightly lower and moves to its normal position
 as it becomes visible. No extra screenshot zoom or frame-growth effect is applied.
@@ -358,7 +324,7 @@ The four `.sync-option` wrappers use the same threshold/state technique at
 wrapper follows its own position in the viewport, and exiting clears the stagger
 so cards can leave promptly.
 
-In [site/styles/encryption.css](site/styles/encryption.css), each comparison scene
+In [src/styles/encryption.css](src/styles/encryption.css), each comparison scene
 switches `--diagram-state` at `entry 18svh`. The reveal is broken into individual
 parts: row backgrounds, labels, device icons, notes, connecting lines, provider
 icons, binary chunks and the outcome text. Opacity and transforms introduce the
@@ -388,32 +354,29 @@ JavaScript observer, scroll handler or compatibility polyfill in the page.
 
 ## Updating media
 
-Runtime media is checked in, so normal builds need no native image tools.
-Screenshot masters live in `media/screenshots/`. Docs PNGs and videos live in
-`media/docs/`; the build copies only referenced files and their dark variants to
-`dist/assets/docs/`. Inter's license is next
-to its local font in `site/assets/fonts/`.
+Edit documentation images/videos directly in `public/assets/docs/`. Folder-based
+screenshots use `light.png` and an optional `dark.png`; the Figure component
+reads each image's dimensions at build time and renders the appropriate theme pair.
 
-To regenerate homepage WebPs and the note atlas after replacing source media,
-install ImageMagick (`magick`) and WebP (`cwebp`), then run:
+For homepage screenshot changes, update the originals under
+`media/screenshots/<name>/{light,dark}.png`, then run `pnpm media:build`.
+Update the dimensions in the relevant homepage component if an image changes size.
+The media command requires ImageMagick (`magick`) and WebP's `cwebp` locally;
+normal builds use the checked-in WebPs and do not need either tool.
 
-```sh
-pnpm media:build
-pnpm build
-```
-
-Preserve the note frame count and geometry unless updating the CSS mapping as
-described above. The unused Carbon PNG sequence is retained as a design source;
+Note frames live in `media/note/porcelain/png/`, with a manifest beside them.
+The builder requires the current 90-frame sequence and writes
+`public/assets/note/note-opening-90.webp` and `note-open.webp`.
+If frame count, cell size or atlas layout changes, update the CSS frame mapping
+as explained above. The Carbon source frames remain available as source material;
 both color themes use the approved Porcelain atlas.
 
 ## Publishing
 
-GitHub Actions installs from the lockfile and builds/checks the site on pull
-requests and pushes to `main` or `codex/homepage-v2`. Only `main` may publish.
-The workflow publishes **only `dist/`** to the existing `gh-pages` branch, keeping
-`snippets.ch`, `.nojekyll`, and the existing `GIT_PASS` deployment secret plus
-`GIT_USER_NAME` / `GIT_USER_EMAIL` repository variables. GitHub Pages should
-continue to serve the root of `gh-pages`; no hosting setting change is required.
+The GitHub workflow installs with the frozen pnpm lockfile and runs `pnpm build`.
+Only a successful push build on `main` publishes `dist/` to `gh-pages` using
+the existing deployment credential. The `astro-migration` branch, the previous
+homepage branch, and pull requests build without publishing.
 
-The former Docusaurus app and the interim `v2/` output are retired. Their previous
-versions remain in Git history. No deployment is needed to run this project locally.
+The custom domain is `snippets.ch`, configured in Astro and `public/CNAME`.
+There is no repository-path prefix or production Node server.

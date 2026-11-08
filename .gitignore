@@ -1,9 +1,8 @@
 /node_modules/
 /.pnpm-store/
 /dist/
-/.site-build/
-/.dist-previous/
 .DS_Store
 .env*
 !.env.example
 *-debug.log*
+/.astro/

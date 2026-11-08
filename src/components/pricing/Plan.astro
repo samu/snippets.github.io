@@ -1,0 +1,15 @@
+---
+import FeatureList from './FeatureList.astro';
+import Icon from '../Icon.astro';
+const { plan } = Astro.props;
+const isPro = plan.name === 'Pro';
+---
+<article class:list={['plan', { 'plan-pro': isPro }]} aria-labelledby={`plan-${plan.name.toLowerCase()}`}>
+  <div class="plan-heading"><h2 id={`plan-${plan.name.toLowerCase()}`}>{plan.name}</h2></div>
+  <p class="plan-description">{isPro ? 'Personal touches. Private sync.' : 'Unlimited notes. A place to begin.'}</p>
+  <div class="plan-price"><span>{plan.price}</span><span class="price-note">{plan.priceNote || ''}</span></div>
+  <p class="feature-intro">{isPro ? 'Everything in Free, plus' : 'Included with Free'}</p>
+  <FeatureList features={plan.features} />
+  {plan.plannedFeatures?.length > 0 && <div class="planned-features"><p>Planned features</p><FeatureList features={plan.plannedFeatures} /></div>}
+  <div class="plan-action"><a class:list={['pricing-button', { 'pricing-button-primary': isPro }]} href={isPro ? '#compare' : '/#download'}>{isPro ? 'Explore Pro features' : 'Get started for free'} <Icon /></a><p>{isPro ? 'One payment. No subscription.' : 'Free forever.'}</p></div>
+</article>

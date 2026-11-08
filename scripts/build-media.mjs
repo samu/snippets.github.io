@@ -2,9 +2,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { site, media } from './paths.mjs';
+import { assets, media } from './paths.mjs';
 
-const screenshots = path.join(site, 'assets/screenshots');
+const screenshots = path.join(assets, 'screenshots');
 for (const filename of fs.readdirSync(path.join(screenshots, 'light')).filter(name => name.endsWith('.webp'))) {
   for (const theme of ['light', 'dark']) {
     const source = path.join(media, 'screenshots', filename.slice(0, -5), theme + '.png');

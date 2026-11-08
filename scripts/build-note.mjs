@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { copyFileSync, mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { site, media } from './paths.mjs';
+import { assets, media } from './paths.mjs';
 
 const source = join(media, 'note/porcelain');
 const manifest = JSON.parse(readFileSync(join(source, 'png-manifest.json'), 'utf8'));
@@ -31,8 +31,8 @@ try {
   encode(atlas, join(work, 'note-opening-90.webp'));
   encode(icon, join(work, 'note-open.webp'));
   for (const name of ['note-opening-90.webp', 'note-open.webp']) {
-    copyFileSync(join(work, name), join(site, 'assets/note', name));
-    console.log(`${name}: ${statSync(join(site, 'assets/note', name)).size.toLocaleString()} bytes`);
+    copyFileSync(join(work, name), join(assets, 'note', name));
+    console.log(`${name}: ${statSync(join(assets, 'note', name)).size.toLocaleString()} bytes`);
   }
 } finally {
   rmSync(work, { recursive: true, force: true });

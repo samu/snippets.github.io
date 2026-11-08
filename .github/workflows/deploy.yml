@@ -2,7 +2,7 @@ name: Build and deploy
 
 on:
   push:
-    branches: [main, codex/homepage-v2]
+    branches: [main, codex/homepage-v2, astro-migration]
   pull_request:
   workflow_dispatch:
 
@@ -25,8 +25,6 @@ jobs:
           cache: pnpm
       - name: Install build dependencies
         run: pnpm install --frozen-lockfile
-      - name: Test the local preview server
-        run: pnpm test
       - name: Build and validate all pages
         run: pnpm build
       # Retain the existing gh-pages publishing source and deployment credential.

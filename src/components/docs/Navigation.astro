@@ -1,0 +1,7 @@
+---
+import { groups, pages } from '../../data/docs';
+import Icon from '../Icon.astro';
+const { current } = Astro.props;
+---
+<a class:list={['nav-overview', { 'is-active': !current }]} href="/docs/" aria-current={!current ? 'page' : undefined}><Icon name="book" />Documentation</a>
+{groups.map(([label, slugs]) => <div class="nav-group"><p>{label}</p><ul>{slugs.map(slug => <li><a href={`/docs/${slug}/`} aria-current={slug === current ? 'page' : undefined}>{pages.find(page => page.slug === slug).title}</a></li>)}</ul></div>)}

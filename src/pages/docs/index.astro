@@ -1,0 +1,18 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { groups, pages } from '../../data/docs';
+const cards = [
+  ['rich-text-editor', 'pen', '01', 'Make room for your thoughts', 'Formatting, shortcuts, and the small details that make writing feel natural.'],
+  ['organizing-your-notes', 'layers', '02', 'Find your own kind of order', 'Explore folders, dashboards, and connections. Start simple and build from there.'],
+  ['sync', 'sync', '03', 'Keep your notes close', 'Understand workspaces, sync targets, and how to keep your data in your hands.'],
+];
+---
+<DocsLayout overview>
+  <div class="overview-eyebrow">THE SNIPPETS GUIDE</div>
+  <header class="overview-header"><h1>A little guidance.<br><span>A world of possibilities.</span></h1><p>Make yourself at home. Learn the essentials, find your flow,<br class="wide-break"> and discover what your notes can do.</p></header>
+  <a class="start-guide" href="/docs/introduction/"><div><span class="small-label">NEW TO SNIPPETS?</span><h2>Start with the essentials.</h2><p>Meet the ideas behind a note-taking app that grows with you.</p><span class="start-link">An introduction to Snippets <Icon /></span></div><div class="guide-art" aria-hidden="true"><img src="/assets/note/note-open.webp" width="160" height="160" alt=""></div></a>
+  <section class="guide-paths" aria-labelledby="find-flow"><div class="section-title"><h2 id="find-flow">Find your flow</h2><span>A few good places to begin</span></div><div class="path-grid">{cards.map(([slug, symbol, number, title, description]) => <a class="path-card" href={`/docs/${slug}/`}><div class="path-top"><Icon name={symbol} /><span>{number}</span></div><h3>{title}</h3><p>{description}</p><span class="card-arrow">Read the guide <Icon /></span></a>)}</div></section>
+  <section class="all-guides" aria-labelledby="all-guides"><div class="section-title"><h2 id="all-guides">Explore the documentation</h2><span>At your own pace</span></div><div class="topic-grid">{groups.map(([label, slugs]) => <div class="topic-group"><h3>{label}</h3><ul>{slugs.map(slug => <li><a href={`/docs/${slug}/`}><span>{pages.find(page => page.slug === slug).title}</span>{pages.find(page => page.slug === slug).draft ? <small>In progress</small> : <Icon />}</a></li>)}</ul></div>)}</div></section>
+  <div class="help-banner"><div><h2>A question along the way?</h2><p>We’re happy to help you find your feet.</p></div><a href="mailto:support@snippets.ch">Get in touch <Icon /></a></div>
+</DocsLayout>

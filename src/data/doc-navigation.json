@@ -1,0 +1,39 @@
+[
+  [
+    "Get started",
+    [
+      "introduction",
+      "organizing-your-notes"
+    ]
+  ],
+  [
+    "Writing & organizing",
+    [
+      "rich-text-editor",
+      "collections",
+      "attributes",
+      "task-management",
+      "visualizations",
+      "flashcards",
+      "quick-add",
+      "templates",
+      "cmd-k"
+    ]
+  ],
+  [
+    "Sync & settings",
+    [
+      "sync",
+      "syncing-with-github",
+      "mobile-app",
+      "app-settings"
+    ]
+  ],
+  [
+    "Compare",
+    [
+      "compared-to-obsidian",
+      "compared-to-notion"
+    ]
+  ]
+]

@@ -1,0 +1,38 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import Icon from './Icon.astro';
+const { variant = 'legal' } = Astro.props;
+const docs = variant === 'docs';
+const pricing = variant === 'pricing';
+---
+{variant === 'home' ? (
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="wordmark" href="#top" aria-label="Snippets, back to top">
+        <img src="/assets/note/note-open.webp" width="52" height="52" alt="">
+        <span>Snippets</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a><a href="/pricing/">Pricing</a><a href="/docs/">Docs</a>
+        <a class="button button-small" href="#download">Get Snippets</a>
+        <ThemeToggle />
+      </div>
+    </nav>
+  </header>
+) : (
+  <header class="docs-header">
+    <div class="header-inner">
+      {docs ? <div class="brand-group">
+        <a class="wordmark" href="/" aria-label="Snippets home"><img src="/assets/note/note-open.webp" width="48" height="48" alt=""><span>Snippets</span></a>
+        <span class="brand-divider"></span><a class="docs-label" href="/docs/">Docs</a>
+      </div> : <a class="wordmark" href="/" aria-label="Snippets home"><img src="/assets/note/note-open.webp" width="48" height="48" alt=""><span>Snippets</span></a>}
+      <nav class="header-links" aria-label="Main navigation">
+        <a class="website-link" href="/#features">Features</a>
+        <a class:list={['website-link', { 'current-page': pricing }]} href="/pricing/" aria-current={pricing ? 'page' : undefined}>Pricing</a>
+        {!docs && <a class={pricing ? 'pricing-docs-link' : 'website-link'} href="/docs/">Docs</a>}
+        <a class="get-app" href="/#download">Get Snippets {(docs || pricing) && <Icon />}</a>
+        <ThemeToggle />
+      </nav>
+    </div>
+  </header>
+)}

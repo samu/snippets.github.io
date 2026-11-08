@@ -1,0 +1,6 @@
+---
+import path from 'node:path';
+const { src } = Astro.props;
+const label = path.basename(src, '.webm').replace(/-/g, ' ');
+---
+<video class="doc-video" controls playsinline preload="metadata" muted loop aria-label={label}><source src={src} type="video/webm"><a href={src}>Download the demonstration</a></video>
