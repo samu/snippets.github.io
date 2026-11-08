@@ -1,0 +1,370 @@
+import { BaseTheme } from "snip-common";
+import { defaultGetRange } from "../defaultGetRange";
+
+export const porcelain: BaseTheme = {
+  target: "light",
+  id: "porcelain",
+  variables: {
+    // Main
+
+    "theme-main-surface-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 1, c: 0, h: 80 },
+    },
+
+    "theme-main-font-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.45, c: 0.0125, h: 80 },
+    },
+
+    "theme-main-font-color-soft-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.75, c: 0.0125, h: 80 },
+    },
+
+    "theme-main-border-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.95, c: 0, h: 80 },
+    },
+
+    "theme-main-border-width": {
+      type: "number",
+      value: 1,
+      options: [0.5, 1, 1.5, 2, 2.5, 3],
+    },
+
+    // Sidebar
+
+    "theme-sidebar-surface-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.975, c: 0.002, h: 80 },
+    },
+
+    "theme-sidebar-font-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.425, c: 0.002, h: 80 },
+    },
+
+    "theme-sidebar-font-color-soft-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.625, c: 0.002, h: 80 },
+    },
+
+    "theme-sidebar-border-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.925, c: 0.002, h: 80 },
+    },
+
+    // Accents
+
+    "theme-accent-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.493814, c: 0.082385, h: 251.965 },
+      contrastColor: { type: "literal", literal: "white" },
+    },
+
+    "theme-accent-foreground-color-1": {
+      type: "color",
+      color: { type: "var", name: "theme-main-surface-color-1" },
+    },
+
+    // Controls and actions
+
+    "theme-control-surface-color": {
+      type: "color",
+      color: { type: "var", name: "theme-main-surface-color-1" },
+    },
+
+    "theme-control-hover-surface-color": {
+      type: "color",
+      color: { type: "oklch", l: 0.934686, c: 0.008663, h: 84.574 },
+    },
+
+    // TODO not great that this is a separate var
+    "theme-control-border-color": {
+      type: "color",
+      color: { type: "oklch", l: 0.925, c: 0.002, h: 80 },
+    },
+
+    "theme-quiet-action-font-color": {
+      type: "color",
+      color: { type: "oklch", l: 0.544099, c: 0.016921, h: 80.66 },
+    },
+
+    "theme-destructive-font-color": {
+      type: "color",
+      color: { type: "var", name: "theme-palette-red-foreground" },
+    },
+
+    // Text selection and search highlights
+
+    "theme-text-selection-background-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.97, c: 0.032, h: 202.13 },
+    },
+
+    "theme-text-selection-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.398, c: 0.07, h: 227.392 },
+    },
+
+    "theme-search-highlight-background-color-1": {
+      type: "color",
+      color: {
+        type: "table",
+        name: "pink",
+        step: 100,
+      },
+    },
+
+    "theme-search-highlight-background-color-2": {
+      type: "color",
+      color: {
+        type: "table",
+        name: "pink",
+        step: 350,
+      },
+    },
+
+    "theme-search-highlight-color-1": {
+      type: "color",
+      color: {
+        type: "table",
+        name: "pink",
+        step: 900,
+      },
+    },
+
+    // Selection indicators
+    // Active delta is applied to the sidebar surface.
+    // Inactive delta is applied to the resulting active selection color.
+
+    "theme-selected-item-indicator-surface-color-1-delta": {
+      type: "lch",
+      l: -0.04,
+      c: 0.0025,
+      h: 0,
+      getRange: defaultGetRange,
+    },
+
+    "theme-selected-item-indicator-inactive-color-1-delta": {
+      type: "lch",
+      l: 0.02,
+      c: -0.0025,
+      h: 0,
+      getRange: defaultGetRange,
+    },
+
+    // Layout and interaction
+
+    "theme-wrapper-surface-color-1-delta": {
+      type: "lch",
+      l: -0.0125,
+      c: 0,
+      h: 0,
+      getRange: () => ({
+        l: { min: -0.1, max: 0, step: 0.0005, fixed: 4 },
+        c: { min: -0.01, max: 0.025, step: 0.0005, fixed: 4 },
+        h: { min: -180, max: 180 },
+      }),
+    },
+
+    "theme-code-block-surface-color-1-delta": {
+      type: "lch",
+      l: -0.04,
+      c: 0.0025,
+      h: 0,
+      getRange: defaultGetRange,
+    },
+
+    "theme-drag-handle-color-1": {
+      type: "color",
+      color: { type: "oklch", l: 0.967, c: 0, h: 80 },
+    },
+
+    "theme-scrollbar-thumb-color": {
+      type: "color",
+      color: { type: "oklch", l: 0.9, c: 0, h: 80 },
+    },
+
+    // Shadows
+
+    "theme-shadow-base-color": {
+      type: "color",
+      color: { type: "oklch", l: 0.25, c: 0.125, h: 98 },
+    },
+
+    "theme-elevate-layout-shadow-strength": {
+      type: "number",
+      value: 0.125,
+      range: { min: 0, max: 1, step: 0.001 },
+    },
+
+    // Items
+
+    "item-header-background-color-neutral": {
+      type: "color",
+      color: { type: "oklch", l: 0.96, c: 0.002, h: 80 },
+    },
+
+    "item-body-background-color-neutral": {
+      type: "color",
+      color: { type: "oklch", l: 0.99, c: 0.001, h: 80 },
+    },
+
+    "item-shadow-color-neutral": {
+      type: "color",
+      color: {
+        type: "mix",
+        a: {
+          type: "var",
+          name: "theme-shadow-base-color",
+        },
+        mix: 50,
+        b: {
+          type: "literal",
+          literal: "transparent",
+        },
+      },
+    },
+
+    "theme-item-border-color-strength": {
+      type: "number",
+      value: 0.33,
+      options: [],
+    },
+
+    // Palette
+    // Explicit pairs match the gallery; table steps are only approximations.
+
+    "theme-palette-neutral-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.948445, c: 0.004566, h: 258.325 },
+    },
+
+    "theme-palette-neutral-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.455479, c: 0.019498, h: 262.666 },
+    },
+
+    "theme-palette-red-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.936087, c: 0.02625, h: 32.237 },
+    },
+
+    "theme-palette-red-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.527126, c: 0.140563, h: 32.344 },
+    },
+
+    "theme-palette-pink-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.942138, c: 0.026672, h: 350.884 },
+    },
+
+    "theme-palette-pink-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.517253, c: 0.144207, h: 356.505 },
+    },
+
+    "theme-palette-grape-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.93331, c: 0.029939, h: 319.091 },
+    },
+
+    "theme-palette-grape-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.523193, c: 0.156664, h: 323.027 },
+    },
+
+    "theme-palette-violet-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.935174, c: 0.029624, h: 305.116 },
+    },
+
+    "theme-palette-violet-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.489764, c: 0.156404, h: 308.011 },
+    },
+
+    "theme-palette-indigo-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.935878, c: 0.025603, h: 283.486 },
+    },
+
+    "theme-palette-indigo-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.494302, c: 0.127238, h: 278.528 },
+    },
+
+    "theme-palette-blue-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.939674, c: 0.026014, h: 239.072 },
+    },
+
+    "theme-palette-blue-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.51022, c: 0.103291, h: 242.348 },
+    },
+
+    "theme-palette-cyan-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.946905, c: 0.022772, h: 210.396 },
+    },
+
+    "theme-palette-cyan-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.534094, c: 0.082176, h: 214.021 },
+    },
+
+    "theme-palette-teal-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.942281, c: 0.021725, h: 182.545 },
+    },
+
+    "theme-palette-teal-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.512768, c: 0.08142, h: 175.974 },
+    },
+
+    "theme-palette-green-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.942657, c: 0.024187, h: 151.178 },
+    },
+
+    "theme-palette-green-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.515966, c: 0.100488, h: 151.884 },
+    },
+
+    "theme-palette-lime-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.946201, c: 0.033819, h: 119.775 },
+    },
+
+    "theme-palette-lime-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.547057, c: 0.111219, h: 123.462 },
+    },
+
+    "theme-palette-yellow-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.953861, c: 0.048098, h: 94.269 },
+    },
+
+    "theme-palette-yellow-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.556833, c: 0.1002, h: 89.202 },
+    },
+
+    "theme-palette-orange-background": {
+      type: "color",
+      color: { type: "oklch", l: 0.940864, c: 0.030537, h: 57.911 },
+    },
+
+    "theme-palette-orange-foreground": {
+      type: "color",
+      color: { type: "oklch", l: 0.501356, c: 0.107568, h: 53.484 },
+    },
+  },
+};

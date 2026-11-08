@@ -1,0 +1,708 @@
+{
+  "name": "carbon-fine-opening-55-90",
+  "frame_count": 90,
+  "fps": 60,
+  "duration_seconds": 1.5,
+  "width": 768,
+  "height": 768,
+  "transparent": true,
+  "direction": "55% curled pose to fully flat",
+  "sampling": "uniform bend progression",
+  "frame_pattern": "png/frame-{index:04d}.png",
+  "start_index": 0,
+  "end_index": 89,
+  "camera_matrix": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.9862144589424133,
+      -0.16547217965126038,
+      -2.0
+    ],
+    [
+      0.0,
+      0.16547217965126038,
+      0.9862144589424133,
+      12.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "paper_matrix": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "frame_selection": "round(clamp(progress, 0, 1) * 89)",
+  "frames": [
+    {
+      "index": 0,
+      "file": "png/frame-0000.png",
+      "progress": 0.0,
+      "bend_fraction": 1.0,
+      "geometry_sha256": "a5b023fb4fa0f10c5623bbe29a63e7f39fb7ee91fba2758d5fffbbdaf5bf9e71"
+    },
+    {
+      "index": 1,
+      "file": "png/frame-0001.png",
+      "progress": 0.011235955056179775,
+      "bend_fraction": 0.9887640449438202,
+      "geometry_sha256": "58b217b78e988471148896c7c514305fd0d49622b42f68bae7a1efe92fc0cb58"
+    },
+    {
+      "index": 2,
+      "file": "png/frame-0002.png",
+      "progress": 0.02247191011235955,
+      "bend_fraction": 0.9775280898876404,
+      "geometry_sha256": "24181dc29d0227a36ea8f8491b77a85730ffb52881b479a4d73a941fd9f59c6e"
+    },
+    {
+      "index": 3,
+      "file": "png/frame-0003.png",
+      "progress": 0.033707865168539325,
+      "bend_fraction": 0.9662921348314607,
+      "geometry_sha256": "4bc253d5ea6b2f75508c53020ae16fe8b7575db56ffe7292f455c37a663ec092"
+    },
+    {
+      "index": 4,
+      "file": "png/frame-0004.png",
+      "progress": 0.0449438202247191,
+      "bend_fraction": 0.9550561797752809,
+      "geometry_sha256": "590654bdfcab018564ab010ad9153bf019c43afc442ae3d84fa1157d07e1bd42"
+    },
+    {
+      "index": 5,
+      "file": "png/frame-0005.png",
+      "progress": 0.056179775280898875,
+      "bend_fraction": 0.9438202247191011,
+      "geometry_sha256": "b67afec56b51735906792bbb6d1eb99b6e50fe7013ad7c8c1d1f70922289c04d"
+    },
+    {
+      "index": 6,
+      "file": "png/frame-0006.png",
+      "progress": 0.06741573033707865,
+      "bend_fraction": 0.9325842696629214,
+      "geometry_sha256": "e3faa48fbafd7d3413da758f670a39eb25f270a821a7bce5c5182f228e58a904"
+    },
+    {
+      "index": 7,
+      "file": "png/frame-0007.png",
+      "progress": 0.07865168539325842,
+      "bend_fraction": 0.9213483146067416,
+      "geometry_sha256": "7ab6fc3995a981d5b3e2860d7cdedc1add5eb174e7b0559359140ecafbcb9ef5"
+    },
+    {
+      "index": 8,
+      "file": "png/frame-0008.png",
+      "progress": 0.0898876404494382,
+      "bend_fraction": 0.9101123595505618,
+      "geometry_sha256": "001c39ad1c43755be764738c106d2f20ea1976b1fbe39e669a56c5485d12a717"
+    },
+    {
+      "index": 9,
+      "file": "png/frame-0009.png",
+      "progress": 0.10112359550561797,
+      "bend_fraction": 0.898876404494382,
+      "geometry_sha256": "79cb9b55316b8c51dd77e957c27fa23e96241b686b872cb22756d547cf7092fd"
+    },
+    {
+      "index": 10,
+      "file": "png/frame-0010.png",
+      "progress": 0.11235955056179775,
+      "bend_fraction": 0.8876404494382022,
+      "geometry_sha256": "14516612126ccba830bdb7c27a8fc4ed54d59a5ada0db5f2c92be6661e203398"
+    },
+    {
+      "index": 11,
+      "file": "png/frame-0011.png",
+      "progress": 0.12359550561797752,
+      "bend_fraction": 0.8764044943820225,
+      "geometry_sha256": "31d759b1680f618e21820224897320272914d6a774a74b4be36dc4c28c3c7cd7"
+    },
+    {
+      "index": 12,
+      "file": "png/frame-0012.png",
+      "progress": 0.1348314606741573,
+      "bend_fraction": 0.8651685393258427,
+      "geometry_sha256": "ace40228fae1d0b472346eed45254428199fefe94153fffc7f0c0db633bf793f"
+    },
+    {
+      "index": 13,
+      "file": "png/frame-0013.png",
+      "progress": 0.14606741573033707,
+      "bend_fraction": 0.8539325842696629,
+      "geometry_sha256": "95de5ea0bf18e0f9ea1f7d539e0d983378bea12b22234e968d39003906adae1c"
+    },
+    {
+      "index": 14,
+      "file": "png/frame-0014.png",
+      "progress": 0.15730337078651685,
+      "bend_fraction": 0.8426966292134832,
+      "geometry_sha256": "4f7d890f495ed876d6b7b6b466376491f74a34b4150b19913c6670746c583f8a"
+    },
+    {
+      "index": 15,
+      "file": "png/frame-0015.png",
+      "progress": 0.16853932584269662,
+      "bend_fraction": 0.8314606741573034,
+      "geometry_sha256": "1bac2fa923730649829618110ee01e2c7f018de99262db9ed472b8bb0c8f4e9c"
+    },
+    {
+      "index": 16,
+      "file": "png/frame-0016.png",
+      "progress": 0.1797752808988764,
+      "bend_fraction": 0.8202247191011236,
+      "geometry_sha256": "71754cb30d304dbc6265ebf593a35720702f121a4012a1384bdd67ee1af41685"
+    },
+    {
+      "index": 17,
+      "file": "png/frame-0017.png",
+      "progress": 0.19101123595505617,
+      "bend_fraction": 0.8089887640449438,
+      "geometry_sha256": "32edd6ad99f34f1fa78a710d47c3b5d4f04b0008724529725b2cd0f0d2d0f9d5"
+    },
+    {
+      "index": 18,
+      "file": "png/frame-0018.png",
+      "progress": 0.20224719101123595,
+      "bend_fraction": 0.797752808988764,
+      "geometry_sha256": "95d7e25d6cafa0130b553cab2247d5351d062d5867c80ae3a3a1ffc3eca9b39f"
+    },
+    {
+      "index": 19,
+      "file": "png/frame-0019.png",
+      "progress": 0.21348314606741572,
+      "bend_fraction": 0.7865168539325843,
+      "geometry_sha256": "8e3ccf9181bd5fce246fad1b89636f239dd3229d20e23957b141ca359725afa8"
+    },
+    {
+      "index": 20,
+      "file": "png/frame-0020.png",
+      "progress": 0.2247191011235955,
+      "bend_fraction": 0.7752808988764045,
+      "geometry_sha256": "815c860be39a8429e887140ca7c000feacaf50fbf4cbf168adc89e91695efad4"
+    },
+    {
+      "index": 21,
+      "file": "png/frame-0021.png",
+      "progress": 0.23595505617977527,
+      "bend_fraction": 0.7640449438202247,
+      "geometry_sha256": "c62a140764122f92fd708151a56b1b3c9c0f767ab2d9eb46e0673f13cff61b8f"
+    },
+    {
+      "index": 22,
+      "file": "png/frame-0022.png",
+      "progress": 0.24719101123595505,
+      "bend_fraction": 0.752808988764045,
+      "geometry_sha256": "d3747c68763423834c3d5ad12b11dcc39aae71ff45f34cff4e237d134f1dbf0b"
+    },
+    {
+      "index": 23,
+      "file": "png/frame-0023.png",
+      "progress": 0.25842696629213485,
+      "bend_fraction": 0.7415730337078652,
+      "geometry_sha256": "1d09af430289c96ee5f61b67fef440a3a5016be6a3b308dcdaa61069bd328d81"
+    },
+    {
+      "index": 24,
+      "file": "png/frame-0024.png",
+      "progress": 0.2696629213483146,
+      "bend_fraction": 0.7303370786516854,
+      "geometry_sha256": "1ec1ff82ee7e93560da96b97a02435f2ae26a604fac4e88a2a69ceb3ef1a250a"
+    },
+    {
+      "index": 25,
+      "file": "png/frame-0025.png",
+      "progress": 0.2808988764044944,
+      "bend_fraction": 0.7191011235955056,
+      "geometry_sha256": "4b9cdc1e3227ca93f10d2ad01cb2c8012574dae8eda9531662d09592aa8b1636"
+    },
+    {
+      "index": 26,
+      "file": "png/frame-0026.png",
+      "progress": 0.29213483146067415,
+      "bend_fraction": 0.7078651685393258,
+      "geometry_sha256": "a951b456f0effa31ddeae4fb74797bb3b8ce10f183c16688969413df6c0cb8b2"
+    },
+    {
+      "index": 27,
+      "file": "png/frame-0027.png",
+      "progress": 0.30337078651685395,
+      "bend_fraction": 0.696629213483146,
+      "geometry_sha256": "8b6de5906c73c8f1161ea270c83705c800da983a9c5b60047dd2d17dd99dbb4e"
+    },
+    {
+      "index": 28,
+      "file": "png/frame-0028.png",
+      "progress": 0.3146067415730337,
+      "bend_fraction": 0.6853932584269663,
+      "geometry_sha256": "87a996fa09aa4e95ac5b31b015432410fcdc3f7bcf726a69bb30df3bca636867"
+    },
+    {
+      "index": 29,
+      "file": "png/frame-0029.png",
+      "progress": 0.3258426966292135,
+      "bend_fraction": 0.6741573033707865,
+      "geometry_sha256": "9c8ef92c99cf2e95d2cfe70f82a51e5fedea3f9e92222ae6482bce15550b1375"
+    },
+    {
+      "index": 30,
+      "file": "png/frame-0030.png",
+      "progress": 0.33707865168539325,
+      "bend_fraction": 0.6629213483146068,
+      "geometry_sha256": "6f93b49595b57ca7dad828387705661fcd5609a0c073d91e6b8f75379dc9e7aa"
+    },
+    {
+      "index": 31,
+      "file": "png/frame-0031.png",
+      "progress": 0.34831460674157305,
+      "bend_fraction": 0.651685393258427,
+      "geometry_sha256": "d8aa0a70556c3195a2aa0046cac26a417b51863db07aeedea549ae14d910d99c"
+    },
+    {
+      "index": 32,
+      "file": "png/frame-0032.png",
+      "progress": 0.3595505617977528,
+      "bend_fraction": 0.6404494382022472,
+      "geometry_sha256": "5c642e690501911b5c973b503008c9590413899e53f7c8e3a030081776b19220"
+    },
+    {
+      "index": 33,
+      "file": "png/frame-0033.png",
+      "progress": 0.3707865168539326,
+      "bend_fraction": 0.6292134831460674,
+      "geometry_sha256": "63a4910a048c6305ad9a857109937c06c2f7b825b33aa3f57a1b9fec7ef650f0"
+    },
+    {
+      "index": 34,
+      "file": "png/frame-0034.png",
+      "progress": 0.38202247191011235,
+      "bend_fraction": 0.6179775280898876,
+      "geometry_sha256": "ef3f546c78fb3a1d661e694d8bb86b829599ee9065c723932cfbfad07e2f529e"
+    },
+    {
+      "index": 35,
+      "file": "png/frame-0035.png",
+      "progress": 0.39325842696629215,
+      "bend_fraction": 0.6067415730337078,
+      "geometry_sha256": "98e6db07389e4d3feed9d509abe6bb8ce0a58e12b390140e20cdc31fcc93c4d0"
+    },
+    {
+      "index": 36,
+      "file": "png/frame-0036.png",
+      "progress": 0.4044943820224719,
+      "bend_fraction": 0.5955056179775281,
+      "geometry_sha256": "8ac352c99d4ee47196af51fe09c3599a601b05d50ef469719e6d7e198165933b"
+    },
+    {
+      "index": 37,
+      "file": "png/frame-0037.png",
+      "progress": 0.4157303370786517,
+      "bend_fraction": 0.5842696629213483,
+      "geometry_sha256": "26aaa39e6d030c370e6f24fe7a660ec89e8cf6c9baf97e4bda5c549475497525"
+    },
+    {
+      "index": 38,
+      "file": "png/frame-0038.png",
+      "progress": 0.42696629213483145,
+      "bend_fraction": 0.5730337078651686,
+      "geometry_sha256": "704b0427a7f04504f9dfe82219a592dfd79ed0628e1c53e4c0686fed8c78aec8"
+    },
+    {
+      "index": 39,
+      "file": "png/frame-0039.png",
+      "progress": 0.43820224719101125,
+      "bend_fraction": 0.5617977528089888,
+      "geometry_sha256": "f9721a240c705bfe0371e8ad1478d5e8f74100f5a47da78c31eb775d3da93413"
+    },
+    {
+      "index": 40,
+      "file": "png/frame-0040.png",
+      "progress": 0.449438202247191,
+      "bend_fraction": 0.550561797752809,
+      "geometry_sha256": "471b21c37c4fd944fb65958e22071b017f3c033c9fb9e7bebfc207fa7bceb74c"
+    },
+    {
+      "index": 41,
+      "file": "png/frame-0041.png",
+      "progress": 0.4606741573033708,
+      "bend_fraction": 0.5393258426966292,
+      "geometry_sha256": "7d920776f844cf90ef5599bdd35997c8256515f936c69f7ff13556969cc36c6e"
+    },
+    {
+      "index": 42,
+      "file": "png/frame-0042.png",
+      "progress": 0.47191011235955055,
+      "bend_fraction": 0.5280898876404494,
+      "geometry_sha256": "3bab5b4f5827db3cff107edca1d153bc0e7350888a8ba89250d801f7e2e3e159"
+    },
+    {
+      "index": 43,
+      "file": "png/frame-0043.png",
+      "progress": 0.48314606741573035,
+      "bend_fraction": 0.5168539325842696,
+      "geometry_sha256": "ab96604d176e6d5531bd60c7e2af061d599f6ab0d5eab11cb2edb72264729811"
+    },
+    {
+      "index": 44,
+      "file": "png/frame-0044.png",
+      "progress": 0.4943820224719101,
+      "bend_fraction": 0.5056179775280899,
+      "geometry_sha256": "ee324fc71278af4c1ed14b78649bdc076ce5bbe293b0c758e4dc9abe78b3497a"
+    },
+    {
+      "index": 45,
+      "file": "png/frame-0045.png",
+      "progress": 0.5056179775280899,
+      "bend_fraction": 0.4943820224719101,
+      "geometry_sha256": "de56cd48ba2ebedc816f8ebc63a1e3199799c28db943b4fff13af5510e9f5b3e"
+    },
+    {
+      "index": 46,
+      "file": "png/frame-0046.png",
+      "progress": 0.5168539325842697,
+      "bend_fraction": 0.4831460674157303,
+      "geometry_sha256": "4e0aea5410b7ee78374c3a018af2f78e86737cb077f33fa59f461a24ea918bb5"
+    },
+    {
+      "index": 47,
+      "file": "png/frame-0047.png",
+      "progress": 0.5280898876404494,
+      "bend_fraction": 0.4719101123595506,
+      "geometry_sha256": "e4295e211d672168fd5f0c58d583c37f05c27a9bb422cb1f67b98e7823aacb47"
+    },
+    {
+      "index": 48,
+      "file": "png/frame-0048.png",
+      "progress": 0.5393258426966292,
+      "bend_fraction": 0.4606741573033708,
+      "geometry_sha256": "b170977ef50b7441f8ce947e63bfa7f55f624af08891e5262e83eb6633b4dcf2"
+    },
+    {
+      "index": 49,
+      "file": "png/frame-0049.png",
+      "progress": 0.550561797752809,
+      "bend_fraction": 0.449438202247191,
+      "geometry_sha256": "c77dea277b4a921992db9ee4bb6e91823958bb806dc578aa3731248a91d7e3a4"
+    },
+    {
+      "index": 50,
+      "file": "png/frame-0050.png",
+      "progress": 0.5617977528089888,
+      "bend_fraction": 0.4382022471910112,
+      "geometry_sha256": "edfde832108e17581cdd93ac11011174d11ac9d510ca066488386b02667a4aa8"
+    },
+    {
+      "index": 51,
+      "file": "png/frame-0051.png",
+      "progress": 0.5730337078651685,
+      "bend_fraction": 0.4269662921348315,
+      "geometry_sha256": "793161cb9f3e8406115383955b32b6aa51487691476ad903d8068574ae5d331c"
+    },
+    {
+      "index": 52,
+      "file": "png/frame-0052.png",
+      "progress": 0.5842696629213483,
+      "bend_fraction": 0.4157303370786517,
+      "geometry_sha256": "1a1d5fd10c6f2daa6ffba822456e77ca1166bc6d77c962de09103ba48e14f86a"
+    },
+    {
+      "index": 53,
+      "file": "png/frame-0053.png",
+      "progress": 0.5955056179775281,
+      "bend_fraction": 0.4044943820224719,
+      "geometry_sha256": "151bbc65252a47c5863cfdf51f2a517b4ab6594cd8dca86dd502630898050058"
+    },
+    {
+      "index": 54,
+      "file": "png/frame-0054.png",
+      "progress": 0.6067415730337079,
+      "bend_fraction": 0.3932584269662921,
+      "geometry_sha256": "3357b9e0fb9b95e71dbc3bb7c060c37a7fbf9edaaafb50a6fed78aeec518aa87"
+    },
+    {
+      "index": 55,
+      "file": "png/frame-0055.png",
+      "progress": 0.6179775280898876,
+      "bend_fraction": 0.3820224719101124,
+      "geometry_sha256": "f97d2ab0ed0a43fd72fc4633e269747d48a0b5a1daeeb157280de0ed65ccb665"
+    },
+    {
+      "index": 56,
+      "file": "png/frame-0056.png",
+      "progress": 0.6292134831460674,
+      "bend_fraction": 0.3707865168539326,
+      "geometry_sha256": "c661eaa8d2afbb1d53db11ba822669acb8f0032f0ae4d3c0f56c8e9bc59bfd34"
+    },
+    {
+      "index": 57,
+      "file": "png/frame-0057.png",
+      "progress": 0.6404494382022472,
+      "bend_fraction": 0.3595505617977528,
+      "geometry_sha256": "b1fddd4dc1cf210f2c51d1bd8d55dbd236833807c967aceb103feafcd11a62c8"
+    },
+    {
+      "index": 58,
+      "file": "png/frame-0058.png",
+      "progress": 0.651685393258427,
+      "bend_fraction": 0.348314606741573,
+      "geometry_sha256": "eb223ddcb9b86d87402dcb96ea5260f191cccdb207ef30c6eb45def54c1280b5"
+    },
+    {
+      "index": 59,
+      "file": "png/frame-0059.png",
+      "progress": 0.6629213483146067,
+      "bend_fraction": 0.3370786516853933,
+      "geometry_sha256": "42877fa9393717d847014fc779145d12f9dc9bb57d6165fae5996950796a3011"
+    },
+    {
+      "index": 60,
+      "file": "png/frame-0060.png",
+      "progress": 0.6741573033707865,
+      "bend_fraction": 0.3258426966292135,
+      "geometry_sha256": "5cd2150912928abe9d3b969bb3ad5b952958f0eb2dd7739a08d70e20becd26e2"
+    },
+    {
+      "index": 61,
+      "file": "png/frame-0061.png",
+      "progress": 0.6853932584269663,
+      "bend_fraction": 0.3146067415730337,
+      "geometry_sha256": "c90087c1bf77301f5d917ee07fe6afba65a6c10a7746323e71a579cdf2e09fa4"
+    },
+    {
+      "index": 62,
+      "file": "png/frame-0062.png",
+      "progress": 0.6966292134831461,
+      "bend_fraction": 0.3033707865168539,
+      "geometry_sha256": "7d1a6e20324b048d9650233f88c5d25822dcafe2ad0de52f7144549ba942022d"
+    },
+    {
+      "index": 63,
+      "file": "png/frame-0063.png",
+      "progress": 0.7078651685393258,
+      "bend_fraction": 0.2921348314606742,
+      "geometry_sha256": "8dc3a48949f9e3af1868da9562163f61d0427548e2b75dae4a37263e45a3925e"
+    },
+    {
+      "index": 64,
+      "file": "png/frame-0064.png",
+      "progress": 0.7191011235955056,
+      "bend_fraction": 0.2808988764044944,
+      "geometry_sha256": "d3baddb6805d63ab76d5fad054f0483c48b45b6ec40e3ba7d069a9fa9cd2691f"
+    },
+    {
+      "index": 65,
+      "file": "png/frame-0065.png",
+      "progress": 0.7303370786516854,
+      "bend_fraction": 0.2696629213483146,
+      "geometry_sha256": "d8ce05dc7e50ea0861a7e18936593204ff734e3b65608e936530cebaf0b72f54"
+    },
+    {
+      "index": 66,
+      "file": "png/frame-0066.png",
+      "progress": 0.7415730337078652,
+      "bend_fraction": 0.2584269662921348,
+      "geometry_sha256": "3bc6c0fdae963301d4b111be42d0e889f2d77133186093a78d40d8e93bd77d85"
+    },
+    {
+      "index": 67,
+      "file": "png/frame-0067.png",
+      "progress": 0.7528089887640449,
+      "bend_fraction": 0.2471910112359551,
+      "geometry_sha256": "72b050ac7b27c4e802f915ce218db9dd828c065892d2e576ba072df30ccd7fa9"
+    },
+    {
+      "index": 68,
+      "file": "png/frame-0068.png",
+      "progress": 0.7640449438202247,
+      "bend_fraction": 0.2359550561797753,
+      "geometry_sha256": "f77a8ef9024bbafce3db5330e476fcaa611e67357d99333ff0d2da151982eaff"
+    },
+    {
+      "index": 69,
+      "file": "png/frame-0069.png",
+      "progress": 0.7752808988764045,
+      "bend_fraction": 0.2247191011235955,
+      "geometry_sha256": "69a97ce25fb73c958278cb5082e689c1b614cd70a30014a995875d152d6e5e1f"
+    },
+    {
+      "index": 70,
+      "file": "png/frame-0070.png",
+      "progress": 0.7865168539325843,
+      "bend_fraction": 0.2134831460674157,
+      "geometry_sha256": "0107d8f95a1551d4ea01c1cdefcdf3a65fa04532d23619577169e998b8978dff"
+    },
+    {
+      "index": 71,
+      "file": "png/frame-0071.png",
+      "progress": 0.797752808988764,
+      "bend_fraction": 0.202247191011236,
+      "geometry_sha256": "9694fa837daf203b0e23bbbac9d5e7e0cb3d020d2bbbf00d6efdf0d3614fb844"
+    },
+    {
+      "index": 72,
+      "file": "png/frame-0072.png",
+      "progress": 0.8089887640449438,
+      "bend_fraction": 0.1910112359550562,
+      "geometry_sha256": "21dd760f635ac25893fa05933fa8addf7c9152977e67b49f30e3570bed24e378"
+    },
+    {
+      "index": 73,
+      "file": "png/frame-0073.png",
+      "progress": 0.8202247191011236,
+      "bend_fraction": 0.1797752808988764,
+      "geometry_sha256": "d2c074389b400cf31dcee41587618d611097942a7be08efddbe65a38f5fec01d"
+    },
+    {
+      "index": 74,
+      "file": "png/frame-0074.png",
+      "progress": 0.8314606741573034,
+      "bend_fraction": 0.1685393258426966,
+      "geometry_sha256": "9a2f96fcafe3595a2a60b7524768a034acac14ee739192c4e9fc972c579efa85"
+    },
+    {
+      "index": 75,
+      "file": "png/frame-0075.png",
+      "progress": 0.8426966292134831,
+      "bend_fraction": 0.1573033707865169,
+      "geometry_sha256": "f030d740caa91fd442e6a268f5850ee49ceb83b823cbe4b1ec81b47985e84250"
+    },
+    {
+      "index": 76,
+      "file": "png/frame-0076.png",
+      "progress": 0.8539325842696629,
+      "bend_fraction": 0.1460674157303371,
+      "geometry_sha256": "00626497656c6b154249e5bc65f02282ff441243ddd9e2280ef30448191bc7a8"
+    },
+    {
+      "index": 77,
+      "file": "png/frame-0077.png",
+      "progress": 0.8651685393258427,
+      "bend_fraction": 0.1348314606741573,
+      "geometry_sha256": "72ca0686bb03659412aacf0ccd716e5c60548f92e852de3f98d38e6e5770612b"
+    },
+    {
+      "index": 78,
+      "file": "png/frame-0078.png",
+      "progress": 0.8764044943820225,
+      "bend_fraction": 0.1235955056179775,
+      "geometry_sha256": "d0501682f94d6b27171b2d1db9ec67de2eb329823097d048abde8ac052a9b526"
+    },
+    {
+      "index": 79,
+      "file": "png/frame-0079.png",
+      "progress": 0.8876404494382022,
+      "bend_fraction": 0.1123595505617978,
+      "geometry_sha256": "a51c2e3c4ba4a147c7a1c294fde13c38c403224015d963721b4e16ee158c554b"
+    },
+    {
+      "index": 80,
+      "file": "png/frame-0080.png",
+      "progress": 0.898876404494382,
+      "bend_fraction": 0.101123595505618,
+      "geometry_sha256": "1c272d26f5da9943cc001412dab6873bc816c9c5d8365284885e68694cd3a81d"
+    },
+    {
+      "index": 81,
+      "file": "png/frame-0081.png",
+      "progress": 0.9101123595505618,
+      "bend_fraction": 0.0898876404494382,
+      "geometry_sha256": "6d331ffd25001a11126769e8db571878136c4ae03cc203622b8f341b6f66fbf3"
+    },
+    {
+      "index": 82,
+      "file": "png/frame-0082.png",
+      "progress": 0.9213483146067416,
+      "bend_fraction": 0.0786516853932584,
+      "geometry_sha256": "101a803936226ec98dae0b14b970ba96b4edbdab768c98458066341266d27b80"
+    },
+    {
+      "index": 83,
+      "file": "png/frame-0083.png",
+      "progress": 0.9325842696629213,
+      "bend_fraction": 0.0674157303370787,
+      "geometry_sha256": "df9f6c36cd0c9311576f52c5a25f2d3099be103f730905070ce6a346a39a157a"
+    },
+    {
+      "index": 84,
+      "file": "png/frame-0084.png",
+      "progress": 0.9438202247191011,
+      "bend_fraction": 0.0561797752808989,
+      "geometry_sha256": "28f7d9bf0fc3958b76c9d55b1382e9aa486a196849f7076376f05eab83733c2f"
+    },
+    {
+      "index": 85,
+      "file": "png/frame-0085.png",
+      "progress": 0.9550561797752809,
+      "bend_fraction": 0.0449438202247191,
+      "geometry_sha256": "0d283b97f0f2decee55e4692329e2978f2509dfc2fd66bed314ad2212e7be635"
+    },
+    {
+      "index": 86,
+      "file": "png/frame-0086.png",
+      "progress": 0.9662921348314607,
+      "bend_fraction": 0.0337078651685393,
+      "geometry_sha256": "f513c1ab5a9cad566359f993446d646e17d12908039cf5890b0abbb236eb331f"
+    },
+    {
+      "index": 87,
+      "file": "png/frame-0087.png",
+      "progress": 0.9775280898876404,
+      "bend_fraction": 0.022471910112359605,
+      "geometry_sha256": "42d67b44a48d7cb023b0032f4cbd22299f221c2505d931ce9499da77465e7ab5"
+    },
+    {
+      "index": 88,
+      "file": "png/frame-0088.png",
+      "progress": 0.9887640449438202,
+      "bend_fraction": 0.011235955056179803,
+      "geometry_sha256": "f6b0eea818c8bb20ba64f75a6aec914f6f3181cbcb4e2c5777eb17e787861808"
+    },
+    {
+      "index": 89,
+      "file": "png/frame-0089.png",
+      "progress": 1.0,
+      "bend_fraction": 0.0,
+      "geometry_sha256": "66c93920d251d24c46ddef5008a6f24cc32108653d9a7729442a3948f48cf834"
+    }
+  ],
+  "appearance": "Carbon Fine: matte charcoal face #373933, ochre reverse #8F784F, fine edge #867F6B",
+  "gradient_mapping": "Original Carbon Fine matte paper materials",
+  "source_blend": "porcelain-opening-55-90.blend",
+  "render_revision": 1,
+  "style_blend": "zero-01-carbon-fine.blend",
+  "preview_background": "#282A27",
+  "preview_text": "#D1CFC7",
+  "display_title": "CARBON FINE \u2014 55% CURL \u2014 SCROLL OPENING",
+  "start_pose_description": "the broad curl in Carbon Fine charcoal and ochre"
+}
