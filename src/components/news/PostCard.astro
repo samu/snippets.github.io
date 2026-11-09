@@ -1,0 +1,54 @@
+---
+import Icon from "../Icon.astro";
+import PostMeta from "./PostMeta.astro";
+const { post, featured = false } = Astro.props;
+---
+
+<article
+  class:list={[
+    "update-card",
+    `update-${post.kind}`,
+    { "update-featured": featured },
+  ]}
+>
+  <div class="update-card-copy">
+    <PostMeta post={post} />
+    <h2><a class="post-link" href={post.href}>{post.title}</a></h2>
+    <p>{post.description}</p>
+    <span class="post-action" aria-hidden="true">{post.action} <Icon /></span>
+  </div>
+  {featured && post.cover ? (
+    <div class="update-cover">
+      <div class="cover-label" aria-hidden="true">
+        <Icon name={post.icon} /> A little space to think.
+      </div>
+      <div class="cover-window">
+        <div class="cover-window-bar" aria-hidden="true">
+          <i></i><i></i><i></i><span>My workspace</span>
+        </div>
+        <img
+          class={post.cover.dark ? "theme-light" : undefined}
+          src={post.cover.light}
+          width={post.cover.width}
+          height={post.cover.height}
+          alt={post.cover.alt}
+        />
+        {post.cover.dark && (
+          <img
+            class="theme-dark"
+            src={post.cover.dark}
+            width={post.cover.width}
+            height={post.cover.height}
+            alt={post.cover.alt}
+          />
+        )}
+      </div>
+    </div>
+  ) : featured ? (
+    <div class="update-cover cover-symbol" aria-hidden="true">
+      <Icon name={post.icon} /><span>{post.label}</span>
+    </div>
+  ) : (
+    <div class="post-symbol" aria-hidden="true"><Icon name={post.icon} /></div>
+  )}
+</article>

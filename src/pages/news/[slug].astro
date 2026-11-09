@@ -1,0 +1,71 @@
+---
+import NewsLayout from "../../layouts/NewsLayout.astro";
+import PostMeta from "../../components/news/PostMeta.astro";
+import PostCard from "../../components/news/PostCard.astro";
+import Icon from "../../components/Icon.astro";
+import Figure from "../../components/docs/Figure.astro";
+import Callout from "../../components/docs/Callout.astro";
+import { news } from "../../data/news";
+export function getStaticPaths() {
+  return news.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+const { post } = Astro.props;
+const { Content } = post;
+const related = news.filter((item) => item.slug !== post.slug).slice(0, 2);
+---
+
+<NewsLayout
+  title={post.title}
+  description={post.description}
+  sample={post.sample}
+>
+  <div class="news-shell">
+    <a class="news-back" href="/news/"><Icon /> All news</a>
+    <article class:list={["update-article", `update-${post.kind}`]}>
+      <header class="update-article-header">
+        <PostMeta post={post} />
+        <h1>{post.title}</h1>
+        <p class="update-deck">{post.description}</p>
+        <div class="post-byline">
+          <img
+            src="/assets/note/note-open.webp"
+            width="40"
+            height="40"
+            alt=""
+          /><span>From Snippets</span>
+        </div>
+      </header>
+      {post.sample && <p class="sample-notice">
+        Sample
+        {post.kind === "release"
+          ? "release notes"
+          : post.kind === "blog"
+            ? "blog post"
+            : "announcement"}
+        — illustrative content to preview this format.
+      </p>}
+      <div class="prose"><Content components={{ Figure, Callout }} /></div>
+      <div class="post-end">
+        <span>Thanks for reading.</span
+        ><a href="/news/">Back to news <Icon /></a>
+      </div>
+    </article>
+    {related.length > 0 && <aside
+      class="news-more"
+      aria-labelledby="keep-reading"
+    >
+      <div class="news-section-heading">
+        <h2 id="keep-reading">A little more to explore.</h2>
+        <a href="/news/">All news <Icon /></a>
+      </div>
+      <div class="news-grid">
+        {related.map((item) => (
+          <PostCard post={item} />
+        ))}
+      </div>
+    </aside>}
+  </div>
+</NewsLayout>

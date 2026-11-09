@@ -56,6 +56,86 @@
 .docs-label {
   font-weight: 500;
 }
+.header-links .current-page {
+  color: var(--heading);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 7px;
+}
+.mobile-menu {
+  display: none;
+  position: relative;
+  color: var(--heading);
+}
+.mobile-menu summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 5px;
+}
+.mobile-menu summary::-webkit-details-marker {
+  display: none;
+}
+.mobile-menu summary svg {
+  width: 18px;
+  height: 18px;
+}
+.mobile-menu summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.mobile-menu-links {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: min(240px, calc(100vw - 40px));
+  padding: 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.mobile-menu-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+.mobile-menu-links a:hover,
+.mobile-menu-links a[aria-current="page"] {
+  background: var(--paper);
+  color: var(--accent);
+}
+.mobile-menu-links .mobile-menu-download {
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 6px 6px;
+  margin-top: 6px;
+}
+@media (max-width: 760px) {
+  .mobile-menu {
+    display: block;
+  }
+  .site-header .nav-links > a,
+  .docs-header .header-links > a {
+    display: none;
+  }
+  .nav-links,
+  .header-links {
+    gap: 16px;
+  }
+}
+@media print {
+  .mobile-menu {
+    display: none;
+  }
+}
 
 /* Pricing: neutral surfaces with clear primary actions. */
 .pricing-hero {

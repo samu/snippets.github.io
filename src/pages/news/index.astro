@@ -1,0 +1,38 @@
+---
+import NewsLayout from "../../layouts/NewsLayout.astro";
+import PostCard from "../../components/news/PostCard.astro";
+import { news } from "../../data/news";
+const [latest, ...earlier] = news;
+---
+
+<NewsLayout
+  description="Stories, announcements, and release notes from Snippets. Ideas for your workspace, and a closer look at what’s new."
+>
+  <div class="news-shell">
+    <header class="news-intro">
+      <p class="news-eyebrow">THE LATEST FROM SNIPPETS</p>
+      <h1>A few words.<br /><span>Something new.</span></h1>
+      <p class="news-description">
+        Ideas to make space for. News to share.<br />And the little improvements
+        along the way.
+      </p>
+    </header>
+    {latest && <section aria-label="Latest news">
+      <PostCard post={latest} featured />
+    </section>}
+    {earlier.length > 0 && <section
+      class="news-more"
+      aria-labelledby="more-news"
+    >
+      <div class="news-section-heading">
+        <h2 id="more-news">More from Snippets</h2>
+        <span>A few things worth sharing.</span>
+      </div>
+      <div class="news-grid">
+        {earlier.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
+    </section>}
+  </div>
+</NewsLayout>

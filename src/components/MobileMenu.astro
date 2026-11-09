@@ -1,0 +1,34 @@
+---
+const { current } = Astro.props;
+const links = [
+  ["Features", "/#features", "features"],
+  ["Pricing", "/pricing/", "pricing"],
+  ["Docs", "/docs/", "docs"],
+  ["News", "/news/", "news"],
+];
+---
+
+<details class="mobile-menu">
+  <summary>
+    Menu
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      aria-hidden="true"
+    >
+      <path d="M4 7h12M4 13h12" />
+    </svg>
+  </summary>
+  <div class="mobile-menu-links">
+    {links.map(([label, href, key]) => <a
+      href={href}
+      aria-current={current === key ? "page" : undefined}
+      >{label}</a
+    >)}
+    <a class="mobile-menu-download" href="/#download"
+      >Get Snippets <span aria-hidden="true">↗</span></a
+    >
+  </div>
+</details>

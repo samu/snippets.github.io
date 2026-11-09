@@ -1,0 +1,30 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
+import { newsStyles } from "../lib/styles";
+const { title = "News", description, sample = false } = Astro.props;
+---
+
+<BaseLayout
+  title={`${title} · Snippets`}
+  description={description}
+  noindex={sample}
+  bodyClass="docs-page news-page"
+  bodyId="top"
+  styles={newsStyles}
+>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Header variant="news" />
+  <main id="main" tabindex="-1"><slot /></main>
+  <footer class="news-footer news-shell">
+    <a class="wordmark" href="/">Snippets</a>
+    <p>A little space for everything on your mind.</p>
+    <nav aria-label="Footer navigation">
+      <a href="/docs/">Documentation</a>
+      <a href="mailto:support@snippets.ch">Contact</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <span>© {new Date().getUTCFullYear()} Snippets</span>
+  </footer>
+</BaseLayout>

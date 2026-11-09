@@ -17,6 +17,13 @@ const routes = [
   "terms/",
   ...slugs.map((slug) => `docs/${slug}/`),
 ];
+const newsRoutes = [
+  "",
+  ...fs
+    .readdirSync(new URL("./src/content/news/", import.meta.url))
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => file.slice(0, -4) + "/"),
+];
 
 export default defineConfig({
   site: "https://snippets.ch",
@@ -39,6 +46,9 @@ export default defineConfig({
   build: { inlineStylesheets: "never" },
   redirects: {
     ...Object.fromEntries(
+      newsRoutes.map((route) => ["/updates/" + route, "/news/" + route]),
+    ),
+    ...Object.fromEntries(
       routes.map((route) => ["/dark/" + route, "/" + route]),
     ),
     "/showcase/": "/#features",
@@ -56,6 +66,7 @@ export default defineConfig({
     sitemap({
       filter: (url) =>
         !new URL(url).pathname.startsWith("/dark/") &&
+        !new URL(url).pathname.startsWith("/updates/") &&
         !url.includes("/showcase/"),
     }),
   ],

@@ -1,9 +1,11 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
 import Icon from "./Icon.astro";
+import MobileMenu from "./MobileMenu.astro";
 const { variant = "legal" } = Astro.props;
 const docs = variant === "docs";
 const pricing = variant === "pricing";
+const news = variant === "news";
 ---
 
 {variant === "home" ? (
@@ -15,8 +17,9 @@ const pricing = variant === "pricing";
       </a>
       <div class="nav-links">
         <a href="#features">Features</a><a href="/pricing/">Pricing</a
-        ><a href="/docs/">Docs</a>
+        ><a href="/docs/">Docs</a><a href="/news/">News</a>
         <a class="button button-small" href="#download">Get Snippets</a>
+        <MobileMenu />
         <ThemeToggle />
       </div>
     </nav>
@@ -61,9 +64,16 @@ const pricing = variant === "pricing";
           href="/docs/"
           >Docs</a
         >}
+        <a
+          class:list={["website-link", { "current-page": news }]}
+          href="/news/"
+          aria-current={news ? "page" : undefined}
+          >News</a
+        >
         <a class="get-app" href="/#download"
           >Get Snippets {(docs || pricing) && <Icon />}</a
         >
+        <MobileMenu current={variant} />
         <ThemeToggle />
       </nav>
     </div>

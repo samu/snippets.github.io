@@ -1,0 +1,10 @@
+---
+const { post } = Astro.props;
+---
+
+<div class="post-meta">
+  <span class="post-kind">{post.label}</span>
+  {post.version && <span class="post-version">v{post.version}</span>}
+  <time datetime={post.date}>{post.dateLabel}</time>
+  {post.sample && <span class="sample-label">Sample</span>}
+</div>

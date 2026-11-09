@@ -1,8 +1,8 @@
 # Snippets website
 
 Static Astro site for [snippets.ch](https://snippets.ch): homepage,
-documentation, pricing and legal pages. The published build contains HTML, CSS,
-fonts and media, with no browser JavaScript.
+documentation, news, pricing and legal pages. The published build contains HTML,
+CSS, fonts and media, with no browser JavaScript.
 
 ## Development
 
@@ -40,14 +40,60 @@ keep dev/preview in the foreground. Stop background servers with
 | ----------------------------------------------- | ------------------------------------------------------ |
 | `src/pages/`, `src/layouts/`, `src/components/` | Routes, shared layouts and page sections               |
 | `src/content/docs/`                             | MDX guides with title, description and draft metadata  |
+| `src/content/news/`                             | Blog posts, announcements and release notes in MDX     |
 | `src/data/doc-navigation.json`                  | Guide grouping and order; include every MDX guide      |
 | `src/data/release.json`                         | App version used in download links                     |
 | `src/styles/`                                   | Global styles, themes and scroll effects               |
 | `src/lib/styles.js`                             | Stylesheet order for each layout                       |
 | `public/assets/`                                | Published fonts, screenshots, videos and note atlas    |
 | `public/pricing.json`                           | Pricing data shared by the page and external consumers |
+| `public/news.json`                              | Public news feed with titles, summaries and timestamps |
 | `astro.config.mjs`                              | Domain, port, Markdown, redirects and sitemap          |
 | `scripts/`                                      | Output checks and optional media generation            |
+
+## Writing news
+
+Add an MDX file to `src/content/news/`. Its filename becomes the URL:
+`a-new-idea.mdx` is published at `/news/a-new-idea/`. The News page lists
+entries newest first and gives the latest one the featured position.
+
+```mdx
+---
+title: "A new idea."
+description: "A short introduction shown in the listing and above the article."
+date: "2026-11-09"
+kind: blog
+---
+
+Start writing here.
+
+## A little more detail
+
+Markdown headings, lists, links and images work as usual.
+```
+
+- `kind` is `blog`, `announcement`, or `release`; each gets its own label and
+  accent color.
+- Quote the date and use `YYYY-MM-DD`. Entries are published when the site is
+  built; dates control ordering, not scheduled publication.
+- `version` is optional for release notes. Quote it, for example `"0.22.0"`.
+- `sample: true` adds a visible sample label and a noindex tag. Remove it when
+  replacing the examples with real content.
+- An optional `cover` supplies the featured image: `light`, optional `dark`,
+  `alt`, `width`, and `height`. The sample blog post shows the format. Without
+  one, the feature uses the entry type’s icon.
+- The same `<Figure>` and `<Callout>` components used in the docs are available
+  in posts. Put media in `public/assets/` and reference it with `/assets/...`.
+
+`src/data/news.js` reads and validates the metadata during the build. The
+listing and individual pages are ordinary static HTML; adding a post requires no
+new route, build script, or browser JavaScript. The top navigation includes News
+throughout the site, including a native disclosure menu on mobile.
+
+`public/news.json` is served unchanged at `/news.json`. Keep it aligned with the
+News entries, newest first. Each item has `id` (the post’s filename slug,
+without `.mdx`), `title`, `summary` (the post’s description), and `date` (UTC
+Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
 
 ## Build constraints
 

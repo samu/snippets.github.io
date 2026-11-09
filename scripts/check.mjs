@@ -109,14 +109,23 @@ const slugs = fs
   .readdirSync(path.join(content, "docs"))
   .filter((f) => f.endsWith(".mdx"))
   .map((f) => f.slice(0, -4));
+const newsSlugs = fs
+  .readdirSync(path.join(content, "news"))
+  .filter((f) => f.endsWith(".mdx"))
+  .map((f) => f.slice(0, -4));
 const attr = (node, name) => node.attrs.find((a) => a.name === name)?.value;
-for (const route of [
+const legacyRoutes = [
   "",
   "docs/",
   "pricing/",
   "privacy/",
   "terms/",
   ...slugs.map((slug) => `docs/${slug}/`),
+];
+for (const route of [
+  ...legacyRoutes,
+  "news/",
+  ...newsSlugs.map((slug) => `news/${slug}/`),
 ]) {
   const file = path.join(output, route, "index.html");
   assert(documents.has(file), "Missing page: " + file);
@@ -145,6 +154,13 @@ for (const route of [
     }),
     "Missing shared theme CSS: " + file,
   );
+  assert(
+    nodes.some(
+      (node) => node.tagName === "a" && attr(node, "href") === "/news/",
+    ),
+    "Missing News navigation: " + file,
+  );
+  if (!legacyRoutes.includes(route)) continue;
   const legacy = documents.get(path.join(output, "dark", route, "index.html"));
   assert(
     legacy?.nodes.some((node) => {
