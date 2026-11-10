@@ -22,7 +22,7 @@ pnpm check        # validate an existing dist/ without rebuilding
 pnpm preview      # serve dist/ on port 64530
 pnpm format       # format source, configuration and documentation
 pnpm format:check # check formatting without writing
-pnpm media:build  # regenerate the checked-in homepage WebPs and note atlas
+pnpm media:build  # regenerate homepage WebPs, docs screenshots and note atlas
 ```
 
 Prettier uses the Astro plugin and formats MDX, CSS, JavaScript, JSON, YAML and
@@ -116,12 +116,18 @@ Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
 
 Normal builds use checked-in assets and need no image tools.
 
-- Edit documentation media in `public/assets/docs/`. `Figure.astro` accepts PNGs
-  or folders containing `light.png` and an optional `dark.png`.
-- Homepage PNG masters live in `media/screenshots/<name>/{light,dark}.png`.
-  After editing them, run `pnpm media:build`; it requires `cwebp` and
-  ImageMagick's `magick`. Update component dimensions if screenshot sizes
-  change.
+- Documentation PNG masters live in
+  `media/screenshots/docs/<guide>/<name>/{light,dark}.png`. `pnpm media:build`
+  copies them to `public/assets/docs/`, alongside existing standalone images and
+  videos. `Figure.astro` accepts published PNG URLs or folders containing
+  `light.png` and an optional `dark.png`.
+- Homepage PNG masters live in
+  `media/screenshots/landing-page/<name>/{light,dark}.png`. The homepage
+  dashboard uses
+  `media/screenshots/docs/collections/tasks-dashboard/{light,dark}.png`. After
+  editing masters, run `pnpm media:build`; it requires `cwebp` and ImageMagick's
+  `magick` and preserves the published `/assets/` URLs. Update component
+  dimensions if screenshot sizes change.
 - `media/note/porcelain/` contains the source frames and manifest for the note
   atlas. Both themes use this atlas. Carbon frames are retained for future use.
 - `media/reference/porcelain-theme.txt` is a design reference; website colors
