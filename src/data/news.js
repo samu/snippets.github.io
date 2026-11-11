@@ -56,11 +56,7 @@ export const news = Object.entries(modules)
         (!cover ||
           typeof cover.light !== "string" ||
           (cover.dark !== undefined && typeof cover.dark !== "string") ||
-          typeof cover.alt !== "string" ||
-          !Number.isInteger(cover.width) ||
-          cover.width <= 0 ||
-          !Number.isInteger(cover.height) ||
-          cover.height <= 0))
+          typeof cover.alt !== "string"))
     ) {
       throw new Error(
         `Invalid news metadata in ${file}. Check title, description, kind, date (YYYY-MM-DD), sample and version.`,

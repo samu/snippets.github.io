@@ -1,40 +1,39 @@
 ---
-import fs from "node:fs";
 import path from "node:path";
+import { getImage } from "astro:assets";
+import { getScreenshot, hasScreenshot } from "../../lib/screenshots";
 const { src, caption, alt, maxWidth } = Astro.props;
 const resolved = src && (path.extname(src) ? src : `${src}/light.png`);
-const sourcePath = (url) => new URL("../../../public" + url, import.meta.url);
 const dark = resolved?.replace(/\/light\.png$/, "/dark.png");
-const paired = dark && dark !== resolved && fs.existsSync(sourcePath(dark));
+const paired = dark && dark !== resolved && hasScreenshot(dark);
 const label =
   alt ||
   caption ||
   (src && path.basename(src, path.extname(src)).replace(/[-_]/g, " "));
 const images = resolved
-  ? [resolved, ...(paired ? [dark] : [])].map((url, index) => {
-      const buffer = fs.readFileSync(sourcePath(url));
-      return {
-        url,
-        width: buffer.readUInt32BE(16),
-        height: buffer.readUInt32BE(20),
+  ? await Promise.all(
+      [resolved, ...(paired ? [dark] : [])].map(async (file, index) => ({
+        image: await getImage({
+          src: await getScreenshot(file),
+          format: "webp",
+        }),
         theme: paired ? (index ? "theme-dark" : "theme-light") : "",
-      };
-    })
+      })),
+    )
   : [];
 ---
 
 <figure class="doc-figure" style={maxWidth ? { maxWidth } : undefined}>
-  {images.map(({ url, width, height, theme }) => <a
+  {images.map(({ image, theme }) => <a
     class:list={["image-link", theme]}
-    href={url}
+    href={image.src}
     target="_blank"
     rel="noopener"
     aria-label={`Open image: ${label}`}
     ><img
-      src={url}
+      {...image.attributes}
+      src={image.src}
       alt={label}
-      width={width}
-      height={height}
       loading="lazy"
       decoding="async"
   /></a>)}

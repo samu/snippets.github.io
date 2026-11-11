@@ -1,3 +1,7 @@
+---
+import Screenshot from "../Screenshot.astro";
+---
+
 <section
   class="hero section-shell"
   aria-labelledby="hero-heading"
@@ -43,37 +47,31 @@
           <span class="window-dots"><i></i><i></i><i></i></span
           ><span>Snippets</span><span aria-hidden="true"></span>
         </div>
-        <img
+        <Screenshot
           class="theme-light"
-          src="/assets/screenshots/light/general-todos.webp"
-          width="2600"
-          height="1450"
+          src="landing-page/general-todos/light.png"
           alt="Snippets desktop app with a note on signal processing, a collection of notes, and attributes in the sidebar"
           fetchpriority="high"
+          loading="eager"
         />
-        <img
+        <Screenshot
           class="theme-dark"
-          src="/assets/screenshots/dark/general-todos.webp"
-          width="2600"
-          height="1450"
+          src="landing-page/general-todos/dark.png"
           alt="Snippets desktop app with a note on signal processing, a collection of notes, and attributes in the sidebar"
           fetchpriority="high"
+          loading="eager"
         />
       </div>
       <div class="phone hero-phone">
-        <img
+        <Screenshot
           class="theme-light"
-          src="/assets/screenshots/light/mobile-editor.webp"
-          width="786"
-          height="1704"
+          src="landing-page/mobile-editor/light.png"
           alt="The same rich-text notes on the Snippets mobile app"
           loading="lazy"
         />
-        <img
+        <Screenshot
           class="theme-dark"
-          src="/assets/screenshots/dark/mobile-editor.webp"
-          width="786"
-          height="1704"
+          src="landing-page/mobile-editor/dark.png"
           alt="The same rich-text notes on the Snippets mobile app"
           loading="lazy"
         />

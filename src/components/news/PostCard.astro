@@ -1,6 +1,7 @@
 ---
 import Icon from "../Icon.astro";
 import PostMeta from "./PostMeta.astro";
+import Screenshot from "../Screenshot.astro";
 const { post, featured = false } = Astro.props;
 ---
 
@@ -26,20 +27,18 @@ const { post, featured = false } = Astro.props;
         <div class="cover-window-bar" aria-hidden="true">
           <i></i><i></i><i></i><span>My workspace</span>
         </div>
-        <img
+        <Screenshot
           class={post.cover.dark ? "theme-light" : undefined}
           src={post.cover.light}
-          width={post.cover.width}
-          height={post.cover.height}
           alt={post.cover.alt}
+          loading="eager"
         />
         {post.cover.dark && (
-          <img
+          <Screenshot
             class="theme-dark"
             src={post.cover.dark}
-            width={post.cover.width}
-            height={post.cover.height}
             alt={post.cover.alt}
+            loading="eager"
           />
         )}
       </div>

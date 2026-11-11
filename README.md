@@ -22,7 +22,7 @@ pnpm check        # validate an existing dist/ without rebuilding
 pnpm preview      # serve dist/ on port 64530
 pnpm format       # format source, configuration and documentation
 pnpm format:check # check formatting without writing
-pnpm media:build  # regenerate homepage WebPs, docs screenshots and note atlas
+pnpm note:build   # regenerate the note animation atlas after editing its frames
 ```
 
 Prettier uses the Astro plugin and formats MDX, CSS, JavaScript, JSON, YAML and
@@ -45,7 +45,8 @@ keep dev/preview in the foreground. Stop background servers with
 | `src/data/release.json`                         | App version used in download links                     |
 | `src/styles/`                                   | Global styles, themes and scroll effects               |
 | `src/lib/styles.js`                             | Stylesheet order for each layout                       |
-| `public/assets/`                                | Published fonts, screenshots, videos and note atlas    |
+| `media/screenshots/`                            | PNG screenshot sources, discovered automatically       |
+| `public/assets/`                                | Published fonts, videos and note atlas                 |
 | `public/pricing.json`                           | Pricing data shared by the page and external consumers |
 | `public/news.json`                              | Public news feed with titles, summaries and timestamps |
 | `astro.config.mjs`                              | Domain, port, Markdown, redirects and sitemap          |
@@ -79,11 +80,15 @@ Markdown headings, lists, links and images work as usual.
 - `version` is optional for release notes. Quote it, for example `"0.22.0"`.
 - `sample: true` adds a visible sample label and a noindex tag. Remove it when
   replacing the examples with real content.
-- An optional `cover` supplies the featured image: `light`, optional `dark`,
-  `alt`, `width`, and `height`. The sample blog post shows the format. Without
-  one, the feature uses the entry type’s icon.
+- An optional `cover` supplies the featured image: `light`, optional `dark`, and
+  `alt`. Image paths are relative to `media/screenshots/`, for example
+  `landing-page/friday/light.png`. Dimensions come from the PNGs. The sample
+  blog post shows the format. Without a cover, the feature uses the entry type’s
+  icon.
 - The same `<Figure>` and `<Callout>` components used in the docs are available
-  in posts. Put media in `public/assets/` and reference it with `/assets/...`.
+  in posts. Put screenshots in `media/screenshots/` and reference them as
+  described below. Videos and other files served unchanged belong in
+  `public/assets/`.
 
 `src/data/news.js` reads and validates the metadata during the build. The
 listing and individual pages are ordinary static HTML; adding a post requires no
@@ -114,27 +119,55 @@ Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
 
 ## Media
 
-Normal builds use checked-in assets and need no image tools.
+Keep screenshot PNGs in `media/screenshots/`, using the existing `landing-page/`
+and `docs/<guide>/` subfolders. This source directory is intentionally outside
+`public/`: Astro copies public files unchanged, while imported PNGs can be
+converted during the build. No `static/` folder is needed.
 
-- Documentation PNG masters live in
-  `media/screenshots/docs/<guide>/<name>/{light,dark}.png`. `pnpm media:build`
-  copies them to `public/assets/docs/`, alongside existing standalone images and
-  videos. `Figure.astro` accepts published PNG URLs or folders containing
-  `light.png` and an optional `dark.png`.
-- Homepage PNG masters live in
+`src/lib/screenshots.js` discovers PNGs recursively with `import.meta.glob`. Add
+or replace a PNG, then use `pnpm dev` or `pnpm build`; Astro generates lossless
+WebPs and reads their dimensions automatically. There is no separate screenshot
+conversion command, import list, or generated image to commit. Only referenced
+screenshots are processed, and missing paths fail with a clear error. Generated
+image URLs are managed by Astro; reference source names in code.
+
+- Homepage PNGs live in
   `media/screenshots/landing-page/<name>/{light,dark}.png`. The homepage
   dashboard uses
-  `media/screenshots/docs/collections/tasks-dashboard/{light,dark}.png`. After
-  editing masters, run `pnpm media:build`; it requires `cwebp` and ImageMagick's
-  `magick` and preserves the published `/assets/` URLs. Update component
-  dimensions if screenshot sizes change.
+  `media/screenshots/docs/collections/tasks-dashboard/{light,dark}.png`. Use the
+  shared `Screenshot` component with a path relative to `media/screenshots/`:
+
+  ```astro
+  <Screenshot
+    src="landing-page/friday/light.png"
+    alt="A Friday journal entry"
+  />
+  ```
+
+- Documentation PNGs live in `media/screenshots/docs/<guide>/`. `Figure` accepts
+  a standalone PNG or a folder containing `light.png` and an optional
+  `dark.png`. A folder automatically displays the image for the current theme;
+  with only `light.png`, that image appears in both themes:
+
+  ```mdx
+  <Figure src="docs/collections/notes-folder" caption="A folder of notes" />
+  <Figure
+    src="docs/visualizations/interval.png"
+    alt="An interval visualization"
+  />
+  ```
+
+- Videos remain in `public/assets/docs/` and use `/assets/docs/...` URLs.
 - `media/note/porcelain/` contains the source frames and manifest for the note
-  atlas. Both themes use this atlas. Carbon frames are retained for future use.
+  atlas. Both themes use this atlas. Run `pnpm note:build` only after editing
+  these frames; this separate sprite-sheet task requires `cwebp` and
+  ImageMagick's `magick`. Carbon frames are retained for future use.
 - `media/reference/porcelain-theme.txt` is a design reference; website colors
   live in `src/styles/brand.css` and `src/styles/themes.css`.
 
-Keep original media under `media/` and published derivatives under
-`public/assets/`. Avoid committing temporary renders or duplicate exports.
+Normal site builds need no external image commands. Keep screenshot originals
+under `media/` and let Astro generate their published derivatives in `dist/`.
+Avoid committing temporary renders or duplicate exports.
 
 ## Publishing
 

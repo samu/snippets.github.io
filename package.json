@@ -11,7 +11,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "preview": "astro preview",
-    "media:build": "node scripts/build-media.mjs"
+    "note:build": "node scripts/build-note.mjs"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "7.3.6",

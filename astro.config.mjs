@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { defineConfig } from "astro/config";
+import { defineConfig, sharpImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { unified, rehypeHeadingIds } from "@astrojs/markdown-remark";
@@ -28,6 +28,9 @@ const newsRoutes = [
 export default defineConfig({
   site: "https://snippets.ch",
   output: "static",
+  image: {
+    service: sharpImageService({ webp: { lossless: true, effort: 6 } }),
+  },
   // Preserve whitespace between inline heading phrases and content fragments.
   compressHTML: false,
   trailingSlash: "always",

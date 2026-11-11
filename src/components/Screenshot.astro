@@ -1,0 +1,8 @@
+---
+import { Image } from "astro:assets";
+import { getScreenshot } from "../lib/screenshots";
+const { src, ...attributes } = Astro.props;
+const image = await getScreenshot(src);
+---
+
+<Image {...attributes} src={image} format="webp" />
