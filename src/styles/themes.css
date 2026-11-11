@@ -126,9 +126,6 @@
   :root :is(.skip-link, .desktop-window, .product-image) {
     background: var(--panel);
   }
-  :root .window-dots i {
-    background: #656966;
-  }
   :root .phone {
     border-color: var(--screenshot-edge);
   }

@@ -1,9 +1,10 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import data from "../../public/pricing.json";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
 import Plan from "../components/pricing/Plan.astro";
-import data from "../../public/pricing.json";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { pricingStyles } from "../lib/styles";
 const free = data.plans.find((plan) => plan.name === "Free");
 const pro = data.plans.find((plan) => plan.name === "Pro");
@@ -164,18 +165,5 @@ const rows = [
       /></a>
     </section>
   </main>
-  <footer class="pricing-footer">
-    <div class="pricing-footer-inner">
-      <a class="wordmark" href="/" aria-label="Snippets home"
-        ><span>Snippets</span></a
-      >
-      <p>Thoughtfully made in Switzerland.</p>
-      <nav aria-label="Footer navigation">
-        <a href="/docs/">Documentation</a
-        ><a href="mailto:support@snippets.ch">Contact</a
-        ><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a>
-      </nav>
-      <span class="copyright">© 2026 Snippets</span>
-    </div>
-  </footer>
+  <Footer />
 </BaseLayout>

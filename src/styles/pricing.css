@@ -373,7 +373,7 @@
   background: var(--paper);
   text-align: center;
   padding: 48px 24px 58px;
-  border-block: 1px solid var(--border);
+  border-top: 1px solid var(--border);
 }
 .pricing-closing img {
   margin: 0 auto 17px;
@@ -385,38 +385,6 @@
 }
 .pricing-closing .pricing-button {
   margin-top: 26px;
-}
-.pricing-footer-inner {
-  max-width: 1160px;
-  width: calc(100% - 64px);
-  margin: auto;
-  padding: 34px 0;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 14px 28px;
-  align-items: center;
-}
-.pricing-footer .wordmark {
-  font-size: 17px;
-}
-.pricing-footer p,
-.copyright {
-  color: var(--muted);
-  font-size: 10px;
-  line-height: 1.7;
-}
-.pricing-footer nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
-  font-size: 11px;
-  color: var(--muted);
-}
-.pricing-footer a:hover {
-  color: var(--accent);
-}
-.copyright {
-  grid-column: 1/-1;
 }
 @media (max-width: 760px) {
   .pricing-page .header-links {
@@ -494,15 +462,6 @@
   .pricing-closing h2 {
     font-size: 27px;
   }
-  .pricing-footer-inner {
-    width: calc(100% - 40px);
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .pricing-footer nav {
-    gap: 20px;
-    padding-block: 5px;
-  }
 }
 @media (max-width: 420px) {
   .pricing-page .header-links {
@@ -545,7 +504,7 @@
     break-inside: avoid;
   }
   .pricing-closing,
-  .pricing-footer,
+  .site-footer,
   .plan-action {
     display: none;
   }
