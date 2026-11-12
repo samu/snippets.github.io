@@ -306,6 +306,8 @@ p {
 }
 .hero-product {
   position: relative;
+  max-width: 950px;
+  margin-inline: auto;
   margin-top: 64px;
   padding-bottom: 40px;
   text-align: left;
