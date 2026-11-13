@@ -1,0 +1,53 @@
+/* Shared by pricing plan cards and the page closing action. */
+.pricing-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 13px 20px;
+  min-height: 46px;
+  border: 1px solid #dedfdd;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.5;
+  color: var(--heading);
+  background: #fff;
+  transition:
+    background 0.18s,
+    border-color 0.18s;
+}
+.pricing-button svg {
+  width: 16px;
+  height: 16px;
+}
+.pricing-button:hover {
+  background: #f7f7f6;
+  border-color: #bac7d0;
+}
+.pricing-button-primary {
+  color: #fff;
+  background: #2d3439;
+  border-color: #2d3439;
+}
+.pricing-button-primary:hover {
+  background: #414c54;
+  border-color: #414c54;
+}
+.pricing-button {
+  border-color: var(--border);
+  background: var(--white);
+}
+.pricing-button:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+}
+.pricing-button-primary {
+  color: var(--action-ink);
+  background: var(--action-bg);
+  border-color: var(--action-bg);
+}
+.pricing-button-primary:hover {
+  background: var(--action-hover);
+  border-color: var(--action-hover);
+}

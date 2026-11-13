@@ -1,0 +1,175 @@
+/* Shared CSS-only entrances. Keep selectors global: they coordinate markup from multiple sections. */
+@property --entry-progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+@supports (animation-timeline: view(block)) and
+  (animation-range: entry 16svh entry 33svh) {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    :root {
+      --content-start: 16svh;
+      --content-full: 33svh;
+      --heading-start: 22svh;
+      --reveal-text-distance: 64px;
+      --reveal-image-distance: 84px;
+    }
+    :where(
+      .hero-product,
+      .principles,
+      .download-options,
+      .section-heading > p:not(.eyebrow),
+      .building-blocks,
+      .feature-row > figure,
+      .pricing-note,
+      .wide-figure,
+      .quick-add > figure,
+      .export-note,
+      .encryption-section,
+      .mobile-showcase,
+      .feature-copy > :not(.phrase-reveal, .eyebrow, .feature-subtitle),
+      .closing-section > :not(.phrase-reveal)
+    ) {
+      --reveal-distance: var(--reveal-text-distance);
+      --reveal-duration: 1100ms;
+      --reveal-delay: 0ms;
+      animation: content-reveal ease-out both;
+      animation-timeline: view(block);
+      animation-range: entry var(--content-start) entry var(--content-full);
+
+      /* Finish on pause; faster scrolling can carry the group to full visibility sooner. */
+      @supports (animation-trigger: --content-enter replay reset) and
+        (
+          timeline-trigger: --content-enter view(block) entry 25svh exit 100% /
+            entry 0% exit 100%
+        )
+        and (trigger-scope: --content-enter) {
+        trigger-scope: --content-enter;
+        timeline-trigger: --content-enter view(block) entry var(--content-start)
+          exit 100% / entry 0% exit 100%;
+        animation:
+          content-reveal var(--reveal-duration) cubic-bezier(0.28, 0.3, 0.3, 1)
+            var(--reveal-delay) both,
+          entry-progress ease-out both;
+        animation-timeline: auto, view(block);
+        animation-range:
+          normal,
+          entry var(--content-start) entry var(--content-full);
+        animation-trigger:
+          --content-enter replay reset,
+          none;
+      }
+    }
+    :is(
+      .hero-product,
+      .image-stage,
+      .wide-figure,
+      .quick-add > figure,
+      .mobile-showcase
+    ) {
+      --reveal-distance: var(--reveal-image-distance);
+      --reveal-duration: 1250ms;
+    }
+    .feature-row > figure {
+      --reveal-delay: 110ms;
+    }
+    .encryption-section {
+      --reveal-distance: 0px;
+    }
+    .heading-group,
+    .phrase-reveal:not(.heading-group > *) {
+      container-name: phrase-heading;
+      animation: heading-entry auto step-end both;
+      animation-timeline: view(block);
+      animation-range: entry var(--heading-start) entry
+        calc(var(--heading-start) + 1px);
+    }
+    .phrase-reveal {
+      --phrase-lead: 200ms;
+      --phrase-step: 300ms;
+      --phrase-rise: 12px;
+      --phrase-blur: 7px;
+    }
+    .feature-copy h3.phrase-reveal {
+      --phrase-step: 220ms;
+      --phrase-rise: 10px;
+      --phrase-blur: 4px;
+    }
+    .phrase-reveal > .heading-phrase {
+      --phrase-delay: calc(
+        var(--phrase-lead) + var(--phrase-order, 0) * var(--phrase-step)
+      );
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition:
+        opacity 280ms ease-out var(--phrase-delay),
+        transform 620ms cubic-bezier(0.2, 0.65, 0.3, 1) var(--phrase-delay),
+        filter 1000ms cubic-bezier(0.25, 0.1, 0.25, 1) var(--phrase-delay);
+    }
+    .heading-group > :is(.eyebrow, .feature-subtitle, .encryption-kicker) {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 280ms ease-out,
+        transform 500ms cubic-bezier(0.2, 0.65, 0.3, 1);
+    }
+    @container phrase-heading style(--heading-state: waiting) {
+      .heading-group > :is(.eyebrow, .feature-subtitle, .encryption-kicker),
+      .phrase-reveal > .heading-phrase {
+        opacity: 0;
+        transform: translateY(var(--phrase-rise, 12px));
+        /* A brief settle time absorbs trackpad jitter; the group leaves together. */
+        transition-duration: 240ms;
+        transition-delay: 80ms;
+      }
+      .phrase-reveal > .heading-phrase {
+        filter: blur(var(--phrase-blur));
+      }
+    }
+    main :focus-within {
+      animation: none;
+    }
+
+    @media (max-width: 700px) {
+      :root {
+        --reveal-text-distance: 32px;
+        --reveal-image-distance: 48px;
+      }
+      .phrase-reveal {
+        --phrase-blur: 4px;
+      }
+      .feature-row > figure {
+        --reveal-delay: 0ms;
+      }
+    }
+  }
+}
+@keyframes content-reveal {
+  from {
+    opacity: var(--entry-progress);
+    transform: translateY(
+      calc((1 - var(--entry-progress)) * var(--reveal-distance))
+    );
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes entry-progress {
+  from {
+    --entry-progress: 0;
+  }
+  to {
+    --entry-progress: 1;
+  }
+}
+@keyframes heading-entry {
+  from {
+    --heading-state: waiting;
+  }
+  to {
+    --heading-state: visible;
+  }
+}

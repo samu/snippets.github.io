@@ -8,3 +8,249 @@
     ><svg class="icon" aria-hidden="true"><use href="#arrow-down" /></svg></a
   >
 </div>
+
+<style>
+  /* Static/reduced-motion fallback: the page starts directly with its normal hero. */
+  .intro {
+    display: none;
+  }
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .intro {
+        display: block;
+        height: var(--intro-end);
+        position: relative;
+      }
+      .intro-copy {
+        position: fixed;
+        z-index: 2;
+        top: calc(37svh + var(--note-size) * 0.47);
+        left: 24px;
+        right: 24px;
+        text-align: center;
+        animation: intro-away linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 62svh var(--dock-start);
+      }
+      .intro-title {
+        font-size: clamp(32px, 4vw, 50px);
+        font-weight: 550;
+        letter-spacing: -0.025em;
+        color: var(--heading);
+        line-height: 1.2;
+        margin-top: 17px;
+      }
+      .intro-description {
+        font-size: 16px;
+        color: var(--muted);
+        margin-top: 13px;
+      }
+      .scroll-cue {
+        position: fixed;
+        bottom: 66px;
+        left: 50%;
+        z-index: 3;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        font-size: 10px;
+        color: var(--muted);
+        animation: cue-away linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 50svh var(--dock-start);
+      }
+      .scroll-cue .icon {
+        width: 18px;
+        height: 18px;
+      }
+      .intro-footnote {
+        position: fixed;
+        bottom: 25px;
+        width: 100%;
+        text-align: center;
+        color: var(--soft);
+        font-size: 9px;
+        letter-spacing: 0.015em;
+        animation: cue-away linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 50svh var(--dock-start);
+      }
+    }
+  }
+  @media (max-width: 700px) {
+    @supports (animation-timeline: scroll()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .intro-copy {
+          top: calc(35svh + var(--note-size) * 0.5);
+        }
+        .intro-title {
+          font-size: 32px;
+          margin-top: 15px;
+        }
+        .intro-description {
+          font-size: 15px;
+        }
+        .scroll-cue {
+          bottom: 75px;
+          font-size: 9px;
+        }
+        .intro-footnote {
+          bottom: 26px;
+          font-size: 8px;
+        }
+      }
+    }
+  }
+  @media (max-height: 560px) and (min-width: 701px) {
+    .intro-title {
+      font-size: 32px;
+    }
+    .intro-description {
+      display: none;
+    }
+    .intro-footnote {
+      display: none;
+    }
+    .scroll-cue {
+      bottom: 24px;
+    }
+  }
+  :global(.home-page) .intro-title {
+    font-weight: 650;
+    letter-spacing: -0.03em;
+  }
+</style>
+
+<!-- This scene coordinates the page, header and note; these rules intentionally cross component boundaries. -->
+<style is:global>
+  @property --intro-mix {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 100%;
+  }
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      :root {
+        --unfold-end: 85svh;
+        --dock-start: var(--unfold-end);
+        --dock-end: 145svh;
+        --intro-end: var(--dock-end);
+      }
+      html:root {
+        scroll-padding-top: 100px;
+        /* Mix outside the keyframes so a theme change cannot cache the old colors. */
+        background: color-mix(
+          in oklab,
+          var(--paper),
+          var(--white) var(--intro-mix)
+        );
+        animation: intro-background linear both;
+        animation-timeline: scroll(root block);
+        animation-range: var(--dock-start) var(--intro-end);
+      }
+      .site-header {
+        animation: header-arrive linear both;
+        animation-timeline: scroll(root block);
+        animation-range: calc(var(--dock-end) - 10svh) var(--dock-end);
+      }
+      .site-header .wordmark img {
+        visibility: hidden;
+      }
+      .hero-details,
+      .home-sections,
+      .site-footer {
+        animation: page-arrive linear both;
+        animation-timeline: scroll(root block);
+        animation-range: var(--dock-start) var(--intro-end);
+      }
+      .site-footer {
+        background: var(--paper);
+      }
+      .hero {
+        --hero-top: 132px;
+        animation: page-rise linear both;
+        animation-timeline: scroll(root block);
+        animation-range: var(--dock-start) var(--intro-end);
+      }
+      .hero .phrase-reveal {
+        /* Wait for both the departing intro and the title's entrance into view. */
+        --slogan-start: max(
+          var(--dock-start),
+          calc(
+            var(--intro-end) + var(--hero-top) - 100svh +
+              var(--heading-start, 22svh)
+          )
+        );
+        animation-timeline: scroll(root block);
+        animation-range: var(--slogan-start) calc(var(--slogan-start) + 1px);
+      }
+    }
+  }
+  @keyframes intro-background {
+    from {
+      --intro-mix: 0%;
+    }
+    to {
+      --intro-mix: 100%;
+    }
+  }
+  @keyframes intro-away {
+    from {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-16px);
+    }
+  }
+  @keyframes cue-away {
+    from {
+      opacity: 1;
+      visibility: visible;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  @keyframes header-arrive {
+    from {
+      opacity: 0;
+      visibility: hidden;
+    }
+    to {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  @keyframes page-arrive {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes page-rise {
+    from {
+      transform: translateY(64px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @media (max-width: 700px) {
+    @supports (animation-timeline: scroll()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .hero {
+          --hero-top: 115px;
+        }
+      }
+    }
+  }
+</style>

@@ -33,3 +33,63 @@
     />
   </svg>
 </label>
+
+<style>
+  .theme-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--muted);
+    background: transparent;
+    cursor: pointer;
+    transition:
+      color 0.2s,
+      background 0.2s,
+      border-color 0.2s;
+  }
+  .theme-switch input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .theme-switch:has(input:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+  .theme-switch:hover {
+    color: var(--heading);
+    background: var(--panel-strong);
+    border-color: var(--screenshot-edge);
+  }
+  .theme-switch :global(svg) {
+    width: 17px;
+    height: 17px;
+    pointer-events: none;
+  }
+  @media (max-width: 760px) {
+    .theme-switch {
+      width: 34px;
+      height: 34px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .theme-switch {
+      transition: none;
+    }
+  }
+  @media print {
+    .theme-switch {
+      display: none !important;
+    }
+  }
+</style>

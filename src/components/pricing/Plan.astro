@@ -38,3 +38,158 @@ const isPro = plan.name === "Pro";
     <p>{isPro ? "One payment. No subscription." : "Free forever."}</p>
   </div>
 </article>
+
+<style>
+  .plan {
+    display: flex;
+    flex-direction: column;
+    padding: 31px 33px 24px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: #fff;
+  }
+  .plan-pro {
+    border-color: #cfd9e0;
+    background: linear-gradient(145deg, #f6f8fa, #fcfcfb 70%);
+    box-shadow: 0 12px 40px -30px #2c465c33;
+  }
+  .plan-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  .plan-heading h2 {
+    font-size: 21px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  .plan-tag {
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .plan-pro .plan-tag {
+    color: #54738c;
+  }
+  .plan-description {
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 29px 0 28px;
+    color: var(--heading);
+  }
+  .plan-price > span:first-child {
+    font-size: 49px;
+    font-weight: 550;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+  .plan-price .price-note {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .feature-intro {
+    padding-top: 23px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--heading);
+  }
+  .planned-features {
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .planned-features > p {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .plan-action {
+    margin-top: auto;
+  }
+  .plan-action .pricing-button {
+    width: 100%;
+  }
+  .plan-action > p {
+    font-size: 10px;
+    line-height: 1.7;
+    text-align: center;
+    margin-top: 12px;
+    color: var(--muted);
+  }
+  @media (max-width: 760px) {
+    .plan {
+      padding: 28px 27px 24px;
+    }
+    .plan-price {
+      margin-block: 24px;
+    }
+    .plan-price > span:first-child {
+      font-size: 46px;
+    }
+  }
+  @media (max-width: 420px) {
+    .plan {
+      padding: 25px 23px 22px;
+    }
+    .plan-tag {
+      font-size: 9px;
+    }
+  }
+  @media print {
+    .plan {
+      break-inside: avoid;
+    }
+    .plan-action {
+      display: none;
+    }
+  }
+  :global(.pricing-page) .plan-price > span:first-child {
+    font-weight: 650;
+  }
+  .plan {
+    background: var(--white);
+    box-shadow: 0 8px 24px -20px oklch(0.25 0.0125 80 / 0.08);
+  }
+  .plan-pro {
+    background: var(--paper);
+    border-color: var(--border);
+    box-shadow: 0 8px 24px -20px oklch(0.25 0.0125 80 / 0.08);
+  }
+  .plan-heading h2 {
+    font-weight: 650;
+    font-size: 23px;
+  }
+  .plan-pro .plan-heading h2,
+  .plan-pro .plan-price > span:first-child {
+    color: var(--heading);
+  }
+  .plan-description {
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .feature-intro {
+    font-size: 12px;
+  }
+  .plan-pro .feature-intro {
+    border-color: var(--border);
+  }
+  @container theme style(--theme: dark) {
+    :global(:root) .plan {
+      background: var(--panel);
+      box-shadow: 0 12px 36px -22px #0007;
+    }
+    :global(:root) .plan-pro {
+      background: linear-gradient(145deg, #292d34, var(--panel) 70%);
+      border-color: #50545e;
+    }
+    :global(:root) .plan-pro .plan-tag {
+      color: var(--accent);
+    }
+  }
+</style>

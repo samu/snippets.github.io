@@ -82,3 +82,214 @@
     </p>
   </div>
 </section>
+
+<style>
+  .sync-section {
+    padding-top: 140px;
+  }
+  .sync-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 68px;
+  }
+  .sync-option {
+    min-width: 0;
+  }
+  .sync-options article {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    padding-left: 25px;
+    border-left: 1px solid var(--border);
+  }
+  .sync-option:first-child article {
+    border: 0;
+    padding-left: 0;
+  }
+  .sync-options article > .icon {
+    width: 29px;
+    height: 29px;
+    margin-bottom: 23px;
+    color: var(--muted);
+  }
+  .sync-options h3 {
+    font-size: 21px;
+    margin-bottom: 15px;
+    letter-spacing: -0.015em;
+  }
+  .sync-options p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .sync-options .badge,
+  .sync-options .text-link,
+  .option-state {
+    margin-top: auto;
+    font-size: 12px;
+  }
+  .option-state {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--muted);
+  }
+  .option-state i {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .export-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 57px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .markdown-mark {
+    border: 1px solid var(--soft);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+  }
+  .markdown-mark span {
+    padding-left: 2px;
+  }
+  .export-note strong {
+    font-weight: 400;
+    color: var(--heading);
+  }
+  @supports (animation-timeline: view(block)) and
+    (animation-range: entry 16svh entry 33svh) {
+    @media screen and (prefers-reduced-motion: no-preference) {
+      .sync-option {
+        --sync-order: 0;
+        --sync-distance: 56px;
+        container-name: sync-card;
+        animation: sync-card-state auto step-end both;
+        animation-timeline: view(block);
+        animation-range: entry 18svh entry calc(18svh + 1px);
+      }
+      .sync-option:nth-child(2) {
+        --sync-order: 1;
+      }
+      .sync-option:nth-child(3) {
+        --sync-order: 2;
+      }
+      .sync-option:nth-child(4) {
+        --sync-order: 3;
+      }
+      .sync-option > article {
+        opacity: 1;
+        transform: none;
+        transition:
+          opacity 600ms ease-out calc(var(--sync-order) * 120ms),
+          transform 760ms cubic-bezier(0.22, 0.65, 0.32, 1)
+            calc(var(--sync-order) * 120ms);
+      }
+      @container sync-card style(--sync-state: waiting) {
+        .sync-option > article {
+          opacity: 0;
+          transform: translateY(var(--sync-distance));
+          transition-duration: 240ms;
+          transition-delay: 0ms;
+        }
+      }
+      :global(main) .sync-option:focus-within > article {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      @media (max-width: 700px) {
+        .sync-option {
+          --sync-distance: 36px;
+        }
+        .sync-option:nth-child(3) {
+          --sync-order: 0;
+        }
+        .sync-option:nth-child(4) {
+          --sync-order: 1;
+        }
+      }
+    }
+  }
+  @keyframes sync-card-state {
+    from {
+      --sync-state: waiting;
+    }
+    to {
+      --sync-state: visible;
+    }
+  }
+  @media (max-width: 1000px) {
+    .sync-options {
+      gap: 20px;
+    }
+    .sync-options article {
+      padding-left: 18px;
+    }
+    .sync-options h3 {
+      font-size: 18px;
+    }
+    .sync-options p {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 700px) {
+    .sync-section {
+      padding-top: 80px;
+    }
+    .sync-options {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 25px;
+      margin-top: 40px;
+    }
+    .sync-option:nth-child(3) article {
+      padding-left: 0;
+      border: 0;
+    }
+    .sync-options article {
+      padding-left: 20px;
+    }
+    .sync-options article > .icon {
+      width: 25px;
+      height: 25px;
+      margin-bottom: 16px;
+    }
+    .sync-options h3 {
+      font-size: 18px;
+    }
+    .sync-options p {
+      font-size: 14px;
+    }
+    .export-note {
+      font-size: 13px;
+      align-items: flex-start;
+      margin-top: 40px;
+      gap: 12px;
+    }
+    .markdown-mark {
+      flex-shrink: 0;
+    }
+  }
+  :global(.home-page) .sync-options article > .icon {
+    color: var(--accent);
+  }
+  :global(.home-page) .export-note strong {
+    font-weight: 600;
+  }
+  :global(.home-page) .sync-options article > .icon {
+    color: var(--sky);
+  }
+</style>

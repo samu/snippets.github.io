@@ -33,6 +33,8 @@ export default defineConfig({
   },
   // Preserve whitespace between inline heading phrases and content fragments.
   compressHTML: false,
+  // Scope component styles without increasing the specificity of existing selectors.
+  scopedStyleStrategy: "where",
   trailingSlash: "always",
   server: {
     host: "127.0.0.1",

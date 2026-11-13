@@ -8,3 +8,43 @@ const { post } = Astro.props;
   <time datetime={post.date}>{post.dateLabel}</time>
   {post.sample && <span class="sample-label">Sample</span>}
 </div>
+
+<style>
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .post-kind {
+    color: var(--post-color);
+    font-weight: 650;
+  }
+  .post-kind::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    margin-right: 7px;
+    vertical-align: 1px;
+  }
+  .post-version {
+    font-variant-numeric: tabular-nums;
+  }
+  .sample-label {
+    padding: 1px 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 10px;
+  }
+  @media (max-width: 380px) {
+    .post-meta {
+      gap: 8px 10px;
+    }
+  }
+</style>

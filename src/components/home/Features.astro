@@ -202,3 +202,113 @@ import Screenshot from "../Screenshot.astro";
     >
   </aside>
 </section>
+
+<style>
+  .overview {
+    padding-top: 146px;
+  }
+  .three-promises {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 26px;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .building-blocks {
+    display: flex;
+    justify-content: center;
+    margin: 64px auto 76px;
+    font-size: 15px;
+    text-align: center;
+    color: var(--muted);
+  }
+  .editor-image {
+    max-width: 490px;
+  }
+  .pricing-note {
+    margin: 0 0 132px;
+    padding: 30px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+  .pricing-note p:not(.eyebrow) {
+    margin-block: 8px 5px;
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+  .pricing-note p span {
+    color: var(--muted);
+  }
+  .pricing-note .text-link {
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+  .pricing-description {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  @media (max-width: 700px) {
+    .overview {
+      padding-top: 85px;
+    }
+    .three-promises {
+      gap: 8px 14px;
+      font-size: 13px;
+      margin-top: 22px;
+    }
+    .building-blocks {
+      margin: 43px 0 48px;
+      font-size: 14px;
+    }
+    .pricing-note {
+      margin-bottom: 75px;
+      padding: 26px 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .pricing-note p:not(.eyebrow) {
+      font-size: 17px;
+      line-height: 1.5;
+    }
+    .pricing-note p span {
+      display: block;
+    }
+    .pricing-description {
+      display: block;
+      margin-top: 10px;
+    }
+  }
+  :global(.home-page) .three-promises {
+    color: var(--muted);
+  }
+  :global(.home-page) .three-promises span {
+    font-weight: 500;
+  }
+  :global(.home-page) .pricing-note {
+    padding: 31px 34px;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    border-radius: 10px;
+  }
+  :global(.home-page) .pricing-note p:not(.eyebrow) {
+    font-weight: 550;
+  }
+  @media (max-width: 760px) {
+    :global(.home-page) .pricing-note {
+      padding: 25px;
+    }
+    :global(.home-page) .three-promises {
+      gap: 12px 20px;
+    }
+  }
+</style>

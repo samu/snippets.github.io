@@ -22,3 +22,84 @@ const { current } = Astro.props;
     </li>)}
   </ul>
 </div>)}
+
+<style>
+  .nav-overview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--heading);
+    font-size: 13px;
+    font-weight: 550;
+    padding: 9px 11px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+  }
+  .nav-overview :global(svg) {
+    width: 17px;
+    height: 17px;
+    color: var(--muted);
+  }
+  .nav-overview.is-active {
+    background: var(--paper);
+  }
+  .nav-group {
+    margin: 0 0 26px;
+  }
+  .nav-group p {
+    font-size: 11px;
+    font-weight: 650;
+    color: var(--heading);
+    margin: 0 11px 9px;
+    letter-spacing: 0.015em;
+  }
+  .nav-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-group a {
+    display: block;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 7px 11px;
+    border-radius: 5px;
+    color: #707070;
+    border-left: 2px solid transparent;
+  }
+  .nav-group a:hover,
+  .nav-overview:hover {
+    color: var(--heading);
+    background: var(--paper);
+  }
+  .nav-group a[aria-current="page"] {
+    color: #315d83;
+    background: #eff4f7;
+    border-left-color: #7496b3;
+    font-weight: 600;
+  }
+  @media (max-width: 1000px) {
+    .nav-group a {
+      font-size: 11px;
+    }
+  }
+  :global(.docs-page) .nav-overview.is-active {
+    color: var(--accent-hover);
+    background: var(--accent-paper);
+  }
+  :global(.docs-page) .nav-overview.is-active :global(svg) {
+    color: var(--accent);
+  }
+  :global(.docs-page) .nav-group p {
+    font-size: 12px;
+    font-weight: 650;
+  }
+  :global(.docs-page) .nav-group a {
+    color: var(--ink);
+  }
+  :global(.docs-page) .nav-group a[aria-current="page"] {
+    background: var(--accent-paper);
+    color: var(--accent-hover);
+    border-left-color: var(--accent);
+  }
+</style>

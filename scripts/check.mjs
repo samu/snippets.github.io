@@ -90,21 +90,57 @@ for (const [file, { nodes }] of documents) {
 }
 for (const file of built.filter((f) => f.endsWith(".css"))) {
   const css = fs.readFileSync(file, "utf8");
-  // A CSS minifier previously folded these into an unsupported shorthand,
-  // leaving the intro over the whole page and freezing the note on frame one.
-  if (/^main\..*\.css$/.test(path.basename(file))) {
-    assert(
-      /\.note-sprite\s*\{[^}]*animation-timeline:\s*scroll\(/.test(css),
-      "The note must retain its scroll-timeline longhand",
-    );
-    assert(
-      /\.intro-copy\s*\{[^}]*animation-timeline:\s*scroll\(/.test(css),
-      "The intro must retain its scroll-timeline longhand",
-    );
-  }
   for (const [, url] of css.matchAll(/url\(["']?([^"')]+)["']?\)/g))
     checkURL(url, file);
 }
+// Inspect the CSS actually linked by the homepage, independent of Astro's chunk names.
+const homepage = documents.get(path.join(output, "index.html"));
+const homepageCSS = homepage.nodes
+  .filter(
+    (node) =>
+      node.tagName === "link" &&
+      node.attrs.some((a) => a.name === "rel" && a.value === "stylesheet"),
+  )
+  .map((node) => node.attrs.find((a) => a.name === "href").value)
+  .map((href) =>
+    fs.readFileSync(
+      path.join(output, new URL(href, "https://preview.local").pathname),
+      "utf8",
+    ),
+  )
+  .join("\n");
+// A minifier previously folded these longhands into an unsupported shorthand,
+// leaving the intro over the page and freezing the note on frame one.
+for (const selector of ["note-sprite", "note-mover", "intro-copy"]) {
+  assert(
+    new RegExp(
+      "\\." + selector + "(?:[^{}]*)\\{[^}]*animation-timeline:\\s*scroll\\(",
+    ).test(homepageCSS),
+    selector + " must retain its scroll-timeline longhand",
+  );
+}
+for (const animation of [
+  "unfold-note",
+  "dock-note",
+  "content-reveal",
+  "heading-entry",
+  "sync-card-state",
+  "privacy-diagram-entry",
+]) {
+  assert(
+    homepageCSS.includes("@keyframes " + animation),
+    "Missing homepage animation: " + animation,
+  );
+}
+assert(
+  homepageCSS.includes("@container phrase-heading"),
+  "Missing heading reveal state",
+);
+assert(
+  homepageCSS.includes("prefers-reduced-motion"),
+  "Missing reduced-motion fallback",
+);
+
 const slugs = fs
   .readdirSync(path.join(content, "docs"))
   .filter((f) => f.endsWith(".mdx"))

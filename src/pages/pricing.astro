@@ -167,3 +167,380 @@ const rows = [
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  .pricing-shell {
+    width: calc(100% - 64px);
+    max-width: 920px;
+    margin-inline: auto;
+  }
+  .pricing-hero {
+    padding: 67px 24px 46px;
+    text-align: center;
+  }
+  .pricing-eyebrow {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    line-height: 1.6;
+  }
+  .pricing-hero h1 {
+    margin-top: 18px;
+    font-size: clamp(42px, 5vw, 62px);
+    font-weight: 550;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+  }
+  .pricing-intro {
+    margin-top: 23px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  .mobile-break {
+    display: none;
+  }
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+  .pricing-reassurance {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    padding: 24px 20px 0;
+  }
+  .comparison {
+    padding-top: 91px;
+  }
+  .pricing-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 29px;
+  }
+  .pricing-section-heading h2,
+  .faq-intro h2 {
+    font-size: 30px;
+    font-weight: 550;
+    line-height: 1.25;
+    margin-top: 12px;
+  }
+  .pricing-section-heading > p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .comparison-table {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .comparison table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+  }
+  .comparison th,
+  .comparison td {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 24px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .comparison th:first-child {
+    width: 66%;
+    text-align: left;
+  }
+  .comparison th {
+    font-weight: 400;
+  }
+  .comparison thead th {
+    font-weight: 600;
+    color: var(--heading);
+    background: var(--paper);
+    font-size: 11px;
+  }
+  .comparison thead th:not(:first-child) {
+    text-align: center;
+  }
+  .comparison td {
+    text-align: center;
+  }
+  .comparison tr:last-child th,
+  .comparison tr:last-child td {
+    border-bottom: 0;
+  }
+  .comparison td:last-child {
+    background: #f7f9fa;
+  }
+  .included {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #537892;
+  }
+  .included :global(svg) {
+    width: 17px;
+    height: 17px;
+  }
+  .not-included {
+    color: #8a8a88;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .comparison-footnote {
+    font-size: 11px;
+    line-height: 1.8;
+    margin-top: 18px;
+    color: var(--muted);
+  }
+  .comparison-footnote a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--accent);
+  }
+  .comparison-footnote :global(svg) {
+    width: 13px;
+    height: 13px;
+  }
+  .pricing-faq {
+    display: grid;
+    grid-template-columns: 1fr 1.55fr;
+    gap: 64px;
+    padding-top: 88px;
+    padding-bottom: 90px;
+  }
+  .faq-intro > p:last-child {
+    font-size: 12px;
+    line-height: 1.85;
+    margin-top: 22px;
+    color: var(--muted);
+  }
+  .faq-intro a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--accent);
+  }
+  .faq-intro :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+  .faq-list {
+    border-top: 1px solid var(--border);
+  }
+  .faq-list details {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-list summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    cursor: pointer;
+    list-style: none;
+    padding: 21px 0;
+    font-size: 13px;
+    font-weight: 550;
+    line-height: 1.7;
+    color: var(--heading);
+  }
+  .faq-list summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-list summary span {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1;
+  }
+  .faq-list details[open] summary span {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    padding: 0 24px 22px 0;
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--muted);
+  }
+  .faq-answer a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .pricing-closing {
+    background: var(--paper);
+    text-align: center;
+    padding: 48px 24px 58px;
+    border-top: 1px solid var(--border);
+  }
+  .pricing-closing :global(img) {
+    margin: 0 auto 17px;
+  }
+  .pricing-closing h2 {
+    font-size: 30px;
+    line-height: 1.3;
+    font-weight: 550;
+  }
+  .pricing-closing .pricing-button {
+    margin-top: 26px;
+  }
+  @media (max-width: 760px) {
+    .pricing-hero {
+      padding: 46px 20px 32px;
+    }
+    .pricing-hero h1 {
+      font-size: 46px;
+    }
+    .pricing-intro {
+      font-size: 14px;
+      margin-top: 20px;
+    }
+    .pricing-shell {
+      width: calc(100% - 40px);
+      max-width: 520px;
+    }
+    .plans {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .comparison {
+      padding-top: 61px;
+    }
+    .pricing-section-heading {
+      display: block;
+      margin-bottom: 23px;
+    }
+    .pricing-section-heading > p {
+      margin-top: 13px;
+    }
+    .pricing-section-heading h2,
+    .faq-intro h2 {
+      font-size: 27px;
+    }
+    .comparison th,
+    .comparison td {
+      padding: 14px 13px;
+      font-size: 11px;
+    }
+    .comparison th:first-child {
+      width: 64%;
+    }
+    .pricing-faq {
+      display: block;
+      padding-top: 55px;
+      padding-bottom: 60px;
+    }
+    .faq-intro > p:last-child {
+      margin-top: 17px;
+    }
+    .faq-list {
+      margin-top: 27px;
+    }
+    .pricing-closing h2 {
+      font-size: 27px;
+    }
+  }
+  @media (max-width: 420px) {
+    .mobile-break {
+      display: block;
+    }
+    .pricing-hero h1 {
+      font-size: 42px;
+    }
+    .pricing-shell {
+      width: calc(100% - 36px);
+    }
+    .comparison th,
+    .comparison td {
+      padding: 13px 11px;
+    }
+    .pricing-reassurance {
+      font-size: 10px;
+    }
+  }
+  @media print {
+    .plans {
+      grid-template-columns: 1fr 1fr;
+    }
+    .pricing-hero {
+      padding-top: 0;
+    }
+    .pricing-closing,
+    :global(.site-footer) {
+      display: none;
+    }
+    .faq-list details::details-content {
+      display: block;
+    }
+  }
+  :global(.pricing-page)
+    :is(
+      .pricing-hero h1,
+      .pricing-section-heading h2,
+      .faq-intro h2,
+      .pricing-closing h2
+    ) {
+    font-weight: 700;
+    letter-spacing: -0.035em;
+  }
+  .pricing-hero {
+    padding-block: 64px 46px;
+  }
+  .pricing-hero h1 {
+    font-size: clamp(42px, 4.7vw, 60px);
+  }
+  .pricing-eyebrow {
+    color: var(--muted);
+    font-weight: 650;
+  }
+  .pricing-intro {
+    color: var(--ink);
+  }
+  .comparison-table {
+    background: var(--white);
+  }
+  .comparison td:last-child,
+  .comparison thead th:last-child {
+    background: var(--paper);
+  }
+  .comparison thead th:last-child,
+  .included {
+    color: var(--ink);
+  }
+  .not-included {
+    color: var(--muted);
+  }
+  .pricing-closing {
+    background: var(--paper);
+  }
+  @media (max-width: 760px) {
+    .pricing-hero {
+      padding: 44px 0 34px;
+    }
+    .pricing-hero h1 {
+      font-size: 46px;
+    }
+  }
+  @media (max-width: 420px) {
+    .pricing-hero h1 {
+      font-size: 42px;
+    }
+  }
+</style>

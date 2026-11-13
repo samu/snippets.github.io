@@ -2,3 +2,35 @@
   <p class="callout-label">Good to know</p>
   <slot />
 </aside>
+
+<style>
+  .callout {
+    margin: 28px 0;
+    padding: 21px 24px;
+    background: #f4f7f9;
+    border: 1px solid #e4ecf1;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .callout .callout-label {
+    font-weight: 650;
+    color: #365c7b;
+    margin-bottom: 9px;
+    font-size: 12px;
+  }
+  .callout :global(p:last-child) {
+    margin-bottom: 0;
+  }
+  @media (max-width: 420px) {
+    .callout {
+      padding: 18px;
+    }
+  }
+  :global(.docs-page) .callout {
+    background: var(--paper);
+    border-color: var(--border);
+  }
+  :global(.docs-page) .callout .callout-label {
+    color: var(--heading);
+  }
+</style>

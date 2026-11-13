@@ -100,3 +100,57 @@ import Screenshot from "../Screenshot.astro";
     </div>
   </div>
 </section>
+
+<style>
+  .tasks-section {
+    background: var(--paper);
+  }
+  .quick-add {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 90px;
+    align-items: center;
+    margin-top: 100px;
+  }
+  .quick-add .feature-copy h3 {
+    font-size: 34px;
+  }
+  .quick-add :global(.product-image) {
+    box-shadow: var(--screenshot-shadow);
+  }
+  @media (max-width: 1000px) {
+    .quick-add {
+      gap: 45px;
+    }
+  }
+  @media (max-width: 700px) {
+    .quick-add {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-top: 62px;
+    }
+    .quick-add .feature-copy h3 {
+      font-size: 31px;
+    }
+  }
+  :global(.home-page) .quick-add > figure {
+    padding: clamp(16px, 2.2vw, 28px);
+    background: var(--showcase);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  :global(.home-page) .tasks-section {
+    background: var(--paper);
+  }
+  @media (max-width: 700px) {
+    :global(.home-page) .quick-add > figure {
+      padding: 12px;
+      border-radius: 12px;
+    }
+  }
+  @container theme style(--theme: dark) {
+    :global(:root) :global(.home-page) .quick-add :global(.product-image) {
+      box-shadow: var(--screenshot-shadow);
+    }
+  }
+</style>

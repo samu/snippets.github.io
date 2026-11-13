@@ -25,3 +25,45 @@
   <p>Start with a note. See where it takes you.</p>
   <a class="button" href="#download">Get Snippets for free</a>
 </section>
+
+<style>
+  .closing-section {
+    padding-block: 104px 116px;
+    text-align: center;
+  }
+  .closing-section > :global(img) {
+    margin: 0 auto 22px;
+  }
+  .closing-section h2 {
+    font-size: clamp(32px, 4vw, 49px);
+    font-weight: 550;
+    margin-top: 19px;
+  }
+  .closing-section > p:not(.eyebrow) {
+    font-size: 17px;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+  .closing-section .button {
+    margin-top: 28px;
+  }
+  @media (max-width: 700px) {
+    .closing-section {
+      padding-block: 65px 75px;
+    }
+    .closing-section > :global(img) {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+    }
+    .closing-section h2 {
+      font-size: 36px;
+      line-height: 1.1;
+      max-width: 300px;
+      margin-inline: auto;
+    }
+    .closing-section > p:not(.eyebrow) {
+      font-size: 16px;
+    }
+  }
+</style>

@@ -16,3 +16,13 @@ const label = path.basename(src, ".webm").replace(/-/g, " ");
   <source src={src} type="video/webm" />
   <a href={src}>Download the demonstration</a>
 </video>
+
+<style>
+  .doc-video {
+    width: 100%;
+    max-height: 620px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--paper);
+  }
+</style>

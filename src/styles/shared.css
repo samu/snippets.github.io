@@ -1,0 +1,31 @@
+/* Typography and color hooks shared by homepage and content layouts. */
+:root {
+  font-optical-sizing: auto;
+}
+.wordmark {
+  font-weight: 650;
+}
+.docs-page :is(.overview-header h1, .article-header h1) {
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+::selection {
+  background: oklch(0.97 0.032 202.13);
+  color: oklch(0.398 0.07 227.392);
+}
+.ink-accent {
+  color: var(--sage);
+}
+.overview-eyebrow {
+  color: var(--muted);
+  font-weight: 650;
+}
+[data-tone="sage"] {
+  --section-accent: var(--sage);
+}
+[data-tone="lavender"] {
+  --section-accent: var(--lavender);
+}
+[data-tone="sky"] {
+  --section-accent: var(--sky);
+}

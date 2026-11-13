@@ -51,3 +51,233 @@ const { post, featured = false } = Astro.props;
     <div class="post-symbol" aria-hidden="true"><Icon name={post.icon} /></div>
   )}
 </article>
+
+<style>
+  .update-card {
+    position: relative;
+    isolation: isolate;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--panel);
+    transition:
+      border-color 220ms,
+      background-color 220ms;
+  }
+  .update-card:hover {
+    border-color: color-mix(in srgb, var(--post-color) 40%, var(--border));
+    background: color-mix(in srgb, var(--post-color) 3%, var(--panel));
+  }
+  .update-card:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+  }
+  .update-card-copy {
+    padding: 34px;
+  }
+  .update-card h2 {
+    font-size: 27px;
+    line-height: 1.2;
+    font-weight: 650;
+    letter-spacing: -0.03em;
+    margin-top: 25px;
+    max-width: 330px;
+  }
+  .post-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: 16px;
+  }
+  .post-link:focus-visible {
+    outline: none;
+  }
+  .update-card-copy > p {
+    font-size: 14px;
+    line-height: 1.75;
+    margin-top: 17px;
+    max-width: 380px;
+  }
+  .post-action {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 550;
+    color: var(--heading);
+    margin-top: 30px;
+  }
+  .post-action :global(svg) {
+    width: 16px;
+    height: 16px;
+    transition: transform 220ms;
+  }
+  .update-card:hover .post-action :global(svg) {
+    transform: translateX(4px);
+  }
+  .post-symbol {
+    position: absolute;
+    bottom: 29px;
+    right: 30px;
+    color: var(--post-color);
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--post-color) 8%, var(--white));
+  }
+  .post-symbol :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+  .update-featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .update-featured .update-card-copy {
+    align-self: center;
+    padding: 44px;
+  }
+  .update-featured h2 {
+    font-size: clamp(30px, 3.2vw, 40px);
+    max-width: 360px;
+    margin-top: 24px;
+  }
+  .update-featured .update-card-copy > p {
+    font-size: 15px;
+  }
+  .update-cover {
+    height: 360px;
+    min-width: 0;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--post-color) 10%, var(--paper));
+    padding: 30px 0 0 34px;
+  }
+  .cover-label {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    font-size: 11px;
+    color: var(--post-color);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .cover-label :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+  .cover-window {
+    margin-right: -28px;
+    border: 1px solid color-mix(in srgb, var(--post-color) 20%, var(--border));
+    border-radius: 10px 0 0 0;
+    background: var(--white);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .cover-window-bar {
+    height: 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-inline: 13px;
+    color: var(--muted);
+    font-size: 9px;
+  }
+  .cover-window-bar i {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .cover-window-bar span {
+    margin-left: 8px;
+  }
+  .cover-window :global(img) {
+    width: 100%;
+  }
+  .cover-symbol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding: 30px;
+    color: var(--post-color);
+  }
+  .cover-symbol :global(svg) {
+    width: 72px;
+    height: 72px;
+    stroke-width: 1;
+  }
+  .cover-symbol span {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  :global(.news-grid) .update-card-copy {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  :global(.news-grid) .post-action {
+    padding-top: 30px;
+    padding-right: 38px;
+    margin-top: auto;
+  }
+  @media (max-width: 900px) {
+    .update-featured .update-card-copy {
+      padding: 30px;
+    }
+    .update-card-copy {
+      padding: 26px;
+    }
+    .update-card h2 {
+      font-size: 25px;
+    }
+    .update-featured h2 {
+      font-size: 34px;
+    }
+    .post-symbol {
+      right: 22px;
+      bottom: 20px;
+    }
+  }
+  @media (max-width: 760px) {
+    .update-featured {
+      grid-template-columns: 1fr;
+    }
+    .update-featured .update-card-copy {
+      padding: 30px 26px;
+    }
+    .update-featured h2 {
+      max-width: 460px;
+    }
+    .update-cover {
+      height: 270px;
+      padding: 24px 0 0 26px;
+    }
+    .cover-window {
+      max-width: 540px;
+      margin-inline: auto 0;
+    }
+  }
+  @media (max-width: 380px) {
+    .update-featured .update-card-copy,
+    .update-card-copy {
+      padding: 24px 20px;
+    }
+    .update-featured h2 {
+      font-size: 30px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .update-card,
+    .post-action :global(svg) {
+      transition: none;
+    }
+  }
+</style>

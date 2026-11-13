@@ -1,4 +1,4 @@
-/* One document per URL. The checkbox reverses the device's color preference. */
+/* The named theme container lets components react to the native checkbox without JavaScript. */
 :root {
   color-scheme: light;
   --theme: light;
@@ -56,54 +56,9 @@
     --theme: light;
   }
 }
-
-.theme-switch {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  color: var(--muted);
-  background: transparent;
-  cursor: pointer;
-  transition:
-    color 0.2s,
-    background 0.2s,
-    border-color 0.2s;
-}
-.theme-switch input {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  opacity: 0;
-  cursor: pointer;
-}
-.theme-switch:has(input:focus-visible) {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-}
-.theme-switch:hover {
-  color: var(--heading);
-  background: var(--panel-strong);
-  border-color: var(--screenshot-edge);
-}
-.theme-switch svg {
-  width: 17px;
-  height: 17px;
-  pointer-events: none;
-}
-/* Only the active screenshot and icon participate in layout/accessibility. */
 .theme-dark {
   display: none !important;
 }
-
-/* Named style queries reach through the homepage's animation containers. */
 @container theme style(--theme: dark) {
   .theme-light {
     display: none !important;
@@ -119,108 +74,7 @@
     background: #34516b;
     color: #f3f4f0;
   }
-  :root :is(.site-header, .docs-header) {
-    background: rgb(28 28 31 / 0.92);
-    border-bottom-color: var(--border);
-  }
   :root :is(.skip-link, .desktop-window, .product-image) {
     background: var(--panel);
-  }
-  :root .phone {
-    border-color: var(--screenshot-edge);
-  }
-  :root .home-page .quick-add .product-image {
-    box-shadow: var(--screenshot-shadow);
-  }
-  :root .home-page .encryption-section {
-    background: linear-gradient(
-      120deg,
-      var(--paper),
-      var(--panel) 72%,
-      #292d34
-    );
-    box-shadow: 0 24px 56px -36px #0008;
-  }
-  :root .comparison-standard {
-    --comparison-tone: #ecaaa1;
-    --comparison-accent: #a47469;
-    --comparison-border: #64443f;
-    --comparison-surface: #372725;
-  }
-  :root .comparison-private {
-    --comparison-tone: #9fd5b4;
-    --comparison-accent: #719b81;
-    --comparison-border: #3e5949;
-    --comparison-surface: #20342b;
-    box-shadow: 0 10px 24px -18px #0009;
-  }
-  :root .comparison-readable i {
-    background: #79544b;
-  }
-  :root .comparison-track::before {
-    border-top-color: #687172;
-  }
-  :root .plan {
-    background: var(--panel);
-    box-shadow: 0 12px 36px -22px #0007;
-  }
-  :root .plan-pro {
-    background: linear-gradient(145deg, #292d34, var(--panel) 70%);
-    border-color: #50545e;
-  }
-  :root .plan-pro .plan-tag {
-    color: var(--accent);
-  }
-  :root .docs-page .sidebar {
-    scrollbar-color: #4b5051 transparent;
-  }
-  :root .docs-page .doc-figure img {
-    background: var(--panel);
-  }
-  :root .breadcrumb > span:nth-child(2) {
-    color: var(--muted);
-  }
-  /* Generated syntax highlighting has inline light colors; retain token distinctions. */
-  :root
-    .prose
-    code
-    :is(.token-line, .token.plain, .token.punctuation, .token.operator) {
-    color: var(--ink) !important;
-  }
-  :root .prose code :is(.token.property, .token.attr-name) {
-    color: #a9c8e6 !important;
-  }
-  :root .prose code :is(.token.string, .token.attr-value) {
-    color: #bad1b1 !important;
-  }
-  :root .prose code :is(.token.number, .token.boolean, .token.keyword) {
-    color: #d4b9dc !important;
-  }
-  :root .prose code .token.comment {
-    color: var(--muted) !important;
-  }
-}
-@media (max-width: 760px) {
-  .theme-switch {
-    width: 34px;
-    height: 34px;
-  }
-  .header-links {
-    column-gap: 12px;
-  }
-}
-@media (max-width: 420px) {
-  .pricing-page .pricing-docs-link {
-    display: none;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .theme-switch {
-    transition: none;
-  }
-}
-@media print {
-  .theme-switch {
-    display: none !important;
   }
 }

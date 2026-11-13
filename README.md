@@ -38,12 +38,12 @@ keep dev/preview in the foreground. Stop background servers with
 
 | Location                                        | Purpose                                                |
 | ----------------------------------------------- | ------------------------------------------------------ |
-| `src/pages/`, `src/layouts/`, `src/components/` | Routes, shared layouts and page sections               |
+| `src/pages/`, `src/layouts/`, `src/components/` | Routes, layouts, sections and their scoped styles      |
 | `src/content/docs/`                             | MDX guides with title, description and draft metadata  |
 | `src/content/news/`                             | Blog posts, announcements and release notes in MDX     |
 | `src/data/doc-navigation.json`                  | Guide grouping and order; include every MDX guide      |
 | `src/data/release.json`                         | App version used in download links                     |
-| `src/styles/`                                   | Global styles, themes and scroll effects               |
+| `src/styles/`                                   | Shared foundations, themes, prose and reveal effects   |
 | `src/lib/styles.js`                             | Stylesheet order for each layout                       |
 | `media/screenshots/`                            | PNG screenshot sources, discovered automatically       |
 | `public/assets/`                                | Published fonts, videos and note atlas                 |
@@ -51,6 +51,79 @@ keep dev/preview in the foreground. Stop background servers with
 | `public/news.json`                              | Public news feed with titles, summaries and timestamps |
 | `astro.config.mjs`                              | Domain, port, Markdown, redirects and sitemap          |
 | `scripts/`                                      | Output checks and optional media generation            |
+
+## CSS organization
+
+Put styles used by one component in its `<style>` block. For example, the hero
+screenshot is styled in `src/components/home/Hero.astro`, pricing cards in
+`src/components/pricing/Plan.astro`, and the footer in
+`src/components/Footer.astro`. Responsive rules and component-specific dark
+variants stay beside those base styles.
+
+The remaining stylesheets contain rules shared across components:
+
+| File in `src/styles/` | Purpose                                                       |
+| --------------------- | ------------------------------------------------------------- |
+| `base.css`            | Font loading and common resets                                |
+| `themes.css`          | Light/dark color tokens, theme state and screenshot switching |
+| `shared.css`          | Shared typography and section accent colors                   |
+| `home.css`            | Homepage layout primitives, buttons and screenshot frames     |
+| `content.css`         | Defaults shared by docs, pricing, news and legal pages        |
+| `reveal.css`          | Shared content entrances and heading phrase reveals           |
+| `prose.css`           | MDX text, code blocks, captions and tables                    |
+| `actions.css`         | Pricing actions shared by cards and the closing section       |
+| `news-layout.css`     | News grid, page shell and entry color tokens                  |
+
+`src/lib/styles.js` chooses and orders these shared sheets for each layout.
+Astro includes the styles of components used by the page automatically.
+`scopedStyleStrategy: "where"` limits component selectors without increasing
+their specificity, preserving the existing shared overrides.
+
+Use `:global(...)` only for deliberate boundaries: page-level ancestors, output
+from a nested component, or MDX passed through a slot. Prose styles remain
+global for that reason. The intro's `<style is:global>` block coordinates
+several components; it is intentionally shared and is included only on the
+homepage. Keep its order and scroll timeline longhands intact.
+
+## How the animations work
+
+The unfolding note uses a **static WebP sprite sheet**, not an autoplaying
+animated WebP. `Note.astro` moves the background through 90 frames in a 10 × 9
+grid using stepped CSS keyframes. The root scroll timeline chooses the frame, so
+scrolling backward closes the note again. A second animation shrinks and moves
+the opened note into the header.
+
+`Intro.astro` defines the shared scroll distances and coordinates the intro
+copy, background blend, header and hero entrance. The unfolding ends after a
+scroll distance of 85% of the small viewport height (`85svh`); docking finishes
+at 145% (`145svh`). The rest of the page begins appearing when docking begins.
+These are scroll distances, not elapsed time.
+
+`reveal.css` gives content its shared fade-and-rise entrance. View timelines
+measure an element entering the viewport. Where supported, timeline triggers let
+the entrance finish smoothly after scrolling stops. Headings use a named
+container state to reveal phrases with staggered opacity, movement and blur;
+scrolling back above the entrance threshold hides the group together.
+`Sync.astro` owns the four-card stagger and `Encryption.astro` owns the
+individual diagram transitions. Their timings are unchanged by CSS scoping.
+
+Motion is enabled only inside capability and reduced-motion checks. Without
+those features, content stays readable and the static header logo is used. There
+are no browser scroll listeners or animation libraries.
+
+## How the build works
+
+`pnpm build` runs Astro, then `scripts/check.mjs`. Astro renders routes,
+components and MDX into static HTML, extracts component CSS, processes imported
+screenshots, and copies `public/` unchanged into `dist/`. Styles in Astro
+components are a source organization choice; they do not require client-side
+JavaScript. Shared stylesheet URLs and generated CSS chunks receive content
+hashes for cache invalidation.
+
+The output validator checks local links, assets, anchors, expected routes, theme
+controls and animation CSS, and rejects browser JavaScript. The optional
+`note:build` command only regenerates the sprite sheet when its source frames
+change; it is separate from normal website builds.
 
 ## Writing news
 
@@ -115,7 +188,8 @@ Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
   current page; manual choices do not persist across navigation.
 - Motion is a CSS enhancement with static and reduced-motion fallbacks. The note
   atlas has 90 frames in a 10 × 9 grid. Changes to its frame count or layout
-  must also update the keyframes and background sizing in `src/styles/main.css`.
+  must also update the keyframes and background sizing in
+  `src/components/home/Note.astro`.
 
 ## Media
 
@@ -163,7 +237,7 @@ image URLs are managed by Astro; reference source names in code.
   these frames; this separate sprite-sheet task requires `cwebp` and
   ImageMagick's `magick`. Carbon frames are retained for future use.
 - `media/reference/porcelain-theme.txt` is a design reference; website colors
-  live in `src/styles/brand.css` and `src/styles/themes.css`.
+  live in `src/styles/themes.css` and the relevant component styles.
 
 Normal site builds need no external image commands. Keep screenshot originals
 under `media/` and let Astro generate their published derivatives in `dist/`.

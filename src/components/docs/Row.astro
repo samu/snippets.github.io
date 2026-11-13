@@ -1,1 +1,47 @@
 <div class="doc-row"><slot /></div>
+
+<!-- Slot children belong to MDX or nested components; keep those child selectors global. -->
+<style>
+  .doc-row + :global(br) {
+    display: none;
+  }
+  .doc-row {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin: 26px 0 32px;
+  }
+  .doc-row > :global(*) {
+    flex: 1;
+    min-width: 0;
+    width: auto !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .doc-row :global(.doc-figure) :global(img) {
+    max-height: 600px;
+  }
+  .doc-row:has(:global(.code-panel)) {
+    flex-direction: column;
+  }
+  .doc-row:has(:global(.code-panel)) > :global(*) {
+    width: 100% !important;
+  }
+  .doc-row:has(:global(.code-panel)) > :global(.doc-figure) {
+    max-width: 520px;
+    align-self: center;
+  }
+  @media (max-width: 1000px) {
+    .doc-row {
+      flex-direction: column;
+    }
+    .doc-row > :global(*) {
+      width: 100% !important;
+    }
+    .doc-row :global(.doc-figure) {
+      max-width: 560px;
+      align-self: center;
+    }
+  }
+</style>

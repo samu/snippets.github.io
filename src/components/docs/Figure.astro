@@ -40,3 +40,82 @@ const images = resolved
   <slot />
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
+
+<style>
+  .doc-figure {
+    min-width: 0;
+    margin: 30px 0 36px;
+    width: 100%;
+  }
+  .doc-figure :global(img) {
+    margin: auto;
+    max-height: 720px;
+    object-fit: contain;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 20px -12px #0002;
+    background: #fafaf9;
+  }
+  .image-link {
+    display: block;
+    cursor: zoom-in;
+    border-radius: 8px;
+  }
+  .image-link:hover :global(img) {
+    border-color: #d0d6db;
+  }
+  .doc-figure :global(.doc-row) {
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--paper);
+    margin: 0;
+  }
+  .doc-figure .doc-figure :global(img) {
+    box-shadow: none;
+  }
+  @media (max-width: 760px) {
+    .doc-figure {
+      margin: 26px 0;
+    }
+  }
+  @media print {
+    .doc-figure {
+      break-inside: avoid;
+    }
+  }
+  :global(.docs-page) .image-link:hover :global(img) {
+    border-color: var(--accent-border);
+  }
+  :global(.docs-page) .doc-figure > .image-link {
+    padding: clamp(10px, 1.6vw, 18px);
+    background: var(--showcase);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  :global(.docs-page) .doc-figure :global(img) {
+    border-color: var(--screenshot-edge);
+    box-shadow: var(--screenshot-shadow);
+  }
+  @media (max-width: 700px) {
+    :global(.docs-page) .doc-figure > .image-link {
+      padding: 8px;
+      border-radius: 9px;
+    }
+  }
+  @media print {
+    :global(.docs-page) .doc-figure > .image-link {
+      padding: 0;
+      background: none;
+      border: 0;
+    }
+    :global(.docs-page) .doc-figure :global(img) {
+      box-shadow: none;
+    }
+  }
+  @container theme style(--theme: dark) {
+    :global(:root) :global(.docs-page) .doc-figure :global(img) {
+      background: var(--panel);
+    }
+  }
+</style>

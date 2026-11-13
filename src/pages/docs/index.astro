@@ -94,3 +94,420 @@ const cards = [
     <a href="mailto:support@snippets.ch">Get in touch <Icon /></a>
   </div>
 </DocsLayout>
+
+<style>
+  .topic-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .overview-eyebrow {
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .overview-header h1 {
+    font-size: clamp(35px, 3.8vw, 54px);
+    line-height: 1.16;
+    letter-spacing: -0.045em;
+    font-weight: 550;
+  }
+  .overview-header p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--muted);
+    margin-top: 22px;
+  }
+  .start-guide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-top: 38px;
+    padding: 31px 36px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: linear-gradient(115deg, #f8f9f9, #fcfcfb);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .start-guide:hover {
+    border-color: #bacbd7;
+  }
+  .small-label {
+    font-size: 9px;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .start-guide h2 {
+    font-size: 25px;
+    line-height: 1.35;
+    margin-top: 11px;
+    font-weight: 550;
+  }
+  .start-guide p {
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-top: 9px;
+    max-width: 370px;
+  }
+  .start-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    font-size: 12px;
+    font-weight: 550;
+    color: var(--accent);
+    margin-top: 24px;
+  }
+  .start-link :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+  .guide-art {
+    width: 140px;
+    flex-shrink: 0;
+    transform: rotate(-8deg);
+  }
+  .guide-art :global(img) {
+    width: 140px;
+    filter: drop-shadow(0 12px 14px #00000008);
+  }
+  .guide-paths,
+  .all-guides {
+    margin-top: 49px;
+  }
+  .section-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+  }
+  .section-title h2 {
+    font-size: 19px;
+    font-weight: 550;
+  }
+  .section-title > span {
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .path-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .path-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 22px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+  }
+  .path-card:hover {
+    background: #fafbfc;
+    border-color: #bccdd9;
+  }
+  .path-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: #6a8396;
+    margin-bottom: 28px;
+  }
+  .path-top :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+  .path-top span {
+    font-size: 10px;
+    color: #a0a5a8;
+  }
+  .path-card h3 {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 600;
+    max-width: 200px;
+  }
+  .path-card p {
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-top: 10px;
+    margin-bottom: 25px;
+  }
+  .card-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+    font-size: 10px;
+    color: var(--accent);
+    margin-top: auto;
+  }
+  .card-arrow :global(svg) {
+    width: 15px;
+    height: 15px;
+  }
+  .all-guides {
+    padding-top: 7px;
+  }
+  .topic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 44px;
+  }
+  .topic-group {
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+  }
+  .topic-group h3 {
+    font-size: 12px;
+    font-weight: 650;
+    margin-bottom: 12px;
+  }
+  .topic-group a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .topic-group a:hover {
+    color: var(--accent);
+  }
+  .topic-group :global(svg) {
+    width: 13px;
+    height: 13px;
+    color: #a5b0b7;
+  }
+  .topic-group small {
+    font-size: 9px;
+    color: #8b8b88;
+    white-space: nowrap;
+  }
+  .help-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 1px solid var(--border);
+    padding-top: 29px;
+    margin-top: 48px;
+  }
+  .help-banner h2 {
+    font-size: 16px;
+    font-weight: 550;
+  }
+  .help-banner p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .help-banner a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--accent);
+  }
+  .help-banner :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+  @media (max-width: 1240px) {
+    .path-grid {
+      gap: 12px;
+    }
+    .path-card {
+      padding: 20px 17px;
+    }
+    .path-card h3 {
+      font-size: 15px;
+    }
+    .start-guide {
+      padding: 28px;
+    }
+    .guide-art {
+      width: 110px;
+    }
+    .section-title > span {
+      display: none;
+    }
+    .wide-break {
+      display: none;
+    }
+  }
+  @media (max-width: 1000px) {
+    .overview-header h1 {
+      font-size: 38px;
+    }
+    .path-grid {
+      grid-template-columns: 1fr;
+    }
+    .path-card {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      column-gap: 18px;
+      padding: 21px;
+    }
+    .path-top {
+      grid-row: 1/4;
+      margin: 0;
+    }
+    .path-top span {
+      display: none;
+    }
+    .path-card h3 {
+      max-width: none;
+    }
+    .path-card p {
+      margin-bottom: 14px;
+    }
+    .card-arrow {
+      justify-content: flex-start;
+    }
+    .start-guide {
+      gap: 14px;
+    }
+    .guide-art {
+      width: 85px;
+    }
+    .start-guide h2 {
+      font-size: 22px;
+    }
+    .topic-grid {
+      gap: 24px;
+    }
+  }
+  @media (max-width: 760px) {
+    .overview-eyebrow {
+      font-size: 9px;
+      margin-bottom: 17px;
+    }
+    .overview-header h1 {
+      font-size: 38px;
+    }
+    .overview-header p {
+      font-size: 14px;
+      margin-top: 18px;
+    }
+    .start-guide {
+      margin-top: 28px;
+      padding: 24px;
+    }
+    .start-guide h2 {
+      font-size: 22px;
+    }
+    .start-guide p {
+      font-size: 12px;
+    }
+    .start-guide .guide-art {
+      width: 85px;
+    }
+    .guide-paths,
+    .all-guides {
+      margin-top: 38px;
+    }
+    .path-card {
+      padding: 22px;
+    }
+    .path-card h3 {
+      font-size: 16px;
+    }
+    .path-card p {
+      font-size: 12px;
+    }
+    .topic-grid {
+      gap: 28px 24px;
+    }
+    .help-banner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 420px) {
+    .overview-header h1 {
+      font-size: 32px;
+    }
+    .start-guide {
+      padding: 23px;
+      position: relative;
+    }
+    .start-guide > div:first-child {
+      position: relative;
+      z-index: 1;
+    }
+    .start-guide .guide-art {
+      display: none;
+    }
+    .topic-grid {
+      grid-template-columns: 1fr;
+    }
+    .overview-header p {
+      font-size: 13px;
+    }
+  }
+  :global(.docs-page) .overview-header h1 > span {
+    color: var(--sage);
+  }
+  :global(.docs-page) .overview-header p {
+    color: var(--ink);
+  }
+  :global(.docs-page) .start-guide {
+    background: var(--paper);
+    border-color: var(--border);
+  }
+  :global(.docs-page) .start-guide:hover {
+    background: var(--panel-strong);
+    border-color: var(--border);
+  }
+  :global(.docs-page) .start-guide .small-label {
+    color: var(--muted);
+    font-weight: 650;
+  }
+  :global(.docs-page) .start-guide h2 {
+    font-weight: 650;
+  }
+  :global(.docs-page) .start-link {
+    font-weight: 650;
+  }
+  :global(.docs-page) .guide-art {
+    transform: none;
+  }
+  :global(.docs-page) .path-card {
+    background: var(--panel);
+    border-color: var(--border);
+  }
+  :global(.docs-page) .path-top {
+    color: var(--accent);
+  }
+  :global(.docs-page) .path-top span,
+  :global(.docs-page) .topic-group :global(svg),
+  :global(.docs-page) .topic-group small {
+    color: var(--muted);
+  }
+  :global(.docs-page) .path-card:hover {
+    background: var(--paper);
+    border-color: var(--accent-border);
+  }
+  :global(.docs-page) .path-card p,
+  :global(.docs-page) .topic-group a {
+    color: var(--ink);
+  }
+  :global(.docs-page) .card-arrow {
+    font-weight: 600;
+  }
+</style>

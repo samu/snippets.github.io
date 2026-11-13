@@ -69,3 +69,112 @@ if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
     </div>
   </div>
 </section>
+
+<style>
+  .download-section {
+    margin-top: 96px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding-block: 35px 40px;
+  }
+  .download-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 33px;
+  }
+  .download-heading h2 {
+    font-size: 24px;
+    letter-spacing: -0.02em;
+  }
+  .download-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .download-platform {
+    padding-inline: 28px;
+    border-left: 1px solid var(--border);
+  }
+  .download-platform:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .platform-icon {
+    width: 23px;
+    height: 23px;
+    margin-bottom: 12px;
+    color: var(--heading);
+  }
+  .download-platform h3 {
+    font-size: 17px;
+    letter-spacing: -0.015em;
+    margin-bottom: 11px;
+  }
+  .download-platform h3 .badge {
+    margin-left: 4px;
+  }
+  .download-platform a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 200px;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--accent);
+    padding-block: 6px;
+  }
+  .download-platform a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .download-platform a span {
+    font-size: 15px;
+  }
+  .quiet-status {
+    font-size: 12px;
+    color: var(--muted);
+    display: block;
+    padding-top: 9px;
+  }
+  @media (max-width: 1000px) {
+    .download-platform {
+      padding-inline: 18px;
+    }
+    .download-platform a {
+      font-size: 12px;
+    }
+  }
+  @media (max-width: 700px) {
+    .download-section {
+      margin-top: 55px;
+      padding-block: 26px;
+    }
+    .download-heading {
+      display: block;
+      margin-bottom: 28px;
+    }
+    .download-heading h2 {
+      font-size: 22px;
+      margin-top: 0;
+    }
+    .download-options {
+      grid-template-columns: 1fr 1fr;
+      row-gap: 32px;
+    }
+    .download-platform {
+      padding-inline: 20px 0;
+    }
+    .download-platform:nth-child(3) {
+      border: 0;
+      padding-left: 0;
+    }
+    .download-platform a {
+      font-size: 12px;
+      max-width: 145px;
+    }
+    .download-platform h3 {
+      font-size: 15px;
+    }
+  }
+</style>
