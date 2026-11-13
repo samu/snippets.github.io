@@ -26,6 +26,18 @@ import SectionLight from "./SectionLight.astro";
         height: var(--intro-end);
         position: relative;
       }
+      /* The note unfolds in a fixed scene; its light should stay there too. */
+      .intro > :global(.section-light) {
+        position: fixed;
+        inset: 0;
+        height: 100svh;
+        animation: intro-light-away ease-in-out both;
+        animation-timeline: scroll(root block);
+        animation-range: var(--dock-start) var(--dock-end);
+      }
+      .intro > :global(.section-light)::before {
+        animation: none;
+      }
       .intro-copy {
         position: fixed;
         z-index: 2;
@@ -125,6 +137,16 @@ import SectionLight from "./SectionLight.astro";
   :global(.home-page) .intro-title {
     font-weight: 650;
     letter-spacing: -0.03em;
+  }
+  @keyframes intro-light-away {
+    from {
+      opacity: 1;
+      visibility: visible;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 </style>
 

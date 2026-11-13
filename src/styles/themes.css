@@ -1,5 +1,5 @@
 /* Porcelain neutrals: media/reference/porcelain-theme.txt. Let screenshot colors lead.
-   The named container lets components react to the checkbox without JavaScript. */
+   The named container shares theme state; the checkbox is also a no-script fallback. */
 :root {
   color-scheme: light;
   --theme: light;
@@ -44,7 +44,7 @@
   background: var(--white);
 }
 @media screen {
-  :root:has(#theme-toggle:checked) {
+  :root:not([data-theme]):has(#theme-toggle:checked) {
     color-scheme: dark;
     --theme: dark;
   }
@@ -54,9 +54,19 @@
     color-scheme: dark;
     --theme: dark;
   }
-  :root:has(#theme-toggle:checked) {
+  :root:not([data-theme]):has(#theme-toggle:checked) {
     color-scheme: light;
     --theme: light;
+  }
+}
+@media screen {
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --theme: light;
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --theme: dark;
   }
 }
 .theme-dark {

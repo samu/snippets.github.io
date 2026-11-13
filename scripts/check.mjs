@@ -39,6 +39,9 @@ const documents = new Map(
     }),
 );
 const failures = [];
+const themeScript = fs
+  .readFileSync(path.join(repo, "src/scripts/theme.js"), "utf8")
+  .trim();
 let links = 0;
 function visibleText(node) {
   if (node.nodeName === "#text") return node.value;
@@ -67,8 +70,15 @@ function checkURL(value, file) {
 }
 for (const [file, { nodes }] of documents) {
   for (const node of nodes) {
-    if (node.tagName === "script")
-      failures.push("Browser JavaScript in " + file);
+    if (
+      node.tagName === "script" &&
+      !(
+        node.attrs.length === 1 &&
+        node.attrs[0].name === "data-theme-preference" &&
+        visibleText(node).trim() === themeScript
+      )
+    )
+      failures.push("Unexpected browser JavaScript in " + file);
     const classes =
       node.attrs.find((a) => a.name === "class")?.value.split(/\s+/) || [];
     const label = node.attrs.find((a) => a.name === "aria-label")?.value;
@@ -166,6 +176,24 @@ for (const route of [
   const file = path.join(output, route, "index.html");
   assert(documents.has(file), "Missing page: " + file);
   const { nodes } = documents.get(file);
+  const themeScripts = nodes.filter((node) => node.tagName === "script");
+  assert.equal(
+    themeScripts.length,
+    1,
+    "Missing theme preference script: " + file,
+  );
+  assert.equal(
+    themeScripts[0].parentNode.tagName,
+    "head",
+    "Theme preference must be restored before the body renders: " + file,
+  );
+  assert(
+    nodes.indexOf(themeScripts[0]) <
+      nodes.findIndex(
+        (node) => node.tagName === "link" && attr(node, "rel") === "stylesheet",
+      ),
+    "Theme preference must be restored before styles load: " + file,
+  );
   const toggles = nodes.filter((node) => attr(node, "id") === "theme-toggle");
   assert.equal(
     toggles.length,
@@ -238,5 +266,5 @@ assert(
 );
 assert.equal(failures.length, 0, failures.join("\n"));
 console.log(
-  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, no browser JavaScript.`,
+  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, only the theme preference script is allowed.`,
 );

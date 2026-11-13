@@ -2,7 +2,8 @@
 
 Static Astro site for [snippets.ch](https://snippets.ch): homepage,
 documentation, news, pricing and legal pages. The published build contains HTML,
-CSS, fonts and media, with no browser JavaScript.
+CSS, fonts and media, plus one small inline script that remembers the selected
+color theme. All animations remain CSS-only.
 
 ## Development
 
@@ -45,6 +46,7 @@ keep dev/preview in the foreground. Stop background servers with
 | `src/data/release.json`                         | App version used in download links                     |
 | `src/styles/`                                   | Shared foundations, themes, prose and reveal effects   |
 | `src/lib/styles.js`                             | Stylesheet order for each layout                       |
+| `src/scripts/theme.js`                          | Restores and saves the browser's light/dark preference |
 | `media/screenshots/`                            | PNG screenshot sources, discovered automatically       |
 | `public/assets/`                                | Published fonts, videos and note atlas                 |
 | `public/pricing.json`                           | Pricing data shared by the page and external consumers |
@@ -85,6 +87,22 @@ global for that reason. The intro's `<style is:global>` block coordinates
 several components; it is intentionally shared and is included only on the
 homepage. Keep its order and scroll timeline longhands intact.
 
+## How the theme preference works
+
+The site follows the system color scheme until the visitor uses the theme
+toggle. `src/scripts/theme.js` then saves the explicit `light` or `dark` choice
+in `localStorage` under `snippets-theme`, shared by every page on the same
+origin. `BaseLayout.astro` inlines this small script in the head, before styles
+load, so navigation and refresh restore the choice without a flash of the other
+theme. It also keeps the checkbox in sync after back/forward navigation and
+changes from another tab. System changes apply only when there is no saved
+override.
+
+CSS still selects all colors and screenshots. With JavaScript disabled, the
+checkbox switches the current page's theme through CSS; with storage blocked,
+the toggle remains usable but cannot remember a choice across page loads. The
+build check permits only this exact inline script and rejects other scripts.
+
 ## How the animations work
 
 The unfolding note uses a **static WebP sprite sheet**, not an autoplaying
@@ -115,9 +133,11 @@ section or feature row marked `data-light-scene` supplies its own CSS view
 timeline. Each pool's stationary mask reaches full transparency before its
 container edges, leaving a neutral perimeter even while the color layer drifts.
 Screenshot mats stay opaque. The “One place for everything” treatment uses the
-default variant. Reduced motion leaves static light, and the effect uses no
-browser script. Tune the shared palette and motion in that component; choose
-each scene's `variant`, `area` and optional `side` where it is used.
+default variant. The opening pool is fixed to the viewport while the note
+unfolds, with no drift; `Intro.astro` fades it away during the note's move into
+the header. Reduced motion leaves static light, and the effect uses no browser
+script. Tune the shared palette and motion in that component; choose each
+scene's `variant`, `area` and optional `side` where it is used.
 
 Motion is enabled only inside capability and reduced-motion checks. Without
 those features, content stays readable and the static header logo is used. There
