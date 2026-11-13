@@ -107,6 +107,18 @@ scrolling back above the entrance threshold hides the group together.
 `Sync.astro` owns the four-card stagger and `Encryption.astro` owns the
 individual diagram transitions. Their timings are unchanged by CSS scoping.
 
+`SectionLight.astro` provides a separate light wash for each homepage scene,
+from the unfolding note and hero through the feature sections and closing.
+Porcelain, linen, mist, lilac and pearl variants share a restrained palette but
+vary the gradient direction, color balance and scroll drift. Each existing
+section or feature row marked `data-light-scene` supplies its own CSS view
+timeline. Each pool's stationary mask reaches full transparency before its
+container edges, leaving a neutral perimeter even while the color layer drifts.
+Screenshot mats stay opaque. The “One place for everything” treatment uses the
+default variant. Reduced motion leaves static light, and the effect uses no
+browser script. Tune the shared palette and motion in that component; choose
+each scene's `variant`, `area` and optional `side` where it is used.
+
 Motion is enabled only inside capability and reduced-motion checks. Without
 those features, content stays readable and the static header logo is used. There
 are no browser scroll listeners or animation libraries.

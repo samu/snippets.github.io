@@ -1,4 +1,5 @@
 ---
+import SectionLight from "./SectionLight.astro";
 import Screenshot from "../Screenshot.astro";
 ---
 
@@ -9,7 +10,8 @@ import Screenshot from "../Screenshot.astro";
   data-tone="sage"
 >
   <div class="section-shell">
-    <header class="section-heading centered heading-group">
+    <header class="section-heading centered heading-group" data-light-scene>
+      <SectionLight variant="mist" />
       <p class="eyebrow">Task management</p>
       <h2
         id="tasks-heading"
@@ -52,7 +54,8 @@ import Screenshot from "../Screenshot.astro";
       </div>
       <figcaption>Your tasks, in the context of everything else.</figcaption>
     </figure>
-    <div class="quick-add">
+    <div class="quick-add" data-light-scene>
+      <SectionLight variant="linen" area="section" side="left" />
       <div class="feature-copy heading-group">
         <p class="eyebrow">Quick-Add</p>
         <h3

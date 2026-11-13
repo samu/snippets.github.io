@@ -1,4 +1,5 @@
 ---
+import SectionLight from "./SectionLight.astro";
 import release from "../../data/release.json";
 if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
   throw new Error("Invalid release version");
@@ -7,9 +8,11 @@ if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
 <section
   id="download"
   class="download-section section-shell"
+  data-light-scene
   aria-labelledby="download-heading"
   data-tone="sage"
 >
+  <SectionLight variant="pearl" area="inset" />
   <div class="download-heading">
     <h2
       id="download-heading"

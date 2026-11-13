@@ -1,4 +1,5 @@
 ---
+import SectionLight from "./SectionLight.astro";
 import Screenshot from "../Screenshot.astro";
 ---
 
@@ -8,7 +9,8 @@ import Screenshot from "../Screenshot.astro";
   aria-labelledby="flashcards-heading"
   data-tone="lavender"
 >
-  <header class="section-heading centered heading-group">
+  <header class="section-heading centered heading-group" data-light-scene>
+    <SectionLight variant="lilac" />
     <p class="eyebrow">Flashcards</p>
     <h2
       id="flashcards-heading"
@@ -31,7 +33,8 @@ import Screenshot from "../Screenshot.astro";
       a new possibility — turning what you’ve captured into what you remember.
     </p>
   </header>
-  <article class="feature-row">
+  <article class="feature-row" data-light-scene>
+    <SectionLight variant="porcelain" area="section" side="left" />
     <div class="feature-copy heading-group">
       <p class="feature-subtitle">Flashcard Snippet</p>
       <h3 class="phrase-reveal" aria-label="Two sides. One new connection.">
@@ -69,7 +72,8 @@ import Screenshot from "../Screenshot.astro";
       />
     </figure>
   </article>
-  <article class="feature-row reverse">
+  <article class="feature-row reverse" data-light-scene>
+    <SectionLight variant="lilac" area="section" side="right" />
     <div class="feature-copy heading-group">
       <p class="feature-subtitle">Flashcard Dashboard</p>
       <h3 class="phrase-reveal" aria-label="See your knowledge taking shape.">
@@ -107,7 +111,8 @@ import Screenshot from "../Screenshot.astro";
       />
     </figure>
   </article>
-  <article class="feature-row">
+  <article class="feature-row" data-light-scene>
+    <SectionLight variant="mist" area="section" side="left" />
     <div class="feature-copy heading-group">
       <p class="feature-subtitle">Session Wizard</p>
       <h3

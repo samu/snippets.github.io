@@ -1,4 +1,5 @@
 ---
+import SectionLight from "./SectionLight.astro";
 import Screenshot from "../Screenshot.astro";
 import IPhoneMockup from "../IPhoneMockup.astro";
 import release from "../../data/release.json";
@@ -10,7 +11,8 @@ import release from "../../data/release.json";
   aria-labelledby="mobile-heading"
   data-tone="sky"
 >
-  <div class="section-shell mobile-layout">
+  <div class="section-shell mobile-layout" data-light-scene>
+    <SectionLight variant="mist" area="section" side="right" />
     <div class="feature-copy heading-group">
       <p class="eyebrow">On iOS and Android <span class="badge">Beta</span></p>
       <h2

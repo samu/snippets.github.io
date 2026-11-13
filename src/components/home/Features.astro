@@ -1,4 +1,5 @@
 ---
+import SectionLight from "./SectionLight.astro";
 import Screenshot from "../Screenshot.astro";
 ---
 
@@ -8,7 +9,8 @@ import Screenshot from "../Screenshot.astro";
   aria-labelledby="overview-heading"
   data-tone="sage"
 >
-  <header class="section-heading centered">
+  <header class="section-heading centered" data-light-scene>
+    <SectionLight />
     <h2
       id="overview-heading"
       class="phrase-reveal"
@@ -42,7 +44,8 @@ import Screenshot from "../Screenshot.astro";
     </p>
   </div>
 
-  <article class="feature-row">
+  <article class="feature-row" data-light-scene>
+    <SectionLight variant="linen" area="section" side="left" />
     <div class="feature-copy heading-group">
       <p class="eyebrow">Rich text</p>
       <h3 class="phrase-reveal" aria-label="Just you. And your thoughts.">
@@ -91,7 +94,8 @@ import Screenshot from "../Screenshot.astro";
     </figure>
   </article>
 
-  <article class="feature-row reverse">
+  <article class="feature-row reverse" data-light-scene>
+    <SectionLight variant="mist" area="section" side="right" />
     <div class="feature-copy heading-group">
       <p class="eyebrow">Collections</p>
       <h3 class="phrase-reveal" aria-label="A place for every kind of thought.">
@@ -139,7 +143,8 @@ import Screenshot from "../Screenshot.astro";
     </figure>
   </article>
 
-  <article class="feature-row">
+  <article class="feature-row" data-light-scene>
+    <SectionLight variant="pearl" area="section" side="left" />
     <div class="feature-copy heading-group">
       <p class="eyebrow">Dashboards</p>
       <h3 class="phrase-reveal" aria-label="See how it all fits together.">
