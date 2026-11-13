@@ -1,0 +1,109 @@
+<!-- Device frame ported from main's IPhoneX component. -->
+<div class="iphone-mockup">
+  <div class="shell">
+    <div class="screen">
+      <slot />
+      <div class="camera-cutout" aria-hidden="true"></div>
+      <div class="home-indicator" aria-hidden="true"></div>
+    </div>
+    <div class="silent-button" aria-hidden="true"></div>
+    <div class="volume-up" aria-hidden="true"></div>
+    <div class="volume-down" aria-hidden="true"></div>
+    <div class="lock-button" aria-hidden="true"></div>
+  </div>
+</div>
+
+<style>
+  .iphone-mockup {
+    isolation: isolate;
+    filter: drop-shadow(0 8px 12px light-dark(#18191b30, #0008));
+  }
+  .shell {
+    --screen-ratio: 9 / 19.5;
+    --bezel-width: 3%;
+    --inner-radius: 15%;
+    --outer-radius: calc(var(--inner-radius) + var(--bezel-width));
+    position: relative;
+    display: flex;
+    border-radius: var(--outer-radius) /
+      calc(var(--outer-radius) * var(--screen-ratio));
+    background: linear-gradient(180deg, #515151, #1a1a1a 42%, #050505);
+    box-shadow:
+      inset 0 0 0 1px #fff3,
+      inset 0 0 0 2px #0008;
+  }
+  .screen {
+    width: 100%;
+    min-width: 0;
+    margin: var(--bezel-width);
+    aspect-ratio: var(--screen-ratio);
+    position: relative;
+    display: flex;
+    border-radius: var(--inner-radius) /
+      calc(var(--inner-radius) * var(--screen-ratio));
+    overflow: hidden;
+    background: #060606;
+    box-shadow: 0 0 0 1px #000a;
+  }
+  .screen > :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .camera-cutout,
+  .home-indicator {
+    position: absolute;
+    left: 50%;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .camera-cutout {
+    top: 2.2%;
+    height: 3.6%;
+    width: 34%;
+    background: #050505;
+    box-shadow:
+      inset 0 1px 0 #ffffff0f,
+      0 1px 2px #0003;
+  }
+  .home-indicator {
+    bottom: 1%;
+    height: 1%;
+    width: 40%;
+    background: light-dark(#121212eb, #ffffffd9);
+  }
+  .silent-button,
+  .volume-up,
+  .volume-down,
+  .lock-button {
+    position: absolute;
+    width: 1%;
+    background: #111;
+  }
+  .silent-button,
+  .volume-up,
+  .volume-down {
+    left: 0.1%;
+    transform: translateX(-100%);
+  }
+  .silent-button {
+    top: 12%;
+    height: 5%;
+  }
+  .volume-up {
+    top: 21%;
+    height: 8.5%;
+  }
+  .volume-down {
+    top: 32%;
+    height: 8.5%;
+  }
+  .lock-button {
+    top: 17%;
+    right: 0.1%;
+    height: 4%;
+    transform: translateX(100%);
+  }
+</style>

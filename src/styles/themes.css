@@ -1,42 +1,45 @@
-/* The named theme container lets components react to the native checkbox without JavaScript. */
+/* Porcelain neutrals: media/reference/porcelain-theme.txt. Let screenshot colors lead.
+   The named container lets components react to the checkbox without JavaScript. */
 :root {
   color-scheme: light;
   --theme: light;
   container-name: theme;
   --white: light-dark(#ffffff, #1c1c1f);
-  --paper: light-dark(#f7f7f5, #18181b);
-  --panel: light-dark(#fafaf9, #252528);
-  --panel-strong: light-dark(#f0f0ee, #2c2c30);
-  --ink: light-dark(#535357, #c7c7cb);
-  --heading: light-dark(#202022, #f7f6f3);
-  --muted: light-dark(#707075, #a3a3aa);
+  --paper: light-dark(oklch(0.984 0.002 80), #18181b);
+  --panel: light-dark(oklch(0.978 0.003 80), #252528);
+  --panel-strong: light-dark(oklch(0.958 0.003 80), #2c2c30);
+  --ink: light-dark(oklch(0.455 0.01 260), #c7c7cb);
+  --heading: light-dark(oklch(0.29 0.008 260), #f7f6f3);
+  --muted: light-dark(oklch(0.505 0.01 260), #a3a3aa);
   --soft: light-dark(var(--muted), #97979f);
-  --border: light-dark(#e4e4e3, #37373d);
-  --surface-hover: light-dark(#efefed, #303035);
-  --accent: light-dark(#486d8c, #a6bdd6);
-  --accent-hover: light-dark(#325775, #c3d3e4);
-  --action-bg: light-dark(#363638, #eeedea);
-  --action-hover: light-dark(#202022, #ffffff);
+  --border: light-dark(oklch(0.91 0.003 80), #37373d);
+  --surface-hover: light-dark(oklch(0.938 0.004 80), #303035);
+  --accent: light-dark(oklch(0.49 0.115 255), #a6bdd6);
+  --accent-hover: light-dark(oklch(0.43 0.115 255), #c3d3e4);
+  --action-bg: light-dark(var(--accent), #eeedea);
+  --action-hover: light-dark(var(--accent-hover), #ffffff);
   --action-ink: light-dark(#ffffff, #242426);
-  --sage: light-dark(#34745d, #9ccfb9);
-  --lavender: light-dark(#7760a4, #bca9e4);
-  --sky: light-dark(#436e98, #9fbfdf);
-  --accent-paper: light-dark(
-    color-mix(in oklch, var(--accent) 5%, var(--white)),
-    #252d37
-  );
+  --sage: light-dark(oklch(0.496 0.1 152), #9ccfb9);
+  --lavender: light-dark(oklch(0.49 0.156 308), #bca9e4);
+  --sky: light-dark(oklch(0.504 0.103 242), #9fbfdf);
+  /* Heading phrases retain their rhythm through neutral tonal contrast. */
+  --heading-accent: light-dark(oklch(0.43 0.008 260), #d3d0ca);
+  --accent-paper: light-dark(oklch(0.976 0.008 255), #252d37);
   --accent-border: light-dark(
     color-mix(in oklch, var(--accent) 25%, var(--white)),
     #465565
   );
   --shadow:
-    0 18px 48px -28px oklch(0.25 0.0125 80 / 0.14),
-    0 1px 4px oklch(0.25 0.0125 80 / 0.025);
-  --showcase: light-dark(var(--surface-hover), #29292e);
-  --screenshot-edge: light-dark(#d4d4d2, #49494f);
+    0 18px 48px -28px oklch(0.24 0.008 260 / 0.14),
+    0 1px 4px oklch(0.24 0.008 260 / 0.025);
+  /* A deeper neutral mat separates the screenshot's near-white surfaces. */
+  --showcase: light-dark(oklch(0.925 0.003 80), #29292e);
+  --screenshot-edge: light-dark(oklch(0.87 0.004 80), #49494f);
   --screenshot-shadow:
-    0 18px 32px -20px oklch(0.25 0.0125 80 / 0.28),
-    0 3px 8px -3px oklch(0.25 0.0125 80 / 0.1);
+    0 18px 32px -20px oklch(0.24 0.008 260 / 0.3),
+    0 3px 8px -3px oklch(0.24 0.008 260 / 0.12);
+  --selection-bg: light-dark(oklch(0.91 0.035 255), #34516b);
+  --selection-ink: light-dark(oklch(0.29 0.006 255), #f3f4f0);
   color: var(--ink);
   background: var(--white);
 }

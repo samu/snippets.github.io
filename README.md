@@ -14,7 +14,7 @@ pnpm dev
 ```
 
 Open http://127.0.0.1:64530/. The port is fixed; use `pnpm dev --port 64531` if
-it is occupied. Dev responses disable caching.
+it is occupied.
 
 ```sh
 pnpm build        # build dist/ and validate the output
@@ -236,8 +236,13 @@ image URLs are managed by Astro; reference source names in code.
   atlas. Both themes use this atlas. Run `pnpm note:build` only after editing
   these frames; this separate sprite-sheet task requires `cwebp` and
   ImageMagick's `magick`. Carbon frames are retained for future use.
-- `media/reference/porcelain-theme.txt` is a design reference; website colors
-  live in `src/styles/themes.css` and the relevant component styles.
+- `media/reference/porcelain-theme.txt` is the screenshot theme and the basis
+  for the light website palette. Warm neutral surfaces and darker screenshot
+  frames keep the product's subtle colors in focus; blue is reserved for actions
+  and links, with red/green used for the privacy comparison. Website colors live
+  in `src/styles/themes.css` and the relevant component styles. Screenshot
+  artwork is not recolored or filtered. The earlier Prism experiment is retained
+  alongside the current reference.
 
 Normal site builds need no external image commands. Keep screenshot originals
 under `media/` and let Astro generate their published derivatives in `dist/`.

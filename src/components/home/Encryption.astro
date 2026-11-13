@@ -222,12 +222,7 @@
     scroll-margin-top: var(--reveal-text-distance, 0px);
     border: 1px solid var(--border);
     border-radius: 20px;
-    background: linear-gradient(
-      120deg,
-      var(--paper),
-      var(--panel) 72%,
-      var(--accent-paper)
-    );
+    background: linear-gradient(120deg, var(--paper), var(--panel-strong));
     box-shadow: 0 24px 56px -44px oklch(0.25 0.0125 80 / 0.2);
   }
   .encryption-feature {
@@ -320,16 +315,24 @@
     margin-top: 16px;
   }
   .comparison-standard {
-    --comparison-tone: #9b392e;
-    --comparison-accent: #c86b5c;
-    --comparison-border: #e8c3bb;
-    --comparison-surface: #fff1ec;
+    --comparison-tone: oklch(0.523126 0.140563 32.344);
+    --comparison-accent: oklch(0.7 0.08 32);
+    --comparison-border: color-mix(
+      in oklch,
+      var(--comparison-tone) 24%,
+      var(--white)
+    );
+    --comparison-surface: oklch(0.936087 0.02625 32.237);
   }
   .comparison-private {
-    --comparison-tone: #286348;
-    --comparison-accent: #559575;
-    --comparison-border: #bcd6c6;
-    --comparison-surface: #eaf5ed;
+    --comparison-tone: oklch(0.495966 0.100488 151.884);
+    --comparison-accent: oklch(0.7 0.07 152);
+    --comparison-border: color-mix(
+      in oklch,
+      var(--comparison-tone) 24%,
+      var(--white)
+    );
+    --comparison-surface: oklch(0.942657 0.024187 151.178);
     box-shadow: 0 10px 24px -20px oklch(0.25 0.0125 80 / 0.2);
   }
   .comparison-row-heading {
@@ -414,7 +417,7 @@
     color: var(--comparison-tone);
   }
   .comparison-readable i {
-    background: #eac0b7;
+    background: color-mix(in oklch, var(--comparison-accent) 28%, var(--white));
   }
   .comparison-cipher > span:not(.comparison-access-mark) {
     color: var(--comparison-tone);

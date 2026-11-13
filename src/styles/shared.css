@@ -10,22 +10,16 @@
   letter-spacing: -0.035em;
 }
 ::selection {
-  background: oklch(0.97 0.032 202.13);
-  color: oklch(0.398 0.07 227.392);
+  background: var(--selection-bg);
+  color: var(--selection-ink);
 }
 .ink-accent {
-  color: var(--sage);
+  color: var(--heading-accent);
 }
 .overview-eyebrow {
   color: var(--muted);
   font-weight: 650;
 }
-[data-tone="sage"] {
-  --section-accent: var(--sage);
-}
-[data-tone="lavender"] {
-  --section-accent: var(--lavender);
-}
-[data-tone="sky"] {
-  --section-accent: var(--sky);
+[data-tone] {
+  --section-accent: var(--heading-accent);
 }
