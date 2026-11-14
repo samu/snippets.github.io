@@ -1,0 +1,107 @@
+---
+import { getImage } from "astro:assets";
+import { getScreenshot } from "../../lib/screenshots";
+const { before, after, subject, caption } = Astro.props;
+const panels = await Promise.all(
+  [
+    { label: "Before", src: before },
+    { label: "Now", src: after },
+  ].map(async ({ label, src }) => ({
+    label,
+    images: await Promise.all(
+      ["light", "dark"].map(async (theme) => ({
+        theme,
+        image: await getImage({
+          src: await getScreenshot(`${src}/${theme}.png`),
+          format: "webp",
+        }),
+      })),
+    ),
+  })),
+);
+---
+
+<figure class="screenshot-comparison">
+  <div class="comparison-grid">
+    {panels.map(({ label, images }) => <div class="comparison-panel">
+      <p class="comparison-label">{label}</p>
+      {images.map(({ theme, image }) => <a
+        class:list={["image-link", `theme-${theme}`]}
+        href={image.src}
+        target="_blank"
+        rel="noopener"
+        aria-label={`Open full-size image: ${subject}, ${label.toLowerCase()} the redesign, ${theme} theme`}
+        ><img
+          {...image.attributes}
+          src={image.src}
+          alt={`${subject} ${label === "Before" ? "before" : "after"} the redesign in the ${theme} theme`}
+          loading="lazy"
+          decoding="async"
+      /></a>)}
+    </div>)}
+  </div>
+  <figcaption>{caption} Select a screenshot to see it at full size.</figcaption>
+</figure>
+
+<style>
+  .screenshot-comparison {
+    width: min(1080px, calc(100vw - 80px));
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 32px 0 44px;
+  }
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+  }
+  .comparison-panel {
+    min-width: 0;
+  }
+  .comparison-panel .comparison-label {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .image-link {
+    display: block;
+    border: 1px solid var(--screenshot-edge);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: zoom-in;
+  }
+  .image-link img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .image-link:hover {
+    border-color: var(--accent);
+  }
+  .image-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+  }
+  @media (max-width: 760px) {
+    .screenshot-comparison {
+      width: 100%;
+      position: static;
+      transform: none;
+    }
+    .comparison-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+  @media print {
+    .screenshot-comparison {
+      width: 100%;
+      position: static;
+      transform: none;
+      break-inside: avoid;
+    }
+  }
+</style>

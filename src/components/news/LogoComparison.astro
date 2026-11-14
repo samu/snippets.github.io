@@ -1,0 +1,89 @@
+---
+import { Image } from "astro:assets";
+import before from "../../../media/news/redesign/logo-before.png";
+import after from "../../../media/news/redesign/logo-after.png";
+---
+
+<figure class="logo-comparison">
+  <div class="logo-pair">
+    <div class="logo-panel">
+      <span class="comparison-label">Before</span>
+      <div class="logo-stage">
+        <Image
+          class="logo-before"
+          src={before}
+          width={256}
+          format="webp"
+          alt="The original Snippets logo: a blue note with a curled corner"
+          loading="lazy"
+        />
+      </div>
+    </div>
+    <div class="logo-panel">
+      <span class="comparison-label">Now</span>
+      <div class="logo-stage">
+        <Image
+          class="logo-after"
+          src={after}
+          width={384}
+          format="webp"
+          alt="The new Snippets logo: a white paper note opening to reveal a blue underside"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+  <figcaption>
+    The note stays. Its shape, texture, and depth have changed.
+  </figcaption>
+</figure>
+
+<style>
+  .logo-comparison {
+    margin: 32px 0 40px;
+  }
+  .logo-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .logo-panel {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--paper);
+  }
+  .comparison-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .logo-stage {
+    min-height: 160px;
+    display: grid;
+    place-items: center;
+    padding-block: 12px;
+  }
+  .logo-stage :global(img) {
+    display: block;
+    height: auto;
+    margin: 0;
+  }
+  .logo-stage :global(.logo-before) {
+    width: min(67%, 128px);
+  }
+  .logo-stage :global(.logo-after) {
+    width: min(100%, 192px);
+  }
+  @media (max-width: 480px) {
+    .logo-pair {
+      gap: 10px;
+    }
+    .logo-panel {
+      padding: 14px;
+    }
+    .logo-stage {
+      min-height: 140px;
+    }
+  }
+</style>

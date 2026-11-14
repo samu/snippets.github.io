@@ -1,0 +1,66 @@
+---
+title: "Snippets v0.24.0"
+description:
+  "Draft release notes with illustrative features, bug fixes, and internal
+  changes."
+date: "2026-11-14"
+kind: release
+version: "0.24.0"
+draft: true
+---
+
+Version 0.24.0 focuses on faster capture, more convenient collection views, and
+the small details that make a workspace easier to use. Here’s the proposed
+changelog, ready to be replaced with the verified release details.
+
+## New features
+
+- **Quick-Add presets.** Save a combination of collection, priority, and
+  attributes so you can capture a task without entering the same details every
+  time.
+- **Duplicate collection views.** Create a copy of a list, table, or timeline
+  view, including its filters and sorting, then adjust it for a different
+  purpose.
+- **Recently opened workspaces.** Jump back to a workspace from a short list in
+  the workspace switcher.
+- **Keyboard controls for flashcard sessions.** Reveal an answer and rate it
+  without moving your hands away from the keyboard.
+
+## Improvements
+
+- Search keeps the previous results visible while an updated query is being
+  processed, reducing flicker when typing quickly.
+- Long attribute names wrap more predictably in narrow dashboard columns.
+- Collection empty states distinguish between an empty collection and a filter
+  that currently matches no notes.
+- Keyboard focus is easier to follow in menus, dialogs, and the sidebar.
+- Returning to a note restores its scroll position more consistently.
+
+## Bug fixes
+
+- Fixed a case where completing a task in a filtered list moved focus to the
+  wrong item.
+- Fixed pasted links sometimes inheriting the formatting of the preceding word.
+- Fixed a stale sync indicator after reconnecting from an offline session.
+- Fixed date-only attributes shifting by a day when moving between time zones.
+- Fixed a flashcard answer remaining visible when advancing to the next card.
+- Fixed long workspace names overlapping the switcher button on small screens.
+- Fixed a theme change leaving some open menus in the previous appearance.
+
+## Internal notes
+
+- Consolidated shared theme values so the editor, collections, and dialogs use
+  the same color and spacing definitions.
+- Separated Quick-Add date parsing from the input component to make it easier to
+  test and reuse.
+- Added regression coverage for offline reconnection, filtered task lists, and
+  date-only attributes around daylight-saving changes.
+- Reduced repeated collection queries when several dashboard columns use the
+  same source.
+- Updated editor dependencies and removed unused compatibility code.
+
+## Before publication
+
+These features, fixes, and internal notes are imaginary examples. Verify each
+entry against the actual v0.24.0 release, replace this draft, and add the
+release’s download details before publishing it as a finished changelog.

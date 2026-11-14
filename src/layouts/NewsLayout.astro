@@ -2,13 +2,18 @@
 import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/Header.astro";
 import { newsStyles } from "../lib/styles";
-const { title = "News", description, sample = false } = Astro.props;
+const {
+  title = "News",
+  description,
+  sample = false,
+  draft = false,
+} = Astro.props;
 ---
 
 <BaseLayout
   title={`${title} · Snippets`}
   description={description}
-  noindex={sample}
+  noindex={sample || draft}
   bodyClass="docs-page news-page"
   bodyId="top"
   styles={newsStyles}

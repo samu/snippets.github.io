@@ -1,0 +1,61 @@
+---
+const { href } = Astro.props;
+const Tag = href ? "a" : "button";
+---
+
+<div class="store-action">
+  <Tag
+    class="store-button"
+    href={href}
+    type={href ? undefined : "button"}
+    disabled={href ? undefined : true}
+    title={href ? undefined : "App Store link coming soon"}
+  >
+    Download on the App Store
+  </Tag>
+  <span>{href ? "For iPhone" : "For iPhone · Link coming soon"}</span>
+</div>
+
+<style>
+  .store-action {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 18px;
+    margin: 28px 0 36px;
+  }
+  .store-action .store-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 20px;
+    border: 1px solid var(--action-bg);
+    border-radius: 8px;
+    background: var(--action-bg);
+    color: var(--action-ink);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+  }
+  .store-button:disabled {
+    cursor: not-allowed;
+    opacity: 1;
+  }
+  /* Keep the enabled button from inheriting MDX's inline-link appearance. */
+  :global(.news-page .prose) .store-action a.store-button[href] {
+    color: var(--action-ink);
+    text-decoration: none;
+  }
+  a.store-button:hover {
+    background: var(--action-hover);
+    border-color: var(--action-hover);
+  }
+  .store-action > span {
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>

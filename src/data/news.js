@@ -36,6 +36,7 @@ export const news = Object.entries(modules)
       version,
       cover,
       sample = false,
+      draft = false,
     } = module.frontmatter;
     const validDate =
       typeof date === "string" &&
@@ -51,6 +52,7 @@ export const news = Object.entries(modules)
       !Object.hasOwn(newsKinds, kind) ||
       !validDate ||
       typeof sample !== "boolean" ||
+      typeof draft !== "boolean" ||
       (version !== undefined && typeof version !== "string") ||
       (cover !== undefined &&
         (!cover ||
@@ -59,7 +61,7 @@ export const news = Object.entries(modules)
           typeof cover.alt !== "string"))
     ) {
       throw new Error(
-        `Invalid news metadata in ${file}. Check title, description, kind, date (YYYY-MM-DD), sample and version.`,
+        `Invalid news metadata in ${file}. Check title, description, kind, date (YYYY-MM-DD), sample, draft and version.`,
       );
     }
     return {
@@ -71,6 +73,7 @@ export const news = Object.entries(modules)
       version,
       cover,
       sample,
+      draft,
       ...newsKinds[kind],
       href: `/news/${slug}/`,
       dateLabel: dateFormat.format(new Date(date)),

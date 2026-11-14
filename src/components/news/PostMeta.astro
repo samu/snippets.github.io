@@ -6,7 +6,11 @@ const { post } = Astro.props;
   <span class="post-kind">{post.label}</span>
   {post.version && <span class="post-version">v{post.version}</span>}
   <time datetime={post.date}>{post.dateLabel}</time>
-  {post.sample && <span class="sample-label">Sample</span>}
+  {post.draft ? (
+    <span class="status-label">Draft</span>
+  ) : (
+    post.sample && <span class="status-label">Sample</span>
+  )}
 </div>
 
 <style>
@@ -36,7 +40,7 @@ const { post } = Astro.props;
   .post-version {
     font-variant-numeric: tabular-nums;
   }
-  .sample-label {
+  .status-label {
     padding: 1px 6px;
     border: 1px solid var(--border);
     border-radius: 4px;

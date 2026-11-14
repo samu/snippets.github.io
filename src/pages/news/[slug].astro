@@ -5,6 +5,9 @@ import PostCard from "../../components/news/PostCard.astro";
 import Icon from "../../components/Icon.astro";
 import Figure from "../../components/docs/Figure.astro";
 import Callout from "../../components/docs/Callout.astro";
+import LogoComparison from "../../components/news/LogoComparison.astro";
+import ScreenshotComparison from "../../components/news/ScreenshotComparison.astro";
+import AppStoreButton from "../../components/news/AppStoreButton.astro";
 import { news } from "../../data/news";
 export function getStaticPaths() {
   return news.map((post) => ({
@@ -21,6 +24,7 @@ const related = news.filter((item) => item.slug !== post.slug).slice(0, 2);
   title={post.title}
   description={post.description}
   sample={post.sample}
+  draft={post.draft}
 >
   <div class="news-shell">
     <a class="news-back" href="/news/"><Icon /> All news</a>
@@ -38,16 +42,34 @@ const related = news.filter((item) => item.slug !== post.slug).slice(0, 2);
           /><span>From Snippets</span>
         </div>
       </header>
-      {post.sample && <p class="sample-notice">
-        Sample
-        {post.kind === "release"
-          ? "release notes"
-          : post.kind === "blog"
-            ? "blog post"
-            : "announcement"}
-        — illustrative content to preview this format.
-      </p>}
-      <div class="prose"><Content components={{ Figure, Callout }} /></div>
+      {post.draft ? (
+        <p class="sample-notice">
+          <strong>Draft release notes.</strong> The features, fixes, and
+          internal notes below are fictional placeholders, not a verified
+          changelog.
+        </p>
+      ) : (
+        post.sample && <p class="sample-notice">
+          Sample
+          {post.kind === "release"
+            ? "release notes"
+            : post.kind === "blog"
+              ? "blog post"
+              : "announcement"}
+          — illustrative content to preview this format.
+        </p>
+      )}
+      <div class="prose">
+        <Content
+          components={{
+            Figure,
+            Callout,
+            LogoComparison,
+            ScreenshotComparison,
+            AppStoreButton,
+          }}
+        />
+      </div>
       <div class="post-end">
         <span>Thanks for reading.</span
         ><a href="/news/">Back to news <Icon /></a>

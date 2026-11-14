@@ -50,6 +50,13 @@ export default defineConfig({
   devToolbar: { enabled: false },
   build: { inlineStylesheets: "never" },
   redirects: {
+    // Keep links to the initial sample posts working after replacing their content.
+    "/news/a-new-home-for-snippets/": "/news/snippets-on-the-app-store/",
+    "/news/a-little-smoother/": "/news/v0-24-0/",
+    "/news/make-room-for-a-thought/": "/news/",
+    "/updates/a-new-home-for-snippets/": "/news/snippets-on-the-app-store/",
+    "/updates/a-little-smoother/": "/news/v0-24-0/",
+    "/updates/make-room-for-a-thought/": "/news/",
     ...Object.fromEntries(
       newsRoutes.map((route) => ["/updates/" + route, "/news/" + route]),
     ),

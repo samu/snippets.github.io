@@ -175,15 +175,29 @@ Markdown headings, lists, links and images work as usual.
 - `version` is optional for release notes. Quote it, for example `"0.22.0"`.
 - `sample: true` adds a visible sample label and a noindex tag. Remove it when
   replacing the examples with real content.
+- `draft: true` keeps a post visible for review, with a Draft label, a placeholder
+  notice, and a noindex tag. The v0.24.0 changelog uses this while its entries are
+  fictional. Replace them with verified changes before removing the flag.
 - An optional `cover` supplies the featured image: `light`, optional `dark`, and
   `alt`. Image paths are relative to `media/screenshots/`, for example
-  `landing-page/friday/light.png`. Dimensions come from the PNGs. The sample
-  blog post shows the format. Without a cover, the feature uses the entry type’s
+  `landing-page/friday/light.png`. Dimensions come from the PNGs. The App Store
+  announcement shows the format. Without a cover, the feature uses the entry type’s
   icon.
 - The same `<Figure>` and `<Callout>` components used in the docs are available
   in posts. Put screenshots in `media/screenshots/` and reference them as
   described below. Videos and other files served unchanged belong in
   `public/assets/`.
+- `<LogoComparison />` and `<ScreenshotComparison before="…" after="…"
+  subject="…" caption="…" />` display the redesign comparisons. Screenshot
+  paths are folders under `media/screenshots/`, each containing `light.png`
+  and `dark.png`. The layout stacks on mobile; image links open full-size copies.
+  The historical asset sources are recorded in `media/news/redesign/SOURCES.md`.
+
+The iPhone App Store button in
+`src/content/news/snippets-on-the-app-store.mdx` is visible but disabled until
+the listing URL is supplied. Add `href="https://apps.apple.com/…"` to
+`<AppStoreButton />` to enable it. It does not use a guessed store URL or send
+readers to TestFlight.
 
 `src/data/news.js` reads and validates the metadata during the build. The
 listing and individual pages are ordinary static HTML; adding a post requires no
