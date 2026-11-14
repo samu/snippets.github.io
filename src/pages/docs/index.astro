@@ -30,11 +30,8 @@ const cards = [
 <DocsLayout overview>
   <div class="overview-eyebrow">THE SNIPPETS GUIDE</div>
   <header class="overview-header">
-    <h1>A little guidance.<br /><span>A world of possibilities.</span></h1>
-    <p>
-      Make yourself at home. Learn the essentials, find your
-      flow,<br class="wide-break" /> and discover what your notes can do.
-    </p>
+    <h1>Get to know <span>Snippets.</span></h1>
+    <p>Learn how to organize notes, manage tasks, and set up sync.</p>
   </header>
   <a class="start-guide" href="/docs/introduction/"
     ><div>
@@ -50,7 +47,6 @@ const cards = [
   <section class="guide-paths" aria-labelledby="find-flow">
     <div class="section-title">
       <h2 id="find-flow">Find your flow</h2>
-      <span>A few good places to begin</span>
     </div>
     <div class="path-grid">
       {cards.map(([slug, symbol, number, title, description]) => <a
@@ -66,7 +62,6 @@ const cards = [
   <section class="all-guides" aria-labelledby="all-guides">
     <div class="section-title">
       <h2 id="all-guides">Explore the documentation</h2>
-      <span>At your own pace</span>
     </div>
     <div class="topic-grid">
       {groups.map(([label, slugs]) => <div class="topic-group">
@@ -191,10 +186,6 @@ const cards = [
   .section-title h2 {
     font-size: 19px;
     font-weight: 550;
-  }
-  .section-title > span {
-    font-size: 10px;
-    color: var(--muted);
   }
   .path-grid {
     display: grid;
@@ -342,12 +333,6 @@ const cards = [
     }
     .guide-art {
       width: 110px;
-    }
-    .section-title > span {
-      display: none;
-    }
-    .wide-break {
-      display: none;
     }
   }
   @media (max-width: 1000px) {
