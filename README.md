@@ -48,7 +48,7 @@ keep dev/preview in the foreground. Stop background servers with
 | `src/lib/styles.js`                             | Stylesheet order for each layout                       |
 | `src/scripts/theme.js`                          | Restores and saves the browser's light/dark preference |
 | `media/screenshots/`                            | PNG screenshot sources, discovered automatically       |
-| `public/assets/`                                | Published fonts, videos and note atlas                 |
+| `public/assets/`                                | Published fonts, videos, note atlas and light textures |
 | `public/pricing.json`                           | Pricing data shared by the page and external consumers |
 | `public/news.json`                              | Public news feed with titles, summaries and timestamps |
 | `astro.config.mjs`                              | Domain, port, Markdown, redirects and sitemap          |
@@ -112,7 +112,7 @@ scrolling backward closes the note again. A second animation shrinks and moves
 the opened note into the header.
 
 `Intro.astro` defines the shared scroll distances and coordinates the intro
-copy, background blend, header and hero entrance. The unfolding ends after a
+copy, header and hero entrance. The unfolding ends after a
 scroll distance of 85% of the small viewport height (`85svh`); docking finishes
 at 145% (`145svh`). The rest of the page begins appearing when docking begins.
 These are scroll distances, not elapsed time.
@@ -125,34 +125,9 @@ scrolling back above the entrance threshold hides the group together.
 `Sync.astro` owns the four-card stagger and `Encryption.astro` owns the
 individual diagram transitions. Their timings are unchanged by CSS scoping.
 
-`SectionLight.astro` provides a separate light wash for each homepage scene,
-from the unfolding note and hero through the feature sections and closing.
-Porcelain, linen, mist, lilac and pearl variants vary the gradient direction and
-color balance. Each wash stays in place. Dark mode uses low-opacity terracotta,
-plum and slate pigments with lower brightness, so the washes add subtle color
-instead of a pale veil. `data-light-scene` anchors each pool to its text and
-scopes the heading's CSS view timeline. Separate horizontal and vertical edge
-fades, extra vertical spread, and blurred color bands create a broad wash rather
-than an oval spot. The masks reach full transparency before the container edges.
-Screenshot surrounds are transparent, retaining their spacing and image sizes.
-The “One place for everything” treatment uses the default variant. The opening
-pool is fixed to the viewport while the note unfolds, with no drift;
-`Intro.astro` fades it away during the note's move into the header. The section
-lighting is CSS-only; reduced motion leaves static color. Tune the shared
-palette and coverage in that component; choose each scene's `variant`, `area`
-and `coverage` where it is used.
-
-Feature rows, Quick-Add, sync, encryption and mobile use `area="copy"` inside
-their text column, so their light sits behind the writing rather than between
-text and image. All text pools share the same fade: as the heading travels from
-33svh to 50svh into the viewport, opacity follows scroll position directly in
-both directions, with no time delay or transition. Reduced motion keeps the
-static pool.
-
-Download uses `coverage="wide"` on wider screens: broader color bands and
-separate horizontal/vertical fades carry the light across its text columns,
-while keeping a fully transparent perimeter. At mobile widths it returns to the
-focused pool.
+Both themes use a plain page background. The opening note, heading reveals,
+content entrances and diagram animations remain; there are no decorative
+background layers, patterns, textures or background asset-generation steps.
 
 Motion is enabled only inside capability and reduced-motion checks. Without
 those features, content stays readable and the static header logo is used. There

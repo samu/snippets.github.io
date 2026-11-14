@@ -411,6 +411,24 @@ figcaption {
 .home-page .phrase-reveal > .color-phrase {
   color: var(--section-accent);
 }
+@container theme style(--theme: dark) {
+  .home-page [data-tone] {
+    /* Color belongs to a meaningful phrase, leaving the surrounding space calm. */
+    --section-accent: #d6b7a4;
+    --eyebrow-ink: #b8aca0;
+  }
+  .home-page [data-tone="sky"] {
+    --section-accent: #a8bad4;
+    --eyebrow-ink: #9eafc3;
+  }
+  .home-page [data-tone="lavender"] {
+    --section-accent: #bcaacb;
+    --eyebrow-ink: #b6a8c4;
+  }
+  .home-page :is(.eyebrow, .feature-subtitle) {
+    color: var(--eyebrow-ink, var(--muted));
+  }
+}
 @media (max-width: 700px) {
   .home-page .image-stage,
   .home-page .screenshot-mat {

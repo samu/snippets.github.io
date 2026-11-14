@@ -27,9 +27,8 @@
       .export-note,
       .encryption-section,
       .mobile-showcase,
-      .feature-copy
-        > :not(.phrase-reveal, .eyebrow, .feature-subtitle, .section-light),
-      .closing-section > :not(.phrase-reveal, .section-light)
+      .feature-copy > :not(.phrase-reveal, .eyebrow, .feature-subtitle),
+      .closing-section > :not(.phrase-reveal)
     ) {
       --reveal-distance: var(--reveal-text-distance);
       --reveal-duration: 1100ms;

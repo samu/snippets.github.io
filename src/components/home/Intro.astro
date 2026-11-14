@@ -1,9 +1,4 @@
----
-import SectionLight from "./SectionLight.astro";
----
-
-<div id="top" class="intro" data-light-scene>
-  <SectionLight variant="linen" area="inset" />
+<div id="top" class="intro">
   <div class="intro-copy">
     <p class="intro-title">It starts with a note.</p>
     <p class="intro-description">And opens up to so much more.</p>
@@ -25,18 +20,6 @@ import SectionLight from "./SectionLight.astro";
         display: block;
         height: var(--intro-end);
         position: relative;
-      }
-      /* The note unfolds in a fixed scene; its light should stay there too. */
-      .intro > :global(.section-light) {
-        position: fixed;
-        inset: 0;
-        height: 100svh;
-        animation: intro-light-away ease-in-out both;
-        animation-timeline: scroll(root block);
-        animation-range: var(--dock-start) var(--dock-end);
-      }
-      .intro > :global(.section-light)::before {
-        animation: none;
       }
       .intro-copy {
         position: fixed;
@@ -138,25 +121,10 @@ import SectionLight from "./SectionLight.astro";
     font-weight: 650;
     letter-spacing: -0.03em;
   }
-  @keyframes intro-light-away {
-    from {
-      opacity: 1;
-      visibility: visible;
-    }
-    to {
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
 </style>
 
 <!-- This scene coordinates the page, header and note; these rules intentionally cross component boundaries. -->
 <style is:global>
-  @property --intro-mix {
-    syntax: "<percentage>";
-    inherits: false;
-    initial-value: 100%;
-  }
   @supports (animation-timeline: scroll()) {
     @media (prefers-reduced-motion: no-preference) {
       :root {
@@ -167,15 +135,6 @@ import SectionLight from "./SectionLight.astro";
       }
       html:root {
         scroll-padding-top: 100px;
-        /* Mix outside the keyframes so a theme change cannot cache the old colors. */
-        background: color-mix(
-          in oklab,
-          var(--paper),
-          var(--white) var(--intro-mix)
-        );
-        animation: intro-background linear both;
-        animation-timeline: scroll(root block);
-        animation-range: var(--dock-start) var(--intro-end);
       }
       .site-header {
         animation: header-arrive linear both;
@@ -213,14 +172,6 @@ import SectionLight from "./SectionLight.astro";
         animation-timeline: scroll(root block);
         animation-range: var(--slogan-start) calc(var(--slogan-start) + 1px);
       }
-    }
-  }
-  @keyframes intro-background {
-    from {
-      --intro-mix: 0%;
-    }
-    to {
-      --intro-mix: 100%;
     }
   }
   @keyframes intro-away {
