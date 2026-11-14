@@ -32,12 +32,13 @@
   --shadow:
     0 18px 48px -28px oklch(0.24 0.008 260 / 0.14),
     0 1px 4px oklch(0.24 0.008 260 / 0.025);
-  /* A deeper neutral mat separates the screenshot's near-white surfaces. */
+  /* An ambient layer supports every edge; the lower layers add gentle depth. */
   --showcase: light-dark(oklch(0.925 0.003 80), #29292e);
   --screenshot-edge: light-dark(oklch(0.87 0.004 80), #49494f);
   --screenshot-shadow:
-    0 18px 32px -20px oklch(0.24 0.008 260 / 0.3),
-    0 3px 8px -3px oklch(0.24 0.008 260 / 0.12);
+    0 0 44px -5px oklch(0.38 0.035 290 / 0.14),
+    0 20px 68px -10px oklch(0.32 0.035 290 / 0.32),
+    0 5px 22px -3px oklch(0.32 0.035 290 / 0.18);
   --selection-bg: light-dark(oklch(0.91 0.035 255), #34516b);
   --selection-ink: light-dark(oklch(0.29 0.006 255), #f3f4f0);
   color: var(--ink);
@@ -81,7 +82,8 @@
   }
   body {
     --shadow: 0 18px 48px -24px #0008, 0 1px 4px #0003;
-    --screenshot-shadow: 0 18px 36px -18px #0009, 0 3px 10px -3px #0005;
+    --screenshot-shadow:
+      0 0 52px -3px #0008, 0 18px 80px -6px #000d, 0 4px 22px -1px #0009;
   }
   :root ::selection {
     background: #34516b;

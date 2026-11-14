@@ -125,7 +125,6 @@ import Screenshot from "../Screenshot.astro";
   }
   .desktop-window {
     overflow: hidden;
-    border: 1px solid var(--border);
     border-radius: 11px;
     background: white;
     box-shadow: var(--shadow);
@@ -226,14 +225,11 @@ import Screenshot from "../Screenshot.astro";
     color: var(--ink);
   }
   :global(.home-page) .desktop-window {
-    border-color: var(--screenshot-edge);
     box-shadow: var(--screenshot-shadow);
   }
   :global(.home-page) .hero-product {
     padding: 32px 32px 54px;
-    background: var(--showcase);
-    border: 1px solid var(--border);
-    border-radius: 20px;
+    border: 1px solid transparent;
   }
   :global(.home-page) .product-caption {
     left: 32px;
@@ -245,7 +241,6 @@ import Screenshot from "../Screenshot.astro";
   @media (max-width: 700px) {
     :global(.home-page) .hero-product {
       padding: 14px;
-      border-radius: 14px;
     }
   }
 </style>

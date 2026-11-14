@@ -16,7 +16,10 @@
 <style>
   .iphone-mockup {
     isolation: isolate;
-    filter: drop-shadow(0 8px 12px light-dark(#18191b30, #0008));
+    filter: drop-shadow(
+        0 2px 14px light-dark(oklch(0.38 0.035 290 / 0.13), #0007)
+      )
+      drop-shadow(0 12px 30px light-dark(oklch(0.32 0.035 290 / 0.27), #000d));
   }
   .shell {
     --screen-ratio: 9 / 19.5;

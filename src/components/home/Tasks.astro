@@ -54,9 +54,9 @@ import Screenshot from "../Screenshot.astro";
       </div>
       <figcaption>Your tasks, in the context of everything else.</figcaption>
     </figure>
-    <div class="quick-add" data-light-scene>
-      <SectionLight variant="linen" area="section" side="left" />
-      <div class="feature-copy heading-group">
+    <div class="quick-add">
+      <div class="feature-copy heading-group" data-light-scene>
+        <SectionLight variant="linen" area="copy" />
         <p class="eyebrow">Quick-Add</p>
         <h3
           class="phrase-reveal"
@@ -135,14 +135,11 @@ import Screenshot from "../Screenshot.astro";
   }
   :global(.home-page) .quick-add > figure {
     padding: clamp(16px, 2.2vw, 28px);
-    background: var(--showcase);
-    border: 1px solid var(--border);
-    border-radius: 16px;
+    border: 1px solid transparent;
   }
   @media (max-width: 700px) {
     :global(.home-page) .quick-add > figure {
       padding: 12px;
-      border-radius: 12px;
     }
   }
   @container theme style(--theme: dark) {

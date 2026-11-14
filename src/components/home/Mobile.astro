@@ -11,9 +11,9 @@ import release from "../../data/release.json";
   aria-labelledby="mobile-heading"
   data-tone="sky"
 >
-  <div class="section-shell mobile-layout" data-light-scene>
-    <SectionLight variant="mist" area="section" side="right" />
-    <div class="feature-copy heading-group">
+  <div class="section-shell mobile-layout">
+    <div class="feature-copy heading-group" data-light-scene>
+      <SectionLight variant="mist" area="copy" />
       <p class="eyebrow">On iOS and Android <span class="badge">Beta</span></p>
       <h2
         id="mobile-heading"
@@ -163,14 +163,11 @@ import release from "../../data/release.json";
   }
   :global(.home-page) .mobile-showcase {
     padding: 32px 24px 24px;
-    background: var(--showcase);
-    border: 1px solid var(--border);
-    border-radius: 20px;
+    border: 1px solid transparent;
   }
   @media (max-width: 700px) {
     :global(.home-page) .mobile-showcase {
       padding: 24px 16px 20px;
-      border-radius: 14px;
     }
   }
 </style>

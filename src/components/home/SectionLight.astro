@@ -1,13 +1,13 @@
 ---
 interface Props {
   variant?: "porcelain" | "linen" | "mist" | "lilac" | "pearl";
-  area?: "heading" | "section" | "hero" | "inset";
-  side?: "center" | "left" | "right";
+  area?: "heading" | "section" | "hero" | "inset" | "copy";
+  coverage?: "focused" | "wide";
 }
 const {
   variant = "porcelain",
   area = "heading",
-  side = "center",
+  coverage = "focused",
 } = Astro.props;
 ---
 
@@ -16,56 +16,70 @@ const {
     "section-light",
     `light-${variant}`,
     `area-${area}`,
-    `side-${side}`,
+    `coverage-${coverage}`,
   ]}
   aria-hidden="true"
 ></div>
 
 <style>
-  /* Each instance reads the nearest scene's timeline, never the whole page. */
+  /* Each wash stays contained behind its section's content. */
   :global([data-light-scene]) {
     position: relative;
     isolation: isolate;
-    view-timeline-name: --section-light;
-    view-timeline-axis: block;
   }
   .section-light {
-    --ivory: light-dark(rgb(226 205 170 / 0.38), rgb(190 168 137 / 0.135));
-    --lavender: light-dark(rgb(188 178 206 / 0.27), rgb(181 161 211 / 0.12));
-    --grey: light-dark(rgb(173 184 197 / 0.175), rgb(156 174 192 / 0.067));
+    /* Dark mode uses deeper pigments: color without a pale, luminous veil. */
+    --ivory: light-dark(rgb(226 205 170 / 0.48), rgb(156 84 55 / 0.056));
+    --lavender: light-dark(rgb(188 178 206 / 0.36), rgb(105 65 166 / 0.056));
+    --grey: light-dark(rgb(173 184 197 / 0.24), rgb(62 101 132 / 0.031));
     --wash-one: var(--ivory);
     --wash-two: var(--lavender);
     --wash-three: var(--grey);
     --angle-one: 116deg;
     --angle-two: 70deg;
     --angle-three: 145deg;
-    --start-x: -48px;
-    --start-y: -26px;
-    --end-x: 48px;
-    --end-y: 48px;
     --strength: 1;
-    --light-center: 50%;
-    --light-radius: 46%;
     position: absolute;
-    inset: -80px 0 -100px;
+    inset: -150px 0 -170px;
     z-index: -1;
     overflow: clip;
     pointer-events: none;
-    /* Keep the entire falloff inside the scene, including left/right variants.
-       Only the color layer moves: this transparent perimeter stays fixed. */
-    mask-image: radial-gradient(
-      ellipse var(--light-radius) 46% at var(--light-center) 50%,
-      #000 0%,
-      rgb(0 0 0 / 0.95) 22%,
-      rgb(0 0 0 / 0.6) 48%,
-      rgb(0 0 0 / 0.16) 72%,
-      transparent 92%
-    );
+    /* Independent, gradual edge fades avoid an oval spotlight around the text.
+       The wash still reaches full transparency before its bounds. */
+    mask-image:
+      linear-gradient(
+        90deg,
+        transparent 1%,
+        rgb(0 0 0 / 0.12) 7%,
+        rgb(0 0 0 / 0.4) 15%,
+        rgb(0 0 0 / 0.72) 25%,
+        rgb(0 0 0 / 0.94) 38%,
+        #000 48% 52%,
+        rgb(0 0 0 / 0.94) 62%,
+        rgb(0 0 0 / 0.72) 75%,
+        rgb(0 0 0 / 0.4) 85%,
+        rgb(0 0 0 / 0.12) 93%,
+        transparent 99%
+      ),
+      linear-gradient(
+        transparent 1%,
+        rgb(0 0 0 / 0.12) 7%,
+        rgb(0 0 0 / 0.4) 15%,
+        rgb(0 0 0 / 0.72) 25%,
+        rgb(0 0 0 / 0.94) 38%,
+        #000 48% 52%,
+        rgb(0 0 0 / 0.94) 62%,
+        rgb(0 0 0 / 0.72) 75%,
+        rgb(0 0 0 / 0.4) 85%,
+        rgb(0 0 0 / 0.12) 93%,
+        transparent 99%
+      );
+    mask-composite: intersect;
   }
   .section-light::before {
     content: "";
     position: absolute;
-    inset: -60px;
+    inset: -100px;
     background:
       linear-gradient(
         var(--angle-one),
@@ -85,31 +99,23 @@ const {
         var(--wash-three) 48%,
         transparent 76%
       );
-    filter: blur(38px);
+    filter: blur(72px);
     opacity: calc(0.8 * var(--strength));
   }
   .light-linen {
-    --wash-two: light-dark(rgb(205 183 174 / 0.175), rgb(196 170 160 / 0.08));
-    --wash-three: light-dark(rgb(188 178 206 / 0.135), rgb(181 161 211 / 0.054));
+    --wash-two: light-dark(rgb(205 183 174 / 0.23), rgb(158 68 89 / 0.0375));
+    --wash-three: light-dark(rgb(188 178 206 / 0.18), rgb(105 65 166 / 0.025));
     --angle-one: 108deg;
     --angle-two: 32deg;
     --angle-three: 155deg;
-    --start-x: 34px;
-    --start-y: -20px;
-    --end-x: -38px;
-    --end-y: 40px;
   }
   .light-mist {
-    --wash-one: light-dark(rgb(166 184 202 / 0.27), rgb(154 178 202 / 0.12));
-    --wash-two: light-dark(rgb(226 205 170 / 0.24), rgb(190 168 137 / 0.095));
+    --wash-one: light-dark(rgb(166 184 202 / 0.36), rgb(58 93 150 / 0.05));
+    --wash-two: light-dark(rgb(226 205 170 / 0.32), rgb(144 95 62 / 0.0375));
     --wash-three: var(--lavender);
     --angle-one: 64deg;
     --angle-two: 130deg;
     --angle-three: 150deg;
-    --start-x: -32px;
-    --start-y: -38px;
-    --end-x: 42px;
-    --end-y: 30px;
   }
   .light-lilac {
     --wash-one: var(--lavender);
@@ -117,81 +123,97 @@ const {
     --angle-one: 135deg;
     --angle-two: 54deg;
     --angle-three: 105deg;
-    --start-x: 42px;
-    --start-y: -28px;
-    --end-x: -40px;
-    --end-y: 48px;
   }
   .light-pearl {
-    --wash-one: light-dark(rgb(173 184 197 / 0.27), rgb(156 174 192 / 0.11));
+    --wash-one: light-dark(rgb(173 184 197 / 0.36), rgb(61 109 131 / 0.044));
     --wash-two: var(--ivory);
     --wash-three: var(--lavender);
     --angle-one: 145deg;
     --angle-two: 25deg;
     --angle-three: 72deg;
-    --strength: 0.75;
-    --start-x: 24px;
-    --end-x: -32px;
+    --strength: 0.8;
   }
   .area-section {
     inset: 0;
   }
   .area-hero {
     inset: 0 0 auto;
-    height: min(850px, 100%);
+    height: min(600px, 100%);
   }
   .area-inset {
     inset: 0;
     border-radius: inherit;
   }
-  .side-left {
-    --light-center: 36%;
-    --light-radius: 32%;
-  }
-  .side-right {
-    --light-center: 64%;
-    --light-radius: 32%;
+  .area-copy {
+    /* Center the pool on the copy, with a soft falloff beyond the column. */
+    --copy-bleed: clamp(32px, calc((100vw - 1160px) / 2), 180px);
+    inset: -160px calc(-1 * var(--copy-bleed));
   }
 
-  @supports (animation-timeline: view(block)) {
+  @media (min-width: 701px) {
+    /* Broad layouts also spread the color bands across their text columns. */
+    .coverage-wide::before {
+      background:
+        linear-gradient(
+          var(--angle-one),
+          transparent 0%,
+          var(--wash-one) 24%,
+          transparent 82%
+        ),
+        linear-gradient(
+          var(--angle-two),
+          transparent 14%,
+          var(--wash-two) 68%,
+          transparent 100%
+        ),
+        linear-gradient(
+          var(--angle-three),
+          transparent 0%,
+          var(--wash-three) 48%,
+          transparent 100%
+        );
+    }
+  }
+
+  @supports (animation-timeline: view(block)) and
+    (timeline-scope: --light-heading) {
     @media (prefers-reduced-motion: no-preference) {
+      :global([data-light-scene]) {
+        timeline-scope: --light-heading;
+      }
+      :global([data-light-scene] .phrase-reveal) {
+        view-timeline-name: --light-heading;
+        view-timeline-axis: block;
+      }
       .section-light::before {
-        animation: section-light-drift linear both;
-        animation-timeline: --section-light;
-        animation-range: entry 0% exit 100%;
+        /* Every text pool follows the same heading entrance, without a delay. */
+        animation: text-light-fade ease-in-out both;
+        animation-timeline: --light-heading;
+        animation-range: entry var(--content-full, 33svh) entry
+          calc(var(--content-full, 33svh) + 17svh);
       }
     }
   }
-  @keyframes section-light-drift {
-    0% {
-      transform: translate(var(--start-x), var(--start-y));
-      opacity: calc(0.25 * var(--strength));
+  @keyframes text-light-fade {
+    from {
+      opacity: 0;
     }
-    40% {
+    to {
       opacity: calc(0.85 * var(--strength));
-    }
-    70% {
-      opacity: calc(0.75 * var(--strength));
-    }
-    100% {
-      transform: translate(var(--end-x), var(--end-y));
-      opacity: calc(0.2 * var(--strength));
     }
   }
   @media (max-width: 700px) {
+    .area-copy {
+      inset: -105px -22px;
+    }
     .area-heading {
-      inset: -48px 0 -64px;
+      inset: -110px 0 -125px;
     }
     .area-hero {
-      height: min(700px, 100%);
+      height: min(560px, 100%);
     }
-    .side-left {
-      --light-center: 44%;
-      --light-radius: 40%;
-    }
-    .side-right {
-      --light-center: 56%;
-      --light-radius: 40%;
+    .section-light::before {
+      filter: blur(52px);
     }
   }
 </style>

@@ -5,13 +5,12 @@ import SectionLight from "./SectionLight.astro";
 <section
   id="encryption"
   class="encryption-section section-shell"
-  data-light-scene
   aria-labelledby="encryption-heading"
   data-tone="sage"
 >
-  <SectionLight variant="pearl" area="inset" side="left" />
   <div class="encryption-feature">
-    <div class="encryption-copy heading-group">
+    <div class="encryption-copy heading-group" data-light-scene>
+      <SectionLight variant="pearl" area="copy" />
       <div class="encryption-kicker">
         <svg class="icon" aria-hidden="true"><use href="#lock-icon" /></svg
         ><span>Your notes. Your privacy.</span
@@ -229,7 +228,7 @@ import SectionLight from "./SectionLight.astro";
     border: 1px solid var(--border);
     border-radius: 20px;
     background: linear-gradient(120deg, var(--paper), var(--panel-strong));
-    box-shadow: 0 24px 56px -44px oklch(0.25 0.0125 80 / 0.2);
+    box-shadow: var(--screenshot-shadow);
   }
   .encryption-feature {
     display: grid;
@@ -860,7 +859,6 @@ import SectionLight from "./SectionLight.astro";
         var(--panel) 72%,
         #292d34
       );
-      box-shadow: 0 24px 56px -36px #0008;
     }
     :global(:root) .comparison-standard {
       --comparison-tone: #ecaaa1;

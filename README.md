@@ -127,17 +127,32 @@ individual diagram transitions. Their timings are unchanged by CSS scoping.
 
 `SectionLight.astro` provides a separate light wash for each homepage scene,
 from the unfolding note and hero through the feature sections and closing.
-Porcelain, linen, mist, lilac and pearl variants share a restrained palette but
-vary the gradient direction, color balance and scroll drift. Each existing
-section or feature row marked `data-light-scene` supplies its own CSS view
-timeline. Each pool's stationary mask reaches full transparency before its
-container edges, leaving a neutral perimeter even while the color layer drifts.
-Screenshot mats stay opaque. The “One place for everything” treatment uses the
-default variant. The opening pool is fixed to the viewport while the note
-unfolds, with no drift; `Intro.astro` fades it away during the note's move into
-the header. Reduced motion leaves static light, and the effect uses no browser
-script. Tune the shared palette and motion in that component; choose each
-scene's `variant`, `area` and optional `side` where it is used.
+Porcelain, linen, mist, lilac and pearl variants vary the gradient direction and
+color balance. Each wash stays in place. Dark mode uses low-opacity terracotta,
+plum and slate pigments with lower brightness, so the washes add subtle color
+instead of a pale veil. `data-light-scene` anchors each pool to its text and
+scopes the heading's CSS view timeline. Separate horizontal and vertical edge
+fades, extra vertical spread, and blurred color bands create a broad wash rather
+than an oval spot. The masks reach full transparency before the container edges.
+Screenshot surrounds are transparent, retaining their spacing and image sizes.
+The “One place for everything” treatment uses the default variant. The opening
+pool is fixed to the viewport while the note unfolds, with no drift;
+`Intro.astro` fades it away during the note's move into the header. The section
+lighting is CSS-only; reduced motion leaves static color. Tune the shared
+palette and coverage in that component; choose each scene's `variant`, `area`
+and `coverage` where it is used.
+
+Feature rows, Quick-Add, sync, encryption and mobile use `area="copy"` inside
+their text column, so their light sits behind the writing rather than between
+text and image. All text pools share the same fade: as the heading travels from
+33svh to 50svh into the viewport, opacity follows scroll position directly in
+both directions, with no time delay or transition. Reduced motion keeps the
+static pool.
+
+Download uses `coverage="wide"` on wider screens: broader color bands and
+separate horizontal/vertical fades carry the light across its text columns,
+while keeping a fully transparent perimeter. At mobile widths it returns to the
+focused pool.
 
 Motion is enabled only inside capability and reduced-motion checks. Without
 those features, content stays readable and the static header logo is used. There
@@ -269,11 +284,11 @@ image URLs are managed by Astro; reference source names in code.
   these frames; this separate sprite-sheet task requires `cwebp` and
   ImageMagick's `magick`. Carbon frames are retained for future use.
 - `media/reference/porcelain-theme.txt` is the screenshot theme and the basis
-  for the light website palette. Warm neutral surfaces and darker screenshot
-  frames keep the product's subtle colors in focus; blue is reserved for actions
-  and links, with red/green used for the privacy comparison. Website colors live
-  in `src/styles/themes.css` and the relevant component styles. Screenshot
-  artwork is not recolored or filtered. The earlier Prism experiment is retained
+  for the light website palette. Warm neutral surfaces and subtle screenshot
+  edges keep the product's colors in focus; blue is reserved for actions and
+  links, with red/green used for the privacy comparison. Website colors live in
+  `src/styles/themes.css` and the relevant component styles. Screenshot artwork
+  is not recolored or filtered. The earlier Prism experiment is retained
   alongside the current reference.
 
 Normal site builds need no external image commands. Keep screenshot originals
