@@ -2,28 +2,27 @@
   id="sync"
   class="sync-section section-shell"
   aria-labelledby="sync-heading"
-  data-tone="indigo"
+  data-tone="coral"
 >
   <header class="section-heading heading-group">
     <p class="eyebrow">Your data, your choice</p>
     <h2
       id="sync-heading"
       class="phrase-reveal"
-      aria-label="Sync with anything. Answer to no one."
+      aria-label="Sync with anything. Stay in control."
     >
+      <span class="heading-phrase" aria-hidden="true" style="--phrase-order: 0"
+        >Sync with anything.</span
+      ><br />
       <span
         class="heading-phrase color-phrase"
         aria-hidden="true"
-        style="--phrase-order: 0"
-        >Sync with anything.</span
-      ><br />
-      <span class="heading-phrase" aria-hidden="true" style="--phrase-order: 1"
-        >Answer to no one.</span
+        style="--phrase-order: 1"
+        >Stay in control.</span
       >
     </h2>
     <p>
-      Your data, your choice. Keep it close or take it with
-      you.<br class="desktop-break" /> You decide where your notes call home.
+      Keep your notes on your device, or sync them with a provider you choose.
     </p>
   </header>
   <div class="sync-options">
@@ -76,10 +75,10 @@
   </div>
   <div class="export-note">
     <span class="markdown-mark" aria-hidden="true">M<span>↓</span></span>
-    <p>
-      <strong>Export to Markdown.</strong> Avoid vendor lock-in. Keep your data
-      forever.
-    </p>
+    <div class="export-copy">
+      <h3>Export to Markdown.</h3>
+      <p>Avoid vendor lock-in. Keep your data forever.</p>
+    </div>
   </div>
 </section>
 
@@ -150,27 +149,38 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-top: 57px;
-    padding-top: 28px;
-    border-top: 1px solid var(--border);
-    font-size: 13px;
+    gap: 28px;
+    margin-top: 76px;
+    padding: 48px 24px;
+    border-bottom: 1px solid var(--border);
     color: var(--muted);
   }
   .markdown-mark {
-    border: 1px solid var(--soft);
-    border-radius: 4px;
-    padding: 1px 5px;
-    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 64px;
+    height: 48px;
+    border: 1px solid var(--screenshot-edge);
+    border-radius: 7px;
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: -0.05em;
   }
   .markdown-mark span {
-    padding-left: 2px;
+    padding-left: 4px;
   }
-  .export-note strong {
-    font-weight: 400;
-    color: var(--heading);
+  .export-copy h3 {
+    font-size: clamp(24px, 2.4vw, 30px);
+    font-weight: 650;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  .export-copy p {
+    margin-top: 10px;
+    font-size: 17px;
+    line-height: 1.6;
   }
   @supports (animation-timeline: view(block)) and
     (animation-range: entry 16svh entry 33svh) {
@@ -277,20 +287,18 @@
       font-size: 14px;
     }
     .export-note {
-      font-size: 13px;
-      align-items: flex-start;
-      margin-top: 40px;
-      gap: 12px;
+      flex-direction: column;
+      text-align: center;
+      margin-top: 52px;
+      padding: 36px 12px;
+      gap: 20px;
     }
-    .markdown-mark {
-      flex-shrink: 0;
+    .export-copy p {
+      font-size: 15px;
     }
   }
   :global(.home-page) .sync-options article > .icon {
     color: var(--accent);
-  }
-  :global(.home-page) .export-note strong {
-    font-weight: 600;
   }
   :global(.home-page) .sync-options article > .icon {
     color: var(--ink);

@@ -6,7 +6,7 @@ import Screenshot from "../Screenshot.astro";
   id="flashcards"
   class="flashcards-section section-shell"
   aria-labelledby="flashcards-heading"
-  data-tone="violet"
+  data-tone="leaf"
 >
   <header class="section-heading centered heading-group">
     <p class="eyebrow">Flashcards</p>
@@ -31,7 +31,7 @@ import Screenshot from "../Screenshot.astro";
       a new possibility — turning what you’ve captured into what you remember.
     </p>
   </header>
-  <article class="feature-row">
+  <article class="feature-row" data-tone="coral">
     <div class="feature-copy heading-group">
       <p class="feature-subtitle">Flashcard Snippet</p>
       <h3 class="phrase-reveal" aria-label="Two sides. One new connection.">
@@ -42,7 +42,7 @@ import Screenshot from "../Screenshot.astro";
           >Two sides.</span
         ><br />
         <span
-          class="heading-phrase"
+          class="heading-phrase color-phrase"
           aria-hidden="true"
           style="--phrase-order: 1"
           >One new connection.</span
@@ -69,21 +69,24 @@ import Screenshot from "../Screenshot.astro";
       />
     </figure>
   </article>
-  <article class="feature-row reverse">
+  <article class="feature-row reverse" data-tone="blue">
     <div class="feature-copy heading-group">
       <p class="feature-subtitle">Flashcard Dashboard</p>
-      <h3 class="phrase-reveal" aria-label="See your knowledge taking shape.">
+      <h3
+        class="phrase-reveal"
+        aria-label="See what you know. Find what’s next."
+      >
         <span
           class="heading-phrase"
           aria-hidden="true"
           style="--phrase-order: 0"
-          >See your knowledge</span
+          >See what you know.</span
         ><br />
         <span
-          class="heading-phrase"
+          class="heading-phrase color-phrase"
           aria-hidden="true"
           style="--phrase-order: 1"
-          >taking shape.</span
+          >Find what’s next.</span
         >
       </h3>
       <p>
@@ -107,7 +110,7 @@ import Screenshot from "../Screenshot.astro";
       />
     </figure>
   </article>
-  <article class="feature-row">
+  <article class="feature-row" data-tone="orchid">
     <div class="feature-copy heading-group">
       <p class="feature-subtitle">Session Wizard</p>
       <h3
@@ -121,7 +124,7 @@ import Screenshot from "../Screenshot.astro";
           >A little practice.</span
         ><br />
         <span
-          class="heading-phrase"
+          class="heading-phrase color-phrase"
           aria-hidden="true"
           style="--phrase-order: 1"
           >A lasting impression.</span

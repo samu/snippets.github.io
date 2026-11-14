@@ -389,7 +389,7 @@ figcaption {
 }
 .home-page .eyebrow,
 .home-page .feature-subtitle {
-  color: var(--eyebrow-ink, var(--muted));
+  color: var(--muted);
   font-weight: 600;
 }
 .home-page .feature-copy p:not(.eyebrow):not(.feature-subtitle) {
@@ -408,27 +408,23 @@ figcaption {
 .home-page .phrase-reveal > .color-phrase {
   color: var(--section-accent);
 }
-.home-page [data-tone] {
-  /* Each section has a distinct hue, confined to phrases and small labels. */
-  --eyebrow-ink: color-mix(in srgb, var(--section-accent) 76%, var(--ink));
-}
-.home-page [data-tone="violet"] {
-  --section-accent: light-dark(#7951b0, #bdabec);
-}
+/* Five distinct accent hues; section markup spaces repeats across the page.
+   Neutral labels keep the color focused on the highlighted heading phrase. */
 .home-page [data-tone="blue"] {
-  --section-accent: light-dark(#366cba, #98bdec);
+  /* The hero and primary action share the note's blue visual anchor. */
+  --section-accent: var(--accent);
 }
 .home-page [data-tone="teal"] {
-  --section-accent: light-dark(#137d83, #8acbd1);
+  --section-accent: light-dark(#236f77, #97cad0);
 }
-.home-page [data-tone="indigo"] {
-  --section-accent: light-dark(#565abd, #b0b2ee);
+.home-page [data-tone="coral"] {
+  --section-accent: light-dark(#bf4350, #f18c83);
 }
-.home-page [data-tone="green"] {
-  --section-accent: light-dark(#287d55, #94d2ae);
+.home-page [data-tone="leaf"] {
+  --section-accent: light-dark(#2d7e49, #8bd39b);
 }
-.home-page [data-tone="rose"] {
-  --section-accent: light-dark(#b04477, #e5a2c1);
+.home-page [data-tone="orchid"] {
+  --section-accent: light-dark(#a13da8, #d993e0);
 }
 @media (max-width: 700px) {
   .home-page .image-stage,

@@ -6,7 +6,7 @@ import Screenshot from "../Screenshot.astro";
   id="features"
   class="overview section-shell"
   aria-labelledby="overview-heading"
-  data-tone="blue"
+  data-tone="orchid"
 >
   <header class="section-heading centered">
     <h2
@@ -29,9 +29,8 @@ import Screenshot from "../Screenshot.astro";
       ><span>Stays affordable.</span>
     </p>
     <p>
-      Forget the clutter of too many tools and the friction of disconnected
-      systems. Break free from rigid rules and bring everything into one place.
-      Get organized your way.
+      Spend less time switching between apps. Bring your work into one place,
+      and organize it in a way that makes sense to you.
     </p>
   </header>
 
@@ -42,7 +41,7 @@ import Screenshot from "../Screenshot.astro";
     </p>
   </div>
 
-  <article class="feature-row">
+  <article class="feature-row" data-tone="coral">
     <div class="feature-copy heading-group">
       <p class="eyebrow">Rich text</p>
       <h3 class="phrase-reveal" aria-label="Just you. And your thoughts.">
@@ -53,7 +52,7 @@ import Screenshot from "../Screenshot.astro";
           >Just you.</span
         ><br />
         <span
-          class="heading-phrase"
+          class="heading-phrase color-phrase"
           aria-hidden="true"
           style="--phrase-order: 1"
           >And your thoughts.</span
@@ -91,21 +90,24 @@ import Screenshot from "../Screenshot.astro";
     </figure>
   </article>
 
-  <article class="feature-row reverse">
+  <article class="feature-row reverse" data-tone="leaf">
     <div class="feature-copy heading-group">
       <p class="eyebrow">Collections</p>
-      <h3 class="phrase-reveal" aria-label="A place for every kind of thought.">
+      <h3
+        class="phrase-reveal"
+        aria-label="Every kind of thought. A place of its own."
+      >
         <span
           class="heading-phrase"
           aria-hidden="true"
           style="--phrase-order: 0"
-          >A place for every</span
+          >Every kind of thought.</span
         ><br />
         <span
-          class="heading-phrase"
+          class="heading-phrase color-phrase"
           aria-hidden="true"
           style="--phrase-order: 1"
-          >kind of thought.</span
+          >A place of its own.</span
         >
       </h3>
       <p>
@@ -139,21 +141,24 @@ import Screenshot from "../Screenshot.astro";
     </figure>
   </article>
 
-  <article class="feature-row">
+  <article class="feature-row" data-tone="orchid">
     <div class="feature-copy heading-group">
       <p class="eyebrow">Dashboards</p>
-      <h3 class="phrase-reveal" aria-label="See how it all fits together.">
+      <h3
+        class="phrase-reveal"
+        aria-label="Bring it together. See the bigger picture."
+      >
         <span
           class="heading-phrase"
           aria-hidden="true"
           style="--phrase-order: 0"
-          >See how it</span
+          >Bring it together.</span
         ><br />
         <span
-          class="heading-phrase"
+          class="heading-phrase color-phrase"
           aria-hidden="true"
           style="--phrase-order: 1"
-          >all fits together.</span
+          >See the bigger picture.</span
         >
       </h3>
       <p>
@@ -189,7 +194,15 @@ import Screenshot from "../Screenshot.astro";
   </article>
 
   <aside class="pricing-note">
-    <div>
+    <img
+      class="pricing-note-logo"
+      src="/assets/note/note-open.webp"
+      width="112"
+      height="112"
+      alt=""
+      loading="lazy"
+    />
+    <div class="pricing-copy">
       <p class="eyebrow">Free to begin. Room to grow.</p>
       <p>Start with everything you need. <span>Grow at your own pace.</span></p>
       <span class="pricing-description"
@@ -244,6 +257,16 @@ import Screenshot from "../Screenshot.astro";
     font-weight: 400;
     letter-spacing: -0.015em;
   }
+  .pricing-note-logo {
+    width: 112px;
+    height: 112px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  .pricing-copy {
+    flex: 1;
+    min-width: 0;
+  }
   .pricing-note p span {
     color: var(--muted);
   }
@@ -279,6 +302,10 @@ import Screenshot from "../Screenshot.astro";
     .pricing-note p:not(.eyebrow) {
       font-size: 17px;
       line-height: 1.5;
+    }
+    .pricing-note-logo {
+      width: 72px;
+      height: 72px;
     }
     .pricing-note p span {
       display: block;

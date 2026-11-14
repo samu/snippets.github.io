@@ -2,7 +2,7 @@
   id="encryption"
   class="encryption-section section-shell"
   aria-labelledby="encryption-heading"
-  data-tone="green"
+  data-tone="teal"
 >
   <div class="encryption-feature">
     <div class="encryption-copy heading-group">
@@ -269,6 +269,9 @@
   }
   .encryption-copy h2 > .color-phrase {
     color: var(--section-accent);
+  }
+  .encryption-copy h2 > .color-phrase:first-child {
+    color: var(--heading);
   }
   :global(.home-page) .encryption-section .encryption-lead {
     font-size: 17px;
@@ -851,9 +854,6 @@
       background: #222328;
       border-color: transparent;
       box-shadow: var(--shadow);
-    }
-    .encryption-copy h2 > .color-phrase:first-child {
-      color: var(--heading);
     }
     :global(:root) .comparison-standard {
       --comparison-tone: #ecaaa1;
