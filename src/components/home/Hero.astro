@@ -5,7 +5,7 @@ import Screenshot from "../Screenshot.astro";
 <section
   class="hero section-shell"
   aria-labelledby="hero-heading"
-  data-tone="sage"
+  data-tone="violet"
 >
   <h1
     id="hero-heading"
@@ -124,7 +124,7 @@ import Screenshot from "../Screenshot.astro";
     overflow: hidden;
     border-radius: 11px;
     background: white;
-    box-shadow: var(--shadow);
+    border: 1px solid var(--screenshot-edge);
   }
   .desktop-window > :global(img) {
     width: 100%;
@@ -220,9 +220,6 @@ import Screenshot from "../Screenshot.astro";
   }
   :global(.home-page) .hero-description {
     color: var(--ink);
-  }
-  :global(.home-page) .desktop-window {
-    box-shadow: var(--screenshot-shadow);
   }
   :global(.home-page) .hero-product {
     padding: 32px 32px 54px;

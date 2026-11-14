@@ -52,8 +52,7 @@ const images = resolved
     max-height: 720px;
     object-fit: contain;
     border-radius: 7px;
-    border: 1px solid var(--border);
-    box-shadow: 0 6px 20px -12px #0002;
+    border: 1px solid var(--screenshot-edge);
     background: #fafaf9;
   }
   .image-link {
@@ -70,9 +69,6 @@ const images = resolved
     border-radius: 8px;
     background: var(--paper);
     margin: 0;
-  }
-  .doc-figure .doc-figure :global(img) {
-    box-shadow: none;
   }
   @media (max-width: 760px) {
     .doc-figure {
@@ -93,10 +89,6 @@ const images = resolved
     border: 1px solid var(--border);
     border-radius: 12px;
   }
-  :global(.docs-page) .doc-figure :global(img) {
-    border-color: var(--screenshot-edge);
-    box-shadow: var(--screenshot-shadow);
-  }
   @media (max-width: 700px) {
     :global(.docs-page) .doc-figure > .image-link {
       padding: 8px;
@@ -108,9 +100,6 @@ const images = resolved
       padding: 0;
       background: none;
       border: 0;
-    }
-    :global(.docs-page) .doc-figure :global(img) {
-      box-shadow: none;
     }
   }
   @container theme style(--theme: dark) {

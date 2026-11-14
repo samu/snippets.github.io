@@ -233,7 +233,7 @@ p {
 .product-image {
   border-radius: 8px;
   background: white;
-  box-shadow: var(--shadow);
+  border: 1px solid var(--screenshot-edge);
   height: auto;
   width: 100%;
 }
@@ -389,7 +389,7 @@ figcaption {
 }
 .home-page .eyebrow,
 .home-page .feature-subtitle {
-  color: var(--muted);
+  color: var(--eyebrow-ink, var(--muted));
   font-weight: 600;
 }
 .home-page .feature-copy p:not(.eyebrow):not(.feature-subtitle) {
@@ -398,9 +398,6 @@ figcaption {
 .home-page .feature-copy h3 {
   font-weight: 650;
   letter-spacing: -0.03em;
-}
-.home-page .product-image {
-  box-shadow: var(--screenshot-shadow);
 }
 .home-page .image-stage,
 .home-page .screenshot-mat {
@@ -411,23 +408,27 @@ figcaption {
 .home-page .phrase-reveal > .color-phrase {
   color: var(--section-accent);
 }
-@container theme style(--theme: dark) {
-  .home-page [data-tone] {
-    /* Color belongs to a meaningful phrase, leaving the surrounding space calm. */
-    --section-accent: #d6b7a4;
-    --eyebrow-ink: #b8aca0;
-  }
-  .home-page [data-tone="sky"] {
-    --section-accent: #a8bad4;
-    --eyebrow-ink: #9eafc3;
-  }
-  .home-page [data-tone="lavender"] {
-    --section-accent: #bcaacb;
-    --eyebrow-ink: #b6a8c4;
-  }
-  .home-page :is(.eyebrow, .feature-subtitle) {
-    color: var(--eyebrow-ink, var(--muted));
-  }
+.home-page [data-tone] {
+  /* Each section has a distinct hue, confined to phrases and small labels. */
+  --eyebrow-ink: color-mix(in srgb, var(--section-accent) 76%, var(--ink));
+}
+.home-page [data-tone="violet"] {
+  --section-accent: light-dark(#7951b0, #bdabec);
+}
+.home-page [data-tone="blue"] {
+  --section-accent: light-dark(#366cba, #98bdec);
+}
+.home-page [data-tone="teal"] {
+  --section-accent: light-dark(#137d83, #8acbd1);
+}
+.home-page [data-tone="indigo"] {
+  --section-accent: light-dark(#565abd, #b0b2ee);
+}
+.home-page [data-tone="green"] {
+  --section-accent: light-dark(#287d55, #94d2ae);
+}
+.home-page [data-tone="rose"] {
+  --section-accent: light-dark(#b04477, #e5a2c1);
 }
 @media (max-width: 700px) {
   .home-page .image-stage,
