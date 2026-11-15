@@ -1,4 +1,6 @@
-<div class="note-mover" aria-hidden="true"><div class="note-sprite"></div></div>
+<div class="note-scene" aria-hidden="true">
+  <div class="note-mover"><div class="note-sprite"></div></div>
+</div>
 
 <!-- Shared geometry keeps the note aligned with the intro and header at every breakpoint. -->
 <style is:global>
@@ -26,24 +28,41 @@
 </style>
 
 <style>
-  .note-mover {
+  .note-scene {
     display: none;
   }
   @supports (animation-timeline: scroll()) {
     @media (prefers-reduced-motion: no-preference) {
-      .note-mover {
+      .note-scene {
         display: block;
+        container-name: note-docking;
+        --note-dock-state: intro;
+        /* Only the state follows scroll; the movement runs on elapsed time. */
+        animation: note-dock-state auto step-end both;
+        animation-timeline: scroll(root block);
+        animation-range: var(--dock-start) calc(var(--dock-start) + 1px);
+      }
+      .note-mover {
         position: fixed;
         z-index: 30;
-        left: calc(var(--page-edge) + 20px);
-        top: 36px;
-        width: 60px;
+        /* Match the first scroll state before the timeline's initial sample. */
+        left: 50%;
+        top: 37svh;
+        width: var(--note-size);
         aspect-ratio: 1;
         transform: translate(-50%, -50%);
         pointer-events: none;
-        animation: dock-note cubic-bezier(0.4, 0.2, 0.4, 1) both;
-        animation-timeline: scroll(root block);
-        animation-range: var(--dock-start) var(--dock-end);
+        transition:
+          left var(--dock-duration) cubic-bezier(0.4, 0.2, 0.3, 1),
+          top var(--dock-duration) cubic-bezier(0.4, 0.2, 0.3, 1),
+          width var(--dock-duration) cubic-bezier(0.4, 0.2, 0.3, 1);
+      }
+      @container note-docking style(--note-dock-state: header) {
+        .note-mover {
+          left: calc(var(--page-edge) + 20px);
+          top: 36px;
+          width: 60px;
+        }
       }
       .note-sprite {
         width: 100%;
@@ -331,16 +350,12 @@
       background-position: 100% 100%;
     }
   }
-  @keyframes dock-note {
+  @keyframes note-dock-state {
     from {
-      left: 50%;
-      top: 37svh;
-      width: var(--note-size);
+      --note-dock-state: intro;
     }
     to {
-      left: calc(var(--page-edge) + 20px);
-      top: 36px;
-      width: 60px;
+      --note-dock-state: header;
     }
   }
 </style>

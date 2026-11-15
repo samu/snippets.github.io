@@ -130,60 +130,67 @@
       :root {
         --unfold-end: 85svh;
         --dock-start: var(--unfold-end);
-        --dock-end: 145svh;
-        --intro-end: var(--dock-end);
+        --dock-duration: 1200ms;
+        --intro-end: 145svh;
       }
       html:root {
         scroll-padding-top: 100px;
       }
       /* Scroll only flips the state; transitions finish even when scrolling stops. */
       .site-header {
-        --header-enter: calc(var(--dock-end) - 20svh);
         container-name: intro-navigation;
+        --header-state: intro;
         animation: header-state auto step-end both;
         animation-timeline: scroll(root block);
-        animation-range: var(--header-enter) calc(var(--header-enter) + 1px);
+        animation-range: var(--dock-start) calc(var(--dock-start) + 1px);
       }
       .site-header::before {
-        opacity: 1;
+        opacity: 0;
         transition: opacity 420ms ease;
       }
       .site-header .nav-shell {
-        transition: max-width 650ms cubic-bezier(0.22, 0.75, 0.25, 1);
+        /* Start at the right edge before the first scroll-timeline sample. */
+        max-width: calc(100% - 2 * var(--nav-gutter));
+        transition: max-width 650ms cubic-bezier(0.22, 0.75, 0.25, 1) 150ms;
       }
       .site-header .nav-controls {
+        grid-template-columns: minmax(0, 0fr);
         transition: grid-template-columns 650ms
-          cubic-bezier(0.22, 0.75, 0.25, 1);
+          cubic-bezier(0.22, 0.75, 0.25, 1) 150ms;
       }
       .site-header .wordmark,
       .site-header .nav-controls-inner {
-        /* Fade in after most of the space is open, without covering the links. */
-        opacity: 1;
-        visibility: visible;
+        opacity: 0;
+        visibility: hidden;
+        /* Hide the controls before closing their space on the return trip. */
         transition:
-          opacity 270ms ease 380ms,
-          visibility 0s linear 380ms;
+          opacity 150ms ease,
+          visibility 0s linear 150ms;
       }
-      @container intro-navigation style(--header-state: intro) {
+      @container intro-navigation style(--header-state: full) {
         .site-header::before {
-          opacity: 0;
+          opacity: 1;
         }
         .site-header .nav-shell {
-          max-width: calc(100% - 2 * var(--nav-gutter));
-          transition-delay: 150ms;
+          max-width: 1160px;
+          transition-delay: 0s;
         }
         .site-header .nav-controls {
-          grid-template-columns: minmax(0, 0fr);
-          transition-delay: 150ms;
+          grid-template-columns: minmax(0, 1fr);
+          transition-delay: 0s;
         }
         .site-header .wordmark,
         .site-header .nav-controls-inner {
-          opacity: 0;
-          visibility: hidden;
-          /* Hide the controls before closing their space on the return trip. */
+          opacity: 1;
+          visibility: visible;
+          /* Fade in after most of the space is open, without covering the links. */
           transition:
-            opacity 150ms ease,
-            visibility 0s linear 150ms;
+            opacity 270ms ease 380ms,
+            visibility 0s linear 380ms;
+        }
+        .site-header .wordmark {
+          /* Let the name appear as the note approaches its final position. */
+          transition-delay: calc(var(--dock-duration) - 270ms);
         }
       }
       .site-header .wordmark img {

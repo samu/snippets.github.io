@@ -108,23 +108,30 @@ build check permits only this exact inline script and rejects other scripts.
 The unfolding note uses a **static WebP sprite sheet**, not an autoplaying
 animated WebP. `Note.astro` moves the background through 90 frames in a 10 × 9
 grid using stepped CSS keyframes. The root scroll timeline chooses the frame, so
-scrolling backward closes the note again. A second animation shrinks and moves
-the opened note into the header.
+scrolling backward closes the note again. Once unfolding finishes, a stepped CSS
+animation switches the `note-docking` container state. This triggers a `1200ms`
+transition that shrinks and moves the opened note into the header, finishing
+even if scrolling stops. Crossing back above that threshold smoothly returns the
+note to its original position. The centered note is the default CSS layout, so
+the first scroll-timeline sample does not trigger a fly-in on page load.
+No scroll listener is involved.
 
 `Intro.astro` defines the shared scroll distances and coordinates the intro
-copy, header and hero entrance. The unfolding ends after a
-scroll distance of 85% of the small viewport height (`85svh`); docking finishes
-at 145% (`145svh`). The rest of the page begins appearing when docking begins.
-These are scroll distances, not elapsed time.
+copy, header and hero entrance. Unfolding ends and docking is triggered after a
+scroll distance of 85% of the small viewport height (`85svh`). Docking uses
+elapsed time (`--dock-duration`); the rest of the page still fades and rises
+with scrolling between `85svh` and `145svh` (`--intro-end`).
 
-The four main navigation links remain visible at the top right during the
-intro (the Menu control does this on mobile). At `125svh`, a stepped CSS
-animation switches the header's container state. That triggers a `650ms`
+The four main navigation links remain visible at the top right during the intro
+(the Menu control does this on mobile). This is their default CSS layout, so
+they do not slide into place on initial load. At the same `85svh` threshold, a stepped
+CSS animation switches the header's container state. That triggers a `650ms`
 transition into the normal header width, opening space for the download button
-and theme toggle. The header surface, wordmark and controls fade in while the
-links stay visible. Scroll position only triggers this transition; it finishes
-even if scrolling stops. Scrolling back above the threshold fades out the
-controls before smoothly moving the links back to the right.
+and theme toggle. The header surface and controls fade in while the links stay
+visible; the wordmark appears as the note reaches the header. Scroll position
+only triggers this transition; it finishes even if scrolling stops. Scrolling
+back above the threshold fades out the controls before smoothly moving the links
+back to the right.
 
 `reveal.css` gives content its shared fade-and-rise entrance. View timelines
 measure an element entering the viewport. Where supported, timeline triggers let

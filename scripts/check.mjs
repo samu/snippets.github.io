@@ -121,7 +121,7 @@ const homepageCSS = homepage.nodes
   .join("\n");
 // A minifier previously folded these longhands into an unsupported shorthand,
 // leaving the intro over the page and freezing the note on frame one.
-for (const selector of ["note-sprite", "note-mover", "intro-copy"]) {
+for (const selector of ["note-sprite", "note-scene", "intro-copy"]) {
   assert(
     new RegExp(
       "\\." + selector + "(?:[^{}]*)\\{[^}]*animation-timeline:\\s*scroll\\(",
@@ -131,7 +131,7 @@ for (const selector of ["note-sprite", "note-mover", "intro-copy"]) {
 }
 for (const animation of [
   "unfold-note",
-  "dock-note",
+  "note-dock-state",
   "content-reveal",
   "heading-entry",
   "sync-card-state",
