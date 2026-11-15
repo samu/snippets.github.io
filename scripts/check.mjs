@@ -39,9 +39,6 @@ const documents = new Map(
     }),
 );
 const failures = [];
-const themeScript = fs
-  .readFileSync(path.join(repo, "src/scripts/theme.js"), "utf8")
-  .trim();
 const introRestorationScript = fs
   .readFileSync(path.join(repo, "src/scripts/intro-restoration.js"), "utf8")
   .trim();
@@ -77,11 +74,9 @@ for (const [file, { nodes }] of documents) {
       node.tagName === "script" &&
       !(
         node.attrs.length === 1 &&
-        ((node.attrs[0].name === "data-theme-preference" &&
-          visibleText(node).trim() === themeScript) ||
-          (file === path.join(output, "index.html") &&
-            node.attrs[0].name === "data-intro-restoration" &&
-            visibleText(node).trim() === introRestorationScript))
+        file === path.join(output, "index.html") &&
+        node.attrs[0].name === "data-intro-restoration" &&
+        visibleText(node).trim() === introRestorationScript
       )
     )
       failures.push("Unexpected browser JavaScript in " + file);
@@ -98,6 +93,12 @@ for (const [file, { nodes }] of documents) {
       );
     }
     for (const { name, value } of node.attrs) {
+      if (
+        name === "data-theme" ||
+        name === "data-theme-preference" ||
+        (name === "id" && value === "theme-toggle")
+      )
+        failures.push("Manual theme override in " + file);
       if (name.startsWith("on") || /^javascript:/i.test(value))
         failures.push("Inline JavaScript in " + file);
       if (["href", "src", "poster"].includes(name)) checkURL(value, file);
@@ -202,51 +203,21 @@ for (const route of [
   const file = path.join(output, route, "index.html");
   assert(documents.has(file), "Missing page: " + file);
   const { nodes } = documents.get(file);
-  const themeScripts = nodes.filter(
-    (node) =>
-      node.tagName === "script" &&
-      node.attrs.some((a) => a.name === "data-theme-preference"),
-  );
-  assert.equal(
-    themeScripts.length,
-    1,
-    "Missing theme preference script: " + file,
-  );
-  assert.equal(
-    themeScripts[0].parentNode.tagName,
-    "head",
-    "Theme preference must be restored before the body renders: " + file,
-  );
-  assert(
-    nodes.indexOf(themeScripts[0]) <
-      nodes.findIndex(
-        (node) => node.tagName === "link" && attr(node, "rel") === "stylesheet",
-      ),
-    "Theme preference must be restored before styles load: " + file,
-  );
-  const toggles = nodes.filter((node) => attr(node, "id") === "theme-toggle");
-  assert.equal(
-    toggles.length,
-    1,
-    "Missing or repeated theme checkbox: " + file,
-  );
-  assert(
-    toggles[0].tagName === "input" &&
-      attr(toggles[0], "type") === "checkbox" &&
-      attr(toggles[0], "aria-label"),
-    "Theme toggle must be an accessible native checkbox: " + file,
-  );
   const stylesheets = nodes.filter(
     (node) => node.tagName === "link" && attr(node, "rel") === "stylesheet",
   );
   assert(
     stylesheets.some((node) => {
       const url = new URL(attr(node, "href"), "https://preview.local/" + route);
-      return fs
-        .readFileSync(path.join(output, url.pathname), "utf8")
-        .includes("#theme-toggle:checked");
+      const css = fs.readFileSync(path.join(output, url.pathname), "utf8");
+      return (
+        /prefers-color-scheme:\s*dark/.test(css) &&
+        css.includes("--theme: dark") &&
+        css.includes("light-dark(") &&
+        !/theme-toggle|data-theme/.test(css)
+      );
     }),
-    "Missing shared theme CSS: " + file,
+    "Missing OS-based theme CSS: " + file,
   );
   assert(
     nodes.some(
@@ -296,5 +267,5 @@ assert(
 );
 assert.equal(failures.length, 0, failures.join("\n"));
 console.log(
-  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, only the exact theme and homepage restoration scripts are allowed.`,
+  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, themes follow the OS, and only the exact homepage restoration script is allowed.`,
 );

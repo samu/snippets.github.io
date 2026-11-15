@@ -1,5 +1,4 @@
 ---
-import themeScript from "../scripts/theme.js?raw";
 import introRestorationScript from "../scripts/intro-restoration.js?raw";
 
 const {
@@ -19,7 +18,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <script is:inline data-theme-preference set:html={themeScript}></script>
     {bodyClass === "home-page" && (
       <script
         is:inline

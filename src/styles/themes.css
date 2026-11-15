@@ -1,5 +1,5 @@
 /* Porcelain neutrals: media/reference/porcelain-theme.txt. Let screenshot colors lead.
-   The named container shares theme state; the checkbox is also a no-script fallback. */
+   OS preference alone selects the theme; the named container shares its state. */
 :root {
   color-scheme: light;
   --theme: light;
@@ -44,28 +44,8 @@
   color: var(--ink);
   background: var(--white);
 }
-@media screen {
-  :root:not([data-theme]):has(#theme-toggle:checked) {
-    color-scheme: dark;
-    --theme: dark;
-  }
-}
 @media screen and (prefers-color-scheme: dark) {
   :root {
-    color-scheme: dark;
-    --theme: dark;
-  }
-  :root:not([data-theme]):has(#theme-toggle:checked) {
-    color-scheme: light;
-    --theme: light;
-  }
-}
-@media screen {
-  :root[data-theme="light"] {
-    color-scheme: light;
-    --theme: light;
-  }
-  :root[data-theme="dark"] {
     color-scheme: dark;
     --theme: dark;
   }

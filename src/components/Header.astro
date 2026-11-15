@@ -1,5 +1,4 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
 import Icon from "./Icon.astro";
 import MobileMenu from "./MobileMenu.astro";
 const { variant = "legal" } = Astro.props;
@@ -25,7 +24,6 @@ const news = variant === "news";
           <div class="nav-controls-slot">
             <div class="nav-controls-inner">
               <a class="button button-small" href="#download">Get Snippets</a>
-              <ThemeToggle />
             </div>
           </div>
         </div>
@@ -82,7 +80,6 @@ const news = variant === "news";
           >Get Snippets {(docs || pricing) && <Icon />}</a
         >
         <MobileMenu current={variant} />
-        <ThemeToggle />
       </nav>
     </div>
   </header>
@@ -346,7 +343,7 @@ const news = variant === "news";
       --nav-gap: 16px;
     }
     .site-header .nav-primary > a,
-    .site-header .nav-controls-inner > a,
+    .site-header .nav-controls,
     .docs-header .header-links > a {
       display: none;
     }

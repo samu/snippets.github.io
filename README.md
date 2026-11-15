@@ -2,8 +2,8 @@
 
 Static Astro site for [snippets.ch](https://snippets.ch): homepage,
 documentation, news, pricing and legal pages. The published build contains HTML,
-CSS, fonts and media, plus small inline scripts for theme preference and homepage
-scroll restoration. CSS controls all animation geometry, timing and triggers;
+CSS, fonts and media, plus one small inline script for homepage scroll
+restoration. CSS controls themes and all animation geometry, timing and triggers;
 JavaScript only suppresses the intro transitions during page restoration.
 
 ## Development
@@ -47,7 +47,6 @@ keep dev/preview in the foreground. Stop background servers with
 | `src/data/release.json`                         | App version and iPhone App Store URL for download links |
 | `src/styles/`                                   | Shared foundations, themes, prose and reveal effects   |
 | `src/lib/styles.js`                             | Stylesheet order for each layout                       |
-| `src/scripts/theme.js`                          | Restores and saves the browser's light/dark preference |
 | `src/scripts/intro-restoration.js`              | Suppresses intro transitions during homepage restoration |
 | `media/screenshots/`                            | PNG screenshot sources, discovered automatically       |
 | `public/assets/`                                | Published fonts, videos, note atlas and light textures |
@@ -89,22 +88,16 @@ global for that reason. The intro's `<style is:global>` block coordinates
 several components; it is intentionally shared and is included only on the
 homepage. Keep its order and scroll timeline longhands intact.
 
-## How the theme preference works
+## How themes work
 
-The site follows the system color scheme until the visitor uses the theme
-toggle. `src/scripts/theme.js` then saves the explicit `light` or `dark` choice
-in `localStorage` under `snippets-theme`, shared by every page on the same
-origin. `BaseLayout.astro` inlines this small script in the head, before styles
-load, so navigation and refresh restore the choice without a flash of the other
-theme. It also keeps the checkbox in sync after back/forward navigation and
-changes from another tab. System changes apply only when there is no saved
-override.
+Every page follows the operating system's light/dark preference through
+`prefers-color-scheme` in `src/styles/themes.css`. The media query sets
+`color-scheme` and the `--theme` state used by container queries. Color tokens
+use `light-dark()`, and screenshot variants respond to the same state.
 
-CSS still selects all colors and screenshots. With JavaScript disabled, the
-checkbox switches the current page's theme through CSS; with storage blocked,
-the toggle remains usable but cannot remember a choice across page loads. The
-build check permits only this exact script and the homepage restoration guard;
-all other browser scripts are rejected.
+OS changes apply automatically, including while a page is open. There is no
+theme switcher, stored override, or theme JavaScript; any previously saved
+preference is ignored. Printing uses the light theme.
 
 ## How the animations work
 
@@ -129,8 +122,8 @@ The four main navigation links remain visible at the top right during the intro
 (the Menu control does this on mobile). This is their default CSS layout, so
 they do not slide into place on initial load. At the same `85svh` threshold, a stepped
 CSS animation switches the header's container state. That triggers a `650ms`
-transition into the normal header width, opening space for the download button
-and theme toggle. The header surface and controls fade in while the links stay
+transition into the normal header width, opening space for the download button.
+The header surface and download button fade in while the links stay
 visible; the wordmark appears as the note reaches the header. Scroll position
 only triggers this transition; it finishes even if scrolling stops. Scrolling
 back above the threshold fades out the controls before smoothly moving the links
@@ -172,9 +165,9 @@ components are a source organization choice; they do not require client-side
 JavaScript. Shared stylesheet URLs and generated CSS chunks receive content
 hashes for cache invalidation.
 
-The output validator checks local links, assets, anchors, expected routes, theme
-controls and animation CSS, and rejects browser JavaScript except the two exact
-inline scripts described above (the restoration guard is homepage-only). The optional
+The output validator checks local links, assets, anchors, expected routes,
+OS-based themes and animation CSS, and rejects browser JavaScript except the
+exact homepage restoration guard described above. The optional
 `note:build` command only regenerates the sprite sheet when its source frames
 change; it is separate from normal website builds.
 
@@ -241,8 +234,8 @@ Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
 
 ## Build constraints
 
-- `pnpm build` checks routes, local links/assets/anchors, heading spacing, theme
-  controls, redirects and the browser-script allowlist. `pnpm check` runs
+- `pnpm build` checks routes, local links/assets/anchors, heading spacing,
+  OS-based themes, redirects and the browser-script allowlist. `pnpm check` runs
   this output validator; it is not a TypeScript check or an external link
   checker.
 - Keep `/pricing.json` and its existing fields available to external consumers.
@@ -250,8 +243,7 @@ Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
 - Preserve the stylesheet order in `src/lib/styles.js`. HTML compression and CSS
   minification are disabled to retain inline spacing and animation timeline
   longhands.
-- Themes follow the system preference. The native checkbox reverses it for the
-  current page; manual choices do not persist across navigation.
+- Themes follow the OS preference using CSS, including when JavaScript is disabled.
 - Motion is a CSS enhancement with static and reduced-motion fallbacks. The note
   atlas has 90 frames in a 10 × 9 grid. Changes to its frame count or layout
   must also update the keyframes and background sizing in
