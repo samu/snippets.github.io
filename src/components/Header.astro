@@ -16,11 +16,19 @@ const news = variant === "news";
         <span>Snippets</span>
       </a>
       <div class="nav-links">
-        <a href="#features">Features</a><a href="/pricing/">Pricing</a
-        ><a href="/docs/">Docs</a><a href="/news/">News</a>
-        <a class="button button-small" href="#download">Get Snippets</a>
-        <MobileMenu />
-        <ThemeToggle />
+        <div class="nav-primary">
+          <a href="#features">Features</a><a href="/pricing/">Pricing</a
+          ><a href="/docs/">Docs</a><a href="/news/">News</a>
+          <MobileMenu />
+        </div>
+        <div class="nav-controls">
+          <div class="nav-controls-slot">
+            <div class="nav-controls-inner">
+              <a class="button button-small" href="#download">Get Snippets</a>
+              <ThemeToggle />
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   </header>
@@ -82,21 +90,32 @@ const news = variant === "news";
 
 <style>
   .site-header {
+    --nav-gap: 30px;
+    --nav-gutter: 32px;
+    --header-background: rgb(255 255 255 / 0.94);
     height: 72px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 20;
-    background: oklch(1 0 80 / 0.9);
-    border-bottom: 1px solid oklch(0.925 0.002 80 / 0.6);
+    isolation: isolate;
+  }
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--header-background);
+    border-bottom: 1px solid var(--border);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
   }
   .nav-shell {
     height: 100%;
     max-width: 1160px;
-    width: calc(100% - 64px);
+    width: calc(100% - 2 * var(--nav-gutter));
     margin-inline: auto;
     display: flex;
     align-items: center;
@@ -120,36 +139,42 @@ const news = variant === "news";
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 30px;
+    flex-shrink: 0;
     font-size: 12px;
     font-weight: 400;
   }
-  .nav-links > a:not(.button):hover {
+  .nav-primary,
+  .nav-controls-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--nav-gap);
+    flex-shrink: 0;
+  }
+  .nav-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    flex-shrink: 0;
+    min-width: 0;
+  }
+  .nav-controls-slot {
+    min-width: 0;
+  }
+  .nav-controls-inner {
+    width: max-content;
+    padding-left: var(--nav-gap);
+  }
+  .nav-primary > a:hover {
     color: var(--accent);
   }
   @media (max-width: 700px) {
-    .nav-shell {
-      width: calc(100% - 44px);
+    .site-header {
+      --nav-gutter: 22px;
     }
     .nav-shell {
       gap: 10px;
     }
     :global(:where(.home-page)) .wordmark {
       font-size: 19px;
-    }
-    .nav-links {
-      gap: 16px;
-    }
-    .nav-links > a:first-child {
-      display: none;
-    }
-    .nav-links > a:nth-child(2) {
-      display: none;
-    }
-  }
-  @media (max-width: 380px) {
-    .nav-links > a:not(.button) {
-      display: none;
     }
   }
   .docs-header {
@@ -291,7 +316,6 @@ const news = variant === "news";
       gap: 12px;
     }
   }
-  .site-header,
   .docs-header {
     background: rgb(255 255 255 / 0.94);
     border-bottom-color: var(--border);
@@ -318,11 +342,14 @@ const news = variant === "news";
     text-underline-offset: 7px;
   }
   @media (max-width: 760px) {
-    .site-header .nav-links > a,
+    .site-header {
+      --nav-gap: 16px;
+    }
+    .site-header .nav-primary > a,
+    .site-header .nav-controls-inner > a,
     .docs-header .header-links > a {
       display: none;
     }
-    .nav-links,
     .header-links {
       gap: 16px;
     }
@@ -331,7 +358,10 @@ const news = variant === "news";
     max-width: 1240px;
   }
   @container theme style(--theme: dark) {
-    :global(:root) :is(.site-header, .docs-header) {
+    :global(:root) .site-header {
+      --header-background: rgb(28 28 31 / 0.92);
+    }
+    :global(:root) .docs-header {
       background: rgb(28 28 31 / 0.92);
       border-bottom-color: var(--border);
     }

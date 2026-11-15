@@ -136,10 +136,55 @@
       html:root {
         scroll-padding-top: 100px;
       }
+      /* Scroll only flips the state; transitions finish even when scrolling stops. */
       .site-header {
-        animation: header-arrive linear both;
+        --header-enter: calc(var(--dock-end) - 20svh);
+        container-name: intro-navigation;
+        animation: header-state auto step-end both;
         animation-timeline: scroll(root block);
-        animation-range: calc(var(--dock-end) - 10svh) var(--dock-end);
+        animation-range: var(--header-enter) calc(var(--header-enter) + 1px);
+      }
+      .site-header::before {
+        opacity: 1;
+        transition: opacity 420ms ease;
+      }
+      .site-header .nav-shell {
+        transition: max-width 650ms cubic-bezier(0.22, 0.75, 0.25, 1);
+      }
+      .site-header .nav-controls {
+        transition: grid-template-columns 650ms
+          cubic-bezier(0.22, 0.75, 0.25, 1);
+      }
+      .site-header .wordmark,
+      .site-header .nav-controls-inner {
+        /* Fade in after most of the space is open, without covering the links. */
+        opacity: 1;
+        visibility: visible;
+        transition:
+          opacity 270ms ease 380ms,
+          visibility 0s linear 380ms;
+      }
+      @container intro-navigation style(--header-state: intro) {
+        .site-header::before {
+          opacity: 0;
+        }
+        .site-header .nav-shell {
+          max-width: calc(100% - 2 * var(--nav-gutter));
+          transition-delay: 150ms;
+        }
+        .site-header .nav-controls {
+          grid-template-columns: minmax(0, 0fr);
+          transition-delay: 150ms;
+        }
+        .site-header .wordmark,
+        .site-header .nav-controls-inner {
+          opacity: 0;
+          visibility: hidden;
+          /* Hide the controls before closing their space on the return trip. */
+          transition:
+            opacity 150ms ease,
+            visibility 0s linear 150ms;
+        }
       }
       .site-header .wordmark img {
         visibility: hidden;
@@ -196,14 +241,12 @@
       visibility: hidden;
     }
   }
-  @keyframes header-arrive {
+  @keyframes header-state {
     from {
-      opacity: 0;
-      visibility: hidden;
+      --header-state: intro;
     }
     to {
-      opacity: 1;
-      visibility: visible;
+      --header-state: full;
     }
   }
   @keyframes page-arrive {

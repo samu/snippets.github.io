@@ -117,6 +117,15 @@ scroll distance of 85% of the small viewport height (`85svh`); docking finishes
 at 145% (`145svh`). The rest of the page begins appearing when docking begins.
 These are scroll distances, not elapsed time.
 
+The four main navigation links remain visible at the top right during the
+intro (the Menu control does this on mobile). At `125svh`, a stepped CSS
+animation switches the header's container state. That triggers a `650ms`
+transition into the normal header width, opening space for the download button
+and theme toggle. The header surface, wordmark and controls fade in while the
+links stay visible. Scroll position only triggers this transition; it finishes
+even if scrolling stops. Scrolling back above the threshold fades out the
+controls before smoothly moving the links back to the right.
+
 `reveal.css` gives content its shared fade-and-rise entrance. View timelines
 measure an element entering the viewport. Where supported, timeline triggers let
 the entrance finish smoothly after scrolling stops. Headings use a named
