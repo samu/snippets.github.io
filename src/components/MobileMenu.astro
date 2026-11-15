@@ -23,11 +23,19 @@ const links = [
   </summary>
   <div class="mobile-menu-links">
     {links.map(([label, href, key]) => <a
+      data-analytics-event="cta_click"
+      data-analytics-action={key}
+      data-analytics-placement="header_mobile"
       href={href}
       aria-current={current === key ? "page" : undefined}
       >{label}</a
     >)}
-    <a class="mobile-menu-download" href="/#download"
+    <a
+      class="mobile-menu-download"
+      data-analytics-event="cta_click"
+      data-analytics-action="show_downloads"
+      data-analytics-placement="header_mobile"
+      href="/#download"
       >Get Snippets <span aria-hidden="true">↗</span></a
     >
   </div>

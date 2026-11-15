@@ -3,6 +3,7 @@ import path from "node:path";
 import assert from "node:assert/strict";
 import { parse } from "parse5";
 import { output, content, repo } from "./paths.mjs";
+import { analyticsConfig } from "../src/lib/analytics-config.js";
 
 function files(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -42,6 +43,9 @@ const failures = [];
 const introRestorationScript = fs
   .readFileSync(path.join(repo, "src/scripts/intro-restoration.js"), "utf8")
   .trim();
+const analyticsScript = fs
+  .readFileSync(path.join(repo, "src/scripts/analytics.js"), "utf8")
+  .trim();
 let links = 0;
 function visibleText(node) {
   if (node.nodeName === "#text") return node.value;
@@ -77,6 +81,16 @@ for (const [file, { nodes }] of documents) {
         file === path.join(output, "index.html") &&
         node.attrs[0].name === "data-intro-restoration" &&
         visibleText(node).trim() === introRestorationScript
+      ) &&
+      !(
+        node.attrs.length === 2 &&
+        node.attrs.some((a) => a.name === "data-analytics") &&
+        node.attrs.some(
+          (a) =>
+            a.name === "data-config" &&
+            a.value === JSON.stringify(analyticsConfig),
+        ) &&
+        visibleText(node).trim() === analyticsScript
       )
     )
       failures.push("Unexpected browser JavaScript in " + file);
@@ -104,6 +118,31 @@ for (const [file, { nodes }] of documents) {
       if (["href", "src", "poster"].includes(name)) checkURL(value, file);
     }
   }
+  const noindex = nodes.some(
+    (node) =>
+      node.tagName === "meta" &&
+      node.attrs.some((a) => a.name === "name" && a.value === "robots") &&
+      node.attrs.some(
+        (a) => a.name === "content" && a.value.includes("noindex"),
+      ),
+  );
+  const isRedirect = nodes.some(
+    (node) =>
+      node.tagName === "meta" &&
+      node.attrs.some(
+        (a) => a.name === "http-equiv" && a.value.toLowerCase() === "refresh",
+      ),
+  );
+  const analytics = nodes.filter(
+    (node) =>
+      node.tagName === "script" &&
+      node.attrs.some((a) => a.name === "data-analytics"),
+  );
+  assert.equal(
+    analytics.length,
+    noindex || isRedirect ? 0 : 1,
+    "Analytics inclusion: " + file,
+  );
 }
 for (const file of built.filter((f) => f.endsWith(".css"))) {
   const css = fs.readFileSync(file, "utf8");
@@ -267,5 +306,5 @@ assert(
 );
 assert.equal(failures.length, 0, failures.join("\n"));
 console.log(
-  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, themes follow the OS, and only the exact homepage restoration script is allowed.`,
+  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, themes follow the OS, and only the exact restoration and analytics scripts are allowed.`,
 );

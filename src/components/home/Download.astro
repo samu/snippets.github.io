@@ -12,6 +12,7 @@ if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
   <div class="download-heading">
     <h2
       id="download-heading"
+      data-analytics-section="download"
       class="phrase-reveal"
       aria-label="Make yourself at home."
     >
@@ -30,9 +31,21 @@ if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
       </svg>
       <h3>macOS</h3>
       <a
+        data-analytics-event="cta_click"
+        data-analytics-action="download"
+        data-analytics-platform="macos"
+        data-analytics-distribution="installer"
+        data-analytics-placement="download"
+        data-analytics-architecture="arm64"
         href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}-arm64.dmg`}
         >Apple silicon <span aria-hidden="true">↓</span></a
       ><a
+        data-analytics-event="cta_click"
+        data-analytics-action="download"
+        data-analytics-platform="macos"
+        data-analytics-distribution="installer"
+        data-analytics-placement="download"
+        data-analytics-architecture="x64"
         href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}-x64.dmg`}
         >Intel <span aria-hidden="true">↓</span></a
       >
@@ -43,6 +56,11 @@ if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
       </svg>
       <h3>Windows</h3>
       <a
+        data-analytics-event="cta_click"
+        data-analytics-action="download"
+        data-analytics-platform="windows"
+        data-analytics-distribution="installer"
+        data-analytics-placement="download"
         href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}.Setup.exe`}
         >Download for Windows <span aria-hidden="true">↓</span></a
       >
@@ -59,9 +77,20 @@ if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
         <use href="#phone-icon" />
       </svg>
       <h3>Mobile</h3>
-      <a href={release.iosAppStoreUrl}
+      <a
+        data-analytics-event="cta_click"
+        data-analytics-action="download"
+        data-analytics-platform="ios"
+        data-analytics-distribution="app_store"
+        data-analytics-placement="download"
+        href={release.iosAppStoreUrl}
         >iPhone · App Store <span aria-hidden="true">↗</span></a
       ><a
+        data-analytics-event="cta_click"
+        data-analytics-action="download"
+        data-analytics-platform="android"
+        data-analytics-distribution="apk"
+        data-analytics-placement="download"
         href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}.apk`}
         >Android · APK (beta) <span aria-hidden="true">↓</span></a
       >

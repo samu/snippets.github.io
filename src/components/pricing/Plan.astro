@@ -32,6 +32,9 @@ const isPro = plan.name === "Pro";
   <div class="plan-action">
     <a
       class:list={["pricing-button", { "pricing-button-primary": isPro }]}
+      data-analytics-event="cta_click"
+      data-analytics-action={isPro ? "pro_features" : "show_downloads"}
+      data-analytics-placement={isPro ? "pricing_pro" : "pricing_free"}
       href={isPro ? "#compare" : "/#download"}
       >{isPro ? "Explore Pro features" : "Get started for free"} <Icon
     /></a>

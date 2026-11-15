@@ -1,5 +1,7 @@
 ---
 import introRestorationScript from "../scripts/intro-restoration.js?raw";
+import analyticsScript from "../scripts/analytics.js?raw";
+import { analyticsConfig } from "../lib/analytics-config.js";
 
 const {
   title,
@@ -41,5 +43,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <link rel="stylesheet" href={href} />
     ))}
   </head>
-  <body class={bodyClass} id={bodyId}><slot /></body>
+  <body class={bodyClass} id={bodyId}>
+    <slot />
+    {!noindex && (
+      <script
+        is:inline
+        data-analytics
+        data-config={JSON.stringify(analyticsConfig)}
+        set:html={analyticsScript}
+      ></script>
+    )}
+  </body>
 </html>

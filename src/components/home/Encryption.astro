@@ -12,6 +12,7 @@
       </div>
       <h2
         id="encryption-heading"
+        data-analytics-section="encryption"
         class="phrase-reveal"
         aria-label="End-to-end encryption."
       >
@@ -35,12 +36,22 @@
         on your device, so your provider cannot read them.
       </p>
       <div class="encryption-actions">
-        <a class="button" href="/pricing/"
+        <a
+          class="button"
+          data-analytics-event="cta_click"
+          data-analytics-action="pricing"
+          data-analytics-placement="encryption"
+          href="/pricing/"
           >Explore Snippets Pro
           <svg class="icon" aria-hidden="true">
             <use href="#arrow-right" />
           </svg></a
-        ><a class="text-link" href="/docs/sync/#end-to-end-encryption"
+        ><a
+          class="text-link"
+          data-analytics-event="cta_click"
+          data-analytics-action="encryption_docs"
+          data-analytics-placement="encryption"
+          href="/docs/sync/#end-to-end-encryption"
           >How it works
           <svg class="icon" aria-hidden="true">
             <use href="#arrow-right" />

@@ -14,6 +14,7 @@ import release from "../../data/release.json";
       <p class="eyebrow">On iPhone and Android</p>
       <h2
         id="mobile-heading"
+        data-analytics-section="mobile"
         class="phrase-reveal"
         aria-label="Good ideas don’t stay at a desk."
       >
@@ -41,11 +42,23 @@ import release from "../../data/release.json";
         pick up where you left off.
       </p>
       <div class="mobile-actions">
-        <a class="button" href={release.iosAppStoreUrl}
+        <a
+          class="button"
+          data-analytics-event="cta_click"
+          data-analytics-action="download"
+          data-analytics-platform="ios"
+          data-analytics-distribution="app_store"
+          data-analytics-placement="mobile"
+          href={release.iosAppStoreUrl}
           ><svg class="icon" aria-hidden="true"><use href="#apple-icon" /></svg
           >iPhone · App Store <span aria-hidden="true">↗</span></a
         ><a
           class="button button-secondary"
+          data-analytics-event="cta_click"
+          data-analytics-action="download"
+          data-analytics-platform="android"
+          data-analytics-distribution="apk"
+          data-analytics-placement="mobile"
           href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}.apk`}
           >Android APK · Beta
           <svg class="icon" aria-hidden="true">

@@ -2,9 +2,9 @@
 
 Static Astro site for [snippets.ch](https://snippets.ch): homepage,
 documentation, news, pricing and legal pages. The published build contains HTML,
-CSS, fonts and media, plus one small inline script for homepage scroll
-restoration. CSS controls themes and all animation geometry, timing and triggers;
-JavaScript only suppresses the intro transitions during page restoration.
+CSS, fonts and media, plus small inline scripts for homepage scroll restoration
+and first-party analytics. CSS controls themes and all animation geometry,
+timing and triggers. Analytics never controls navigation or animation.
 
 ## Development
 
@@ -21,6 +21,7 @@ it is occupied.
 ```sh
 pnpm build        # build dist/ and validate the output
 pnpm check        # validate an existing dist/ without rebuilding
+pnpm test         # isolated analytics behavior tests
 pnpm preview      # serve dist/ on port 64530
 pnpm format       # format source, configuration and documentation
 pnpm format:check # check formatting without writing
@@ -38,22 +39,22 @@ keep dev/preview in the foreground. Stop background servers with
 
 ## Where to edit
 
-| Location                                        | Purpose                                                |
-| ----------------------------------------------- | ------------------------------------------------------ |
-| `src/pages/`, `src/layouts/`, `src/components/` | Routes, layouts, sections and their scoped styles      |
-| `src/content/docs/`                             | MDX guides with title, description and draft metadata  |
-| `src/content/news/`                             | Blog posts, announcements and release notes in MDX     |
-| `src/data/doc-navigation.json`                  | Guide grouping and order; include every MDX guide      |
-| `src/data/release.json`                         | App version and iPhone App Store URL for download links |
-| `src/styles/`                                   | Shared foundations, themes, prose and reveal effects   |
-| `src/lib/styles.js`                             | Stylesheet order for each layout                       |
+| Location                                        | Purpose                                                  |
+| ----------------------------------------------- | -------------------------------------------------------- |
+| `src/pages/`, `src/layouts/`, `src/components/` | Routes, layouts, sections and their scoped styles        |
+| `src/content/docs/`                             | MDX guides with title, description and draft metadata    |
+| `src/content/news/`                             | Blog posts, announcements and release notes in MDX       |
+| `src/data/doc-navigation.json`                  | Guide grouping and order; include every MDX guide        |
+| `src/data/release.json`                         | App version and iPhone App Store URL for download links  |
+| `src/styles/`                                   | Shared foundations, themes, prose and reveal effects     |
+| `src/lib/styles.js`                             | Stylesheet order for each layout                         |
 | `src/scripts/intro-restoration.js`              | Suppresses intro transitions during homepage restoration |
-| `media/screenshots/`                            | PNG screenshot sources, discovered automatically       |
-| `public/assets/`                                | Published fonts, videos, note atlas and light textures |
-| `public/pricing.json`                           | Pricing data shared by the page and external consumers |
-| `public/news.json`                              | Public news feed with titles, summaries and timestamps |
-| `astro.config.mjs`                              | Domain, port, Markdown, redirects and sitemap          |
-| `scripts/`                                      | Output checks and optional media generation            |
+| `media/screenshots/`                            | PNG screenshot sources, discovered automatically         |
+| `public/assets/`                                | Published fonts, videos, note atlas and light textures   |
+| `public/pricing.json`                           | Pricing data shared by the page and external consumers   |
+| `public/news.json`                              | Public news feed with titles, summaries and timestamps   |
+| `astro.config.mjs`                              | Domain, port, Markdown, redirects and sitemap            |
+| `scripts/`                                      | Output checks and optional media generation              |
 
 ## CSS organization
 
@@ -109,8 +110,8 @@ animation switches the `note-docking` container state. This triggers a `1200ms`
 transition that shrinks and moves the opened note into the header, finishing
 even if scrolling stops. Crossing back above that threshold smoothly returns the
 note to its original position. The centered note is the default CSS layout, so
-the first scroll-timeline sample does not trigger a fly-in on page load.
-No scroll listener is involved.
+the first scroll-timeline sample does not trigger a fly-in on page load. No
+scroll listener is involved.
 
 `Intro.astro` defines the shared scroll distances and coordinates the intro
 copy, header and hero entrance. Unfolding ends and docking is triggered after a
@@ -120,10 +121,10 @@ with scrolling between `85svh` and `145svh` (`--intro-end`).
 
 The four main navigation links remain visible at the top right during the intro
 (the Menu control does this on mobile). This is their default CSS layout, so
-they do not slide into place on initial load. At the same `85svh` threshold, a stepped
-CSS animation switches the header's container state. That triggers a `650ms`
-transition into the normal header width, opening space for the download button.
-The header surface and download button fade in while the links stay
+they do not slide into place on initial load. At the same `85svh` threshold, a
+stepped CSS animation switches the header's container state. That triggers a
+`650ms` transition into the normal header width, opening space for the download
+button. The header surface and download button fade in while the links stay
 visible; the wordmark appears as the note reaches the header. Scroll position
 only triggers this transition; it finishes even if scrolling stops. Scrolling
 back above the threshold fades out the controls before smoothly moving the links
@@ -136,8 +137,8 @@ on the moving note and header elements. On `pageshow`, it waits two animation
 frames for restoration and scroll timelines to settle, then restores their CSS
 transitions. It also suppresses transitions on `pagehide` for page-cache returns
 and prevents smooth anchor scrolling during initialization. It does not listen
-to scroll events, change scroll positions, or calculate animation progress.
-With JavaScript disabled, the CSS interactions still work, but the entrance may
+to scroll events, change scroll positions, or calculate animation progress. With
+JavaScript disabled, the CSS interactions still work, but the entrance may
 replay when restoring a scrolled page.
 
 `reveal.css` gives content its shared fade-and-rise entrance. View timelines
@@ -154,7 +155,8 @@ background layers, patterns, textures or background asset-generation steps.
 
 Motion is enabled only inside capability and reduced-motion checks. Without
 those features, content stays readable and the static header logo is used. There
-are no browser scroll listeners or animation libraries.
+are no JavaScript animation libraries or scroll handlers controlling motion.
+Analytics observes scroll activity only to refresh its optional visit expiry.
 
 ## How the build works
 
@@ -167,9 +169,22 @@ hashes for cache invalidation.
 
 The output validator checks local links, assets, anchors, expected routes,
 OS-based themes and animation CSS, and rejects browser JavaScript except the
-exact homepage restoration guard described above. The optional
+exact homepage restoration guard and analytics script/config. The optional
 `note:build` command only regenerates the sprite sheet when its source frames
 change; it is separate from normal website builds.
+
+## Analytics
+
+[Analytics documentation](docs/analytics.md) explains the events, privacy
+boundaries, short-lived visit ID, backend rollout and testing. Configure
+collection and the visit-ID feature independently in
+`src/lib/analytics-config.js`. `.env.development` supplies the local endpoint
+and hostnames through `src/lib/analytics-config.js`. Development on `127.0.0.1`
+or `localhost` sends events to the local Supabase endpoint at
+`http://127.0.0.1:54321/functions/v1/analytics`. Production builds use the
+production configuration; local build previews and LAN hosts send no events. The
+backend contract and app migration notes live in
+`snippets-supabase/docs/analytics.md`.
 
 ## Writing news
 
@@ -199,23 +214,25 @@ Markdown headings, lists, links and images work as usual.
 - `version` is optional for release notes. Quote it, for example `"0.22.0"`.
 - `sample: true` adds a visible sample label and a noindex tag. Remove it when
   replacing the examples with real content.
-- `draft: true` keeps a post visible for review, with a Draft label, a placeholder
-  notice, and a noindex tag. The v0.24.0 changelog uses this while its entries are
-  fictional. Replace them with verified changes before removing the flag.
+- `draft: true` keeps a post visible for review, with a Draft label, a
+  placeholder notice, and a noindex tag. The v0.24.0 changelog uses this while
+  its entries are fictional. Replace them with verified changes before removing
+  the flag.
 - An optional `cover` supplies the featured image: `light`, optional `dark`, and
   `alt`. Image paths are relative to `media/screenshots/`, for example
   `landing-page/friday/light.png`. Dimensions come from the PNGs. The App Store
-  announcement shows the format. Without a cover, the feature uses the entry type’s
-  icon.
+  announcement shows the format. Without a cover, the feature uses the entry
+  type’s icon.
 - The same `<Figure>` and `<Callout>` components used in the docs are available
   in posts. Put screenshots in `media/screenshots/` and reference them as
   described below. Videos and other files served unchanged belong in
   `public/assets/`.
-- `<LogoComparison />` and `<ScreenshotComparison before="…" after="…"
-  subject="…" caption="…" />` display the redesign comparisons. Screenshot
-  paths are folders under `media/screenshots/`, each containing `light.png`
-  and `dark.png`. The layout stacks on mobile; image links open full-size copies.
-  The historical asset sources are recorded in `media/news/redesign/SOURCES.md`.
+- `<LogoComparison />` and
+  `<ScreenshotComparison before="…" after="…" subject="…" caption="…" />`
+  display the redesign comparisons. Screenshot paths are folders under
+  `media/screenshots/`, each containing `light.png` and `dark.png`. The layout
+  stacks on mobile; image links open full-size copies. The historical asset
+  sources are recorded in `media/news/redesign/SOURCES.md`.
 
 The iPhone App Store URL is stored as `iosAppStoreUrl` in
 `src/data/release.json`. Both homepage download links and `<AppStoreButton />`
@@ -243,7 +260,8 @@ Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
 - Preserve the stylesheet order in `src/lib/styles.js`. HTML compression and CSS
   minification are disabled to retain inline spacing and animation timeline
   longhands.
-- Themes follow the OS preference using CSS, including when JavaScript is disabled.
+- Themes follow the OS preference using CSS, including when JavaScript is
+  disabled.
 - Motion is a CSS enhancement with static and reduced-motion fallbacks. The note
   atlas has 90 frames in a 10 × 9 grid. Changes to its frame count or layout
   must also update the keyframes and background sizing in

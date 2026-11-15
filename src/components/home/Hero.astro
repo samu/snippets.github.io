@@ -9,6 +9,7 @@ import Screenshot from "../Screenshot.astro";
 >
   <h1
     id="hero-heading"
+    data-analytics-section="hero"
     class="phrase-reveal"
     aria-label="A home for everything on your mind."
   >
@@ -25,8 +26,20 @@ import Screenshot from "../Screenshot.astro";
   <div class="hero-details">
     <p class="hero-description">Write, plan, learn. Bring it all together.</p>
     <div class="hero-actions">
-      <a class="button" href="#download">Get Snippets for free</a>
-      <a class="text-link" href="#features"
+      <a
+        class="button"
+        data-analytics-event="cta_click"
+        data-analytics-action="show_downloads"
+        data-analytics-placement="hero"
+        href="#download"
+        >Get Snippets for free</a
+      >
+      <a
+        class="text-link"
+        data-analytics-event="cta_click"
+        data-analytics-action="features"
+        data-analytics-placement="hero"
+        href="#features"
         >Explore features
         <svg class="icon" aria-hidden="true">
           <use href="#arrow-right" />

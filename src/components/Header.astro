@@ -16,14 +16,44 @@ const news = variant === "news";
       </a>
       <div class="nav-links">
         <div class="nav-primary">
-          <a href="#features">Features</a><a href="/pricing/">Pricing</a
-          ><a href="/docs/">Docs</a><a href="/news/">News</a>
+          <a
+            data-analytics-event="cta_click"
+            data-analytics-action="features"
+            data-analytics-placement="header"
+            href="#features"
+            >Features</a
+          ><a
+            data-analytics-event="cta_click"
+            data-analytics-action="pricing"
+            data-analytics-placement="header"
+            href="/pricing/"
+            >Pricing</a
+          ><a
+            data-analytics-event="cta_click"
+            data-analytics-action="docs"
+            data-analytics-placement="header"
+            href="/docs/"
+            >Docs</a
+          ><a
+            data-analytics-event="cta_click"
+            data-analytics-action="news"
+            data-analytics-placement="header"
+            href="/news/"
+            >News</a
+          >
           <MobileMenu />
         </div>
         <div class="nav-controls">
           <div class="nav-controls-slot">
             <div class="nav-controls-inner">
-              <a class="button button-small" href="#download">Get Snippets</a>
+              <a
+                class="button button-small"
+                data-analytics-event="cta_click"
+                data-analytics-action="show_downloads"
+                data-analytics-placement="header"
+                href="#download"
+                >Get Snippets</a
+              >
             </div>
           </div>
         </div>
@@ -43,7 +73,12 @@ const news = variant === "news";
               alt=""
             /><span>Snippets</span></a
           >
-          <span class="brand-divider"></span><a class="docs-label" href="/docs/"
+          <span class="brand-divider"></span><a
+            class="docs-label"
+            data-analytics-event="cta_click"
+            data-analytics-action="docs"
+            data-analytics-placement="header"
+            href="/docs/"
             >Docs</a
           >
         </div>
@@ -58,25 +93,46 @@ const news = variant === "news";
         >
       )}
       <nav class="header-links" aria-label="Main navigation">
-        <a class="website-link" href="/#features">Features</a>
+        <a
+          class="website-link"
+          data-analytics-event="cta_click"
+          data-analytics-action="features"
+          data-analytics-placement="header"
+          href="/#features"
+          >Features</a
+        >
         <a
           class:list={["website-link", { "current-page": pricing }]}
+          data-analytics-event="cta_click"
+          data-analytics-action="pricing"
+          data-analytics-placement="header"
           href="/pricing/"
           aria-current={pricing ? "page" : undefined}
           >Pricing</a
         >
         {!docs && <a
           class={pricing ? "pricing-docs-link" : "website-link"}
+          data-analytics-event="cta_click"
+          data-analytics-action="docs"
+          data-analytics-placement="header"
           href="/docs/"
           >Docs</a
         >}
         <a
           class:list={["website-link", { "current-page": news }]}
+          data-analytics-event="cta_click"
+          data-analytics-action="news"
+          data-analytics-placement="header"
           href="/news/"
           aria-current={news ? "page" : undefined}
           >News</a
         >
-        <a class="get-app" href="/#download"
+        <a
+          class="get-app"
+          data-analytics-event="cta_click"
+          data-analytics-action="show_downloads"
+          data-analytics-placement="header"
+          href="/#download"
           >Get Snippets {(docs || pricing) && <Icon />}</a
         >
         <MobileMenu current={variant} />

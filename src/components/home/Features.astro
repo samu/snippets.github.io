@@ -12,6 +12,7 @@ import Screenshot from "../Screenshot.astro";
   <header class="section-heading centered">
     <h2
       id="overview-heading"
+      data-analytics-section="features"
       class="phrase-reveal"
       aria-label="One place for everything."
     >
@@ -210,7 +211,12 @@ import Screenshot from "../Screenshot.astro";
         >Use Snippets for free, or add Pro with a one-time purchase.</span
       >
     </div>
-    <a class="text-link" href="/pricing/"
+    <a
+      class="text-link"
+      data-analytics-event="cta_click"
+      data-analytics-action="pricing"
+      data-analytics-placement="features"
+      href="/pricing/"
       >Find your fit
       <svg class="icon" aria-hidden="true"><use href="#arrow-right" /></svg></a
     >

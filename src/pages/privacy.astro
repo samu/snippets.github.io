@@ -118,21 +118,30 @@ import LegalLayout from "../layouts/LegalLayout.astro";
             <h2>Website Analytics, Cookies, and Trackers</h2>
             <p>
               The Snippets website uses limited first-party analytics to
-              understand basic website usage and interest in downloads. In
-              particular, the landing page may send events when it is visited,
-              when a visitor scrolls substantially through it, when a download
-              button is clicked, and when a browser referrer is available.
+              understand page visits, briefly visible homepage sections, and
+              clicks on navigation, action and download links. Events include
+              the page path, the referring website’s hostname when available,
+              and selected campaign labels. Full referrer URLs and page query
+              strings are not collected.
             </p>
             <p>
-              These analytics events are sent directly to a Snippets-owned
-              backend endpoint. They are not used for advertising or cross-site
-              behavioral profiling, and the website does not use cookies for
-              analytics or marketing.
+              When enabled, a random visit identifier in session storage links
+              activity across pages in the same tab. It is replaced after 30
+              minutes without activity and is not linked to an account or a
+              persistent device identifier. The website does not use cookies for
+              analytics or marketing, advertising trackers, or cross-site
+              behavioral profiling.
             </p>
             <p>
-              Like any standard web request, analytics requests may include
-              technical information such as the client&apos;s IP address and
-              request metadata processed by the receiving infrastructure.
+              Events are sent directly to a Snippets-owned backend, which stores
+              the request’s IP address alongside the event. We use IPinfo to
+              obtain approximate location and network information, sending the
+              IP address to that service and retaining its response. Cached
+              results are reused. This collection is separate from the optional
+              visit identifier and continues when that identifier is disabled.
+              Expiry of the identifier does not delete stored analytics events,
+              IP addresses or location information. Receiving infrastructure may
+              also process technical request information.
             </p>
           </section>
 

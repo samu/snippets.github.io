@@ -4,5 +4,7 @@
 .DS_Store
 .env*
 !.env.example
+# Shared local defaults only; keep secrets in ignored .env.*.local files.
+!.env.development
 *-debug.log*
 /.astro/

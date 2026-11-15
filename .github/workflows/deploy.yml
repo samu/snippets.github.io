@@ -27,6 +27,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Check formatting
         run: pnpm format:check
+      - name: Test analytics behavior
+        run: pnpm test
       - name: Build and validate all pages
         run: pnpm build
       # Retain the existing gh-pages publishing source and deployment credential.
