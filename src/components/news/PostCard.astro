@@ -20,9 +20,6 @@ const { post, featured = false } = Astro.props;
   </div>
   {featured && post.cover ? (
     <div class="update-cover">
-      <div class="cover-label" aria-hidden="true">
-        <Icon name={post.icon} /> {post.label}
-      </div>
       <div class="cover-window">
         <Screenshot
           class={post.cover.dark ? "theme-light" : undefined}
@@ -152,20 +149,7 @@ const { post, featured = false } = Astro.props;
     min-width: 0;
     overflow: hidden;
     background: color-mix(in srgb, var(--post-color) 10%, var(--paper));
-    padding: 30px 0 0 34px;
-  }
-  .cover-label {
-    display: flex;
-    gap: 9px;
-    align-items: center;
-    font-size: 11px;
-    color: var(--post-color);
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
-  .cover-label :global(svg) {
-    width: 16px;
-    height: 16px;
+    padding: 66px 0 0 34px;
   }
   .cover-window {
     margin-right: -28px;
@@ -238,7 +222,7 @@ const { post, featured = false } = Astro.props;
     }
     .update-cover {
       height: 270px;
-      padding: 24px 0 0 26px;
+      padding: 60px 0 0 26px;
     }
     .cover-window {
       max-width: 540px;

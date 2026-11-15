@@ -6,15 +6,14 @@ const [latest, ...earlier] = news;
 ---
 
 <NewsLayout
-  description="Stories, announcements, and release notes from Snippets. Ideas for your workspace, and a closer look at what’s new."
+  description="Announcements, release notes, and stories from the team."
 >
   <div class="news-shell">
     <header class="news-intro">
       <p class="news-eyebrow">THE LATEST FROM SNIPPETS</p>
-      <h1>A few words.<br /><span>Something new.</span></h1>
+      <h1>News</h1>
       <p class="news-description">
-        Ideas to make space for. News to share.<br />And the little improvements
-        along the way.
+        Announcements, release notes, and stories from the team.
       </p>
     </header>
     {latest && <section aria-label="Latest news">
@@ -53,9 +52,6 @@ const [latest, ...earlier] = news;
     line-height: 1.08;
     font-weight: 700;
     letter-spacing: -0.045em;
-  }
-  .news-intro h1 span {
-    color: var(--heading-accent);
   }
   .news-description {
     font-size: 17px;
