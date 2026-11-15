@@ -58,12 +58,12 @@ if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
       <svg class="icon platform-icon" aria-hidden="true">
         <use href="#phone-icon" />
       </svg>
-      <h3>Mobile <span class="badge">Beta</span></h3>
-      <a href="https://testflight.apple.com/join/3wpgBj2Z"
-        >iOS · TestFlight <span aria-hidden="true">↗</span></a
+      <h3>Mobile</h3>
+      <a href={release.iosAppStoreUrl}
+        >iPhone · App Store <span aria-hidden="true">↗</span></a
       ><a
         href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}.apk`}
-        >Android · APK <span aria-hidden="true">↓</span></a
+        >Android · APK (beta) <span aria-hidden="true">↓</span></a
       >
     </div>
   </div>
@@ -109,9 +109,6 @@ if (!/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(release.version))
     font-size: 17px;
     letter-spacing: -0.015em;
     margin-bottom: 11px;
-  }
-  .download-platform h3 .badge {
-    margin-left: 4px;
   }
   .download-platform a {
     display: flex;

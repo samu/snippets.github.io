@@ -408,23 +408,54 @@ figcaption {
 .home-page .phrase-reveal > .color-phrase {
   color: var(--section-accent);
 }
-/* Five distinct accent hues; section markup spaces repeats across the page.
-   Neutral labels keep the color focused on the highlighted heading phrase. */
-.home-page [data-tone="blue"] {
-  /* The hero and primary action share the note's blue visual anchor. */
-  --section-accent: var(--accent);
+/* Porcelain palette marks from media/reference/porcelain-theme.txt give the
+   large heading phrases more color than the small-text foreground roles.
+   Each section chooses its light hue independently of the established dark hue.
+   Reset both values so nested sections never inherit their parent's accent. */
+.home-page [data-tone] {
+  --section-accent-light: var(--accent);
+  --section-accent-dark: var(--accent);
+  --section-accent: light-dark(
+    var(--section-accent-light),
+    var(--section-accent-dark)
+  );
 }
 .home-page [data-tone="teal"] {
-  --section-accent: light-dark(#236f77, #97cad0);
+  --section-accent-dark: #97cad0;
 }
 .home-page [data-tone="coral"] {
-  --section-accent: light-dark(#bf4350, #f18c83);
+  --section-accent-dark: #f18c83;
 }
 .home-page [data-tone="leaf"] {
-  --section-accent: light-dark(#2d7e49, #8bd39b);
+  --section-accent-dark: #8bd39b;
 }
 .home-page [data-tone="orchid"] {
-  --section-accent: light-dark(#a13da8, #d993e0);
+  --section-accent-dark: #d993e0;
+}
+/* Warm and cool accents alternate through the page; blue stays with the hero. */
+.home-page [data-light-tone="red"] {
+  --section-accent-light: oklch(0.625 0.155 31);
+}
+.home-page [data-light-tone="yellow"] {
+  --section-accent-light: #ffb300;
+}
+.home-page [data-light-tone="pink"] {
+  --section-accent-light: oklch(0.63 0.155 355);
+}
+.home-page [data-light-tone="grape"] {
+  --section-accent-light: oklch(0.62 0.16 323);
+}
+.home-page [data-light-tone="violet"] {
+  --section-accent-light: oklch(0.6 0.16 305);
+}
+.home-page [data-light-tone="indigo"] {
+  --section-accent-light: oklch(0.6 0.145 278);
+}
+.home-page [data-light-tone="blue"] {
+  --section-accent-light: oklch(0.61 0.13 243);
+}
+.home-page [data-light-tone="cyan"] {
+  --section-accent-light: oklch(0.61 0.105 214);
 }
 @media (max-width: 700px) {
   .home-page .image-stage,

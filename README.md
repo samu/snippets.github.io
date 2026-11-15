@@ -2,8 +2,9 @@
 
 Static Astro site for [snippets.ch](https://snippets.ch): homepage,
 documentation, news, pricing and legal pages. The published build contains HTML,
-CSS, fonts and media, plus one small inline script that remembers the selected
-color theme. All animations remain CSS-only.
+CSS, fonts and media, plus small inline scripts for theme preference and homepage
+scroll restoration. CSS controls all animation geometry, timing and triggers;
+JavaScript only suppresses the intro transitions during page restoration.
 
 ## Development
 
@@ -43,10 +44,11 @@ keep dev/preview in the foreground. Stop background servers with
 | `src/content/docs/`                             | MDX guides with title, description and draft metadata  |
 | `src/content/news/`                             | Blog posts, announcements and release notes in MDX     |
 | `src/data/doc-navigation.json`                  | Guide grouping and order; include every MDX guide      |
-| `src/data/release.json`                         | App version used in download links                     |
+| `src/data/release.json`                         | App version and iPhone App Store URL for download links |
 | `src/styles/`                                   | Shared foundations, themes, prose and reveal effects   |
 | `src/lib/styles.js`                             | Stylesheet order for each layout                       |
 | `src/scripts/theme.js`                          | Restores and saves the browser's light/dark preference |
+| `src/scripts/intro-restoration.js`              | Suppresses intro transitions during homepage restoration |
 | `media/screenshots/`                            | PNG screenshot sources, discovered automatically       |
 | `public/assets/`                                | Published fonts, videos, note atlas and light textures |
 | `public/pricing.json`                           | Pricing data shared by the page and external consumers |
@@ -101,7 +103,8 @@ override.
 CSS still selects all colors and screenshots. With JavaScript disabled, the
 checkbox switches the current page's theme through CSS; with storage blocked,
 the toggle remains usable but cannot remember a choice across page loads. The
-build check permits only this exact inline script and rejects other scripts.
+build check permits only this exact script and the homepage restoration guard;
+all other browser scripts are rejected.
 
 ## How the animations work
 
@@ -133,6 +136,17 @@ only triggers this transition; it finishes even if scrolling stops. Scrolling
 back above the threshold fades out the controls before smoothly moving the links
 back to the right.
 
+On a reload or back/forward return, the browser can restore scrolling after the
+initial CSS state has been calculated. `src/scripts/intro-restoration.js` runs
+in the homepage's head before styles and temporarily disables transitions only
+on the moving note and header elements. On `pageshow`, it waits two animation
+frames for restoration and scroll timelines to settle, then restores their CSS
+transitions. It also suppresses transitions on `pagehide` for page-cache returns
+and prevents smooth anchor scrolling during initialization. It does not listen
+to scroll events, change scroll positions, or calculate animation progress.
+With JavaScript disabled, the CSS interactions still work, but the entrance may
+replay when restoring a scrolled page.
+
 `reveal.css` gives content its shared fade-and-rise entrance. View timelines
 measure an element entering the viewport. Where supported, timeline triggers let
 the entrance finish smoothly after scrolling stops. Headings use a named
@@ -159,7 +173,8 @@ JavaScript. Shared stylesheet URLs and generated CSS chunks receive content
 hashes for cache invalidation.
 
 The output validator checks local links, assets, anchors, expected routes, theme
-controls and animation CSS, and rejects browser JavaScript. The optional
+controls and animation CSS, and rejects browser JavaScript except the two exact
+inline scripts described above (the restoration guard is homepage-only). The optional
 `note:build` command only regenerates the sprite sheet when its source frames
 change; it is separate from normal website builds.
 
@@ -209,11 +224,10 @@ Markdown headings, lists, links and images work as usual.
   and `dark.png`. The layout stacks on mobile; image links open full-size copies.
   The historical asset sources are recorded in `media/news/redesign/SOURCES.md`.
 
-The iPhone App Store button in
-`src/content/news/snippets-on-the-app-store.mdx` is visible but disabled until
-the listing URL is supplied. Add `href="https://apps.apple.com/…"` to
-`<AppStoreButton />` to enable it. It does not use a guessed store URL or send
-readers to TestFlight.
+The iPhone App Store URL is stored as `iosAppStoreUrl` in
+`src/data/release.json`. Both homepage download links and `<AppStoreButton />`
+in the launch announcement use this shared URL. The component accepts an
+optional `href` override for posts that need a different destination.
 
 `src/data/news.js` reads and validates the metadata during the build. The
 listing and individual pages are ordinary static HTML; adding a post requires no
@@ -228,7 +242,7 @@ Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
 ## Build constraints
 
 - `pnpm build` checks routes, local links/assets/anchors, heading spacing, theme
-  controls, redirects and the absence of browser JavaScript. `pnpm check` runs
+  controls, redirects and the browser-script allowlist. `pnpm check` runs
   this output validator; it is not a TypeScript check or an external link
   checker.
 - Keep `/pricing.json` and its existing fields available to external consumers.

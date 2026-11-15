@@ -42,6 +42,9 @@ const failures = [];
 const themeScript = fs
   .readFileSync(path.join(repo, "src/scripts/theme.js"), "utf8")
   .trim();
+const introRestorationScript = fs
+  .readFileSync(path.join(repo, "src/scripts/intro-restoration.js"), "utf8")
+  .trim();
 let links = 0;
 function visibleText(node) {
   if (node.nodeName === "#text") return node.value;
@@ -74,8 +77,11 @@ for (const [file, { nodes }] of documents) {
       node.tagName === "script" &&
       !(
         node.attrs.length === 1 &&
-        node.attrs[0].name === "data-theme-preference" &&
-        visibleText(node).trim() === themeScript
+        ((node.attrs[0].name === "data-theme-preference" &&
+          visibleText(node).trim() === themeScript) ||
+          (file === path.join(output, "index.html") &&
+            node.attrs[0].name === "data-intro-restoration" &&
+            visibleText(node).trim() === introRestorationScript))
       )
     )
       failures.push("Unexpected browser JavaScript in " + file);
@@ -105,6 +111,26 @@ for (const file of built.filter((f) => f.endsWith(".css"))) {
 }
 // Inspect the CSS actually linked by the homepage, independent of Astro's chunk names.
 const homepage = documents.get(path.join(output, "index.html"));
+const introScripts = homepage.nodes.filter(
+  (node) =>
+    node.tagName === "script" &&
+    node.attrs.some((a) => a.name === "data-intro-restoration"),
+);
+assert.equal(introScripts.length, 1, "Missing homepage restoration guard");
+assert.equal(
+  introScripts[0].parentNode.tagName,
+  "head",
+  "The restoration guard must run before the body renders",
+);
+assert(
+  homepage.nodes.indexOf(introScripts[0]) <
+    homepage.nodes.findIndex(
+      (node) =>
+        node.tagName === "link" &&
+        node.attrs.some((a) => a.name === "rel" && a.value === "stylesheet"),
+    ),
+  "The restoration guard must run before styles load",
+);
 const homepageCSS = homepage.nodes
   .filter(
     (node) =>
@@ -176,7 +202,11 @@ for (const route of [
   const file = path.join(output, route, "index.html");
   assert(documents.has(file), "Missing page: " + file);
   const { nodes } = documents.get(file);
-  const themeScripts = nodes.filter((node) => node.tagName === "script");
+  const themeScripts = nodes.filter(
+    (node) =>
+      node.tagName === "script" &&
+      node.attrs.some((a) => a.name === "data-theme-preference"),
+  );
   assert.equal(
     themeScripts.length,
     1,
@@ -266,5 +296,5 @@ assert(
 );
 assert.equal(failures.length, 0, failures.join("\n"));
 console.log(
-  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, only the theme preference script is allowed.`,
+  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, only the exact theme and homepage restoration scripts are allowed.`,
 );

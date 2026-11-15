@@ -125,6 +125,19 @@
 
 <!-- This scene coordinates the page, header and note; these rules intentionally cross component boundaries. -->
 <style is:global>
+  /* Restore the saved scroll position and its CSS state without replaying the
+     intro. The small page-lifecycle guard removes this attribute once settled. */
+  :root[data-intro-restoring] {
+    scroll-behavior: auto;
+  }
+  :root[data-intro-restoring] .note-mover,
+  :root[data-intro-restoring] .site-header::before,
+  :root[data-intro-restoring] .site-header .nav-shell,
+  :root[data-intro-restoring] .site-header .nav-controls,
+  :root[data-intro-restoring] .site-header .nav-controls-inner,
+  :root[data-intro-restoring] .site-header .wordmark {
+    transition: none !important;
+  }
   @supports (animation-timeline: scroll()) {
     @media (prefers-reduced-motion: no-preference) {
       :root {

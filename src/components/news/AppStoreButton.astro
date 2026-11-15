@@ -1,19 +1,11 @@
 ---
-const { href } = Astro.props;
-const Tag = href ? "a" : "button";
+import release from "../../data/release.json";
+const { href = release.iosAppStoreUrl } = Astro.props;
 ---
 
 <div class="store-action">
-  <Tag
-    class="store-button"
-    href={href}
-    type={href ? undefined : "button"}
-    disabled={href ? undefined : true}
-    title={href ? undefined : "App Store link coming soon"}
-  >
-    Download on the App Store
-  </Tag>
-  <span>{href ? "For iPhone" : "For iPhone · Link coming soon"}</span>
+  <a class="store-button" href={href}>Download on the App Store</a>
+  <span>For iPhone</span>
 </div>
 
 <style>
@@ -40,10 +32,6 @@ const Tag = href ? "a" : "button";
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
-  }
-  .store-button:disabled {
-    cursor: not-allowed;
-    opacity: 1;
   }
   /* Keep the enabled button from inheriting MDX's inline-link appearance. */
   :global(.news-page .prose) .store-action a.store-button[href] {

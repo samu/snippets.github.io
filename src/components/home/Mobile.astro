@@ -11,7 +11,7 @@ import release from "../../data/release.json";
 >
   <div class="section-shell mobile-layout">
     <div class="feature-copy heading-group">
-      <p class="eyebrow">On iOS and Android <span class="badge">Beta</span></p>
+      <p class="eyebrow">On iPhone and Android</p>
       <h2
         id="mobile-heading"
         class="phrase-reveal"
@@ -41,13 +41,13 @@ import release from "../../data/release.json";
         pick up where you left off.
       </p>
       <div class="mobile-actions">
-        <a class="button" href="https://testflight.apple.com/join/3wpgBj2Z"
+        <a class="button" href={release.iosAppStoreUrl}
           ><svg class="icon" aria-hidden="true"><use href="#apple-icon" /></svg
-          >iOS TestFlight <span aria-hidden="true">↗</span></a
+          >iPhone · App Store <span aria-hidden="true">↗</span></a
         ><a
           class="button button-secondary"
           href={`https://github.com/samu/snippets/releases/download/v${release.version}/Snippets-${release.version}.apk`}
-          >Android APK
+          >Android APK · Beta
           <svg class="icon" aria-hidden="true">
             <use href="#arrow-down" />
           </svg></a
@@ -92,9 +92,6 @@ import release from "../../data/release.json";
     font-weight: 550;
     line-height: 1.1;
     margin-block: 20px 24px;
-  }
-  .mobile-layout .eyebrow .badge {
-    margin-left: 7px;
   }
   .mobile-layout .feature-copy > p:not(.eyebrow) {
     max-width: 365px;
