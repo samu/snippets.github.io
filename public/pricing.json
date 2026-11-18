@@ -28,6 +28,7 @@
       "badge": null,
       "features": [
         { "text": "Access to full icon set", "planned": false },
+        { "text": "Access to all the themes", "planned": false },
         {
           "text": "GitHub sync with end-to-end encryption and unlimited branches",
           "planned": false
