@@ -44,9 +44,8 @@ const related = news.filter((item) => item.slug !== post.slug).slice(0, 2);
       </header>
       {post.draft ? (
         <p class="sample-notice">
-          <strong>Draft release notes.</strong> The features, fixes, and
-          internal notes below are fictional placeholders, not a verified
-          changelog.
+          <strong>Draft preview.</strong> This article is only visible in local
+          development.
         </p>
       ) : (
         post.sample && <p class="sample-notice">

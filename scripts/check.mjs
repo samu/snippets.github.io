@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
 import { parse } from "parse5";
+import { parseFrontmatter } from "@astrojs/markdown-remark";
 import { output, content, repo } from "./paths.mjs";
 import { analyticsConfig } from "../src/lib/analytics-config.js";
 
@@ -221,10 +222,44 @@ const slugs = fs
   .readdirSync(path.join(content, "docs"))
   .filter((f) => f.endsWith(".mdx"))
   .map((f) => f.slice(0, -4));
-const newsSlugs = fs
+const newsEntries = fs
   .readdirSync(path.join(content, "news"))
   .filter((f) => f.endsWith(".mdx"))
-  .map((f) => f.slice(0, -4));
+  .map((file) => ({
+    slug: file.slice(0, -4),
+    ...parseFrontmatter(
+      fs.readFileSync(path.join(content, "news", file), "utf8"),
+    ).frontmatter,
+  }));
+const publishedNews = newsEntries
+  .filter((post) => !post.draft)
+  .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
+const newsSlugs = publishedNews.map((post) => post.slug);
+const newsFeed = JSON.parse(
+  fs.readFileSync(path.join(output, "news.json"), "utf8"),
+);
+assert.deepEqual(
+  newsFeed,
+  publishedNews.map((post) => ({
+    id: post.slug,
+    title: post.title,
+    summary: post.description,
+    date: Date.parse(post.date),
+  })),
+  "The /news.json feed must match published articles and exclude drafts",
+);
+const sitemap = fs.readFileSync(path.join(output, "sitemap-0.xml"), "utf8");
+for (const post of newsEntries.filter((post) => post.draft)) {
+  assert(
+    !fs.existsSync(path.join(output, "news", post.slug)) &&
+      !fs.existsSync(path.join(output, "updates", post.slug)),
+    "Draft article or legacy route leaked into production: " + post.slug,
+  );
+  assert(
+    !sitemap.includes(`/news/${post.slug}/`),
+    "Draft article leaked into sitemap: " + post.slug,
+  );
+}
 const attr = (node, name) => node.attrs.find((a) => a.name === name)?.value;
 const legacyRoutes = [
   "",

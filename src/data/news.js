@@ -80,4 +80,5 @@ export const news = Object.entries(modules)
       Content: module.Content,
     };
   })
+  .filter((post) => import.meta.env.DEV || !post.draft)
   .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));

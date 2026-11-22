@@ -51,7 +51,7 @@ keep dev/preview in the foreground. Stop background servers with
 | `media/screenshots/`                            | PNG screenshot sources, discovered automatically         |
 | `public/assets/`                                | Published fonts, videos, note atlas and light textures   |
 | `public/pricing.json`                           | Pricing data shared by the page and external consumers   |
-| `public/news.json`                              | Public news feed with titles, summaries and timestamps   |
+| `src/pages/news.json.js`                        | Generates the public news feed from published articles  |
 | `astro.config.mjs`                              | Domain, port, Markdown, redirects and sitemap            |
 | `scripts/`                                      | Output checks and optional media generation              |
 
@@ -225,10 +225,13 @@ Markdown headings, lists, links and images work as usual.
 - `version` is optional for release notes. Quote it, for example `"0.22.0"`.
 - `sample: true` adds a visible sample label and a noindex tag. Remove it when
   replacing the examples with real content.
-- `draft: true` keeps a post visible for review, with a Draft label, a
-  placeholder notice, and a noindex tag. The v0.24.0 changelog uses this while
-  its entries are fictional. Replace them with verified changes before removing
-  the flag.
+- `draft: true` makes a post visible only in local development (`pnpm dev`),
+  with a Draft label, a preview notice, and a noindex tag. Production builds
+  exclude its page, listing and related-post cards, legacy article route, and
+  sitemap entry. Drafts are always excluded from `/news.json`, including in
+  development. Omit the flag or set it to `false` to publish on the next build.
+  The v0.24.0 changelog uses this while its entries are fictional; replace them
+  with verified changes before publishing.
 - An optional `cover` supplies the featured image: `light`, optional `dark`, and
   `alt`. Image paths are relative to `media/screenshots/`, for example
   `landing-page/friday/light.png`. Dimensions come from the PNGs. The App Store
@@ -255,10 +258,11 @@ listing and individual pages are ordinary static HTML; adding a post requires no
 new route, build script, or browser JavaScript. The top navigation includes News
 throughout the site, including a native disclosure menu on mobile.
 
-`public/news.json` is served unchanged at `/news.json`. Keep it aligned with the
-News entries, newest first. Each item has `id` (the post’s filename slug,
-without `.mdx`), `title`, `summary` (the post’s description), and `date` (UTC
-Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
+`src/pages/news.json.js` generates `/news.json` from the published articles,
+newest first. The build writes a static JSON file; there is no runtime server or
+separate feed to maintain. Each item has `id` (the post’s filename slug, without
+`.mdx`), `title`, `summary` (the post’s description), and `date` (UTC Unix
+timestamp in milliseconds). Its article is available at `/news/{id}/`.
 
 ## Build constraints
 

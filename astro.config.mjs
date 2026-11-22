@@ -2,7 +2,11 @@ import fs from "node:fs";
 import { defineConfig, sharpImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { unified, rehypeHeadingIds } from "@astrojs/markdown-remark";
+import {
+  unified,
+  rehypeHeadingIds,
+  parseFrontmatter,
+} from "@astrojs/markdown-remark";
 import rehypeDocs from "./src/lib/rehype-docs.mjs";
 
 const slugs = fs
@@ -17,13 +21,18 @@ const routes = [
   "terms/",
   ...slugs.map((slug) => `docs/${slug}/`),
 ];
-const newsRoutes = [
-  "",
-  ...fs
-    .readdirSync(new URL("./src/content/news/", import.meta.url))
-    .filter((file) => file.endsWith(".mdx"))
-    .map((file) => file.slice(0, -4) + "/"),
-];
+const newsDirectory = new URL("./src/content/news/", import.meta.url);
+const publishedNewsSlugs = fs
+  .readdirSync(newsDirectory)
+  .filter((file) => file.endsWith(".mdx"))
+  .filter((file) => {
+    const { frontmatter } = parseFrontmatter(
+      fs.readFileSync(new URL(file, newsDirectory), "utf8"),
+    );
+    return frontmatter.draft !== true;
+  })
+  .map((file) => file.slice(0, -4));
+const newsRoutes = ["", ...publishedNewsSlugs.map((slug) => `${slug}/`)];
 
 export default defineConfig({
   site: "https://snippets.ch",
@@ -50,13 +59,6 @@ export default defineConfig({
   devToolbar: { enabled: false },
   build: { inlineStylesheets: "never" },
   redirects: {
-    // Keep links to the initial sample posts working after replacing their content.
-    "/news/a-new-home-for-snippets/": "/news/snippets-on-the-app-store/",
-    "/news/a-little-smoother/": "/news/v0-24-0/",
-    "/news/make-room-for-a-thought/": "/news/",
-    "/updates/a-new-home-for-snippets/": "/news/snippets-on-the-app-store/",
-    "/updates/a-little-smoother/": "/news/v0-24-0/",
-    "/updates/make-room-for-a-thought/": "/news/",
     ...Object.fromEntries(
       newsRoutes.map((route) => ["/updates/" + route, "/news/" + route]),
     ),
