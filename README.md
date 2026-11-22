@@ -227,8 +227,8 @@ Markdown headings, lists, links and images work as usual.
   replacing the examples with real content.
 - `draft: true` makes a post visible only in local development (`pnpm dev`),
   with a Draft label, a preview notice, and a noindex tag. Production builds
-  exclude its page, listing and related-post cards, legacy article route, and
-  sitemap entry. Drafts are always excluded from `/news.json`, including in
+  exclude its page, listing and related-post cards, and sitemap entry.
+  Drafts are always excluded from `/news.json`, including in
   development. Omit the flag or set it to `false` to publish on the next build.
   The v0.24.0 changelog uses this while its entries are fictional; replace them
   with verified changes before publishing.

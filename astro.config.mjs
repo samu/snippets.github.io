@@ -1,38 +1,8 @@
-import fs from "node:fs";
 import { defineConfig, sharpImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import {
-  unified,
-  rehypeHeadingIds,
-  parseFrontmatter,
-} from "@astrojs/markdown-remark";
+import { unified, rehypeHeadingIds } from "@astrojs/markdown-remark";
 import rehypeDocs from "./src/lib/rehype-docs.mjs";
-
-const slugs = fs
-  .readdirSync(new URL("./src/content/docs/", import.meta.url))
-  .filter((file) => file.endsWith(".mdx"))
-  .map((file) => file.slice(0, -4));
-const routes = [
-  "",
-  "docs/",
-  "pricing/",
-  "privacy/",
-  "terms/",
-  ...slugs.map((slug) => `docs/${slug}/`),
-];
-const newsDirectory = new URL("./src/content/news/", import.meta.url);
-const publishedNewsSlugs = fs
-  .readdirSync(newsDirectory)
-  .filter((file) => file.endsWith(".mdx"))
-  .filter((file) => {
-    const { frontmatter } = parseFrontmatter(
-      fs.readFileSync(new URL(file, newsDirectory), "utf8"),
-    );
-    return frontmatter.draft !== true;
-  })
-  .map((file) => file.slice(0, -4));
-const newsRoutes = ["", ...publishedNewsSlugs.map((slug) => `${slug}/`)];
 
 export default defineConfig({
   site: "https://snippets.ch",
@@ -59,14 +29,7 @@ export default defineConfig({
   devToolbar: { enabled: false },
   build: { inlineStylesheets: "never" },
   redirects: {
-    ...Object.fromEntries(
-      newsRoutes.map((route) => ["/updates/" + route, "/news/" + route]),
-    ),
-    ...Object.fromEntries(
-      routes.map((route) => ["/dark/" + route, "/" + route]),
-    ),
     "/showcase/": "/#features",
-    "/dark/showcase/": "/#features",
   },
   markdown: {
     syntaxHighlight: "prism",
@@ -78,10 +41,7 @@ export default defineConfig({
   integrations: [
     mdx({ optimize: false }),
     sitemap({
-      filter: (url) =>
-        !new URL(url).pathname.startsWith("/dark/") &&
-        !new URL(url).pathname.startsWith("/updates/") &&
-        !url.includes("/showcase/"),
+      filter: (url) => !url.includes("/showcase/"),
     }),
   ],
 });

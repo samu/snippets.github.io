@@ -251,9 +251,8 @@ assert.deepEqual(
 const sitemap = fs.readFileSync(path.join(output, "sitemap-0.xml"), "utf8");
 for (const post of newsEntries.filter((post) => post.draft)) {
   assert(
-    !fs.existsSync(path.join(output, "news", post.slug)) &&
-      !fs.existsSync(path.join(output, "updates", post.slug)),
-    "Draft article or legacy route leaked into production: " + post.slug,
+    !fs.existsSync(path.join(output, "news", post.slug)),
+    "Draft article leaked into production: " + post.slug,
   );
   assert(
     !sitemap.includes(`/news/${post.slug}/`),
@@ -261,19 +260,17 @@ for (const post of newsEntries.filter((post) => post.draft)) {
   );
 }
 const attr = (node, name) => node.attrs.find((a) => a.name === name)?.value;
-const legacyRoutes = [
+const routes = [
   "",
   "docs/",
   "pricing/",
   "privacy/",
   "terms/",
   ...slugs.map((slug) => `docs/${slug}/`),
-];
-for (const route of [
-  ...legacyRoutes,
   "news/",
   ...newsSlugs.map((slug) => `news/${slug}/`),
-]) {
+];
+for (const route of routes) {
   const file = path.join(output, route, "index.html");
   assert(documents.has(file), "Missing page: " + file);
   const { nodes } = documents.get(file);
@@ -298,26 +295,6 @@ for (const route of [
       (node) => node.tagName === "a" && attr(node, "href") === "/news/",
     ),
     "Missing News navigation: " + file,
-  );
-  if (!legacyRoutes.includes(route)) continue;
-  const legacy = documents.get(path.join(output, "dark", route, "index.html"));
-  assert(
-    legacy?.nodes.some((node) => {
-      if (node.tagName !== "meta" || attr(node, "http-equiv") !== "refresh")
-        return false;
-      const target = attr(node, "content")?.match(
-        /url\s*=\s*['"]?([^'"]+)/i,
-      )?.[1];
-      return (
-        target &&
-        new URL(target, "https://preview.local/").pathname === "/" + route
-      );
-    }),
-    "Missing legacy theme redirect: " + route,
-  );
-  assert(
-    !legacy.nodes.some((node) => node.tagName === "main"),
-    "Duplicate dark content: " + route,
   );
 }
 for (const name of [
