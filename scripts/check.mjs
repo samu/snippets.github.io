@@ -47,6 +47,9 @@ const introRestorationScript = fs
 const analyticsScript = fs
   .readFileSync(path.join(repo, "src/scripts/analytics.js"), "utf8")
   .trim();
+const themeGalleryScript = fs
+  .readFileSync(path.join(repo, "src/scripts/theme-gallery.js"), "utf8")
+  .trim();
 let links = 0;
 function visibleText(node) {
   if (node.nodeName === "#text") return node.value;
@@ -92,6 +95,12 @@ for (const [file, { nodes }] of documents) {
             a.value === JSON.stringify(analyticsConfig),
         ) &&
         visibleText(node).trim() === analyticsScript
+      ) &&
+      !(
+        file === path.join(output, "index.html") &&
+        node.attrs.length === 1 &&
+        node.attrs[0].name === "data-theme-gallery" &&
+        visibleText(node).trim() === themeGalleryScript
       )
     )
       failures.push("Unexpected browser JavaScript in " + file);
@@ -152,6 +161,15 @@ for (const file of built.filter((f) => f.endsWith(".css"))) {
 }
 // Inspect the CSS actually linked by the homepage, independent of Astro's chunk names.
 const homepage = documents.get(path.join(output, "index.html"));
+assert.equal(
+  homepage.nodes.filter(
+    (node) =>
+      node.tagName === "script" &&
+      node.attrs.some((a) => a.name === "data-theme-gallery"),
+  ).length,
+  1,
+  "Missing homepage theme gallery controls",
+);
 const introScripts = homepage.nodes.filter(
   (node) =>
     node.tagName === "script" &&
@@ -323,5 +341,5 @@ assert(
 );
 assert.equal(failures.length, 0, failures.join("\n"));
 console.log(
-  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, themes follow the OS, and only the exact restoration and analytics scripts are allowed.`,
+  `Checked ${documents.size} HTML pages and ${links} local references; all routes/assets/anchors resolve, themes follow the OS, and only the exact restoration, analytics, and homepage theme gallery scripts are allowed.`,
 );

@@ -1,0 +1,192 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import themeGalleryScript from "../../scripts/theme-gallery.js?raw";
+
+const screenshots = import.meta.glob<ImageMetadata>(
+  "/media/screenshots/landing-page/themes/*.png",
+  { eager: true, import: "default" },
+);
+const previews = Object.entries(screenshots)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, source]) => {
+    const id = path.slice(path.lastIndexOf("/") + 1, -4);
+    const name = id
+      .split("-")
+      .map((word) => word[0].toUpperCase() + word.slice(1))
+      .join(" ");
+    return { id, name, source };
+  });
+// These IDs have target: "dark" in the app's baseThemes definitions.
+const darkThemeIds = new Set([
+  "carbon",
+  "ink",
+  "graphite",
+  "espresso",
+  "lantern",
+  "orchid",
+  "tidal",
+  "lava",
+]);
+const lightThemes = previews.filter(({ id }) => !darkThemeIds.has(id));
+const darkThemes = previews.filter(({ id }) => darkThemeIds.has(id));
+const themes = Array.from(
+  { length: Math.max(lightThemes.length, darkThemes.length) },
+  (_, index) => [lightThemes[index], darkThemes[index]].filter(Boolean),
+).flat();
+---
+
+<section id="themes" class="themes-section" aria-labelledby="themes-heading">
+  <header class="themes-heading section-shell">
+    <div>
+      <p class="eyebrow">Make it yours</p>
+      <h2 id="themes-heading" data-analytics-section="themes">
+        A theme for every mood.
+      </h2>
+      <p>From soft mornings to late nights. Find a look that feels like you.</p>
+    </div>
+  </header>
+  <div
+    class="themes-window"
+    role="region"
+    aria-label="Theme previews"
+    tabindex="0"
+  >
+    <div class="themes-track">
+      {[false, true].map((duplicate) => <ul
+        class="themes-group"
+        role="list"
+        aria-hidden={duplicate ? "true" : undefined}
+      >
+        {themes.map(({ name, source }) => <li>
+          <figure class="theme-preview">
+            <div class="theme-frame">
+              <Image
+                src={source}
+                alt={
+                  duplicate
+                    ? ""
+                    : `Notes and to-dos in Snippets with the ${name} theme`
+                }
+                format="webp"
+                widths={[640, 1040]}
+                sizes="(max-width: 777px) 280px, (max-width: 1444px) 36vw, 520px"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption>{name}</figcaption>
+          </figure>
+        </li>)}
+      </ul>)}
+    </div>
+  </div>
+</section>
+
+<script is:inline data-theme-gallery set:html={themeGalleryScript}></script>
+
+<style>
+  .themes-section {
+    --theme-card-width: clamp(280px, 36vw, 520px);
+    --theme-gap: 24px;
+    padding-block: 64px;
+  }
+  .themes-heading {
+    margin-bottom: 28px;
+  }
+  .themes-heading h2 {
+    margin-top: 8px;
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1.15;
+  }
+  .themes-heading p:not(.eyebrow) {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .themes-window:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+  }
+  .themes-window {
+    overflow: hidden;
+    padding-block: 12px 24px;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 24px,
+      #000 calc(100% - 24px),
+      transparent
+    );
+  }
+  .themes-track {
+    display: flex;
+    width: max-content;
+    animation: themes-roll 260s linear infinite;
+  }
+  .themes-track[data-motion="pointer"] {
+    animation: none;
+    transform: translateX(var(--themes-offset, 0px));
+  }
+  .themes-group {
+    display: flex;
+    flex: none;
+    gap: var(--theme-gap);
+    padding: 0 var(--theme-gap) 0 0;
+    margin: 0;
+    list-style: none;
+  }
+  .themes-group > li {
+    width: var(--theme-card-width);
+    flex: none;
+  }
+  .theme-preview {
+    margin: 0;
+  }
+  .theme-frame {
+    padding: 8px;
+    border: 1px solid var(--screenshot-edge);
+    border-radius: 16px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+  }
+  .theme-frame :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1150 / 675;
+    border-radius: 9px;
+  }
+  .theme-preview figcaption {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  /* Equal groups include their trailing gap, so the repeated row joins seamlessly. */
+  @keyframes themes-roll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (max-width: 700px) {
+    .themes-section {
+      --theme-gap: 16px;
+      padding-block: 40px;
+    }
+    .themes-heading {
+      margin-bottom: 20px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .themes-track {
+      animation: none;
+    }
+    .themes-group[aria-hidden="true"] {
+      display: none;
+    }
+    .themes-window {
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+    }
+  }
+</style>
