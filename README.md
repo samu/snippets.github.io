@@ -25,7 +25,6 @@ pnpm test         # isolated analytics behavior tests
 pnpm preview      # serve dist/ on port 64530
 pnpm format       # format source, configuration and documentation
 pnpm format:check # check formatting without writing
-pnpm note:build   # regenerate the note animation atlas after editing its frames
 ```
 
 Prettier uses the Astro plugin and formats MDX, CSS, JavaScript, JSON, YAML and
@@ -103,15 +102,18 @@ preference is ignored. Printing uses the light theme.
 ## How the animations work
 
 The unfolding note uses a **static WebP sprite sheet**, not an autoplaying
-animated WebP. `Note.astro` moves the background through 90 frames in a 10 × 9
-grid using stepped CSS keyframes. The root scroll timeline chooses the frame, so
-scrolling backward closes the note again. Once unfolding finishes, a stepped CSS
-animation switches the `note-docking` container state. This triggers a `1200ms`
-transition that shrinks and moves the opened note into the header, finishing
-even if scrolling stops. Crossing back above that threshold smoothly returns the
-note to its original position. The centered note is the default CSS layout, so
-the first scroll-timeline sample does not trigger a fly-in on page load. No
-scroll listener is involved.
+animated WebP. The sibling `snippets-icon` project renders the frames, orders
+poses by `bend_fraction` from flat to curled, and builds the atlas and stepped
+CSS keyframes locally. It copies only the two finished WebPs and matching CSS
+here. `Note.astro` imports the generated `src/styles/note-atlas.css`; no frame
+count or grid is hard-coded in the component. The root scroll timeline chooses
+the frame, so scrolling backward closes the note again. Once unfolding finishes,
+a stepped CSS animation switches the `note-docking` container state. This
+triggers a `1200ms` transition that shrinks and moves the opened note into the
+header, finishing even if scrolling stops. Crossing back above that threshold
+smoothly returns the note to its original position. The centered note is the
+default CSS layout, so the first scroll-timeline sample does not trigger a
+fly-in on page load. No scroll listener is involved.
 
 `Intro.astro` defines the shared scroll distances and coordinates the intro
 copy, header and hero entrance. Unfolding ends and docking is triggered after a
@@ -169,9 +171,18 @@ hashes for cache invalidation.
 
 The output validator checks local links, assets, anchors, expected routes,
 OS-based themes and animation CSS, and rejects browser JavaScript except the
-exact homepage restoration guard and analytics script/config. The optional
-`note:build` command only regenerates the sprite sheet when its source frames
-change; it is separate from normal website builds.
+exact homepage restoration guard and analytics script/config. Animation
+rendering and encoding happen in the sibling `snippets-icon` project, separately
+from website builds. To rebuild from the existing frames and copy the results
+here, run from this website's root:
+
+```sh
+python3 ../snippets-icon/render-landing-page.py --source renders/landing-page-top-down-50-90
+```
+
+Arguments resolve relative to `snippets-icon`. Omit `--source` to render its
+current default 101-frame sequence before packaging. Commit the two generated
+WebPs and CSS together. The website itself needs no image-processing tools.
 
 ## Analytics
 
@@ -262,10 +273,12 @@ Unix timestamp in milliseconds). Its article is available at `/news/{id}/`.
   longhands.
 - Themes follow the OS preference using CSS, including when JavaScript is
   disabled.
-- Motion is a CSS enhancement with static and reduced-motion fallbacks. The note
-  atlas has 90 frames in a 10 × 9 grid. Changes to its frame count or layout
-  must also update the keyframes and background sizing in
-  `src/components/home/Note.astro`.
+- Motion is a CSS enhancement with static and reduced-motion fallbacks. After
+  changing the note frames, use `snippets-icon/render-landing-page.py` to
+  generate and copy the atlas and `src/styles/note-atlas.css` together. Do not
+  edit the generated CSS manually. The grid adapts to the frame count;
+  incomplete rows are padded with transparency and never used as animation
+  frames.
 
 ## Media
 
@@ -308,10 +321,13 @@ image URLs are managed by Astro; reference source names in code.
   ```
 
 - Videos remain in `public/assets/docs/` and use `/assets/docs/...` URLs.
-- `media/note/porcelain/` contains the source frames and manifest for the note
-  atlas. Both themes use this atlas. Run `pnpm note:build` only after editing
-  these frames; this separate sprite-sheet task requires `cwebp` and
-  ImageMagick's `magick`. Carbon frames are retained for future use.
+- `public/assets/note/note-opening.webp`, `public/assets/note/note-open.webp`
+  and `src/styles/note-atlas.css` are generated in the sibling `snippets-icon`
+  project and copied here. Both themes use this atlas. PNG masters and manifests
+  remain in that project's `renders/` directory; the website's earlier Porcelain
+  and Carbon source folders are preserved there under
+  `renders/archived-landing-page-sources/`. No raw animation frames are needed
+  in this repository.
 - `media/reference/porcelain-theme.txt` is the screenshot theme and the basis
   for the light website palette. Warm neutral surfaces and subtle screenshot
   edges keep the product's colors in focus; blue is reserved for actions and

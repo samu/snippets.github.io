@@ -4,3 +4,4 @@ dist/
 pnpm-lock.yaml
 media/
 public/assets/
+src/styles/note-atlas.css
