@@ -45,6 +45,9 @@ const themes = Array.from(
       </h2>
       <p>From soft mornings to late nights. Find a look that feels like you.</p>
     </div>
+    <span class="themes-hint" aria-hidden="true">
+      Move right to browse faster →
+    </span>
   </header>
   <div
     class="themes-window"
@@ -92,6 +95,11 @@ const themes = Array.from(
     padding-block: 64px;
   }
   .themes-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 24px;
     margin-bottom: 28px;
   }
   .themes-heading h2 {
@@ -103,6 +111,24 @@ const themes = Array.from(
     margin-top: 16px;
     color: var(--muted);
     font-size: 16px;
+  }
+  .themes-hint {
+    display: none;
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .themes-section:has(.themes-track[data-motion="pointer"]) .themes-hint {
+      display: block;
+    }
+    .themes-section:has(.themes-window:hover) .themes-hint {
+      opacity: 1;
+    }
   }
   .themes-window:focus-visible {
     outline: 2px solid var(--accent);

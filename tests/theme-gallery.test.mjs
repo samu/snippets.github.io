@@ -110,19 +110,26 @@ function gallery() {
   };
 }
 
-test("only the rightmost third accelerates, with a capped exponential ramp", () => {
+test("hover speeds up the strip before the rightmost third accelerates further", () => {
   const g = gallery();
   g.visible();
   g.advance();
   const drift = g.travel();
   assert(drift > 27 && drift < 29);
 
+  const beforeHover = g.offset();
+  g.viewport.emit("pointerenter", { clientX: 500, pointerType: "mouse" });
+  assert.equal(g.offset(), beforeHover);
+  g.advance(2000);
+  const hover = g.travel();
+  assert(hover > 111 && hover < 113);
+
   const speeds = [2000 / 3, 750, 2500 / 3, 2750 / 3, 1000].map((position) => {
     g.move(position);
     g.advance(2000);
     return g.travel();
   });
-  assert(Math.abs(speeds[0] - drift) < 0.01);
+  assert(Math.abs(speeds[0] - hover) < 0.01);
   assert(speeds[4] > 899 && speeds[4] <= 900.01);
   const gains = speeds.slice(1).map((speed, index) => speed - speeds[index]);
   assert(
@@ -134,11 +141,16 @@ test("only the rightmost third accelerates, with a capped exponential ramp", () 
   for (const position of [0, 125, 250, 500, 625, 666, 2000 / 3]) {
     g.move(position);
     g.advance(2000);
-    assert(Math.abs(g.travel() - drift) < 0.01);
+    assert(Math.abs(g.travel() - hover) < 0.01);
   }
   g.move(1000);
   g.advance(2000);
   g.viewport.emit("pointerleave");
+  g.advance(2000);
+  assert(Math.abs(g.travel() - drift) < 0.1);
+  g.move(500);
+  g.advance(2000);
+  g.viewport.emit("pointercancel");
   g.advance(2000);
   assert(Math.abs(g.travel() - drift) < 0.1);
 });
@@ -149,11 +161,13 @@ test("the centre and keyboard focus do not halt automatic motion", () => {
   g.viewport.keyboardFocus = true;
   g.viewport.emit("focusin");
   assert.equal(g.frames(), 1);
+  g.advance();
+  assert(Math.abs(g.travel() - 28) < 0.01);
   for (const position of [499, 500, 501]) {
     g.move(position);
     g.advance(2000);
     const speed = g.travel();
-    assert(Math.abs(speed) > 27 && Math.abs(speed) < 29);
+    assert(speed > 111 && speed < 113);
     assert(speed > 0);
   }
 });
@@ -214,6 +228,7 @@ test("scrolling wraps continuously and resizing preserves position in the sequen
 test("touch movement leaves the gentle automatic drift unchanged", () => {
   const g = gallery();
   g.visible();
+  g.viewport.emit("pointerenter", { clientX: 1000, pointerType: "touch" });
   g.move(1000, "touch");
   g.advance();
   assert(Math.abs(g.travel() - 28) < 0.01);

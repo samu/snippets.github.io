@@ -7,6 +7,7 @@
   const group = section.querySelector(".themes-group");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const driftSpeed = 28;
+  const hoverSpeed = 112;
   const edgeSpeed = 900;
   let width = group.getBoundingClientRect().width;
   let offset = 0;
@@ -56,18 +57,20 @@
     }
   }
 
-  viewport.addEventListener("pointermove", (event) => {
+  function updatePointerSpeed(event) {
     if (event.pointerType === "touch") return;
     const bounds = viewport.getBoundingClientRect();
     if (!bounds.width) return;
-    // The first two-thirds keep the slow drift; only the rightmost third accelerates.
+    // Hover speeds up the strip; the rightmost third accelerates further.
     const progress = Math.max(
       0,
       Math.min(1, (3 * (event.clientX - bounds.left)) / bounds.width - 2),
     );
     const strength = Math.expm1(2 * progress) / Math.expm1(2);
-    targetSpeed = driftSpeed + (edgeSpeed - driftSpeed) * strength;
-  });
+    targetSpeed = hoverSpeed + (edgeSpeed - hoverSpeed) * strength;
+  }
+  viewport.addEventListener("pointerenter", updatePointerSpeed);
+  viewport.addEventListener("pointermove", updatePointerSpeed);
 
   function restoreDrift() {
     targetSpeed = driftSpeed;
