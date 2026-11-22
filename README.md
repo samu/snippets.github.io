@@ -52,8 +52,25 @@ keep dev/preview in the foreground. Stop background servers with
 | `public/assets/`                                | Published fonts, videos, note atlas and light textures   |
 | `public/pricing.json`                           | Pricing data shared by the page and external consumers   |
 | `src/pages/news.json.js`                        | Generates the public news feed from published articles  |
-| `astro.config.mjs`                              | Domain, port, Markdown, redirects and sitemap            |
+| `src/dev/showcase/`                             | Development-only showcase scenes and device mockup       |
+| `astro.config.mjs`                              | Domain, port, Markdown, dev routes and sitemap           |
 | `scripts/`                                      | Output checks and optional media generation              |
+
+## Local showcase
+
+With `pnpm dev` running, open <http://127.0.0.1:64530/showcase/>. This restores
+the original showcase's four mobile scenes and desktop store image, using the
+screenshots in `media/screenshots/landing-page/`. Select a scene and switch
+mobile previews between 321px and 1284px; previews fit the available screen
+width. The desktop scene uses its original 880px layout.
+
+The scene palettes and copy live in `src/dev/showcase/scenes.js`; the layout
+and original device frame live beside it. Native radio controls and CSS handle
+selection, with no React or browser JavaScript. The page is marked noindex and
+does not collect analytics.
+
+`astro.config.mjs` registers `/showcase/` only for the `dev` command. Production
+builds and `pnpm preview` have no showcase route, redirect, or sitemap entry.
 
 ## CSS organization
 
@@ -267,7 +284,7 @@ timestamp in milliseconds). Its article is available at `/news/{id}/`.
 ## Build constraints
 
 - `pnpm build` checks routes, local links/assets/anchors, heading spacing,
-  OS-based themes, redirects and the browser-script allowlist. `pnpm check` runs
+  OS-based themes, dev-page exclusion and the browser-script allowlist. `pnpm check` runs
   this output validator; it is not a TypeScript check or an external link
   checker.
 - Keep `/pricing.json` and its existing fields available to external consumers.

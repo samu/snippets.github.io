@@ -28,9 +28,6 @@ export default defineConfig({
   },
   devToolbar: { enabled: false },
   build: { inlineStylesheets: "never" },
-  redirects: {
-    "/showcase/": "/#features",
-  },
   markdown: {
     syntaxHighlight: "prism",
     processor: unified({
@@ -39,9 +36,20 @@ export default defineConfig({
     }),
   },
   integrations: [
+    {
+      name: "dev-showcase",
+      hooks: {
+        "astro:config:setup": ({ command, injectRoute }) => {
+          if (command === "dev") {
+            injectRoute({
+              pattern: "/showcase/",
+              entrypoint: "./src/dev/showcase/index.astro",
+            });
+          }
+        },
+      },
+    },
     mdx({ optimize: false }),
-    sitemap({
-      filter: (url) => !url.includes("/showcase/"),
-    }),
+    sitemap(),
   ],
 });

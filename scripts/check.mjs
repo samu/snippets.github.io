@@ -249,6 +249,11 @@ assert.deepEqual(
   "The /news.json feed must match published articles and exclude drafts",
 );
 const sitemap = fs.readFileSync(path.join(output, "sitemap-0.xml"), "utf8");
+assert(
+  !fs.existsSync(path.join(output, "showcase")) &&
+    !sitemap.includes("/showcase/"),
+  "The development-only showcase must not be published",
+);
 for (const post of newsEntries.filter((post) => post.draft)) {
   assert(
     !fs.existsSync(path.join(output, "news", post.slug)),
