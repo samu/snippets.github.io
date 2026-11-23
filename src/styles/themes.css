@@ -4,10 +4,10 @@
   color-scheme: light;
   --theme: light;
   container-name: theme;
-  --white: light-dark(#ffffff, #1c1c1f);
-  --paper: light-dark(oklch(0.984 0.002 80), #18181b);
-  --panel: light-dark(oklch(0.978 0.003 80), #252528);
-  --panel-strong: light-dark(oklch(0.958 0.003 80), #2c2c30);
+  --white: light-dark(#ffffff, #121214);
+  --paper: light-dark(oklch(0.984 0.002 80), #0e0e10);
+  --panel: light-dark(oklch(0.978 0.003 80), #1b1b1f);
+  --panel-strong: light-dark(oklch(0.958 0.003 80), #232327);
   --ink: light-dark(oklch(0.455 0.01 260), #c7c7cb);
   --heading: light-dark(oklch(0.29 0.008 260), #f7f6f3);
   --muted: light-dark(oklch(0.505 0.01 260), #a3a3aa);

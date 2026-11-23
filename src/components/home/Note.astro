@@ -3,6 +3,7 @@ import "../../styles/note-atlas.css";
 ---
 
 <div class="note-scene" aria-hidden="true">
+  <div class="note-backdrop"></div>
   <div class="note-mover"><div class="note-sprite"></div></div>
 </div>
 
@@ -32,7 +33,8 @@ import "../../styles/note-atlas.css";
 </style>
 
 <style>
-  .note-scene {
+  .note-scene,
+  .note-backdrop {
     display: none;
   }
   @supports (animation-timeline: scroll()) {
@@ -61,7 +63,24 @@ import "../../styles/note-atlas.css";
           top var(--dock-duration) cubic-bezier(0.4, 0.2, 0.3, 1),
           width var(--dock-duration) cubic-bezier(0.4, 0.2, 0.3, 1);
       }
+      @media (prefers-color-scheme: dark) {
+        .note-backdrop {
+          /* A solid backdrop reveals the note's shadow and fades as it docks. */
+          display: block;
+          position: fixed;
+          inset: 0;
+          z-index: -1;
+          pointer-events: none;
+          background: #2e2e32;
+          opacity: 1;
+          transition: opacity var(--dock-duration)
+            cubic-bezier(0.4, 0.2, 0.3, 1);
+        }
+      }
       @container note-docking style(--note-dock-state: header) {
+        .note-backdrop {
+          opacity: 0;
+        }
         .note-mover {
           left: calc(var(--page-edge) + 20px);
           top: 36px;
